@@ -1,0 +1,241 @@
+{
+  "run_id": "20261030T082918Z-0f4c37",
+  "image_id": "sha256:2f09c774e94010362741871b5a16df224698c4d398a32d349d034d752c9405af",
+  "image_size_bytes": 149205096,
+  "docker": {
+    "ServerVersion": "28.3.3",
+    "OperatingSystem": "Docker Desktop",
+    "KernelVersion": "6.6.87.2-microsoft-standard-WSL2",
+    "Architecture": "x86_64",
+    "NCPU": 8,
+    "MemTotal": 8248328192
+  },
+  "source_unchanged": true,
+  "containers": [
+    {
+      "name": "bench",
+      "image_id": "sha256:2f09c774e94010362741871b5a16df224698c4d398a32d349d034d752c9405af",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-10-30T08:29:21.582681844Z",
+        "FinishedAt": "2026-10-30T08:31:33.531792879Z"
+      },
+      "limits": {
+        "Memory": 5368709120,
+        "MemorySwap": 5368709120,
+        "NanoCpus": 4000000000,
+        "PidsLimit": 128,
+        "NetworkMode": "none",
+        "ReadonlyRootfs": true,
+        "CapDrop": [
+          "ALL"
+        ],
+        "SecurityOpt": [
+          "no-new-privileges"
+        ]
+      },
+      "mounts": [
+        {
+          "destination": "/plugins",
+          "rw": false
+        },
+        {
+          "destination": "/contracts",
+          "rw": false
+        },
+        {
+          "destination": "/work",
+          "rw": true
+        }
+      ]
+    },
+    {
+      "name": "auth",
+      "image_id": "sha256:2f09c774e94010362741871b5a16df224698c4d398a32d349d034d752c9405af",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-10-30T08:31:36.103028998Z",
+        "FinishedAt": "2026-10-30T08:31:40.543791324Z"
+      },
+      "limits": {
+        "Memory": 536870912,
+        "MemorySwap": 536870912,
+        "NanoCpus": 1000000000,
+        "PidsLimit": 128,
+        "NetworkMode": "none",
+        "ReadonlyRootfs": true,
+        "CapDrop": [
+          "ALL"
+        ],
+        "SecurityOpt": [
+          "no-new-privileges"
+        ]
+      },
+      "mounts": [
+        {
+          "destination": "/plugins",
+          "rw": false
+        },
+        {
+          "destination": "/contracts",
+          "rw": false
+        },
+        {
+          "destination": "/work",
+          "rw": true
+        }
+      ]
+    },
+    {
+      "name": "contract",
+      "image_id": "sha256:2f09c774e94010362741871b5a16df224698c4d398a32d349d034d752c9405af",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-10-30T08:31:41.170635696Z",
+        "FinishedAt": "2026-10-30T08:31:41.696946091Z"
+      },
+      "limits": {
+        "Memory": 268435456,
+        "MemorySwap": 268435456,
+        "NanoCpus": 1000000000,
+        "PidsLimit": 128,
+        "NetworkMode": "none",
+        "ReadonlyRootfs": true,
+        "CapDrop": [
+          "ALL"
+        ],
+        "SecurityOpt": [
+          "no-new-privileges"
+        ]
+      },
+      "mounts": [
+        {
+          "destination": "/plugins",
+          "rw": false
+        },
+        {
+          "destination": "/contracts",
+          "rw": false
+        },
+        {
+          "destination": "/work",
+          "rw": true
+        }
+      ]
+    },
+    {
+      "name": "cap-search",
+      "image_id": "sha256:2f09c774e94010362741871b5a16df224698c4d398a32d349d034d752c9405af",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-10-30T08:31:42.328624628Z",
+        "FinishedAt": "2026-10-30T08:31:57.283019501Z"
+      },
+      "limits": {
+        "Memory": 3221225472,
+        "MemorySwap": 3221225472,
+        "NanoCpus": 2000000000,
+        "PidsLimit": 128,
+        "NetworkMode": "none",
+        "ReadonlyRootfs": true,
+        "CapDrop": [
+          "ALL"
+        ],
+        "SecurityOpt": [
+          "no-new-privileges"
+        ]
+      },
+      "mounts": [
+        {
+          "destination": "/plugins",
+          "rw": false
+        },
+        {
+          "destination": "/contracts",
+          "rw": false
+        },
+        {
+          "destination": "/work",
+          "rw": true
+        }
+      ]
+    },
+    {
+      "name": "cap-light",
+      "image_id": "sha256:2f09c774e94010362741871b5a16df224698c4d398a32d349d034d752c9405af",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-10-30T08:31:57.902859392Z",
+        "FinishedAt": "2026-10-30T08:31:58.377547906Z"
+      },
+      "limits": {
+        "Memory": 268435456,
+        "MemorySwap": 268435456,
+        "NanoCpus": 1000000000,
+        "PidsLimit": 128,
+        "NetworkMode": "none",
+        "ReadonlyRootfs": true,
+        "CapDrop": [
+          "ALL"
+        ],
+        "SecurityOpt": [
+          "no-new-privileges"
+        ]
+      },
+      "mounts": [
+        {
+          "destination": "/plugins",
+          "rw": false
+        },
+        {
+          "destination": "/contracts",
+          "rw": false
+        },
+        {
+          "destination": "/work",
+          "rw": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{"phase": "calculators", "metrics": {"wall_s": 0.01986776400008239, "peak_rss_mib": 27.25390625, "cpu_user_s": 0.264272, "cpu_system_s": 0.008131}}

@@ -1,0 +1,416 @@
+{
+  "passed": true,
+  "transport": "real TCP 127.0.0.1, separate uvicorn process, no ASGI TestClient",
+  "versions": {
+    "mcp": "2.3.0",
+    "Authlib": "1.9.1",
+    "fastapi": "0.162.0",
+    "httpx2": "2.16.0"
+  },
+  "checks": [
+    {
+      "name": "AS discovery",
+      "passed": true
+    },
+    {
+      "name": "missing token",
+      "passed": true,
+      "status": 401,
+      "challenge": "Bearer error=\"invalid_token\", error_description=\"Authentication required\", resource_metadata=\"http://127.0.0.1:8765/.well-known/oauth-protected-resource/mcp\""
+    },
+    {
+      "name": "resource discovery",
+      "passed": true,
+      "metadata": {
+        "resource": "http://127.0.0.1:8765/mcp",
+        "authorization_servers": [
+          "http://127.0.0.1:8765/"
+        ],
+        "scopes_supported": [
+          "hub:read"
+        ],
+        "bearer_methods_supported": [
+          "header"
+        ]
+      }
+    },
+    {
+      "name": "authorize needs login",
+      "passed": true
+    },
+    {
+      "name": "login CSRF",
+      "passed": true
+    },
+    {
+      "name": "bad password",
+      "passed": true
+    },
+    {
+      "name": "owner login",
+      "passed": true
+    },
+    {
+      "name": "unregistered redirect",
+      "passed": true,
+      "status": 400
+    },
+    {
+      "name": "PKCE required",
+      "passed": true
+    },
+    {
+      "name": "authorize resource",
+      "passed": true
+    },
+    {
+      "name": "authorize S256 and state",
+      "passed": true
+    },
+    {
+      "name": "wrong verifier",
+      "passed": true
+    },
+    {
+      "name": "token resource",
+      "passed": true
+    },
+    {
+      "name": "exchange redirect binding",
+      "passed": true
+    },
+    {
+      "name": "code exchange",
+      "passed": true
+    },
+    {
+      "name": "code replay",
+      "passed": true
+    },
+    {
+      "name": "strict protocol pin",
+      "passed": true,
+      "version": "2026-07-28"
+    },
+    {
+      "name": "list typed tool",
+      "passed": true
+    },
+    {
+      "name": "original calculator via HTTP",
+      "passed": true,
+      "output": {
+        "currency": "VND",
+        "cit_with_incentive_VND": 2400000000,
+        "effective_rate_pct": 20.0
+      }
+    },
+    {
+      "name": "invalid input rejected",
+      "passed": true
+    },
+    {
+      "name": "reject fixture expires_at",
+      "passed": true,
+      "status": 401
+    },
+    {
+      "name": "reject fixture resource",
+      "passed": true,
+      "status": 401
+    },
+    {
+      "name": "reject fixture workspace_id",
+      "passed": true,
+      "status": 401
+    },
+    {
+      "name": "reject fixture scope",
+      "passed": true,
+      "status": 403
+    },
+    {
+      "name": "modern discovery",
+      "passed": true,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 50,
+        "result": {
+          "cacheScope": "private",
+          "capabilities": {
+            "prompts": {
+              "listChanged": true
+            },
+            "resources": {
+              "listChanged": true,
+              "subscribe": true
+            },
+            "tools": {
+              "listChanged": true
+            }
+          },
+          "resultType": "complete",
+          "supportedVersions": [
+            "2026-07-28"
+          ],
+          "ttlMs": 0,
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "goodmcp-g0",
+              "version": "0.0.1"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "header mismatch",
+      "passed": true,
+      "status": 400
+    },
+    {
+      "name": "unsupported version",
+      "passed": true,
+      "status": 400,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "error": {
+          "code": -32022,
+          "message": "Unsupported protocol version",
+          "data": {
+            "supported": [
+              "2026-07-28"
+            ],
+            "requested": "2099-01-01"
+          }
+        }
+      }
+    },
+    {
+      "name": "origin rejected",
+      "passed": true
+    },
+    {
+      "name": "host rejected",
+      "passed": true
+    },
+    {
+      "name": "no legacy initialize/session",
+      "passed": true
+    },
+    {
+      "name": "modern result discriminator",
+      "passed": true
+    },
+    {
+      "name": "modern metadata and mirrors",
+      "passed": true
+    }
+  ],
+  "wire": [
+    {
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "tools/list",
+        "params": {
+          "_meta": {
+            "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+            "io.modelcontextprotocol/clientInfo": {
+              "name": "mcp",
+              "version": "0.1.0"
+            },
+            "io.modelcontextprotocol/clientCapabilities": {}
+          }
+        }
+      },
+      "headers": {
+        "mcp-protocol-version": "2026-07-28",
+        "mcp-method": "tools/list"
+      },
+      "status": 200,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "cacheScope": "private",
+          "resultType": "complete",
+          "tools": [
+            {
+              "annotations": {
+                "destructiveHint": false,
+                "idempotentHint": true,
+                "openWorldHint": false,
+                "readOnlyHint": true
+              },
+              "description": "Local PoC only: call the original reviewed Python CIT calculator at 20%.",
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "revenue": {
+                    "maximum": 1000000000000000.0,
+                    "minimum": 0,
+                    "title": "Revenue",
+                    "type": "number"
+                  },
+                  "cost": {
+                    "maximum": 1000000000000000.0,
+                    "minimum": 0,
+                    "title": "Cost",
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "revenue",
+                  "cost"
+                ],
+                "title": "g0_citArguments"
+              },
+              "name": "g0_cit",
+              "outputSchema": {
+                "properties": {
+                  "currency": {
+                    "title": "Currency",
+                    "type": "string"
+                  },
+                  "cit_with_incentive_VND": {
+                    "title": "Cit With Incentive Vnd",
+                    "type": "integer"
+                  },
+                  "effective_rate_pct": {
+                    "title": "Effective Rate Pct",
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "currency",
+                  "cit_with_incentive_VND",
+                  "effective_rate_pct"
+                ],
+                "title": "CITResult",
+                "type": "object"
+              }
+            }
+          ],
+          "ttlMs": 0,
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "goodmcp-g0",
+              "version": "0.0.1"
+            }
+          }
+        }
+      },
+      "session_header": null
+    },
+    {
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "method": "tools/call",
+        "params": {
+          "name": "g0_cit",
+          "arguments": {
+            "revenue": 50000000000,
+            "cost": 38000000000
+          },
+          "_meta": {
+            "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+            "io.modelcontextprotocol/clientInfo": {
+              "name": "mcp",
+              "version": "0.1.0"
+            },
+            "io.modelcontextprotocol/clientCapabilities": {}
+          }
+        }
+      },
+      "headers": {
+        "mcp-protocol-version": "2026-07-28",
+        "mcp-method": "tools/call",
+        "mcp-name": "g0_cit"
+      },
+      "status": 200,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "content": [
+            {
+              "text": "{\n  \"currency\": \"VND\",\n  \"cit_with_incentive_VND\": 2400000000,\n  \"effective_rate_pct\": 20.0\n}",
+              "type": "text"
+            }
+          ],
+          "isError": false,
+          "resultType": "complete",
+          "structuredContent": {
+            "currency": "VND",
+            "cit_with_incentive_VND": 2400000000,
+            "effective_rate_pct": 20.0
+          },
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "goodmcp-g0",
+              "version": "0.0.1"
+            }
+          }
+        }
+      },
+      "session_header": null
+    },
+    {
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "method": "tools/call",
+        "params": {
+          "name": "g0_cit",
+          "arguments": {
+            "revenue": -1,
+            "cost": 0
+          },
+          "_meta": {
+            "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+            "io.modelcontextprotocol/clientInfo": {
+              "name": "mcp",
+              "version": "0.1.0"
+            },
+            "io.modelcontextprotocol/clientCapabilities": {}
+          }
+        }
+      },
+      "headers": {
+        "mcp-protocol-version": "2026-07-28",
+        "mcp-method": "tools/call",
+        "mcp-name": "g0_cit"
+      },
+      "status": 200,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "result": {
+          "content": [
+            {
+              "text": "Error executing tool g0_cit: 1 validation error for g0_citArguments\nrevenue\n  Input should be greater than or equal to 0 [type=greater_than_equal, input_value=-1, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/greater_than_equal",
+              "type": "text"
+            }
+          ],
+          "isError": true,
+          "resultType": "complete",
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "goodmcp-g0",
+              "version": "0.0.1"
+            }
+          }
+        }
+      },
+      "session_header": null
+    }
+  ],
+  "unverified": [
+    "production DB/refresh/revocation/consent/rate limits",
+    "cloud hosts",
+    "TLS/proxy"
+  ]
+}

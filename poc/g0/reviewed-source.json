@@ -1,0 +1,26 @@
+{
+  "build_index": {
+    "path": "references/corpus/vietnam-finance-tax-corpus/build_index.py",
+    "sha256": "c1770540b364ef79a245891b6276231493ec04a2eaee1a1848a94fddbae73b17"
+  },
+  "search_corpus": {
+    "path": "references/corpus/vietnam-finance-tax-corpus/search_corpus.py",
+    "sha256": "3d4911f72fb4ee4c151cc43b8e2ea7a669c2e278f333a3c55f5a6b3e5b5f7299"
+  },
+  "calculators": {
+    "path": "references/tools/calculators.py",
+    "sha256": "613e45472a70e22bc9333a8b62c9fd06b4b0fa63b3b693790682648c9fff9109"
+  },
+  "location_sim": {
+    "path": "references/tools/location_sim.py",
+    "sha256": "f9e1a890d1a0518f74bc5f8da9db930f102cff986328408a55b4b2c937923c6b"
+  },
+  "refs": {
+    "path": "references/tools/refs.py",
+    "sha256": "3d170feecd0a022b4b3cb3d0152bf54c67a6812d792f5111f4de36070aa1ecc5"
+  },
+  "tariff": {
+    "path": "references/tools/tariff.py",
+    "sha256": "228a9693ff50ae7031c567a8da92ac9f6a5bbe81d53b72bd8edb70de4be3813f"
+  }
+}

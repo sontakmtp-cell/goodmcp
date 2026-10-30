@@ -1,0 +1,73 @@
+{
+  "query": "thuế thu nhập doanh nghiệp",
+  "chunks": 83736,
+  "shape": [
+    83736,
+    50000
+  ],
+  "nnz": 50005587,
+  "load_and_integrity_s": 8.883229654999013,
+  "first_query_s": 0.9552452909993008,
+  "warm_query_s": [
+    0.7117098109993094,
+    0.8633953790013038,
+    0.7894261129986262,
+    0.8340704780021042,
+    0.8789834909985075
+  ],
+  "warm_median_s": 0.8340704780021042,
+  "warm_max_s": 0.8789834909985075,
+  "results": [
+    {
+      "rank": 1,
+      "score": 0.517,
+      "chunk_id": "vn_cit_law_vietnamese_chinese_0072",
+      "source_file": "vn_cit_law_vietnamese_chinese.html",
+      "source_label": "vn",
+      "preview": "Trường hợp doanh nghiệp được cấp Giấy chứng nhận dự án ứng dụng công nghệ cao, Giấy chứng nhận doanh nghiệp công nghệ cao, Giấy chứng nhận doanh nghiệp nông nghiệp ứng dụng công nghệ cao, Giấy chứng n",
+      "char_count": 515
+    },
+    {
+      "rank": 2,
+      "score": 0.517,
+      "chunk_id": "vn_cit_law_vietnamese_chinese_0068",
+      "source_file": "vn_cit_law_vietnamese_chinese.txt",
+      "source_label": "vn",
+      "preview": "Trường hợp doanh nghiệp được cấp Giấy chứng nhận dự án ứng dụng công nghệ cao, Giấy chứng nhận doanh nghiệp công nghệ cao, Giấy chứng nhận doanh nghiệp nông nghiệp ứng dụng công nghệ cao, Giấy chứng n",
+      "char_count": 515
+    },
+    {
+      "rank": 3,
+      "score": 0.4919,
+      "chunk_id": "vn_cit_law_vietnamese_chinese_0042",
+      "source_file": "vn_cit_law_vietnamese_chinese.html",
+      "source_label": "vn",
+      "preview": "计税方法\n1.Số thuế thu nhập doanh nghiệp phải nộp trong kỳ tính thuế được tính bằng thu nhập tính thuế nhân với thuế suất, trừ trường hợp quy định tại khoản 2 Điều này.企业所得税应纳税额为应纳税所得额乘以适用税率，但本条第\n2\n款规定的情形",
+      "char_count": 281
+    },
+    {
+      "rank": 4,
+      "score": 0.4656,
+      "chunk_id": "vn_cit_law_vietnamese_chinese_0001",
+      "source_file": "vn_cit_law_vietnamese_chinese.html",
+      "source_label": "vn",
+      "preview": "调整范围\nLuật này quy định về người nộp thuế, thu nhập chịu thuế, thu nhập được miễn thuế, căn cứ tính thuế, phương pháp tính thuế và ưu đãi thuế thu nhập doanh nghiệp.本法规定纳税人、应纳税所得额、免税所得、计税依据、企业所得税的计算方法及",
+      "char_count": 315
+    },
+    {
+      "rank": 5,
+      "score": 0.4656,
+      "chunk_id": "vn_cit_law_vietnamese_chinese_0002",
+      "source_file": "vn_cit_law_vietnamese_chinese.txt",
+      "source_label": "vn",
+      "preview": "调整范围\nLuật này quy định về người nộp thuế, thu nhập chịu thuế, thu nhập được miễn thuế, căn cứ tính thuế, phương pháp tính thuế và ưu đãi thuế thu nhập doanh nghiệp.本法规定纳税人、应纳税所得额、免税所得、计税依据、企业所得税的计算方法及",
+      "char_count": 315
+    }
+  ],
+  "metrics": {
+    "wall_s": 13.9643888899991,
+    "peak_rss_mib": 1920.4453125,
+    "cpu_user_s": 9.151189,
+    "cpu_system_s": 2.318781
+  }
+}

@@ -1,0 +1,5 @@
+StreamableHTTP session manager started
+Tool 'g0_cit' rejected arguments: ['revenue']
+Bearer token resource 'http://127.0.0.1:8765/wrong' is not resource_server_url http://127.0.0.1:8765/mcp
+{"passed": true, "checks": 32}
+StreamableHTTP session manager shutting down

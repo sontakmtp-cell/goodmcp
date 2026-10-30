@@ -1,0 +1,14 @@
+[project]
+name = "goodmcp-g0"
+version = "0.0.1"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "mcp>=2,<3", "Authlib>=1.6,<2", "fastapi>=0.115,<1",
+  "uvicorn>=0.35,<1", "httpx>=0.28,<1", "python-multipart>=0.0.20,<1",
+  "numpy>=2,<3", "scipy>=1.16,<2", "scikit-learn>=1.7,<2",
+  "beautifulsoup4>=4.13,<5", "psutil>=7,<8",
+  "SQLAlchemy>=2,<3", "alembic>=1.16,<2", "psycopg[binary]>=3.2,<4",
+]
+
+[tool.uv]
+package = false

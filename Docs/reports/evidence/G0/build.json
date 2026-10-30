@@ -1,0 +1,21 @@
+{
+  "chunks": 83736,
+  "source_files": 672,
+  "full_text_rows_verified": 83736,
+  "manifest": {
+    "builder_sha256": "c1770540b364ef79a245891b6276231493ec04a2eaee1a1848a94fddbae73b17",
+    "created_by": "reviewed builder in G0 offline container, NOT imported pickle",
+    "sha256": {
+      "tfidf_vectorizer.pkl": "0e3c16aef2b00017383f103d47b35e67cc89e58927adcc272122588ad9e5aa4e",
+      "tfidf_matrix.npz": "b2cc5599837cf6e3f20b0abc20fb7b14283792c2b83df10df369a900edd4c85b",
+      "chunks_metadata.json": "647dcb8717c9ab0228238ab36bffb2805fe44cf56144d4acb3b98261ea491684",
+      "chunks_full.jsonl": "63f6e05c80b173a5de8257a9778a0b84f5a9f6728edbf5346c110f7dacf1c84f"
+    }
+  },
+  "metrics": {
+    "wall_s": 102.45915622599932,
+    "peak_rss_mib": 2050.8828125,
+    "cpu_user_s": 94.031282,
+    "cpu_system_s": 2.77176
+  }
+}

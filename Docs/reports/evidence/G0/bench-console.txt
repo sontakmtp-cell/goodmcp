@@ -1,0 +1,6 @@
+{"phase": "calculators", "attempt": 0, "exit_code": 0, "process_wall_s": 0.31628644300144515}
+{"phase": "refs", "attempt": 1, "exit_code": 0, "process_wall_s": 0.37166111700207694}
+{"phase": "smoke_more", "attempt": 2, "exit_code": 0, "process_wall_s": 0.3162749580005766}
+{"phase": "build", "attempt": 3, "exit_code": 0, "process_wall_s": 102.87183977799941}
+{"phase": "search", "attempt": 4, "exit_code": 0, "process_wall_s": 13.549641719997453}
+{"phase": "search", "attempt": 5, "exit_code": 0, "process_wall_s": 13.62405527699957}

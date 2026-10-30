@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:goodmcp:contracts:g0:1.0.0",
+  "title": "goodmcp G0 to G1 contracts 1.0.0",
+  "description": "Normative message shapes; authorization, state transitions and business arguments require runtime checks described in G1-contract.md.",
+  "$defs": {
+    "Id": {"type": "string", "format": "uuid"},
+    "Sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "Error": {
+      "type": "object", "additionalProperties": false,
+      "required": ["code", "message", "retryable"],
+      "properties": {
+        "code": {"type": "string", "enum": ["invalid_input", "not_found", "forbidden", "unauthenticated", "conflict", "quota", "tool_exit", "timeout", "cancelled", "runtime_unavailable", "internal"]},
+        "message": {"type": "string", "maxLength": 1000},
+        "retryable": {"type": "boolean"}
+      }
+    },
+    "TenantContext": {
+      "description": "Internal only, derived from verified identity and membership; never accept as public request.",
+      "type": "object", "additionalProperties": false,
+      "required": ["user_id", "workspace_id", "membership_id", "role", "scopes", "request_id"],
+      "properties": {
+        "user_id": {"$ref": "#/$defs/Id"},
+        "workspace_id": {"$ref": "#/$defs/Id"},
+        "membership_id": {"$ref": "#/$defs/Id"},
+        "role": {"enum": ["owner", "admin", "member", "viewer"]},
+        "scopes": {"type": "array", "maxItems": 32, "uniqueItems": true, "items": {"type": "string", "minLength": 1, "maxLength": 80}},
+        "request_id": {"$ref": "#/$defs/Id"}
+      }
+    },
+    "InvocationRequest": {
+      "type": "object", "additionalProperties": false,
+      "required": ["binding_id", "arguments", "idempotency_key"],
+      "properties": {
+        "binding_id": {"$ref": "#/$defs/Id"},
+        "arguments": {"type": "object", "maxProperties": 64, "description": "Also MUST validate against immutable binding.input_schema before dispatch; no arbitrary command/path/image accepted."},
+        "project_id": {"$ref": "#/$defs/Id"},
+        "idempotency_key": {"type": "string", "minLength": 8, "maxLength": 128, "pattern": "^[A-Za-z0-9._:-]+$"}
+      }
+    },
+    "InvocationResult": {
+      "oneOf": [
+        {"type": "object", "additionalProperties": false, "required": ["status", "data", "provenance", "warnings"], "properties": {
+          "status": {"const": "completed"}, "data": {},
+          "provenance": {"$ref": "#/$defs/Provenance"},
+          "warnings": {"type": "array", "maxItems": 50, "items": {"type": "string", "maxLength": 1000}}
+        }},
+        {"type": "object", "additionalProperties": false, "required": ["status", "job_id", "poll_after_ms"], "properties": {
+          "status": {"const": "accepted"}, "job_id": {"$ref": "#/$defs/Id"},
+          "poll_after_ms": {"type": "integer", "minimum": 250, "maximum": 30000}
+        }}
+      ]
+    },
+    "Provenance": {
+      "type": "object", "additionalProperties": false,
+      "required": ["plugin_version_id", "source_tree_sha256", "adapter_id", "adapter_version", "source_date"],
+      "properties": {
+        "plugin_version_id": {"$ref": "#/$defs/Id"}, "source_tree_sha256": {"$ref": "#/$defs/Sha256"},
+        "adapter_id": {"type": "string", "minLength": 1, "maxLength": 100},
+        "adapter_version": {"type": "string", "minLength": 1, "maxLength": 40},
+        "source_date": {"oneOf": [{"const": "unknown"}, {"type": "string", "format": "date"}]},
+        "index_sha256": {"$ref": "#/$defs/Sha256"}
+      }
+    },
+    "PublicJob": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "state", "attempts", "created_at", "deadline_at"],
+      "properties": {
+        "id": {"$ref": "#/$defs/Id"},
+        "state": {"enum": ["queued", "running", "succeeded", "failed", "cancelled"]},
+        "attempts": {"type": "integer", "minimum": 0, "maximum": 3},
+        "created_at": {"type": "string", "format": "date-time"},
+        "deadline_at": {"type": "string", "format": "date-time"},
+        "started_at": {"type": "string", "format": "date-time"},
+        "finished_at": {"type": "string", "format": "date-time"},
+        "cancel_requested_at": {"type": "string", "format": "date-time"},
+        "result_artifact_id": {"$ref": "#/$defs/Id"},
+        "error": {"$ref": "#/$defs/Error"}
+      },
+      "allOf": [
+        {"if": {"properties": {"state": {"const": "succeeded"}}}, "then": {"required": ["result_artifact_id", "finished_at"], "not": {"required": ["error"]}}},
+        {"if": {"properties": {"state": {"const": "failed"}}}, "then": {"required": ["error", "finished_at"], "not": {"required": ["result_artifact_id"]}}},
+        {"if": {"properties": {"state": {"const": "cancelled"}}}, "then": {"required": ["finished_at"], "not": {"required": ["result_artifact_id"]}}},
+        {"if": {"properties": {"state": {"const": "running"}}}, "then": {"required": ["started_at"], "properties": {"attempts": {"minimum": 1}}}},
+        {"if": {"properties": {"state": {"enum": ["queued", "running"]}}}, "then": {"not": {"anyOf": [{"required": ["finished_at"]}, {"required": ["result_artifact_id"]}, {"required": ["error"]}]}}}
+      ]
+    },
+    "ArtifactDescriptor": {
+      "description": "Public descriptor, no storage_key or filesystem path.",
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "sha256", "bytes", "media_type", "revision", "created_at"],
+      "properties": {
+        "id": {"$ref": "#/$defs/Id"}, "sha256": {"$ref": "#/$defs/Sha256"},
+        "bytes": {"type": "integer", "minimum": 0},
+        "media_type": {"type": "string", "minLength": 3, "maxLength": 120},
+        "revision": {"type": "integer", "minimum": 1},
+        "created_at": {"type": "string", "format": "date-time"}
+      }
+    },
+    "ToolBinding": {
+      "description": "Internal reviewed config, never accepted directly from client.",
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "workspace_id", "plugin_version_id", "mcp_name", "adapter_id", "image_digest", "input_schema", "output_schema", "limits", "network_policy", "file_policy"],
+      "properties": {
+        "id": {"$ref": "#/$defs/Id"}, "workspace_id": {"$ref": "#/$defs/Id"}, "plugin_version_id": {"$ref": "#/$defs/Id"},
+        "mcp_name": {"type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$"},
+        "adapter_id": {"type": "string", "minLength": 1, "maxLength": 100},
+        "image_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "input_schema": {"type": "object"}, "output_schema": {"type": "object"},
+        "limits": {"type": "object", "additionalProperties": false, "required": ["timeout_s", "memory_mib", "cpu", "pids"], "properties": {
+          "timeout_s": {"type": "integer", "minimum": 1, "maximum": 1800},
+          "memory_mib": {"type": "integer", "minimum": 64, "maximum": 5120},
+          "cpu": {"type": "number", "exclusiveMinimum": 0, "maximum": 4},
+          "pids": {"type": "integer", "minimum": 1, "maximum": 128}
+        }},
+        "network_policy": {"const": "none"},
+        "file_policy": {"const": "plugin-ro_index-ro_job-rw"}
+      }
+    },
+    "StageCommitRequest": {
+      "type": "object", "additionalProperties": false,
+      "required": ["expected_revision", "idempotency_key", "artifact_ids", "decision", "assumptions"],
+      "properties": {
+        "expected_revision": {"type": "integer", "minimum": 0},
+        "idempotency_key": {"type": "string", "minLength": 8, "maxLength": 128},
+        "artifact_ids": {"type": "array", "maxItems": 100, "uniqueItems": true, "items": {"$ref": "#/$defs/Id"}},
+        "decision": {"type": "string", "maxLength": 10000},
+        "assumptions": {"type": "array", "maxItems": 100, "items": {"type": "string", "maxLength": 2000}}
+      }
+    }
+  }
+}

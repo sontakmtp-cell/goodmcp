@@ -1,0 +1,10 @@
+{
+  "run_id": "20261030T082918Z-0f4c37",
+  "rebuilt_rows": 83736,
+  "unique_legacy_ids": 49488,
+  "duplicate_legacy_id_groups": 34248,
+  "duplicate_legacy_id_extra_rows": 34248,
+  "unique_composite_source_file_id": 83736,
+  "composite_collisions": 0,
+  "full_text_rows_rechecked": 83736
+}

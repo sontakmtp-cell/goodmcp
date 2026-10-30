@@ -1,0 +1,121 @@
+{
+  "tariff": {
+    "currency": "VND",
+    "category": "Nguyên liệu / phụ tùng",
+    "cif_VND": 100000000,
+    "import_duty_pct": 0,
+    "import_duty_VND": 0,
+    "special_consumption_pct": 0,
+    "special_consumption_VND": 0,
+    "vat_pct": 10.0,
+    "vat_VND": 10000000,
+    "total_import_tax_VND": 10000000,
+    "tax_as_pct_of_cif": 10.0,
+    "landed_cost_VND": 110000000,
+    "note": "Doanh nghiệp sản xuất hàng xuất khẩu nhập nguyên liệu thường được miễn thuế nhập khẩu"
+  },
+  "location": [
+    {
+      "key": "quang_ngai",
+      "name_vi": "Quảng Ngãi",
+      "region": "Miền Trung",
+      "land_cost_usd": 480000,
+      "factory_cost_usd": 252000,
+      "payroll_cost_usd": 950190,
+      "cit_usd": 0,
+      "cit_note": "chưa cung cấp lợi nhuận, chưa tính",
+      "total_annual_usd": 1682190,
+      "cit_rate_pct": 10.0
+    },
+    {
+      "key": "bac_giang",
+      "name_vi": "Bắc Giang",
+      "region": "Miền Bắc",
+      "land_cost_usd": 550000,
+      "factory_cost_usd": 288000,
+      "payroll_cost_usd": 1006084,
+      "cit_usd": 0,
+      "cit_note": "chưa cung cấp lợi nhuận, chưa tính",
+      "total_annual_usd": 1844084,
+      "cit_rate_pct": 10.0
+    },
+    {
+      "key": "da_nang",
+      "name_vi": "Đà Nẵng",
+      "region": "Miền Trung",
+      "land_cost_usd": 600000,
+      "factory_cost_usd": 270000,
+      "payroll_cost_usd": 1006084,
+      "cit_usd": 0,
+      "cit_note": "chưa cung cấp lợi nhuận, chưa tính",
+      "total_annual_usd": 1876084,
+      "cit_rate_pct": 10.0
+    },
+    {
+      "key": "hai_phong",
+      "name_vi": "Hải Phòng",
+      "region": "Miền Bắc",
+      "land_cost_usd": 700000,
+      "factory_cost_usd": 330000,
+      "payroll_cost_usd": 1117871,
+      "cit_usd": 0,
+      "cit_note": "chưa cung cấp lợi nhuận, chưa tính",
+      "total_annual_usd": 2147871,
+      "cit_rate_pct": 10.0
+    },
+    {
+      "key": "dong_nai",
+      "name_vi": "Đồng Nai",
+      "region": "Miền Nam",
+      "land_cost_usd": 800000,
+      "factory_cost_usd": 312000,
+      "payroll_cost_usd": 1061977,
+      "cit_usd": 0,
+      "cit_note": "chưa cung cấp lợi nhuận, chưa tính",
+      "total_annual_usd": 2173977,
+      "cit_rate_pct": 20.0
+    },
+    {
+      "key": "bac_ninh",
+      "name_vi": "Bắc Ninh",
+      "region": "Miền Bắc",
+      "land_cost_usd": 760000,
+      "factory_cost_usd": 348000,
+      "payroll_cost_usd": 1229658,
+      "cit_usd": 0,
+      "cit_note": "chưa cung cấp lợi nhuận, chưa tính",
+      "total_annual_usd": 2337658,
+      "cit_rate_pct": 10.0
+    },
+    {
+      "key": "binh_duong",
+      "name_vi": "Bình Dương",
+      "region": "Miền Nam",
+      "land_cost_usd": 930000,
+      "factory_cost_usd": 336000,
+      "payroll_cost_usd": 1173764,
+      "cit_usd": 0,
+      "cit_note": "chưa cung cấp lợi nhuận, chưa tính",
+      "total_annual_usd": 2439764,
+      "cit_rate_pct": 20.0
+    },
+    {
+      "key": "ho_chi_minh",
+      "name_vi": "TP. Hồ Chí Minh",
+      "region": "Miền Nam",
+      "land_cost_usd": 1100000,
+      "factory_cost_usd": 420000,
+      "payroll_cost_usd": 1397338,
+      "cit_usd": 0,
+      "cit_note": "chưa cung cấp lợi nhuận, chưa tính",
+      "total_annual_usd": 2917338,
+      "cit_rate_pct": 20.0
+    }
+  ],
+  "metrics": {
+    "wall_s": 0.03380381800161558,
+    "peak_rss_mib": 27.75390625,
+    "cpu_user_s": 0.272989,
+    "cpu_system_s": 0.008029
+  }
+}

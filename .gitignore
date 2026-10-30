@@ -30,3 +30,6 @@ build/
 # Công cụ AI cục bộ
 .workbuddy-ai/
 .codebuddy/
+
+# G0 rebuildable local index and run scratch (evidence is copied to Docs/reports)
+.g0-local/
