@@ -1,0 +1,403 @@
+
+[compose-config]
+
+[build-clean-source]
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.17kB done
+#1 DONE 0.0s
+
+#2 [api internal] load build definition from Dockerfile
+#2 transferring dockerfile: 851B 0.0s done
+#2 DONE 0.1s
+
+#3 [caddy internal] load build definition from Dockerfile.caddy
+#3 transferring dockerfile: 355B 0.0s done
+#3 DONE 0.1s
+
+#4 [api internal] load metadata for ghcr.io/astral-sh/uv:0.9.7@sha256:ba4857bf2a068e9bc0e64eed8563b065908a4cd6bfb66b531a9c424c8e25e142
+#4 DONE 0.0s
+
+#5 [caddy internal] load metadata for docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+#5 DONE 0.1s
+
+#6 [api internal] load metadata for docker.io/library/python:3.12.12-slim-bookworm@sha256:593bd06efe90efa80dc4eee3948be7c0fde4134606dd40d8dd8dbcade98e669c
+#6 DONE 0.1s
+
+#7 [caddy internal] load .dockerignore
+#7 transferring context: 2B done
+#7 DONE 0.0s
+
+#8 [api internal] load .dockerignore
+#8 transferring context: 261B 0.0s done
+#8 DONE 0.1s
+
+#9 [caddy 1/2] FROM docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+#9 resolve docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+#9 resolve docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d 0.0s done
+#9 DONE 0.0s
+
+#10 [caddy 2/2] RUN setcap -r /usr/bin/caddy
+#10 CACHED
+
+#11 [api] FROM ghcr.io/astral-sh/uv:0.9.7@sha256:ba4857bf2a068e9bc0e64eed8563b065908a4cd6bfb66b531a9c424c8e25e142
+#11 resolve ghcr.io/astral-sh/uv:0.9.7@sha256:ba4857bf2a068e9bc0e64eed8563b065908a4cd6bfb66b531a9c424c8e25e142 0.1s done
+#11 DONE 0.1s
+
+#12 [api stage-0  1/10] FROM docker.io/library/python:3.12.12-slim-bookworm@sha256:593bd06efe90efa80dc4eee3948be7c0fde4134606dd40d8dd8dbcade98e669c
+#12 resolve docker.io/library/python:3.12.12-slim-bookworm@sha256:593bd06efe90efa80dc4eee3948be7c0fde4134606dd40d8dd8dbcade98e669c 0.1s done
+#12 DONE 0.1s
+
+#13 [caddy] exporting to image
+#13 exporting layers done
+#13 exporting manifest sha256:bd4444ed143f890257aa3d4ec2d0eec732bc2dbe313dac63d44f3d3197e23139 0.0s done
+#13 exporting config sha256:3e1eb1b96b06b45030ba57576dd3603c5a6b94d41d49b15fec9065b557c0261e 0.0s done
+#13 ...
+
+#14 [api internal] load build context
+#14 transferring context: 92.55kB 0.1s done
+#14 DONE 0.1s
+
+#15 [api stage-0  2/10] COPY --from=ghcr.io/astral-sh/uv:0.9.7@sha256:ba4857bf2a068e9bc0e64eed8563b065908a4cd6bfb66b531a9c424c8e25e142 /uv /usr/local/bin/uv
+#15 CACHED
+
+#16 [api stage-0  3/10] WORKDIR /app
+#16 CACHED
+
+#13 [caddy] exporting to image
+#13 exporting attestation manifest sha256:e0ae7d39cec35c6c8c5d4f62a200c0a1b83deea2c5259149280090fbc4a4dc96 0.1s done
+#13 exporting manifest list sha256:ac674df6755ea0dee19127a7a155fe9d8ddfb7ae01946e9e2860e65dfe5d5d75 0.0s done
+#13 naming to docker.io/library/goodmcp-caddy:local done
+#13 unpacking to docker.io/library/goodmcp-caddy:local
+#13 unpacking to docker.io/library/goodmcp-caddy:local 0.0s done
+#13 DONE 0.2s
+
+#17 [api stage-0  4/10] COPY pyproject.toml uv.lock ./
+#17 DONE 0.1s
+
+#18 [api stage-0  5/10] RUN uv sync --frozen --no-dev --no-install-project && mkdir /data && chown 10001:10001 /data
+#18 ...
+
+#19 [caddy] resolving provenance for metadata file
+#19 DONE 0.0s
+
+#18 [api stage-0  5/10] RUN uv sync --frozen --no-dev --no-install-project && mkdir /data && chown 10001:10001 /data
+#18 0.495 Using CPython 3.12.12 interpreter at: /usr/local/bin/python3
+#18 0.495 Creating virtual environment at: .venv
+#18 0.847 Downloading sqlalchemy (4.5MiB)
+#18 0.847 Downloading pygments (1.2MiB)
+#18 0.847 Downloading pydantic-core (2.1MiB)
+#18 0.849 Downloading psycopg-binary (5.0MiB)
+#18 1.653  Downloading pygments
+#18 1.864  Downloading pydantic-core
+#18 2.207  Downloading sqlalchemy
+#18 2.278  Downloading psycopg-binary
+#18 2.279 Prepared 28 packages in 1.78s
+#18 2.300 Installed 28 packages in 21ms
+#18 2.300  + alembic==1.20.1
+#18 2.300  + annotated-doc==0.0.5
+#18 2.300  + annotated-types==0.8.0
+#18 2.300  + anyio==4.15.1
+#18 2.300  + certifi==2026.10.23
+#18 2.300  + click==8.5.0
+#18 2.300  + fastapi==0.162.0
+#18 2.300  + h11==0.16.0
+#18 2.300  + httpcore==1.0.9
+#18 2.300  + httpx==0.28.1
+#18 2.300  + idna==3.20
+#18 2.300  + iniconfig==2.3.1
+#18 2.300  + mako==1.4.3
+#18 2.300  + markupsafe==3.0.4
+#18 2.300  + opentelemetry-api==1.45.2
+#18 2.300  + packaging==26.3
+#18 2.300  + pluggy==1.7.0
+#18 2.301  + psycopg==3.3.6
+#18 2.301  + psycopg-binary==3.3.6
+#18 2.301  + pydantic==2.14.2
+#18 2.301  + pydantic-core==2.50.2
+#18 2.301  + pygments==2.21.0
+#18 2.301  + pytest==9.2.0
+#18 2.301  + sqlalchemy==2.1.6
+#18 2.301  + starlette==1.10.0
+#18 2.301  + typing-extensions==4.16.0
+#18 2.301  + typing-inspection==0.4.4
+#18 2.301  + uvicorn==0.54.0
+#18 DONE 2.4s
+
+#20 [api stage-0  6/10] COPY apps/api /app/apps/api
+#20 DONE 0.1s
+
+#21 [api stage-0  7/10] COPY packages/core /app/packages/core
+#21 DONE 0.1s
+
+#22 [api stage-0  8/10] COPY infra/alembic.ini /app/infra/alembic.ini
+#22 DONE 0.1s
+
+#23 [api stage-0  9/10] COPY infra/migrations /app/infra/migrations
+#23 DONE 0.1s
+
+#24 [api stage-0 10/10] COPY tests /app/tests
+#24 DONE 0.1s
+
+#25 [api] exporting to image
+#25 exporting layers 1.8s done
+#25 exporting manifest sha256:b15589b2c8ec4efd8dd6ba8e17486682e877f05e43d43afbd6dc2637dd11d42d 0.0s done
+#25 exporting config sha256:d7c4b4036810fa3aae37f62ddac1df1fe3ec6ec07a53cef66c309865f3926ce1 0.0s done
+#25 exporting attestation manifest sha256:156ac05beccc4faae0305dbd34412d09c9796ceee37bcc71a361643a99b79b9b 0.0s done
+#25 exporting manifest list sha256:5884e433ef0e779ddadac25a9524a08c5c3b1c8eef04ebfc02d44e3fad4e6ff0 0.0s done
+#25 naming to docker.io/library/goodmcp-g1:local done
+#25 unpacking to docker.io/library/goodmcp-g1:local
+#25 unpacking to docker.io/library/goodmcp-g1:local 0.5s done
+#25 DONE 2.4s
+
+#26 [api] resolving provenance for metadata file
+#26 DONE 0.0s
+ goodmcp-g1:local  Built
+ goodmcp-caddy:local  Built
+
+[start-empty-postgres]
+ Network goodmcp-g1-verify-20261030t084808z-207946_private  Creating
+ Network goodmcp-g1-verify-20261030t084808z-207946_private  Created
+ Volume "goodmcp-g1-verify-20261030t084808z-207946_postgres_data"  Creating
+ Volume "goodmcp-g1-verify-20261030t084808z-207946_postgres_data"  Created
+ Container goodmcp-g1-verify-20261030t084808z-207946-postgres-1  Creating
+ Container goodmcp-g1-verify-20261030t084808z-207946-postgres-1  Created
+ Container goodmcp-g1-verify-20261030t084808z-207946-postgres-1  Starting
+ Container goodmcp-g1-verify-20261030t084808z-207946-postgres-1  Started
+ Container goodmcp-g1-verify-20261030t084808z-207946-postgres-1  Waiting
+ Container goodmcp-g1-verify-20261030t084808z-207946-postgres-1  Healthy
+
+[admin-roles]
+{"status": "ok"}
+
+[api-before-migration]
+ Network goodmcp-g1-verify-20261030t084808z-207946_gateway  Creating
+ Network goodmcp-g1-verify-20261030t084808z-207946_gateway  Created
+ Volume "goodmcp-g1-verify-20261030t084808z-207946_artifacts"  Creating
+ Volume "goodmcp-g1-verify-20261030t084808z-207946_artifacts"  Created
+ Container goodmcp-g1-verify-20261030t084808z-207946-api-1  Creating
+ Container goodmcp-g1-verify-20261030t084808z-207946-api-1  Created
+ Container goodmcp-g1-verify-20261030t084808z-207946-api-1  Starting
+ Container goodmcp-g1-verify-20261030t084808z-207946-api-1  Started
+
+[readiness-denies-missing-migration]
+{"live": 200, "ready": 503, "expected": 503}
+
+[migration-up]
+
+[migration-idempotent]
+
+[admin-owner]
+{"created": true, "user_id": "68843d48-84c4-4a8c-a5bb-9bbf3918c015", "workspace_id": "9577b4b9-3a4b-40da-b384-4498be426d27"}
+
+[admin-owner]
+{"created": false, "user_id": "68843d48-84c4-4a8c-a5bb-9bbf3918c015", "workspace_id": "9577b4b9-3a4b-40da-b384-4498be426d27"}
+
+[admin-inspect]
+{"roles": [["hub_migrator", false, false, false], ["hub_runtime", false, false, false]], "tables": [["agents", true, true, "hub_migrator"], ["alembic_version", false, false, "hub_migrator"], ["artifacts", true, true, "hub_migrator"], ["audit_events", true, true, "hub_migrator"], ["connections", true, true, "hub_migrator"], ["host_profiles", true, true, "hub_migrator"], ["installations", true, true, "hub_migrator"], ["job_attempts", true, true, "hub_migrator"], ["jobs", true, true, "hub_migrator"], ["memberships", true, true, "hub_migrator"], ["oauth_grants", true, true, "hub_migrator"], ["plugin_packages", true, true, "hub_migrator"], ["plugin_versions", true, true, "hub_migrator"], ["projects", true, true, "hub_migrator"], ["resources", true, true, "hub_migrator"], ["skills", true, true, "hub_migrator"], ["stage_commits", true, true, "hub_migrator"], ["tokens", true, true, "hub_migrator"], ["tool_bindings", true, true, "hub_migrator"], ["users", true, true, "hub_migrator"], ["workspaces", true, true, "hub_migrator"]], "revision": "0001_g1", "postgres_version": "18.1", "users": 1, "workspaces": 1}
+
+[admin-fixtures]
+{"status": "ok"}
+
+[start-local-stack]
+ Container goodmcp-g1-verify-20261030t084808z-207946-postgres-1  Running
+ Container goodmcp-g1-verify-20261030t084808z-207946-api-1  Running
+ Container goodmcp-g1-verify-20261030t084808z-207946-worker-1  Creating
+ Container goodmcp-g1-verify-20261030t084808z-207946-caddy-1  Creating
+ Container goodmcp-g1-verify-20261030t084808z-207946-worker-1  Created
+ Container goodmcp-g1-verify-20261030t084808z-207946-caddy-1  Created
+ Container goodmcp-g1-verify-20261030t084808z-207946-postgres-1  Waiting
+ Container goodmcp-g1-verify-20261030t084808z-207946-postgres-1  Healthy
+ Container goodmcp-g1-verify-20261030t084808z-207946-api-1  Waiting
+ Container goodmcp-g1-verify-20261030t084808z-207946-api-1  Waiting
+ Container goodmcp-g1-verify-20261030t084808z-207946-api-1  Healthy
+ Container goodmcp-g1-verify-20261030t084808z-207946-worker-1  Starting
+ Container goodmcp-g1-verify-20261030t084808z-207946-api-1  Healthy
+ Container goodmcp-g1-verify-20261030t084808z-207946-caddy-1  Starting
+ Container goodmcp-g1-verify-20261030t084808z-207946-worker-1  Started
+ Container goodmcp-g1-verify-20261030t084808z-207946-caddy-1  Started
+ Container goodmcp-g1-verify-20261030t084808z-207946-postgres-1  Waiting
+ Container goodmcp-g1-verify-20261030t084808z-207946-caddy-1  Waiting
+ Container goodmcp-g1-verify-20261030t084808z-207946-api-1  Waiting
+ Container goodmcp-g1-verify-20261030t084808z-207946-worker-1  Waiting
+ Container goodmcp-g1-verify-20261030t084808z-207946-caddy-1  Healthy
+ Container goodmcp-g1-verify-20261030t084808z-207946-worker-1  Healthy
+ Container goodmcp-g1-verify-20261030t084808z-207946-api-1  Healthy
+ Container goodmcp-g1-verify-20261030t084808z-207946-postgres-1  Healthy
+
+[postgres-and-filesystem-tests]
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.2.0, pluggy-1.7.0 -- /app/.venv/bin/python
+rootdir: /app
+configfile: pyproject.toml
+plugins: anyio-4.15.1
+collecting ... collected 55 items
+
+tests/test_g1.py::test_real_postgres18_runtime_has_no_admin_privileges PASSED [  1%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[users] PASSED [  3%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[workspaces] PASSED [  5%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[memberships] PASSED [  7%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[plugin_packages] PASSED [  9%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[plugin_versions] PASSED [ 10%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[installations] PASSED [ 12%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[skills] PASSED [ 14%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[agents] PASSED [ 16%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[resources] PASSED [ 18%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[tool_bindings] PASSED [ 20%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[projects] PASSED [ 21%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[artifacts] PASSED [ 23%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[stage_commits] PASSED [ 25%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[jobs] PASSED [ 27%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[job_attempts] PASSED [ 29%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[audit_events] PASSED [ 30%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[connections] PASSED [ 32%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[oauth_grants] PASSED [ 34%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[tokens] PASSED [ 36%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[host_profiles] PASSED [ 38%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[plugin_packages] PASSED [ 40%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[plugin_versions] PASSED [ 41%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[installations] PASSED [ 43%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[skills] PASSED [ 45%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[agents] PASSED [ 47%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[resources] PASSED [ 49%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[tool_bindings] PASSED [ 50%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[projects] PASSED [ 52%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[artifacts] PASSED [ 54%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[stage_commits] PASSED [ 56%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[jobs] PASSED [ 58%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[job_attempts] PASSED [ 60%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[audit_events] PASSED [ 61%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[connections] PASSED [ 63%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[oauth_grants] PASSED [ 65%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[tokens] PASSED [ 67%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[host_profiles] PASSED [ 69%]
+tests/test_g1.py::test_missing_context_insert_denied PASSED              [ 70%]
+tests/test_g1.py::test_workspace_selection_requires_membership PASSED    [ 72%]
+tests/test_g1.py::test_a_cannot_select_update_delete_b_or_forge_workspace PASSED [ 74%]
+tests/test_g1.py::test_with_check_blocks_inserting_b_and_moving_a_to_b PASSED [ 76%]
+tests/test_g1.py::test_pool_transaction_context_cleared_after_commit_and_rollback PASSED [ 78%]
+tests/test_g1.py::test_cross_tenant_composite_foreign_key PASSED         [ 80%]
+tests/test_g1.py::test_viewer_read_allowed_but_core_and_database_write_denied PASSED [ 81%]
+tests/test_g1.py::test_read_scope_cannot_write_store PASSED              [ 83%]
+tests/test_g1.py::test_file_put_get_stream_and_no_cross_workspace_handle PASSED [ 85%]
+tests/test_g1.py::test_oversize_bad_checksum_and_empty_file PASSED       [ 87%]
+tests/test_g1.py::test_traversal_invalid_uuid_and_metadata_namespace_poisoning PASSED [ 89%]
+tests/test_g1.py::test_symlink_blob_cannot_escape_root PASSED            [ 90%]
+tests/test_g1.py::test_symlink_directory_refused PASSED                  [ 92%]
+tests/test_g1.py::test_delete_requires_revision_and_preserves_blob PASSED [ 94%]
+tests/test_g1.py::test_cross_tenant_job_parent_and_idempotency_namespace PASSED [ 96%]
+tests/test_g1.py::test_runtime_process_has_only_runtime_secret_and_no_host_control PASSED [ 98%]
+tests/test_g1.py::test_health_and_all_business_routes_fail_closed_even_with_forged_headers PASSED [100%]
+
+============================== 55 passed in 0.73s ==============================
+
+[seed-persistence]
+{"seeded": true, "artifact_id": "aece1dec-204f-4b29-bb0c-ba22d168918f", "sha256": "19a62e87172b051717b82b43e6cbbf9cf073c8839b3d3fc77b28efbc927b19d7"}
+
+[recreate-stack-down-keep-volumes]
+ Container goodmcp-g1-verify-20261030t084808z-207946-caddy-1  Stopping
+ Container goodmcp-g1-verify-20261030t084808z-207946-worker-1  Stopping
+ Container goodmcp-g1-verify-20261030t084808z-207946-caddy-1  Stopped
+ Container goodmcp-g1-verify-20261030t084808z-207946-caddy-1  Removing
+ Container goodmcp-g1-verify-20261030t084808z-207946-caddy-1  Removed
+ Container goodmcp-g1-verify-20261030t084808z-207946-worker-1  Stopped
+ Container goodmcp-g1-verify-20261030t084808z-207946-worker-1  Removing
+ Container goodmcp-g1-verify-20261030t084808z-207946-worker-1  Removed
+ Container goodmcp-g1-verify-20261030t084808z-207946-api-1  Stopping
+ Container goodmcp-g1-verify-20261030t084808z-207946-api-1  Stopped
+ Container goodmcp-g1-verify-20261030t084808z-207946-api-1  Removing
+ Container goodmcp-g1-verify-20261030t084808z-207946-api-1  Removed
+ Container goodmcp-g1-verify-20261030t084808z-207946-postgres-1  Stopping
+ Container goodmcp-g1-verify-20261030t084808z-207946-postgres-1  Stopped
+ Container goodmcp-g1-verify-20261030t084808z-207946-postgres-1  Removing
+ Container goodmcp-g1-verify-20261030t084808z-207946-postgres-1  Removed
+ Network goodmcp-g1-verify-20261030t084808z-207946_gateway  Removing
+ Network goodmcp-g1-verify-20261030t084808z-207946_private  Removing
+ Network goodmcp-g1-verify-20261030t084808z-207946_private  Removed
+ Network goodmcp-g1-verify-20261030t084808z-207946_gateway  Removed
+
+[recreate-stack-up]
+ Network goodmcp-g1-verify-20261030t084808z-207946_gateway  Creating
+ Network goodmcp-g1-verify-20261030t084808z-207946_gateway  Created
+ Network goodmcp-g1-verify-20261030t084808z-207946_private  Creating
+ Network goodmcp-g1-verify-20261030t084808z-207946_private  Created
+ Container goodmcp-g1-verify-20261030t084808z-207946-postgres-1  Creating
+ Container goodmcp-g1-verify-20261030t084808z-207946-postgres-1  Created
+ Container goodmcp-g1-verify-20261030t084808z-207946-api-1  Creating
+ Container goodmcp-g1-verify-20261030t084808z-207946-api-1  Created
+ Container goodmcp-g1-verify-20261030t084808z-207946-worker-1  Creating
+ Container goodmcp-g1-verify-20261030t084808z-207946-caddy-1  Creating
+ Container goodmcp-g1-verify-20261030t084808z-207946-caddy-1  Created
+ Container goodmcp-g1-verify-20261030t084808z-207946-worker-1  Created
+ Container goodmcp-g1-verify-20261030t084808z-207946-postgres-1  Starting
+ Container goodmcp-g1-verify-20261030t084808z-207946-postgres-1  Started
+ Container goodmcp-g1-verify-20261030t084808z-207946-postgres-1  Waiting
+ Container goodmcp-g1-verify-20261030t084808z-207946-postgres-1  Healthy
+ Container goodmcp-g1-verify-20261030t084808z-207946-api-1  Starting
+ Container goodmcp-g1-verify-20261030t084808z-207946-api-1  Started
+ Container goodmcp-g1-verify-20261030t084808z-207946-api-1  Waiting
+ Container goodmcp-g1-verify-20261030t084808z-207946-api-1  Waiting
+ Container goodmcp-g1-verify-20261030t084808z-207946-api-1  Healthy
+ Container goodmcp-g1-verify-20261030t084808z-207946-caddy-1  Starting
+ Container goodmcp-g1-verify-20261030t084808z-207946-api-1  Healthy
+ Container goodmcp-g1-verify-20261030t084808z-207946-worker-1  Starting
+ Container goodmcp-g1-verify-20261030t084808z-207946-worker-1  Started
+ Container goodmcp-g1-verify-20261030t084808z-207946-caddy-1  Started
+ Container goodmcp-g1-verify-20261030t084808z-207946-api-1  Waiting
+ Container goodmcp-g1-verify-20261030t084808z-207946-worker-1  Waiting
+ Container goodmcp-g1-verify-20261030t084808z-207946-postgres-1  Waiting
+ Container goodmcp-g1-verify-20261030t084808z-207946-caddy-1  Waiting
+ Container goodmcp-g1-verify-20261030t084808z-207946-worker-1  Healthy
+ Container goodmcp-g1-verify-20261030t084808z-207946-caddy-1  Healthy
+ Container goodmcp-g1-verify-20261030t084808z-207946-api-1  Healthy
+ Container goodmcp-g1-verify-20261030t084808z-207946-postgres-1  Healthy
+
+[verify-persistence]
+{"persisted_after_recreate": true, "artifact_id": "aece1dec-204f-4b29-bb0c-ba22d168918f"}
+
+[stop-db-for-negative-health]
+ Container goodmcp-g1-verify-20261030t084808z-207946-postgres-1  Stopping
+ Container goodmcp-g1-verify-20261030t084808z-207946-postgres-1  Stopped
+
+[readiness-denies-db-outage]
+{"live": 200, "ready": 503, "expected": 503}
+
+[recover-db]
+ Container goodmcp-g1-verify-20261030t084808z-207946-postgres-1  Starting
+ Container goodmcp-g1-verify-20261030t084808z-207946-postgres-1  Started
+ Container goodmcp-g1-verify-20261030t084808z-207946-postgres-1  Waiting
+ Container goodmcp-g1-verify-20261030t084808z-207946-postgres-1  Healthy
+
+[admin-inspect]
+{"roles": [["hub_migrator", false, false, false], ["hub_runtime", false, false, false]], "tables": [["agents", true, true, "hub_migrator"], ["alembic_version", false, false, "hub_migrator"], ["artifacts", true, true, "hub_migrator"], ["audit_events", true, true, "hub_migrator"], ["connections", true, true, "hub_migrator"], ["host_profiles", true, true, "hub_migrator"], ["installations", true, true, "hub_migrator"], ["job_attempts", true, true, "hub_migrator"], ["jobs", true, true, "hub_migrator"], ["memberships", true, true, "hub_migrator"], ["oauth_grants", true, true, "hub_migrator"], ["plugin_packages", true, true, "hub_migrator"], ["plugin_versions", true, true, "hub_migrator"], ["projects", true, true, "hub_migrator"], ["resources", true, true, "hub_migrator"], ["skills", true, true, "hub_migrator"], ["stage_commits", true, true, "hub_migrator"], ["tokens", true, true, "hub_migrator"], ["tool_bindings", true, true, "hub_migrator"], ["users", true, true, "hub_migrator"], ["workspaces", true, true, "hub_migrator"]], "revision": "0001_g1", "postgres_version": "18.1", "users": 4, "workspaces": 3}
+
+[container-ids]
+5a4a9e2159b9becec8632a3f00dd1d6ffb54d04519f91291e0a45a89e068ad2f
+e17fb32d739f9601d445a365c9fddc658b3af60175f39b8a73b8b400c2db2866
+80b6bdd939b2efb3d2e742d608969435f937b1d15f91495e0dfa443ba8deca9e
+7b5fd78e9a9f2fda2a2e20f1e06e021e0e1d3b62de4ab0571092c7e88487361a
+
+[cleanup-own-test-project]
+ Container goodmcp-g1-verify-20261030t084808z-207946-caddy-1  Stopping
+ Container goodmcp-g1-verify-20261030t084808z-207946-worker-1  Stopping
+ Container goodmcp-g1-verify-20261030t084808z-207946-caddy-1  Stopped
+ Container goodmcp-g1-verify-20261030t084808z-207946-caddy-1  Removing
+ Container goodmcp-g1-verify-20261030t084808z-207946-caddy-1  Removed
+ Container goodmcp-g1-verify-20261030t084808z-207946-worker-1  Stopped
+ Container goodmcp-g1-verify-20261030t084808z-207946-worker-1  Removing
+ Container goodmcp-g1-verify-20261030t084808z-207946-worker-1  Removed
+ Container goodmcp-g1-verify-20261030t084808z-207946-api-1  Stopping
+ Container goodmcp-g1-verify-20261030t084808z-207946-api-1  Stopped
+ Container goodmcp-g1-verify-20261030t084808z-207946-api-1  Removing
+ Container goodmcp-g1-verify-20261030t084808z-207946-api-1  Removed
+ Container goodmcp-g1-verify-20261030t084808z-207946-postgres-1  Stopping
+ Container goodmcp-g1-verify-20261030t084808z-207946-postgres-1  Stopped
+ Container goodmcp-g1-verify-20261030t084808z-207946-postgres-1  Removing
+ Container goodmcp-g1-verify-20261030t084808z-207946-postgres-1  Removed
+ Network goodmcp-g1-verify-20261030t084808z-207946_gateway  Removing
+ Network goodmcp-g1-verify-20261030t084808z-207946_private  Removing
+ Volume goodmcp-g1-verify-20261030t084808z-207946_postgres_data  Removing
+ Volume goodmcp-g1-verify-20261030t084808z-207946_artifacts  Removing
+ Volume goodmcp-g1-verify-20261030t084808z-207946_postgres_data  Removed
+ Volume goodmcp-g1-verify-20261030t084808z-207946_artifacts  Removed
+ Network goodmcp-g1-verify-20261030t084808z-207946_gateway  Removed
+ Network goodmcp-g1-verify-20261030t084808z-207946_private  Removed

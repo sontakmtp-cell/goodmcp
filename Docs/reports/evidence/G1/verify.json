@@ -1,0 +1,506 @@
+{
+  "stage": "G1",
+  "status": "passed",
+  "source_commit": "6c8fc6713e55ef943d16de3676557502612b811d",
+  "source_mode": "clean_git_archive",
+  "run_id": "20261030T084808Z-207946",
+  "project": "goodmcp-g1-verify-20261030t084808z-207946",
+  "checks": {
+    "single_owner_bootstrap_idempotent": true,
+    "pytest_passed": 55,
+    "db_and_blob_persist_after_recreate": true,
+    "health_missing_migration_db_outage_recovery": true,
+    "only_loopback_caddy_no_admin_secrets_in_runtime": true
+  },
+  "commands": [
+    {
+      "label": "compose-config",
+      "argv": [
+        "config",
+        "--quiet"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 0.398
+    },
+    {
+      "label": "build-clean-source",
+      "argv": [
+        "build",
+        "api",
+        "caddy"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 6.735
+    },
+    {
+      "label": "start-empty-postgres",
+      "argv": [
+        "up",
+        "-d",
+        "--wait",
+        "postgres"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 3.6
+    },
+    {
+      "label": "admin-roles",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "admin",
+        "python",
+        "-m",
+        "goodmcp.admin",
+        "roles"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 2.069
+    },
+    {
+      "label": "api-before-migration",
+      "argv": [
+        "up",
+        "-d",
+        "--no-deps",
+        "api"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 1.43
+    },
+    {
+      "label": "readiness-denies-missing-migration",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "tests",
+        "python",
+        "tests/readiness.py",
+        "503"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 2.061
+    },
+    {
+      "label": "migration-up",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "migrate"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 2.706
+    },
+    {
+      "label": "migration-idempotent",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "migrate"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 2.441
+    },
+    {
+      "label": "admin-owner",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "admin",
+        "python",
+        "-m",
+        "goodmcp.admin",
+        "owner"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 2.056
+    },
+    {
+      "label": "admin-owner",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "admin",
+        "python",
+        "-m",
+        "goodmcp.admin",
+        "owner"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 2.189
+    },
+    {
+      "label": "admin-inspect",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "admin",
+        "python",
+        "-m",
+        "goodmcp.admin",
+        "inspect"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 2.258
+    },
+    {
+      "label": "admin-fixtures",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "admin",
+        "python",
+        "-m",
+        "goodmcp.admin",
+        "fixtures"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 1.966
+    },
+    {
+      "label": "start-local-stack",
+      "argv": [
+        "up",
+        "-d",
+        "--wait",
+        "api",
+        "worker",
+        "caddy"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 3.139
+    },
+    {
+      "label": "postgres-and-filesystem-tests",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "tests"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 3.152
+    },
+    {
+      "label": "seed-persistence",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "tests",
+        "python",
+        "tests/persistence.py",
+        "seed"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 2.102
+    },
+    {
+      "label": "recreate-stack-down-keep-volumes",
+      "argv": [
+        "down"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 12.284
+    },
+    {
+      "label": "recreate-stack-up",
+      "argv": [
+        "up",
+        "-d",
+        "--wait",
+        "postgres",
+        "api",
+        "worker",
+        "caddy"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 9.694
+    },
+    {
+      "label": "verify-persistence",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "tests",
+        "python",
+        "tests/persistence.py",
+        "check"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 2.131
+    },
+    {
+      "label": "stop-db-for-negative-health",
+      "argv": [
+        "stop",
+        "postgres"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 0.57
+    },
+    {
+      "label": "readiness-denies-db-outage",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "tests",
+        "python",
+        "tests/readiness.py",
+        "503"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 5.621
+    },
+    {
+      "label": "recover-db",
+      "argv": [
+        "up",
+        "-d",
+        "--wait",
+        "postgres"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 3.381
+    },
+    {
+      "label": "admin-inspect",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "admin",
+        "python",
+        "-m",
+        "goodmcp.admin",
+        "inspect"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 2.087
+    },
+    {
+      "label": "container-ids",
+      "argv": [
+        "ps",
+        "-q"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 0.371
+    },
+    {
+      "label": "cleanup-own-test-project",
+      "argv": [
+        "down",
+        "--volumes",
+        "--remove-orphans"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 12.335
+    }
+  ],
+  "database": {
+    "roles": [
+      [
+        "hub_migrator",
+        false,
+        false,
+        false
+      ],
+      [
+        "hub_runtime",
+        false,
+        false,
+        false
+      ]
+    ],
+    "tables": [
+      [
+        "agents",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "alembic_version",
+        false,
+        false,
+        "hub_migrator"
+      ],
+      [
+        "artifacts",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "audit_events",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "connections",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "host_profiles",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "installations",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "job_attempts",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "jobs",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "memberships",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "oauth_grants",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "plugin_packages",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "plugin_versions",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "projects",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "resources",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "skills",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "stage_commits",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "tokens",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "tool_bindings",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "users",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "workspaces",
+        true,
+        true,
+        "hub_migrator"
+      ]
+    ],
+    "revision": "0001_g1",
+    "postgres_version": "18.1",
+    "users": 4,
+    "workspaces": 3
+  },
+  "services": [
+    {
+      "service": "api",
+      "image_id": "sha256:5884e433ef0e779ddadac25a9524a08c5c3b1c8eef04ebfc02d44e3fad4e6ff0",
+      "user": "10001:10001",
+      "ports": {},
+      "readonly_rootfs": true,
+      "secret_names": [
+        "runtime_password"
+      ]
+    },
+    {
+      "service": "caddy",
+      "image_id": "sha256:ac674df6755ea0dee19127a7a155fe9d8ddfb7ae01946e9e2860e65dfe5d5d75",
+      "user": "10001:10001",
+      "ports": {
+        "8080/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "60022"
+          }
+        ]
+      },
+      "readonly_rootfs": true,
+      "secret_names": []
+    },
+    {
+      "service": "postgres",
+      "image_id": "sha256:aa6eb304ddb6dd26df23d05db4e5cb05af8951cda3e0dc57731b771e0ef4ab29",
+      "user": "",
+      "ports": {},
+      "readonly_rootfs": false,
+      "secret_names": [
+        "admin_password"
+      ]
+    },
+    {
+      "service": "worker",
+      "image_id": "sha256:5884e433ef0e779ddadac25a9524a08c5c3b1c8eef04ebfc02d44e3fad4e6ff0",
+      "user": "10001:10001",
+      "ports": {},
+      "readonly_rootfs": true,
+      "secret_names": [
+        "runtime_password"
+      ]
+    }
+  ]
+}

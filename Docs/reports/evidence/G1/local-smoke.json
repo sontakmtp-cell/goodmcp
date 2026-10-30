@@ -1,0 +1,41 @@
+{
+  "url": "http://127.0.0.1:18080",
+  "health": {
+    "/health/live": {
+      "status": 200,
+      "body": {
+        "data": {
+          "status": "alive"
+        },
+        "request_id": "c62e95e4-b8ea-444d-b3d4-f16460046c53"
+      }
+    },
+    "/health/ready": {
+      "status": 200,
+      "body": {
+        "data": {
+          "status": "ready",
+          "stage": "G1"
+        },
+        "request_id": "ba3f9bfe-116d-4929-a1b5-4c3f50762216"
+      }
+    },
+    "/api/v1/me/workspaces": {
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "Authentication is implemented in G2",
+          "retryable": false
+        },
+        "request_id": "de86a3c1-faa7-4519-9e5e-41a79c1f0032"
+      }
+    }
+  },
+  "database": {
+    "postgres_version": "18.1",
+    "revision": "0001_g1",
+    "users": 1,
+    "workspaces": 1
+  }
+}
