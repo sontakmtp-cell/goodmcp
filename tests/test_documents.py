@@ -16,7 +16,7 @@ def document_fixture(db,a,storage_root):
     body='Thuế TNDN — Khầy đọc nguồn. 100% literal_only.\n'+'Nội dung tiếp theo. '*1200
     raw=zipped({'plugin.json':json.dumps({'name':'documents-'+uuid4().hex,'version':'1'}),'guide.txt':body,
                 'page.html':'<script>SHOULDNOTMATCH</script><p>Visible guide for keyword.</p>',
-                'original.pdf':b'%PDF-1.0 preserved binary','mislabeled.txt':b'%PDF-1.4\0binary','nul.html':b'\0not text'})
+                'original.pdf':b'%PDF-1.0 preserved binary','mislabeled.txt':b'%PDF-1.4\0binary','binary-nul.html':b'\0not text'})
     with db.tenant(a,WORKSPACE_A) as t:
         r=Registry(t,storage_root);v=publish(r,raw);i=r.set_installation(v,True,0)
         resources={x['logical_path']:x['id'] for x in r.resources(i['id'])['items']}
@@ -45,7 +45,7 @@ def test_text_pages_full_source_hash_and_pdf_reason(db,a,storage_root,document_f
         pdf=d.read_document(i['id'],resources['original.pdf'])
         assert pdf['content'] is None and pdf['unavailable_reason']=='pdf_not_extracted_no_ocr'
         assert d.read_document(i['id'],resources['mislabeled.txt'])['unavailable_reason']=='pdf_content_with_text_extension_not_extracted'
-        assert d.read_document(i['id'],resources['nul.html'])['unavailable_reason']=='binary_text_source_not_extracted'
+        assert d.read_document(i['id'],resources['binary-nul.html'])['unavailable_reason']=='binary_text_source_not_extracted'
         assert not d.search(i['id'],['SHOULDNOTMATCH'])['items']
         assert not d.search(i['id'],["'; DROP TABLE document_texts; --"])['items']
 

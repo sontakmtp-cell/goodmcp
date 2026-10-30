@@ -8,8 +8,10 @@ import asyncio
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import secrets
 import json
+import sys
 from pathlib import Path
 from uuid import UUID
+if hasattr(sys.stdout,'reconfigure'):sys.stdout.reconfigure(encoding='utf-8',errors='replace')
 import time
 from urllib.parse import urlencode, parse_qs, urlsplit
 import webbrowser
