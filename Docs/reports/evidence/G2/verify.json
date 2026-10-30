@@ -1,0 +1,1393 @@
+{
+  "stage": "G2",
+  "status": "passed",
+  "source_commit": "5875e23f4e651c68cb70b1072ed00d7d04bd318b",
+  "source_mode": "clean_git_archive",
+  "run_id": "20261030T121607Z-e2f2fc",
+  "project": "goodmcp-g2-verify-20261030t121607z-e2f2fc",
+  "checks": {
+    "single_owner_bootstrap_idempotent": true,
+    "pytest_passed": 80,
+    "db_and_blob_persist_after_recreate": true,
+    "health_missing_migration_db_outage_recovery": true,
+    "only_loopback_caddy_no_admin_secrets_in_runtime": true,
+    "all_test_volumes_removed": true
+  },
+  "commands": [
+    {
+      "label": "compose-config",
+      "argv": [
+        "config",
+        "--quiet"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 0.363
+    },
+    {
+      "label": "build-clean-source",
+      "argv": [
+        "build",
+        "api",
+        "caddy"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 2.324
+    },
+    {
+      "label": "start-empty-postgres",
+      "argv": [
+        "up",
+        "-d",
+        "--wait",
+        "postgres"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 3.651
+    },
+    {
+      "label": "admin-roles",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "admin",
+        "python",
+        "-m",
+        "goodmcp.admin",
+        "roles"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 2.136
+    },
+    {
+      "label": "api-before-migration",
+      "argv": [
+        "up",
+        "-d",
+        "--no-deps",
+        "api"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 1.431
+    },
+    {
+      "label": "readiness-denies-missing-migration",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "tests",
+        "python",
+        "tests/readiness.py",
+        "503"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 2.518
+    },
+    {
+      "label": "migration-up",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "migrate"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 2.655
+    },
+    {
+      "label": "migration-idempotent",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "migrate"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 2.491
+    },
+    {
+      "label": "admin-owner",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "admin",
+        "python",
+        "-m",
+        "goodmcp.admin",
+        "owner"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 2.22
+    },
+    {
+      "label": "admin-owner",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "admin",
+        "python",
+        "-m",
+        "goodmcp.admin",
+        "owner"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 1.972
+    },
+    {
+      "label": "admin-inspect",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "admin",
+        "python",
+        "-m",
+        "goodmcp.admin",
+        "inspect"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 2.181
+    },
+    {
+      "label": "admin-fixtures",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "admin",
+        "python",
+        "-m",
+        "goodmcp.admin",
+        "fixtures"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 2.044
+    },
+    {
+      "label": "auth-workspace-fixture",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "auth_probe"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 2.179
+    },
+    {
+      "label": "start-local-stack",
+      "argv": [
+        "up",
+        "-d",
+        "--wait",
+        "api",
+        "auth",
+        "worker",
+        "caddy"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 6.336
+    },
+    {
+      "label": "postgres-and-filesystem-tests",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "tests"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 3.877
+    },
+    {
+      "label": "oauth-mcp-wire-full",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "wire"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 5.997
+    },
+    {
+      "label": "oauth-negative-fixtures",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "auth_probe",
+        "python",
+        "-m",
+        "goodmcp.auth_admin",
+        "negatives"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 2.178
+    },
+    {
+      "label": "oauth-wire-negative-tokens",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "wire",
+        "python",
+        "tests/wire_g2.py",
+        "negatives"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 2.188
+    },
+    {
+      "label": "seed-persistence",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "tests",
+        "python",
+        "tests/persistence.py",
+        "seed"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 2.187
+    },
+    {
+      "label": "recreate-stack-down-keep-volumes",
+      "argv": [
+        "down"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 12.451
+    },
+    {
+      "label": "recreate-stack-up",
+      "argv": [
+        "up",
+        "-d",
+        "--wait",
+        "postgres",
+        "api",
+        "auth",
+        "worker",
+        "caddy"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 10.019
+    },
+    {
+      "label": "verify-persistence",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "tests",
+        "python",
+        "tests/persistence.py",
+        "check"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 2.449
+    },
+    {
+      "label": "oauth-survives-recreate",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "wire",
+        "python",
+        "tests/wire_g2.py",
+        "resume"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 2.66
+    },
+    {
+      "label": "inspect-credential-storage",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "auth_probe",
+        "python",
+        "-m",
+        "goodmcp.auth_admin",
+        "inspect"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 2.135
+    },
+    {
+      "label": "stop-db-for-negative-health",
+      "argv": [
+        "stop",
+        "postgres"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 0.576
+    },
+    {
+      "label": "readiness-denies-db-outage",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "tests",
+        "python",
+        "tests/readiness.py",
+        "503"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 5.574
+    },
+    {
+      "label": "recover-db",
+      "argv": [
+        "up",
+        "-d",
+        "--wait",
+        "postgres"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 3.315
+    },
+    {
+      "label": "admin-inspect",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "admin",
+        "python",
+        "-m",
+        "goodmcp.admin",
+        "inspect"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 2.004
+    },
+    {
+      "label": "container-ids",
+      "argv": [
+        "ps",
+        "-q"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 0.369
+    },
+    {
+      "label": "cleanup-own-test-project",
+      "argv": [
+        "--profile",
+        "test",
+        "--profile",
+        "ops",
+        "down",
+        "--volumes",
+        "--remove-orphans"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 12.316
+    }
+  ],
+  "wire_full": {
+    "phase": "full",
+    "passed": true,
+    "checks": [
+      {
+        "name": "AS discovery",
+        "passed": true
+      },
+      {
+        "name": "AS alias discovery",
+        "passed": true
+      },
+      {
+        "name": "missing token challenge",
+        "passed": true
+      },
+      {
+        "name": "resource discovery",
+        "passed": true
+      },
+      {
+        "name": "DCR public client",
+        "passed": true
+      },
+      {
+        "name": "DCR unsafe redirect rejected",
+        "passed": true
+      },
+      {
+        "name": "DCR unsupported scope rejected",
+        "passed": true
+      },
+      {
+        "name": "login CSRF",
+        "passed": true
+      },
+      {
+        "name": "HttpOnly SameSite cookie",
+        "passed": true
+      },
+      {
+        "name": "local HTTP cookie exception",
+        "passed": true
+      },
+      {
+        "name": "wrong password",
+        "passed": true
+      },
+      {
+        "name": "owner login and session fixation protection",
+        "passed": true
+      },
+      {
+        "name": "explicit consent required",
+        "passed": true
+      },
+      {
+        "name": "fixture isolated workspace present",
+        "passed": true
+      },
+      {
+        "name": "consent CSRF",
+        "passed": true
+      },
+      {
+        "name": "consent workspace membership",
+        "passed": true
+      },
+      {
+        "name": "redirect exact match",
+        "passed": true
+      },
+      {
+        "name": "PKCE S256 only",
+        "passed": true
+      },
+      {
+        "name": "PKCE mandatory",
+        "passed": true
+      },
+      {
+        "name": "resource mandatory",
+        "passed": true
+      },
+      {
+        "name": "scope escalation denied",
+        "passed": true
+      },
+      {
+        "name": "consent denied",
+        "passed": true
+      },
+      {
+        "name": "state and issuer bound response",
+        "passed": true
+      },
+      {
+        "name": "consent form replay rejected",
+        "passed": true
+      },
+      {
+        "name": "wrong PKCE verifier",
+        "passed": true
+      },
+      {
+        "name": "code client binding",
+        "passed": true
+      },
+      {
+        "name": "code redirect binding",
+        "passed": true
+      },
+      {
+        "name": "token audience binding",
+        "passed": true
+      },
+      {
+        "name": "valid code after bad attempts",
+        "passed": true
+      },
+      {
+        "name": "code token initially usable",
+        "passed": true
+      },
+      {
+        "name": "code replay rejected",
+        "passed": true
+      },
+      {
+        "name": "code replay revokes issued family",
+        "passed": true
+      },
+      {
+        "name": "state and issuer bound response",
+        "passed": true
+      },
+      {
+        "name": "code exchanged",
+        "passed": true
+      },
+      {
+        "name": "SDK pin",
+        "passed": true
+      },
+      {
+        "name": "readonly tool catalog only",
+        "passed": true
+      },
+      {
+        "name": "authenticated tenant tool",
+        "passed": true
+      },
+      {
+        "name": "no cross-workspace tool",
+        "passed": true
+      },
+      {
+        "name": "invalid input schema",
+        "passed": true
+      },
+      {
+        "name": "private catalog cache",
+        "passed": true
+      },
+      {
+        "name": "modern wire complete",
+        "passed": true
+      },
+      {
+        "name": "modern metadata headers",
+        "passed": true
+      },
+      {
+        "name": "no legacy handshake or session",
+        "passed": true
+      },
+      {
+        "name": "modern discovery",
+        "passed": true,
+        "response": {
+          "jsonrpc": "2.0",
+          "id": 42,
+          "result": {
+            "cacheScope": "private",
+            "capabilities": {
+              "prompts": {
+                "listChanged": true
+              },
+              "resources": {
+                "listChanged": true,
+                "subscribe": true
+              },
+              "tools": {
+                "listChanged": true
+              }
+            },
+            "resultType": "complete",
+            "supportedVersions": [
+              "2026-07-28"
+            ],
+            "ttlMs": 0,
+            "_meta": {
+              "io.modelcontextprotocol/serverInfo": {
+                "name": "goodmcp-hub",
+                "version": "0.2.0"
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "mirror header mismatch",
+        "passed": true
+      },
+      {
+        "name": "unsupported protocol rejected",
+        "passed": true
+      },
+      {
+        "name": "legacy disabled explicitly",
+        "passed": true
+      },
+      {
+        "name": "no anonymous alias /mcp",
+        "passed": true
+      },
+      {
+        "name": "no anonymous alias /mcp/",
+        "passed": true
+      },
+      {
+        "name": "no anonymous alias /mcp//",
+        "passed": true
+      },
+      {
+        "name": "no anonymous alias /api/v1/me/workspaces",
+        "passed": true
+      },
+      {
+        "name": "no anonymous alias /api/v1/unknown",
+        "passed": true
+      },
+      {
+        "name": "wrong workspace selection",
+        "passed": true
+      },
+      {
+        "name": "host allowlist",
+        "passed": true
+      },
+      {
+        "name": "origin allowlist",
+        "passed": true
+      },
+      {
+        "name": "legacy GET stream disabled",
+        "passed": true
+      },
+      {
+        "name": "REST identity from token",
+        "passed": true
+      },
+      {
+        "name": "independent deterministic evaluator",
+        "passed": true
+      },
+      {
+        "name": "evaluator fixtures passed",
+        "passed": true
+      },
+      {
+        "name": "refresh client binding",
+        "passed": true
+      },
+      {
+        "name": "refresh cannot escalate scope",
+        "passed": true
+      },
+      {
+        "name": "refresh rotates",
+        "passed": true
+      },
+      {
+        "name": "new access accepted",
+        "passed": true
+      },
+      {
+        "name": "refresh replay rejected",
+        "passed": true
+      },
+      {
+        "name": "refresh replay revokes new access",
+        "passed": true
+      },
+      {
+        "name": "refresh replay revokes descendant refresh",
+        "passed": true
+      },
+      {
+        "name": "state and issuer bound response",
+        "passed": true
+      },
+      {
+        "name": "code exchanged",
+        "passed": true
+      },
+      {
+        "name": "revocation client binding",
+        "passed": true
+      },
+      {
+        "name": "wrong-client revocation does not revoke",
+        "passed": true
+      },
+      {
+        "name": "revoke family",
+        "passed": true
+      },
+      {
+        "name": "revoked refresh denied",
+        "passed": true
+      },
+      {
+        "name": "unknown revoke non-enumerating",
+        "passed": true
+      },
+      {
+        "name": "state and issuer bound response",
+        "passed": true
+      },
+      {
+        "name": "code exchanged",
+        "passed": true
+      },
+      {
+        "name": "concurrent refresh serialized",
+        "passed": true
+      },
+      {
+        "name": "concurrent replay revokes winning family",
+        "passed": true
+      },
+      {
+        "name": "state and issuer bound response",
+        "passed": true
+      },
+      {
+        "name": "concurrent code exchange serialized",
+        "passed": true
+      },
+      {
+        "name": "concurrent code replay revokes issued access",
+        "passed": true
+      },
+      {
+        "name": "state and issuer bound response",
+        "passed": true
+      },
+      {
+        "name": "code exchanged",
+        "passed": true
+      },
+      {
+        "name": "scope step-up requires fresh consent",
+        "passed": true
+      },
+      {
+        "name": "password grant disabled",
+        "passed": true
+      },
+      {
+        "name": "state and issuer bound response",
+        "passed": true
+      },
+      {
+        "name": "code exchanged",
+        "passed": true
+      },
+      {
+        "name": "state and issuer bound response",
+        "passed": true
+      },
+      {
+        "name": "code exchanged",
+        "passed": true
+      },
+      {
+        "name": "state and issuer bound response",
+        "passed": true
+      },
+      {
+        "name": "code exchanged",
+        "passed": true
+      },
+      {
+        "name": "state and issuer bound response",
+        "passed": true
+      },
+      {
+        "name": "code exchanged",
+        "passed": true
+      },
+      {
+        "name": "state and issuer bound response",
+        "passed": true
+      },
+      {
+        "name": "code exchanged",
+        "passed": true
+      },
+      {
+        "name": "state and issuer bound response",
+        "passed": true
+      },
+      {
+        "name": "code exchanged",
+        "passed": true
+      },
+      {
+        "name": "state and issuer bound response",
+        "passed": true
+      },
+      {
+        "name": "login rate limit",
+        "passed": true
+      }
+    ],
+    "wire": [
+      {
+        "request": {
+          "jsonrpc": "2.0",
+          "id": 1,
+          "method": "tools/list",
+          "params": {
+            "_meta": {
+              "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+              "io.modelcontextprotocol/clientInfo": {
+                "name": "mcp",
+                "version": "0.1.0"
+              },
+              "io.modelcontextprotocol/clientCapabilities": {}
+            }
+          }
+        },
+        "headers": {
+          "mcp-protocol-version": "2026-07-28",
+          "mcp-method": "tools/list"
+        },
+        "status": 200,
+        "session_header": null,
+        "response": {
+          "jsonrpc": "2.0",
+          "id": 1,
+          "result": {
+            "cacheScope": "private",
+            "resultType": "complete",
+            "tools": [
+              {
+                "annotations": {
+                  "destructiveHint": false,
+                  "idempotentHint": true,
+                  "openWorldHint": false,
+                  "readOnlyHint": true
+                },
+                "description": "Read the workspace authorized by this connection. Requires hub:read; changes no data.",
+                "inputSchema": {
+                  "type": "object",
+                  "properties": {
+                    "workspace_id": {
+                      "maxLength": 36,
+                      "minLength": 36,
+                      "title": "Workspace Id",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "workspace_id"
+                  ],
+                  "title": "hub_get_workspaceArguments"
+                },
+                "name": "hub_get_workspace",
+                "outputSchema": {
+                  "properties": {
+                    "workspace_id": {
+                      "title": "Workspace Id",
+                      "type": "string"
+                    },
+                    "name": {
+                      "title": "Name",
+                      "type": "string"
+                    },
+                    "role": {
+                      "title": "Role",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "workspace_id",
+                    "name",
+                    "role"
+                  ],
+                  "title": "WorkspaceInfo",
+                  "type": "object"
+                }
+              }
+            ],
+            "ttlMs": 0,
+            "_meta": {
+              "io.modelcontextprotocol/serverInfo": {
+                "name": "goodmcp-hub",
+                "version": "0.2.0"
+              }
+            }
+          }
+        }
+      },
+      {
+        "request": {
+          "jsonrpc": "2.0",
+          "id": 2,
+          "method": "tools/call",
+          "params": {
+            "name": "hub_get_workspace",
+            "arguments": {
+              "workspace_id": "6c03b5c7-84cc-4660-a952-b864b2ef475b"
+            },
+            "_meta": {
+              "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+              "io.modelcontextprotocol/clientInfo": {
+                "name": "mcp",
+                "version": "0.1.0"
+              },
+              "io.modelcontextprotocol/clientCapabilities": {}
+            }
+          }
+        },
+        "headers": {
+          "mcp-protocol-version": "2026-07-28",
+          "mcp-method": "tools/call",
+          "mcp-name": "hub_get_workspace"
+        },
+        "status": 200,
+        "session_header": null,
+        "response": {
+          "jsonrpc": "2.0",
+          "id": 2,
+          "result": {
+            "content": [
+              {
+                "text": "{\n  \"workspace_id\": \"6c03b5c7-84cc-4660-a952-b864b2ef475b\",\n  \"name\": \"Khầy — local workspace\",\n  \"role\": \"owner\"\n}",
+                "type": "text"
+              }
+            ],
+            "isError": false,
+            "resultType": "complete",
+            "structuredContent": {
+              "workspace_id": "6c03b5c7-84cc-4660-a952-b864b2ef475b",
+              "name": "Khầy — local workspace",
+              "role": "owner"
+            },
+            "_meta": {
+              "io.modelcontextprotocol/serverInfo": {
+                "name": "goodmcp-hub",
+                "version": "0.2.0"
+              }
+            }
+          }
+        }
+      },
+      {
+        "request": {
+          "jsonrpc": "2.0",
+          "id": 3,
+          "method": "tools/call",
+          "params": {
+            "name": "hub_get_workspace",
+            "arguments": {
+              "workspace_id": "20000000-0000-4000-8000-000000000099"
+            },
+            "_meta": {
+              "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+              "io.modelcontextprotocol/clientInfo": {
+                "name": "mcp",
+                "version": "0.1.0"
+              },
+              "io.modelcontextprotocol/clientCapabilities": {}
+            }
+          }
+        },
+        "headers": {
+          "mcp-protocol-version": "2026-07-28",
+          "mcp-method": "tools/call",
+          "mcp-name": "hub_get_workspace"
+        },
+        "status": 200,
+        "session_header": null,
+        "response": {
+          "jsonrpc": "2.0",
+          "id": 3,
+          "result": {
+            "content": [
+              {
+                "text": "Error executing tool hub_get_workspace",
+                "type": "text"
+              }
+            ],
+            "isError": true,
+            "resultType": "complete",
+            "_meta": {
+              "io.modelcontextprotocol/serverInfo": {
+                "name": "goodmcp-hub",
+                "version": "0.2.0"
+              }
+            }
+          }
+        }
+      },
+      {
+        "request": {
+          "jsonrpc": "2.0",
+          "id": 4,
+          "method": "tools/call",
+          "params": {
+            "name": "hub_get_workspace",
+            "arguments": {
+              "workspace_id": "bad"
+            },
+            "_meta": {
+              "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+              "io.modelcontextprotocol/clientInfo": {
+                "name": "mcp",
+                "version": "0.1.0"
+              },
+              "io.modelcontextprotocol/clientCapabilities": {}
+            }
+          }
+        },
+        "headers": {
+          "mcp-protocol-version": "2026-07-28",
+          "mcp-method": "tools/call",
+          "mcp-name": "hub_get_workspace"
+        },
+        "status": 200,
+        "session_header": null,
+        "response": {
+          "jsonrpc": "2.0",
+          "id": 4,
+          "result": {
+            "content": [
+              {
+                "text": "Error executing tool hub_get_workspace: 1 validation error for hub_get_workspaceArguments\nworkspace_id\n  String should have at least 36 characters [type=string_too_short, input_value='bad', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/string_too_short",
+                "type": "text"
+              }
+            ],
+            "isError": true,
+            "resultType": "complete",
+            "_meta": {
+              "io.modelcontextprotocol/serverInfo": {
+                "name": "goodmcp-hub",
+                "version": "0.2.0"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "evaluator": {
+      "required_protocol": "2026-07-28",
+      "observed_protocol": "2026-07-28",
+      "cases": [
+        {
+          "id": "workspace-exact",
+          "tool": "hub_get_workspace",
+          "passed": true,
+          "mismatched_fields": [],
+          "actual": {
+            "is_error": false,
+            "structured_content": {
+              "workspace_id": "6c03b5c7-84cc-4660-a952-b864b2ef475b",
+              "name": "Khầy — local workspace",
+              "role": "owner"
+            }
+          }
+        },
+        {
+          "id": "wrong-workspace",
+          "tool": "hub_get_workspace",
+          "passed": true,
+          "mismatched_fields": [],
+          "actual": {
+            "is_error": true
+          }
+        }
+      ],
+      "passed": true
+    }
+  },
+  "wire_negatives": {
+    "phase": "negatives",
+    "passed": true,
+    "checks": [
+      {
+        "name": "reject expired",
+        "passed": true,
+        "status": 401
+      },
+      {
+        "name": "reject audience",
+        "passed": true,
+        "status": 401
+      },
+      {
+        "name": "reject issuer",
+        "passed": true,
+        "status": 401
+      },
+      {
+        "name": "reject scope",
+        "passed": true,
+        "status": 403
+      },
+      {
+        "name": "reject workspace",
+        "passed": true,
+        "status": 401
+      }
+    ],
+    "wire": []
+  },
+  "wire_resume": {
+    "phase": "resume",
+    "passed": true,
+    "checks": [
+      {
+        "name": "access survives API/issuer restart",
+        "passed": true,
+        "status": 200
+      },
+      {
+        "name": "unconsumed code survives restart",
+        "passed": true
+      },
+      {
+        "name": "refresh survives restart",
+        "passed": true
+      },
+      {
+        "name": "login session survives restart",
+        "passed": true
+      },
+      {
+        "name": "logout deletes session",
+        "passed": true
+      }
+    ],
+    "wire": []
+  },
+  "credential_storage": {
+    "auth_role_owner_superuser_bypass": false,
+    "tokens_hash_only": true,
+    "codes_sessions_hash_only": true,
+    "owner_argon2id": true,
+    "token_rows": 32,
+    "code_rows": 13,
+    "refresh_consumed_rows": 3
+  },
+  "database": {
+    "roles": [
+      [
+        "hub_migrator",
+        false,
+        false,
+        false
+      ],
+      [
+        "hub_runtime",
+        false,
+        false,
+        false
+      ]
+    ],
+    "tables": [
+      [
+        "agents",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "alembic_version",
+        false,
+        false,
+        "hub_migrator"
+      ],
+      [
+        "artifacts",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "audit_events",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "auth_browser_sessions",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "auth_login_limits",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "connections",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "host_profiles",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "installations",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "job_attempts",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "jobs",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "memberships",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "oauth_clients",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "oauth_codes",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "oauth_grants",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "plugin_packages",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "plugin_versions",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "projects",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "resources",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "skills",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "stage_commits",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "tokens",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "tool_bindings",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "users",
+        true,
+        true,
+        "hub_migrator"
+      ],
+      [
+        "workspaces",
+        true,
+        true,
+        "hub_migrator"
+      ]
+    ],
+    "revision": "0002_g2",
+    "postgres_version": "18.1",
+    "users": 4,
+    "workspaces": 4
+  },
+  "services": [
+    {
+      "service": "api",
+      "image_id": "sha256:717fd6e320b403f034781984fe3e28b142030d5d68e0b08dd20e58f8558b57b2",
+      "user": "10001:10001",
+      "ports": {},
+      "readonly_rootfs": true,
+      "secret_names": [
+        "runtime_password"
+      ]
+    },
+    {
+      "service": "auth",
+      "image_id": "sha256:717fd6e320b403f034781984fe3e28b142030d5d68e0b08dd20e58f8558b57b2",
+      "user": "10001:10001",
+      "ports": {},
+      "readonly_rootfs": true,
+      "secret_names": [
+        "auth_password"
+      ]
+    },
+    {
+      "service": "caddy",
+      "image_id": "sha256:6c62bce2cafa5bb0e8618785c58076dbb7a30516117b8ce4cc28d7cf7a353d8a",
+      "user": "10001:10001",
+      "ports": {
+        "8080/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "57151"
+          }
+        ]
+      },
+      "readonly_rootfs": true,
+      "secret_names": []
+    },
+    {
+      "service": "postgres",
+      "image_id": "sha256:aa6eb304ddb6dd26df23d05db4e5cb05af8951cda3e0dc57731b771e0ef4ab29",
+      "user": "",
+      "ports": {},
+      "readonly_rootfs": false,
+      "secret_names": [
+        "admin_password"
+      ]
+    },
+    {
+      "service": "worker",
+      "image_id": "sha256:717fd6e320b403f034781984fe3e28b142030d5d68e0b08dd20e58f8558b57b2",
+      "user": "10001:10001",
+      "ports": {},
+      "readonly_rootfs": true,
+      "secret_names": [
+        "runtime_password"
+      ]
+    }
+  ]
+}

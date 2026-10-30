@@ -1,0 +1,697 @@
+{
+  "phase": "full",
+  "passed": true,
+  "checks": [
+    {
+      "name": "AS discovery",
+      "passed": true
+    },
+    {
+      "name": "AS alias discovery",
+      "passed": true
+    },
+    {
+      "name": "missing token challenge",
+      "passed": true
+    },
+    {
+      "name": "resource discovery",
+      "passed": true
+    },
+    {
+      "name": "DCR public client",
+      "passed": true
+    },
+    {
+      "name": "DCR unsafe redirect rejected",
+      "passed": true
+    },
+    {
+      "name": "DCR unsupported scope rejected",
+      "passed": true
+    },
+    {
+      "name": "login CSRF",
+      "passed": true
+    },
+    {
+      "name": "HttpOnly SameSite cookie",
+      "passed": true
+    },
+    {
+      "name": "local HTTP cookie exception",
+      "passed": true
+    },
+    {
+      "name": "wrong password",
+      "passed": true
+    },
+    {
+      "name": "owner login and session fixation protection",
+      "passed": true
+    },
+    {
+      "name": "explicit consent required",
+      "passed": true
+    },
+    {
+      "name": "fixture isolated workspace present",
+      "passed": true
+    },
+    {
+      "name": "consent CSRF",
+      "passed": true
+    },
+    {
+      "name": "consent workspace membership",
+      "passed": true
+    },
+    {
+      "name": "redirect exact match",
+      "passed": true
+    },
+    {
+      "name": "PKCE S256 only",
+      "passed": true
+    },
+    {
+      "name": "PKCE mandatory",
+      "passed": true
+    },
+    {
+      "name": "resource mandatory",
+      "passed": true
+    },
+    {
+      "name": "scope escalation denied",
+      "passed": true
+    },
+    {
+      "name": "consent denied",
+      "passed": true
+    },
+    {
+      "name": "state and issuer bound response",
+      "passed": true
+    },
+    {
+      "name": "consent form replay rejected",
+      "passed": true
+    },
+    {
+      "name": "wrong PKCE verifier",
+      "passed": true
+    },
+    {
+      "name": "code client binding",
+      "passed": true
+    },
+    {
+      "name": "code redirect binding",
+      "passed": true
+    },
+    {
+      "name": "token audience binding",
+      "passed": true
+    },
+    {
+      "name": "valid code after bad attempts",
+      "passed": true
+    },
+    {
+      "name": "code token initially usable",
+      "passed": true
+    },
+    {
+      "name": "code replay rejected",
+      "passed": true
+    },
+    {
+      "name": "code replay revokes issued family",
+      "passed": true
+    },
+    {
+      "name": "state and issuer bound response",
+      "passed": true
+    },
+    {
+      "name": "code exchanged",
+      "passed": true
+    },
+    {
+      "name": "SDK pin",
+      "passed": true
+    },
+    {
+      "name": "readonly tool catalog only",
+      "passed": true
+    },
+    {
+      "name": "authenticated tenant tool",
+      "passed": true
+    },
+    {
+      "name": "no cross-workspace tool",
+      "passed": true
+    },
+    {
+      "name": "invalid input schema",
+      "passed": true
+    },
+    {
+      "name": "private catalog cache",
+      "passed": true
+    },
+    {
+      "name": "modern wire complete",
+      "passed": true
+    },
+    {
+      "name": "modern metadata headers",
+      "passed": true
+    },
+    {
+      "name": "no legacy handshake or session",
+      "passed": true
+    },
+    {
+      "name": "modern discovery",
+      "passed": true,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 42,
+        "result": {
+          "cacheScope": "private",
+          "capabilities": {
+            "prompts": {
+              "listChanged": true
+            },
+            "resources": {
+              "listChanged": true,
+              "subscribe": true
+            },
+            "tools": {
+              "listChanged": true
+            }
+          },
+          "resultType": "complete",
+          "supportedVersions": [
+            "2026-07-28"
+          ],
+          "ttlMs": 0,
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "goodmcp-hub",
+              "version": "0.2.0"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "mirror header mismatch",
+      "passed": true
+    },
+    {
+      "name": "unsupported protocol rejected",
+      "passed": true
+    },
+    {
+      "name": "legacy disabled explicitly",
+      "passed": true
+    },
+    {
+      "name": "no anonymous alias /mcp",
+      "passed": true
+    },
+    {
+      "name": "no anonymous alias /mcp/",
+      "passed": true
+    },
+    {
+      "name": "no anonymous alias /mcp//",
+      "passed": true
+    },
+    {
+      "name": "no anonymous alias /api/v1/me/workspaces",
+      "passed": true
+    },
+    {
+      "name": "no anonymous alias /api/v1/unknown",
+      "passed": true
+    },
+    {
+      "name": "wrong workspace selection",
+      "passed": true
+    },
+    {
+      "name": "host allowlist",
+      "passed": true
+    },
+    {
+      "name": "origin allowlist",
+      "passed": true
+    },
+    {
+      "name": "legacy GET stream disabled",
+      "passed": true
+    },
+    {
+      "name": "REST identity from token",
+      "passed": true
+    },
+    {
+      "name": "independent deterministic evaluator",
+      "passed": true
+    },
+    {
+      "name": "evaluator fixtures passed",
+      "passed": true
+    },
+    {
+      "name": "refresh client binding",
+      "passed": true
+    },
+    {
+      "name": "refresh cannot escalate scope",
+      "passed": true
+    },
+    {
+      "name": "refresh rotates",
+      "passed": true
+    },
+    {
+      "name": "new access accepted",
+      "passed": true
+    },
+    {
+      "name": "refresh replay rejected",
+      "passed": true
+    },
+    {
+      "name": "refresh replay revokes new access",
+      "passed": true
+    },
+    {
+      "name": "refresh replay revokes descendant refresh",
+      "passed": true
+    },
+    {
+      "name": "state and issuer bound response",
+      "passed": true
+    },
+    {
+      "name": "code exchanged",
+      "passed": true
+    },
+    {
+      "name": "revocation client binding",
+      "passed": true
+    },
+    {
+      "name": "wrong-client revocation does not revoke",
+      "passed": true
+    },
+    {
+      "name": "revoke family",
+      "passed": true
+    },
+    {
+      "name": "revoked refresh denied",
+      "passed": true
+    },
+    {
+      "name": "unknown revoke non-enumerating",
+      "passed": true
+    },
+    {
+      "name": "state and issuer bound response",
+      "passed": true
+    },
+    {
+      "name": "code exchanged",
+      "passed": true
+    },
+    {
+      "name": "concurrent refresh serialized",
+      "passed": true
+    },
+    {
+      "name": "concurrent replay revokes winning family",
+      "passed": true
+    },
+    {
+      "name": "state and issuer bound response",
+      "passed": true
+    },
+    {
+      "name": "concurrent code exchange serialized",
+      "passed": true
+    },
+    {
+      "name": "concurrent code replay revokes issued access",
+      "passed": true
+    },
+    {
+      "name": "state and issuer bound response",
+      "passed": true
+    },
+    {
+      "name": "code exchanged",
+      "passed": true
+    },
+    {
+      "name": "scope step-up requires fresh consent",
+      "passed": true
+    },
+    {
+      "name": "password grant disabled",
+      "passed": true
+    },
+    {
+      "name": "state and issuer bound response",
+      "passed": true
+    },
+    {
+      "name": "code exchanged",
+      "passed": true
+    },
+    {
+      "name": "state and issuer bound response",
+      "passed": true
+    },
+    {
+      "name": "code exchanged",
+      "passed": true
+    },
+    {
+      "name": "state and issuer bound response",
+      "passed": true
+    },
+    {
+      "name": "code exchanged",
+      "passed": true
+    },
+    {
+      "name": "state and issuer bound response",
+      "passed": true
+    },
+    {
+      "name": "code exchanged",
+      "passed": true
+    },
+    {
+      "name": "state and issuer bound response",
+      "passed": true
+    },
+    {
+      "name": "code exchanged",
+      "passed": true
+    },
+    {
+      "name": "state and issuer bound response",
+      "passed": true
+    },
+    {
+      "name": "code exchanged",
+      "passed": true
+    },
+    {
+      "name": "state and issuer bound response",
+      "passed": true
+    },
+    {
+      "name": "login rate limit",
+      "passed": true
+    }
+  ],
+  "wire": [
+    {
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "tools/list",
+        "params": {
+          "_meta": {
+            "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+            "io.modelcontextprotocol/clientInfo": {
+              "name": "mcp",
+              "version": "0.1.0"
+            },
+            "io.modelcontextprotocol/clientCapabilities": {}
+          }
+        }
+      },
+      "headers": {
+        "mcp-protocol-version": "2026-07-28",
+        "mcp-method": "tools/list"
+      },
+      "status": 200,
+      "session_header": null,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "cacheScope": "private",
+          "resultType": "complete",
+          "tools": [
+            {
+              "annotations": {
+                "destructiveHint": false,
+                "idempotentHint": true,
+                "openWorldHint": false,
+                "readOnlyHint": true
+              },
+              "description": "Read the workspace authorized by this connection. Requires hub:read; changes no data.",
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "workspace_id": {
+                    "maxLength": 36,
+                    "minLength": 36,
+                    "title": "Workspace Id",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "workspace_id"
+                ],
+                "title": "hub_get_workspaceArguments"
+              },
+              "name": "hub_get_workspace",
+              "outputSchema": {
+                "properties": {
+                  "workspace_id": {
+                    "title": "Workspace Id",
+                    "type": "string"
+                  },
+                  "name": {
+                    "title": "Name",
+                    "type": "string"
+                  },
+                  "role": {
+                    "title": "Role",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "workspace_id",
+                  "name",
+                  "role"
+                ],
+                "title": "WorkspaceInfo",
+                "type": "object"
+              }
+            }
+          ],
+          "ttlMs": 0,
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "goodmcp-hub",
+              "version": "0.2.0"
+            }
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "method": "tools/call",
+        "params": {
+          "name": "hub_get_workspace",
+          "arguments": {
+            "workspace_id": "6c03b5c7-84cc-4660-a952-b864b2ef475b"
+          },
+          "_meta": {
+            "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+            "io.modelcontextprotocol/clientInfo": {
+              "name": "mcp",
+              "version": "0.1.0"
+            },
+            "io.modelcontextprotocol/clientCapabilities": {}
+          }
+        }
+      },
+      "headers": {
+        "mcp-protocol-version": "2026-07-28",
+        "mcp-method": "tools/call",
+        "mcp-name": "hub_get_workspace"
+      },
+      "status": 200,
+      "session_header": null,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "content": [
+            {
+              "text": "{\n  \"workspace_id\": \"6c03b5c7-84cc-4660-a952-b864b2ef475b\",\n  \"name\": \"Khầy — local workspace\",\n  \"role\": \"owner\"\n}",
+              "type": "text"
+            }
+          ],
+          "isError": false,
+          "resultType": "complete",
+          "structuredContent": {
+            "workspace_id": "6c03b5c7-84cc-4660-a952-b864b2ef475b",
+            "name": "Khầy — local workspace",
+            "role": "owner"
+          },
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "goodmcp-hub",
+              "version": "0.2.0"
+            }
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "method": "tools/call",
+        "params": {
+          "name": "hub_get_workspace",
+          "arguments": {
+            "workspace_id": "20000000-0000-4000-8000-000000000099"
+          },
+          "_meta": {
+            "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+            "io.modelcontextprotocol/clientInfo": {
+              "name": "mcp",
+              "version": "0.1.0"
+            },
+            "io.modelcontextprotocol/clientCapabilities": {}
+          }
+        }
+      },
+      "headers": {
+        "mcp-protocol-version": "2026-07-28",
+        "mcp-method": "tools/call",
+        "mcp-name": "hub_get_workspace"
+      },
+      "status": 200,
+      "session_header": null,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "result": {
+          "content": [
+            {
+              "text": "Error executing tool hub_get_workspace",
+              "type": "text"
+            }
+          ],
+          "isError": true,
+          "resultType": "complete",
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "goodmcp-hub",
+              "version": "0.2.0"
+            }
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "method": "tools/call",
+        "params": {
+          "name": "hub_get_workspace",
+          "arguments": {
+            "workspace_id": "bad"
+          },
+          "_meta": {
+            "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+            "io.modelcontextprotocol/clientInfo": {
+              "name": "mcp",
+              "version": "0.1.0"
+            },
+            "io.modelcontextprotocol/clientCapabilities": {}
+          }
+        }
+      },
+      "headers": {
+        "mcp-protocol-version": "2026-07-28",
+        "mcp-method": "tools/call",
+        "mcp-name": "hub_get_workspace"
+      },
+      "status": 200,
+      "session_header": null,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "result": {
+          "content": [
+            {
+              "text": "Error executing tool hub_get_workspace: 1 validation error for hub_get_workspaceArguments\nworkspace_id\n  String should have at least 36 characters [type=string_too_short, input_value='bad', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/string_too_short",
+              "type": "text"
+            }
+          ],
+          "isError": true,
+          "resultType": "complete",
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "goodmcp-hub",
+              "version": "0.2.0"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "evaluator": {
+    "required_protocol": "2026-07-28",
+    "observed_protocol": "2026-07-28",
+    "cases": [
+      {
+        "id": "workspace-exact",
+        "tool": "hub_get_workspace",
+        "passed": true,
+        "mismatched_fields": [],
+        "actual": {
+          "is_error": false,
+          "structured_content": {
+            "workspace_id": "6c03b5c7-84cc-4660-a952-b864b2ef475b",
+            "name": "Khầy — local workspace",
+            "role": "owner"
+          }
+        }
+      },
+      {
+        "id": "wrong-workspace",
+        "tool": "hub_get_workspace",
+        "passed": true,
+        "mismatched_fields": [],
+        "actual": {
+          "is_error": true
+        }
+      }
+    ],
+    "passed": true
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "phase": "negatives",
+  "passed": true,
+  "checks": [
+    {
+      "name": "reject expired",
+      "passed": true,
+      "status": 401
+    },
+    {
+      "name": "reject audience",
+      "passed": true,
+      "status": 401
+    },
+    {
+      "name": "reject issuer",
+      "passed": true,
+      "status": 401
+    },
+    {
+      "name": "reject scope",
+      "passed": true,
+      "status": 403
+    },
+    {
+      "name": "reject workspace",
+      "passed": true,
+      "status": 401
+    }
+  ],
+  "wire": []
+}

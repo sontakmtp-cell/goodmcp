@@ -1,0 +1,438 @@
+
+[compose-config]
+
+[build-clean-source]
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.69kB done
+#1 DONE 0.0s
+
+#2 [api internal] load build definition from Dockerfile
+#2 transferring dockerfile: 873B done
+#2 DONE 0.0s
+
+#3 [caddy internal] load build definition from Dockerfile.caddy
+#3 transferring dockerfile: 355B done
+#3 DONE 0.0s
+
+#4 [api internal] load metadata for ghcr.io/astral-sh/uv:0.9.7@sha256:ba4857bf2a068e9bc0e64eed8563b065908a4cd6bfb66b531a9c424c8e25e142
+#4 DONE 0.0s
+
+#5 [api internal] load metadata for docker.io/library/python:3.12.12-slim-bookworm@sha256:593bd06efe90efa80dc4eee3948be7c0fde4134606dd40d8dd8dbcade98e669c
+#5 DONE 0.1s
+
+#6 [caddy internal] load metadata for docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+#6 DONE 0.1s
+
+#7 [api internal] load .dockerignore
+#7 transferring context: 261B done
+#7 DONE 0.0s
+
+#8 [caddy internal] load .dockerignore
+#8 transferring context: 2B done
+#8 DONE 0.0s
+
+#9 [api stage-0  1/10] FROM docker.io/library/python:3.12.12-slim-bookworm@sha256:593bd06efe90efa80dc4eee3948be7c0fde4134606dd40d8dd8dbcade98e669c
+#9 resolve docker.io/library/python:3.12.12-slim-bookworm@sha256:593bd06efe90efa80dc4eee3948be7c0fde4134606dd40d8dd8dbcade98e669c 0.1s done
+#9 DONE 0.1s
+
+#10 [api] FROM ghcr.io/astral-sh/uv:0.9.7@sha256:ba4857bf2a068e9bc0e64eed8563b065908a4cd6bfb66b531a9c424c8e25e142
+#10 resolve ghcr.io/astral-sh/uv:0.9.7@sha256:ba4857bf2a068e9bc0e64eed8563b065908a4cd6bfb66b531a9c424c8e25e142 0.0s done
+#10 DONE 0.1s
+
+#11 [caddy 1/2] FROM docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+#11 resolve docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d 0.1s done
+#11 DONE 0.1s
+
+#12 [api internal] load build context
+#12 transferring context: 240.58kB 0.1s done
+#12 DONE 0.1s
+
+#13 [caddy 2/2] RUN setcap -r /usr/bin/caddy
+#13 CACHED
+
+#14 [api stage-0  6/10] COPY apps/api /app/apps/api
+#14 CACHED
+
+#15 [api stage-0  8/10] COPY infra/alembic.ini /app/infra/alembic.ini
+#15 CACHED
+
+#16 [api stage-0  3/10] WORKDIR /app
+#16 CACHED
+
+#17 [api stage-0  4/10] COPY pyproject.toml uv.lock ./
+#17 CACHED
+
+#18 [api stage-0  5/10] RUN uv sync --frozen --no-dev --no-install-project && mkdir /data /wirestate && chown 10001:10001 /data /wirestate
+#18 CACHED
+
+#19 [api stage-0  7/10] COPY packages/core /app/packages/core
+#19 CACHED
+
+#20 [api stage-0  2/10] COPY --from=ghcr.io/astral-sh/uv:0.9.7@sha256:ba4857bf2a068e9bc0e64eed8563b065908a4cd6bfb66b531a9c424c8e25e142 /uv /usr/local/bin/uv
+#20 CACHED
+
+#21 [api stage-0  9/10] COPY infra/migrations /app/infra/migrations
+#21 CACHED
+
+#22 [api stage-0 10/10] COPY tests /app/tests
+#22 CACHED
+
+#23 [api] exporting to image
+#23 exporting layers done
+#23 exporting manifest sha256:01491fc488c98f70e2bc2a169097b27f507b557b5623feb37274489fb56bd68a 0.0s done
+#23 exporting config sha256:b9aaa1a8b3d7367e7f9a7acad3951eef492379f6bf05dc6b2afb28e403d9a25f 0.0s done
+#23 exporting attestation manifest sha256:c5b30b68ab7847690b1724f4ba33966b56b9749f9d6f0a2980653603c71b3a21
+#23 ...
+
+#24 [caddy] exporting to image
+#24 exporting layers done
+#24 exporting manifest sha256:c63c8b1de00abf149b690e1caa43655abedbad3af6a8bb21cf6a2206a79e66b8 0.0s done
+#24 exporting config sha256:1f24e20c5ff76bd6036538e5ada8f223cfaa87b9b330f4210480691323d23c00 0.0s done
+#24 exporting attestation manifest sha256:c9d770caff07ca9c69af337495b8a7c6d4b9309e9b9189b5e0604b2a4ae19e59 0.0s done
+#24 exporting manifest list sha256:6c62bce2cafa5bb0e8618785c58076dbb7a30516117b8ce4cc28d7cf7a353d8a 0.0s done
+#24 naming to docker.io/library/goodmcp-caddy:local done
+#24 unpacking to docker.io/library/goodmcp-caddy:local 0.0s done
+#24 DONE 0.2s
+
+#23 [api] exporting to image
+#23 exporting attestation manifest sha256:c5b30b68ab7847690b1724f4ba33966b56b9749f9d6f0a2980653603c71b3a21 0.0s done
+#23 exporting manifest list sha256:717fd6e320b403f034781984fe3e28b142030d5d68e0b08dd20e58f8558b57b2 0.0s done
+#23 naming to docker.io/library/goodmcp-hub:local done
+#23 unpacking to docker.io/library/goodmcp-hub:local
+#23 ...
+
+#25 [caddy] resolving provenance for metadata file
+#25 DONE 0.0s
+
+#23 [api] exporting to image
+#23 unpacking to docker.io/library/goodmcp-hub:local 0.8s done
+#23 DONE 1.0s
+
+#26 [api] resolving provenance for metadata file
+#26 DONE 0.0s
+ goodmcp-hub:local  Built
+ goodmcp-caddy:local  Built
+
+[start-empty-postgres]
+ Network goodmcp-g2-verify-20261030t121607z-e2f2fc_private  Creating
+ Network goodmcp-g2-verify-20261030t121607z-e2f2fc_private  Created
+ Volume "goodmcp-g2-verify-20261030t121607z-e2f2fc_postgres_data"  Creating
+ Volume "goodmcp-g2-verify-20261030t121607z-e2f2fc_postgres_data"  Created
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Creating
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Created
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Starting
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Started
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Waiting
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Healthy
+
+[admin-roles]
+{"status": "ok"}
+
+[api-before-migration]
+ Network goodmcp-g2-verify-20261030t121607z-e2f2fc_gateway  Creating
+ Network goodmcp-g2-verify-20261030t121607z-e2f2fc_gateway  Created
+ Volume "goodmcp-g2-verify-20261030t121607z-e2f2fc_artifacts"  Creating
+ Volume "goodmcp-g2-verify-20261030t121607z-e2f2fc_artifacts"  Created
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-api-1  Creating
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-api-1  Created
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-api-1  Starting
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-api-1  Started
+
+[readiness-denies-missing-migration]
+{"live": 200, "ready": 503, "expected": 503}
+
+[migration-up]
+
+[migration-idempotent]
+
+[admin-owner]
+{"created": true, "user_id": "bb4820e6-3421-436d-8fc1-08c61786c30f", "workspace_id": "6c03b5c7-84cc-4660-a952-b864b2ef475b"}
+
+[admin-owner]
+{"created": false, "user_id": "bb4820e6-3421-436d-8fc1-08c61786c30f", "workspace_id": "6c03b5c7-84cc-4660-a952-b864b2ef475b"}
+
+[admin-inspect]
+{"roles": [["hub_migrator", false, false, false], ["hub_runtime", false, false, false]], "tables": [["agents", true, true, "hub_migrator"], ["alembic_version", false, false, "hub_migrator"], ["artifacts", true, true, "hub_migrator"], ["audit_events", true, true, "hub_migrator"], ["auth_browser_sessions", true, true, "hub_migrator"], ["auth_login_limits", true, true, "hub_migrator"], ["connections", true, true, "hub_migrator"], ["host_profiles", true, true, "hub_migrator"], ["installations", true, true, "hub_migrator"], ["job_attempts", true, true, "hub_migrator"], ["jobs", true, true, "hub_migrator"], ["memberships", true, true, "hub_migrator"], ["oauth_clients", true, true, "hub_migrator"], ["oauth_codes", true, true, "hub_migrator"], ["oauth_grants", true, true, "hub_migrator"], ["plugin_packages", true, true, "hub_migrator"], ["plugin_versions", true, true, "hub_migrator"], ["projects", true, true, "hub_migrator"], ["resources", true, true, "hub_migrator"], ["skills", true, true, "hub_migrator"], ["stage_commits", true, true, "hub_migrator"], ["tokens", true, true, "hub_migrator"], ["tool_bindings", true, true, "hub_migrator"], ["users", true, true, "hub_migrator"], ["workspaces", true, true, "hub_migrator"]], "revision": "0002_g2", "postgres_version": "18.1", "users": 1, "workspaces": 1}
+
+[admin-fixtures]
+{"status": "ok"}
+
+[auth-workspace-fixture]
+{"revoked_workspace_fixture": "20000000-0000-4000-8000-000000000099", "legacy_login_fixture": true}
+ Volume "goodmcp-g2-verify-20261030t121607z-e2f2fc_wire_state"  Creating
+ Volume "goodmcp-g2-verify-20261030t121607z-e2f2fc_wire_state"  Created
+
+[start-local-stack]
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Running
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-api-1  Running
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-worker-1  Creating
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-auth-1  Creating
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-worker-1  Created
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-auth-1  Created
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-caddy-1  Creating
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-caddy-1  Created
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Waiting
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Waiting
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Healthy
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Healthy
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-auth-1  Starting
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-api-1  Waiting
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-auth-1  Started
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-auth-1  Waiting
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-api-1  Waiting
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-api-1  Healthy
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-worker-1  Starting
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-worker-1  Started
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-api-1  Healthy
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-auth-1  Healthy
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-caddy-1  Starting
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-caddy-1  Started
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-worker-1  Waiting
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-auth-1  Waiting
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-caddy-1  Waiting
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Waiting
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-api-1  Waiting
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-api-1  Healthy
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-caddy-1  Healthy
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-worker-1  Healthy
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-auth-1  Healthy
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Healthy
+
+[postgres-and-filesystem-tests]
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.2.0, pluggy-1.7.0 -- /app/.venv/bin/python
+rootdir: /app
+configfile: pyproject.toml
+plugins: anyio-4.15.1
+collecting ... collected 80 items
+
+tests/test_auth_database.py::test_runtime_cannot_read_issuer_private_tables[oauth_clients] PASSED [  1%]
+tests/test_auth_database.py::test_runtime_cannot_read_issuer_private_tables[oauth_codes] PASSED [  2%]
+tests/test_auth_database.py::test_runtime_cannot_read_issuer_private_tables[auth_browser_sessions] PASSED [  3%]
+tests/test_auth_database.py::test_runtime_cannot_read_issuer_private_tables[auth_login_limits] PASSED [  5%]
+tests/test_auth_database.py::test_runtime_cannot_mint_tokens_or_edit_grants PASSED [  6%]
+tests/test_auth_units.py::test_cimd_rejects_private_dns[127.0.0.1] PASSED [  7%]
+tests/test_auth_units.py::test_cimd_rejects_private_dns[10.0.0.1] PASSED [  8%]
+tests/test_auth_units.py::test_cimd_rejects_private_dns[169.254.169.254] PASSED [ 10%]
+tests/test_auth_units.py::test_cimd_rejects_private_dns[::1] PASSED      [ 11%]
+tests/test_auth_units.py::test_cimd_rejects_private_dns[fc00::1] PASSED  [ 12%]
+tests/test_auth_units.py::test_cimd_rejects_private_dns[192.168.1.1] PASSED [ 13%]
+tests/test_auth_units.py::test_cimd_rejects_private_dns[::ffff:127.0.0.1] PASSED [ 15%]
+tests/test_auth_units.py::test_cimd_rejects_private_dns[224.0.0.1] PASSED [ 16%]
+tests/test_auth_units.py::test_cimd_rejects_private_dns[2002:c0a8:101::] PASSED [ 17%]
+tests/test_auth_units.py::test_cimd_rejects_unsafe_url_without_fetch[http://example.com/client.json] PASSED [ 18%]
+tests/test_auth_units.py::test_cimd_rejects_unsafe_url_without_fetch[https://user:password@example.com/client.json] PASSED [ 20%]
+tests/test_auth_units.py::test_cimd_rejects_unsafe_url_without_fetch[https://example.com:8443/client.json] PASSED [ 21%]
+tests/test_auth_units.py::test_cimd_rejects_unsafe_url_without_fetch[https://example.com/client.json#fragment] PASSED [ 22%]
+tests/test_auth_units.py::test_cimd_rejects_unsafe_url_without_fetch[https://example.com/client.json?next=private] PASSED [ 23%]
+tests/test_auth_units.py::test_cimd_pins_public_dns_and_refuses_redirect PASSED [ 25%]
+tests/test_auth_units.py::test_cimd_tls_connect_uses_pinned_ip_and_original_sni PASSED [ 26%]
+tests/test_auth_units.py::test_cimd_size_and_client_id_binding[body0] PASSED [ 27%]
+tests/test_auth_units.py::test_cimd_size_and_client_id_binding[{"client_id":"https://different.example/client.json"}] PASSED [ 28%]
+tests/test_auth_units.py::test_argon2_and_valid_legacy_upgrade_check PASSED [ 30%]
+tests/test_auth_units.py::test_https_settings_and_public_metadata_validation PASSED [ 31%]
+tests/test_g1.py::test_real_postgres18_runtime_has_no_admin_privileges PASSED [ 32%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[users] PASSED [ 33%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[workspaces] PASSED [ 35%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[memberships] PASSED [ 36%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[plugin_packages] PASSED [ 37%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[plugin_versions] PASSED [ 38%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[installations] PASSED [ 40%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[skills] PASSED [ 41%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[agents] PASSED [ 42%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[resources] PASSED [ 43%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[tool_bindings] PASSED [ 45%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[projects] PASSED [ 46%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[artifacts] PASSED [ 47%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[stage_commits] PASSED [ 48%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[jobs] PASSED [ 50%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[job_attempts] PASSED [ 51%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[audit_events] PASSED [ 52%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[connections] PASSED [ 53%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[oauth_grants] PASSED [ 55%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[tokens] PASSED [ 56%]
+tests/test_g1.py::test_every_private_table_forces_rls_and_migration_owner[host_profiles] PASSED [ 57%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[plugin_packages] PASSED [ 58%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[plugin_versions] PASSED [ 60%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[installations] PASSED [ 61%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[skills] PASSED [ 62%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[agents] PASSED [ 63%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[resources] PASSED [ 65%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[tool_bindings] PASSED [ 66%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[projects] PASSED [ 67%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[artifacts] PASSED [ 68%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[stage_commits] PASSED [ 70%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[jobs] PASSED [ 71%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[job_attempts] PASSED [ 72%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[audit_events] PASSED [ 73%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[connections] PASSED [ 75%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[oauth_grants] PASSED [ 76%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[tokens] PASSED [ 77%]
+tests/test_g1.py::test_contextless_select_is_deny_by_default[host_profiles] PASSED [ 78%]
+tests/test_g1.py::test_missing_context_insert_denied PASSED              [ 80%]
+tests/test_g1.py::test_workspace_selection_requires_membership PASSED    [ 81%]
+tests/test_g1.py::test_a_cannot_select_update_delete_b_or_forge_workspace PASSED [ 82%]
+tests/test_g1.py::test_with_check_blocks_inserting_b_and_moving_a_to_b PASSED [ 83%]
+tests/test_g1.py::test_pool_transaction_context_cleared_after_commit_and_rollback PASSED [ 85%]
+tests/test_g1.py::test_cross_tenant_composite_foreign_key PASSED         [ 86%]
+tests/test_g1.py::test_viewer_read_allowed_but_core_and_database_write_denied PASSED [ 87%]
+tests/test_g1.py::test_read_scope_cannot_write_store PASSED              [ 88%]
+tests/test_g1.py::test_file_put_get_stream_and_no_cross_workspace_handle PASSED [ 90%]
+tests/test_g1.py::test_oversize_bad_checksum_and_empty_file PASSED       [ 91%]
+tests/test_g1.py::test_traversal_invalid_uuid_and_metadata_namespace_poisoning PASSED [ 92%]
+tests/test_g1.py::test_symlink_blob_cannot_escape_root PASSED            [ 93%]
+tests/test_g1.py::test_symlink_directory_refused PASSED                  [ 95%]
+tests/test_g1.py::test_delete_requires_revision_and_preserves_blob PASSED [ 96%]
+tests/test_g1.py::test_cross_tenant_job_parent_and_idempotency_namespace PASSED [ 97%]
+tests/test_g1.py::test_runtime_process_has_only_runtime_secret_and_no_host_control PASSED [ 98%]
+tests/test_g1.py::test_health_and_all_business_routes_fail_closed_even_with_forged_headers PASSED [100%]
+
+============================== 80 passed in 1.32s ==============================
+
+[oauth-mcp-wire-full]
+{"phase": "full", "passed": true, "checks": [{"name": "AS discovery", "passed": true}, {"name": "AS alias discovery", "passed": true}, {"name": "missing token challenge", "passed": true}, {"name": "resource discovery", "passed": true}, {"name": "DCR public client", "passed": true}, {"name": "DCR unsafe redirect rejected", "passed": true}, {"name": "DCR unsupported scope rejected", "passed": true}, {"name": "login CSRF", "passed": true}, {"name": "HttpOnly SameSite cookie", "passed": true}, {"name": "local HTTP cookie exception", "passed": true}, {"name": "wrong password", "passed": true}, {"name": "owner login and session fixation protection", "passed": true}, {"name": "explicit consent required", "passed": true}, {"name": "fixture isolated workspace present", "passed": true}, {"name": "consent CSRF", "passed": true}, {"name": "consent workspace membership", "passed": true}, {"name": "redirect exact match", "passed": true}, {"name": "PKCE S256 only", "passed": true}, {"name": "PKCE mandatory", "passed": true}, {"name": "resource mandatory", "passed": true}, {"name": "scope escalation denied", "passed": true}, {"name": "consent denied", "passed": true}, {"name": "state and issuer bound response", "passed": true}, {"name": "consent form replay rejected", "passed": true}, {"name": "wrong PKCE verifier", "passed": true}, {"name": "code client binding", "passed": true}, {"name": "code redirect binding", "passed": true}, {"name": "token audience binding", "passed": true}, {"name": "valid code after bad attempts", "passed": true}, {"name": "code token initially usable", "passed": true}, {"name": "code replay rejected", "passed": true}, {"name": "code replay revokes issued family", "passed": true}, {"name": "state and issuer bound response", "passed": true}, {"name": "code exchanged", "passed": true}, {"name": "SDK pin", "passed": true}, {"name": "readonly tool catalog only", "passed": true}, {"name": "authenticated tenant tool", "passed": true}, {"name": "no cross-workspace tool", "passed": true}, {"name": "invalid input schema", "passed": true}, {"name": "private catalog cache", "passed": true}, {"name": "modern wire complete", "passed": true}, {"name": "modern metadata headers", "passed": true}, {"name": "no legacy handshake or session", "passed": true}, {"name": "modern discovery", "passed": true, "response": {"jsonrpc": "2.0", "id": 42, "result": {"cacheScope": "private", "capabilities": {"prompts": {"listChanged": true}, "resources": {"listChanged": true, "subscribe": true}, "tools": {"listChanged": true}}, "resultType": "complete", "supportedVersions": ["2026-07-28"], "ttlMs": 0, "_meta": {"io.modelcontextprotocol/serverInfo": {"name": "goodmcp-hub", "version": "0.2.0"}}}}}, {"name": "mirror header mismatch", "passed": true}, {"name": "unsupported protocol rejected", "passed": true}, {"name": "legacy disabled explicitly", "passed": true}, {"name": "no anonymous alias /mcp", "passed": true}, {"name": "no anonymous alias /mcp/", "passed": true}, {"name": "no anonymous alias /mcp//", "passed": true}, {"name": "no anonymous alias /api/v1/me/workspaces", "passed": true}, {"name": "no anonymous alias /api/v1/unknown", "passed": true}, {"name": "wrong workspace selection", "passed": true}, {"name": "host allowlist", "passed": true}, {"name": "origin allowlist", "passed": true}, {"name": "legacy GET stream disabled", "passed": true}, {"name": "REST identity from token", "passed": true}, {"name": "independent deterministic evaluator", "passed": true}, {"name": "evaluator fixtures passed", "passed": true}, {"name": "refresh client binding", "passed": true}, {"name": "refresh cannot escalate scope", "passed": true}, {"name": "refresh rotates", "passed": true}, {"name": "new access accepted", "passed": true}, {"name": "refresh replay rejected", "passed": true}, {"name": "refresh replay revokes new access", "passed": true}, {"name": "refresh replay revokes descendant refresh", "passed": true}, {"name": "state and issuer bound response", "passed": true}, {"name": "code exchanged", "passed": true}, {"name": "revocation client binding", "passed": true}, {"name": "wrong-client revocation does not revoke", "passed": true}, {"name": "revoke family", "passed": true}, {"name": "revoked refresh denied", "passed": true}, {"name": "unknown revoke non-enumerating", "passed": true}, {"name": "state and issuer bound response", "passed": true}, {"name": "code exchanged", "passed": true}, {"name": "concurrent refresh serialized", "passed": true}, {"name": "concurrent replay revokes winning family", "passed": true}, {"name": "state and issuer bound response", "passed": true}, {"name": "concurrent code exchange serialized", "passed": true}, {"name": "concurrent code replay revokes issued access", "passed": true}, {"name": "state and issuer bound response", "passed": true}, {"name": "code exchanged", "passed": true}, {"name": "scope step-up requires fresh consent", "passed": true}, {"name": "password grant disabled", "passed": true}, {"name": "state and issuer bound response", "passed": true}, {"name": "code exchanged", "passed": true}, {"name": "state and issuer bound response", "passed": true}, {"name": "code exchanged", "passed": true}, {"name": "state and issuer bound response", "passed": true}, {"name": "code exchanged", "passed": true}, {"name": "state and issuer bound response", "passed": true}, {"name": "code exchanged", "passed": true}, {"name": "state and issuer bound response", "passed": true}, {"name": "code exchanged", "passed": true}, {"name": "state and issuer bound response", "passed": true}, {"name": "code exchanged", "passed": true}, {"name": "state and issuer bound response", "passed": true}, {"name": "login rate limit", "passed": true}], "wire": [{"request": {"jsonrpc": "2.0", "id": 1, "method": "tools/list", "params": {"_meta": {"io.modelcontextprotocol/protocolVersion": "2026-07-28", "io.modelcontextprotocol/clientInfo": {"name": "mcp", "version": "0.1.0"}, "io.modelcontextprotocol/clientCapabilities": {}}}}, "headers": {"mcp-protocol-version": "2026-07-28", "mcp-method": "tools/list"}, "status": 200, "session_header": null, "response": {"jsonrpc": "2.0", "id": 1, "result": {"cacheScope": "private", "resultType": "complete", "tools": [{"annotations": {"destructiveHint": false, "idempotentHint": true, "openWorldHint": false, "readOnlyHint": true}, "description": "Read the workspace authorized by this connection. Requires hub:read; changes no data.", "inputSchema": {"type": "object", "properties": {"workspace_id": {"maxLength": 36, "minLength": 36, "title": "Workspace Id", "type": "string"}}, "required": ["workspace_id"], "title": "hub_get_workspaceArguments"}, "name": "hub_get_workspace", "outputSchema": {"properties": {"workspace_id": {"title": "Workspace Id", "type": "string"}, "name": {"title": "Name", "type": "string"}, "role": {"title": "Role", "type": "string"}}, "required": ["workspace_id", "name", "role"], "title": "WorkspaceInfo", "type": "object"}}], "ttlMs": 0, "_meta": {"io.modelcontextprotocol/serverInfo": {"name": "goodmcp-hub", "version": "0.2.0"}}}}}, {"request": {"jsonrpc": "2.0", "id": 2, "method": "tools/call", "params": {"name": "hub_get_workspace", "arguments": {"workspace_id": "6c03b5c7-84cc-4660-a952-b864b2ef475b"}, "_meta": {"io.modelcontextprotocol/protocolVersion": "2026-07-28", "io.modelcontextprotocol/clientInfo": {"name": "mcp", "version": "0.1.0"}, "io.modelcontextprotocol/clientCapabilities": {}}}}, "headers": {"mcp-protocol-version": "2026-07-28", "mcp-method": "tools/call", "mcp-name": "hub_get_workspace"}, "status": 200, "session_header": null, "response": {"jsonrpc": "2.0", "id": 2, "result": {"content": [{"text": "{\n  \"workspace_id\": \"6c03b5c7-84cc-4660-a952-b864b2ef475b\",\n  \"name\": \"Kh\u1ea7y \u2014 local workspace\",\n  \"role\": \"owner\"\n}", "type": "text"}], "isError": false, "resultType": "complete", "structuredContent": {"workspace_id": "6c03b5c7-84cc-4660-a952-b864b2ef475b", "name": "Kh\u1ea7y \u2014 local workspace", "role": "owner"}, "_meta": {"io.modelcontextprotocol/serverInfo": {"name": "goodmcp-hub", "version": "0.2.0"}}}}}, {"request": {"jsonrpc": "2.0", "id": 3, "method": "tools/call", "params": {"name": "hub_get_workspace", "arguments": {"workspace_id": "20000000-0000-4000-8000-000000000099"}, "_meta": {"io.modelcontextprotocol/protocolVersion": "2026-07-28", "io.modelcontextprotocol/clientInfo": {"name": "mcp", "version": "0.1.0"}, "io.modelcontextprotocol/clientCapabilities": {}}}}, "headers": {"mcp-protocol-version": "2026-07-28", "mcp-method": "tools/call", "mcp-name": "hub_get_workspace"}, "status": 200, "session_header": null, "response": {"jsonrpc": "2.0", "id": 3, "result": {"content": [{"text": "Error executing tool hub_get_workspace", "type": "text"}], "isError": true, "resultType": "complete", "_meta": {"io.modelcontextprotocol/serverInfo": {"name": "goodmcp-hub", "version": "0.2.0"}}}}}, {"request": {"jsonrpc": "2.0", "id": 4, "method": "tools/call", "params": {"name": "hub_get_workspace", "arguments": {"workspace_id": "bad"}, "_meta": {"io.modelcontextprotocol/protocolVersion": "2026-07-28", "io.modelcontextprotocol/clientInfo": {"name": "mcp", "version": "0.1.0"}, "io.modelcontextprotocol/clientCapabilities": {}}}}, "headers": {"mcp-protocol-version": "2026-07-28", "mcp-method": "tools/call", "mcp-name": "hub_get_workspace"}, "status": 200, "session_header": null, "response": {"jsonrpc": "2.0", "id": 4, "result": {"content": [{"text": "Error executing tool hub_get_workspace: 1 validation error for hub_get_workspaceArguments\nworkspace_id\n  String should have at least 36 characters [type=string_too_short, input_value='bad', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/string_too_short", "type": "text"}], "isError": true, "resultType": "complete", "_meta": {"io.modelcontextprotocol/serverInfo": {"name": "goodmcp-hub", "version": "0.2.0"}}}}}], "evaluator": {"required_protocol": "2026-07-28", "observed_protocol": "2026-07-28", "cases": [{"id": "workspace-exact", "tool": "hub_get_workspace", "passed": true, "mismatched_fields": [], "actual": {"is_error": false, "structured_content": {"workspace_id": "6c03b5c7-84cc-4660-a952-b864b2ef475b", "name": "Kh\u1ea7y \u2014 local workspace", "role": "owner"}}}, {"id": "wrong-workspace", "tool": "hub_get_workspace", "passed": true, "mismatched_fields": [], "actual": {"is_error": true}}], "passed": true}}
+
+[oauth-negative-fixtures]
+{"negative_fixtures_applied": true}
+
+[oauth-wire-negative-tokens]
+{"phase": "negatives", "passed": true, "checks": [{"name": "reject expired", "passed": true, "status": 401}, {"name": "reject audience", "passed": true, "status": 401}, {"name": "reject issuer", "passed": true, "status": 401}, {"name": "reject scope", "passed": true, "status": 403}, {"name": "reject workspace", "passed": true, "status": 401}], "wire": []}
+
+[seed-persistence]
+{"seeded": true, "artifact_id": "2968f55d-9378-4624-9478-2ce559840de7", "sha256": "19a62e87172b051717b82b43e6cbbf9cf073c8839b3d3fc77b28efbc927b19d7"}
+
+[recreate-stack-down-keep-volumes]
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-worker-1  Stopping
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-caddy-1  Stopping
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-caddy-1  Stopped
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-caddy-1  Removing
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-caddy-1  Removed
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-auth-1  Stopping
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-auth-1  Stopped
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-auth-1  Removing
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-auth-1  Removed
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-worker-1  Stopped
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-worker-1  Removing
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-worker-1  Removed
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-api-1  Stopping
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-api-1  Stopped
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-api-1  Removing
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-api-1  Removed
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Stopping
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Stopped
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Removing
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Removed
+ Network goodmcp-g2-verify-20261030t121607z-e2f2fc_gateway  Removing
+ Network goodmcp-g2-verify-20261030t121607z-e2f2fc_private  Removing
+ Network goodmcp-g2-verify-20261030t121607z-e2f2fc_gateway  Removed
+ Network goodmcp-g2-verify-20261030t121607z-e2f2fc_private  Removed
+
+[recreate-stack-up]
+ Network goodmcp-g2-verify-20261030t121607z-e2f2fc_private  Creating
+ Network goodmcp-g2-verify-20261030t121607z-e2f2fc_private  Created
+ Network goodmcp-g2-verify-20261030t121607z-e2f2fc_gateway  Creating
+ Network goodmcp-g2-verify-20261030t121607z-e2f2fc_gateway  Created
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Creating
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Created
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-api-1  Creating
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-auth-1  Creating
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-auth-1  Created
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-api-1  Created
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-caddy-1  Creating
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-worker-1  Creating
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-caddy-1  Created
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-worker-1  Created
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Starting
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Started
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Waiting
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Waiting
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Healthy
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Healthy
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-api-1  Starting
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-auth-1  Starting
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-auth-1  Started
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-api-1  Started
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-api-1  Waiting
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-api-1  Waiting
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-auth-1  Waiting
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-auth-1  Healthy
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-api-1  Healthy
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-caddy-1  Starting
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-api-1  Healthy
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-worker-1  Starting
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-worker-1  Started
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-caddy-1  Started
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-caddy-1  Waiting
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Waiting
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-worker-1  Waiting
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-auth-1  Waiting
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-api-1  Waiting
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-auth-1  Healthy
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-api-1  Healthy
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-worker-1  Healthy
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-caddy-1  Healthy
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Healthy
+
+[verify-persistence]
+{"persisted_after_recreate": true, "artifact_id": "2968f55d-9378-4624-9478-2ce559840de7"}
+
+[oauth-survives-recreate]
+{"phase": "resume", "passed": true, "checks": [{"name": "access survives API/issuer restart", "passed": true, "status": 200}, {"name": "unconsumed code survives restart", "passed": true}, {"name": "refresh survives restart", "passed": true}, {"name": "login session survives restart", "passed": true}, {"name": "logout deletes session", "passed": true}], "wire": []}
+
+[inspect-credential-storage]
+{"auth_role_owner_superuser_bypass": false, "tokens_hash_only": true, "codes_sessions_hash_only": true, "owner_argon2id": true, "token_rows": 32, "code_rows": 13, "refresh_consumed_rows": 3}
+
+[stop-db-for-negative-health]
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Stopping
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Stopped
+
+[readiness-denies-db-outage]
+{"live": 200, "ready": 503, "expected": 503}
+
+[recover-db]
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Starting
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Started
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Waiting
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Healthy
+
+[admin-inspect]
+{"roles": [["hub_migrator", false, false, false], ["hub_runtime", false, false, false]], "tables": [["agents", true, true, "hub_migrator"], ["alembic_version", false, false, "hub_migrator"], ["artifacts", true, true, "hub_migrator"], ["audit_events", true, true, "hub_migrator"], ["auth_browser_sessions", true, true, "hub_migrator"], ["auth_login_limits", true, true, "hub_migrator"], ["connections", true, true, "hub_migrator"], ["host_profiles", true, true, "hub_migrator"], ["installations", true, true, "hub_migrator"], ["job_attempts", true, true, "hub_migrator"], ["jobs", true, true, "hub_migrator"], ["memberships", true, true, "hub_migrator"], ["oauth_clients", true, true, "hub_migrator"], ["oauth_codes", true, true, "hub_migrator"], ["oauth_grants", true, true, "hub_migrator"], ["plugin_packages", true, true, "hub_migrator"], ["plugin_versions", true, true, "hub_migrator"], ["projects", true, true, "hub_migrator"], ["resources", true, true, "hub_migrator"], ["skills", true, true, "hub_migrator"], ["stage_commits", true, true, "hub_migrator"], ["tokens", true, true, "hub_migrator"], ["tool_bindings", true, true, "hub_migrator"], ["users", true, true, "hub_migrator"], ["workspaces", true, true, "hub_migrator"]], "revision": "0002_g2", "postgres_version": "18.1", "users": 4, "workspaces": 4}
+
+[container-ids]
+1242b332d682745c25abd466dc2b70296d6eac3f53dcd6e33578d82fbf1a6578
+ed4132f92a2e89e3a4755ff3ca2ca762feddd48e20b34a043c06f1e02bbf4544
+c31e0cf87de8dea3a2ce5e6e98ed0a374c977e9780796b78e040a71600fc42e4
+91b68ee79ba61dc7932e279e3603c445bb2e70dffd12175b3ef6cae1e5481a9c
+26b428b122c995732631b961ed9f9e6e90a088b70a2b3c1b99c88503227da0cb
+
+[cleanup-own-test-project]
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-caddy-1  Stopping
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-worker-1  Stopping
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-caddy-1  Stopped
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-caddy-1  Removing
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-caddy-1  Removed
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-auth-1  Stopping
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-auth-1  Stopped
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-auth-1  Removing
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-auth-1  Removed
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-worker-1  Stopped
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-worker-1  Removing
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-worker-1  Removed
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-api-1  Stopping
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-api-1  Stopped
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-api-1  Removing
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-api-1  Removed
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Stopping
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Stopped
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Removing
+ Container goodmcp-g2-verify-20261030t121607z-e2f2fc-postgres-1  Removed
+ Network goodmcp-g2-verify-20261030t121607z-e2f2fc_private  Removing
+ Volume goodmcp-g2-verify-20261030t121607z-e2f2fc_postgres_data  Removing
+ Network goodmcp-g2-verify-20261030t121607z-e2f2fc_gateway  Removing
+ Volume goodmcp-g2-verify-20261030t121607z-e2f2fc_wire_state  Removing
+ Volume goodmcp-g2-verify-20261030t121607z-e2f2fc_artifacts  Removing
+ Volume goodmcp-g2-verify-20261030t121607z-e2f2fc_postgres_data  Removed
+ Volume goodmcp-g2-verify-20261030t121607z-e2f2fc_artifacts  Removed
+ Volume goodmcp-g2-verify-20261030t121607z-e2f2fc_wire_state  Removed
+ Network goodmcp-g2-verify-20261030t121607z-e2f2fc_gateway  Removed
+ Network goodmcp-g2-verify-20261030t121607z-e2f2fc_private  Removed

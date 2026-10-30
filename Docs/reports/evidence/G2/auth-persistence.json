@@ -1,0 +1,28 @@
+{
+  "phase": "resume",
+  "passed": true,
+  "checks": [
+    {
+      "name": "access survives API/issuer restart",
+      "passed": true,
+      "status": 200
+    },
+    {
+      "name": "unconsumed code survives restart",
+      "passed": true
+    },
+    {
+      "name": "refresh survives restart",
+      "passed": true
+    },
+    {
+      "name": "login session survives restart",
+      "passed": true
+    },
+    {
+      "name": "logout deletes session",
+      "passed": true
+    }
+  ],
+  "wire": []
+}

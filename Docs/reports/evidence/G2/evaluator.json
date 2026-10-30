@@ -1,0 +1,30 @@
+{
+  "required_protocol": "2026-07-28",
+  "observed_protocol": "2026-07-28",
+  "cases": [
+    {
+      "id": "workspace-exact",
+      "tool": "hub_get_workspace",
+      "passed": true,
+      "mismatched_fields": [],
+      "actual": {
+        "is_error": false,
+        "structured_content": {
+          "workspace_id": "6c03b5c7-84cc-4660-a952-b864b2ef475b",
+          "name": "Khầy — local workspace",
+          "role": "owner"
+        }
+      }
+    },
+    {
+      "id": "wrong-workspace",
+      "tool": "hub_get_workspace",
+      "passed": true,
+      "mismatched_fields": [],
+      "actual": {
+        "is_error": true
+      }
+    }
+  ],
+  "passed": true
+}

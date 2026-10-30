@@ -1,0 +1,15 @@
+{
+  "local_integration": "protocol_only",
+  "host_cloud": "blocked_by_host",
+  "live_test_attempted": false,
+  "reason": "Only a loopback Hub endpoint is authorized and available for this task; no approved public HTTPS Hub endpoint for a cloud connector",
+  "hosts": {
+    "ChatGPT": "blocked_by_host",
+    "Claude": "blocked_by_host",
+    "Gemini": "blocked_by_host",
+    "Grok": "blocked_by_host"
+  },
+  "native_host_agent": "not_verified",
+  "paid_model_api_calls": 0,
+  "cloud_deployment_performed": false
+}

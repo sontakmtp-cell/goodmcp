@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "base_url": "http://127.0.0.1:18080",
+  "client": "scripts/connect-local.py",
+  "browser_mode": "HTTP form surrogate in a thread; real TCP callback, not visual browser review",
+  "protocol": "2026-07-28",
+  "workspace": {
+    "workspace_id": "cfa8baa7-f581-406b-9ceb-a67e71088b46",
+    "name": "Khầy — local workspace",
+    "role": "owner"
+  },
+  "grant_revoked_on_exit": true,
+  "token_written": false
+}
