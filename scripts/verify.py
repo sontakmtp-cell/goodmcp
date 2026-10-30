@@ -141,7 +141,7 @@ def main():
             evidence["g3_memory"] = {}
             for service in ("api", "worker"):
                 observation = json_tail(run("import-memory-" + service, "exec", "-T", service, "python", "-c",
-                    "import json; from pathlib import Path; p=Path('/sys/fs/cgroup'); print(json.dumps({'peak_bytes':int((p/'memory.peak').read_text()),'events':(p/'memory.events').read_text()}))"))
+                    "import json; from pathlib import Path; p=Path('/sys/fs/cgroup'); print(json.dumps({'peak_bytes':int((p/'memory.peak').read_text()),'events':(p/'memory.events').read_text(),'process_rss':[x for x in Path('/proc/1/status').read_text().splitlines() if x.startswith(('VmHWM:','VmRSS:'))]}))"))
                 assert "oom_kill 0" in observation["events"]
                 evidence["g3_memory"][service] = observation
         if args.stage in ("G2", "G3"):

@@ -1,9 +1,9 @@
-# goodmcp-hub — OAuth/MCP local G2
+# goodmcp-hub — kho plugin local G3
 
-Hub quản lý plugin theo workspace, giữ công cụ Python. **G2 có login/consent,
-OAuth PKCE/refresh/revoke và MCP HTTP với một tool đọc workspace** trên nền core/DB
-G1. Chưa có UI quản trị, importer, công cụ tài chính hoặc plugin runner. Chưa
-deploy cloud hoặc live-test connector cloud; xem báo cáo G2 để biết gate còn lại.
+Hub quản lý plugin theo workspace, giữ công cụ Python. **G3 có upload/resume ZIP,
+validator, immutable version, bật/tắt/xuất nguồn và catalog MCP** trên nền G1/G2.
+Chưa có UI quản trị, công cụ tài chính hoặc plugin runner. Chưa deploy cloud hoặc
+live-test connector cloud; gate host G2 vẫn mở.
 
 ## Chạy local
 
@@ -48,7 +48,7 @@ gửi cùng log. Compose chỉ mount từng secret cho service cần nó:
 | Caddy | Không | Proxy local |
 
 API/worker non-root, rootfs read-only, không mount Docker socket hoặc plugin mẫu.
-G1 worker chỉ kiểm readiness DB; xử lý job/container plugin thuộc G4.
+Worker G3 chỉ kiểm/nhập dữ liệu ZIP; xử lý job/container plugin thuộc G4.
 
 ## Kết nối và verify
 
@@ -61,28 +61,43 @@ uv run python scripts/connect-local.py
 
 CLI mở browser xin hub:read, gọi tool đọc rồi revoke grant tạm, không lưu/in token.
 
+Tạo snapshot ZIP bất biến của ba mẫu (không sửa `plugin_example`), rồi nhập bằng
+browser OAuth có scope `hub:write` và quyền owner/admin:
+
+```powershell
+python scripts/pack-g3-samples.py
+uv run python scripts/connect-local.py --import-zip ".local/g3-samples/OPC Team.zip" --enable
+```
+
+Mặc định không có `--enable` thì chỉ kiểm/preview. CLI in upload UUID để tiếp tục
+bằng `--resume-upload UUID`; cập nhật cần `--expected-revision N`. Các ZIP tạo từ
+folder không được gọi là ZIP gốc nhà phát hành. [Hợp đồng G3](Docs/contracts/G3-registry.md)
+ghi API, canonical tree hash, quotas, cảnh báo nguồn và HTML quarantine.
+
 Từ checkout có source **đã commit**, chạy:
 
 ```powershell
-./scripts/verify.ps1 -Stage G2
+./scripts/verify.ps1 -Stage G3
 ```
 
 Linux/POSIX:
 
 ```sh
-sh scripts/verify.sh G2
+sh scripts/verify.sh G3
 ```
 
 Cả hai gọi `scripts/verify.py`: xuất **git archive HEAD** vào thư mục sạch, build
 image từ đó, tạo project/DB/volume test riêng, chạy pytest trong Compose, kiểm
 hai tenant, RLS thật, file traversal/symlink, pool context, migrations và recreate
 không mất dữ liệu. G2 còn chạy browser flow HTTP, official SDK client, evaluator,
-replay/concurrency/revocation và session/token/code qua recreate. Thử readiness
+replay/concurrency/revocation và session/token/code qua recreate. G3 thêm nhập
+ba ZIP thật/16 vai trò, plugin thứ tư, wire catalog, export/file hashes, partial
+upload qua recreate, phiên bản lỗi và giới hạn ZIP. Thử readiness
 khi thiếu migration/DB ngừng rồi khôi phục. `-Stage G1` vẫn chạy core regressions.
 Project test được dọn đúng tên sau khi thành công; failure giữ test state để điều
 tra. Không tác động dữ liệu `goodmcp-local` hoặc `plugin_example`.
 
-Bằng chứng G2: `Docs/reports/evidence/G2/verify.json` và `verify-console.txt`.
+Bằng chứng G3: `Docs/reports/evidence/G3/verify.json` và `verify-console.txt`.
 `--working-tree` chỉ dùng phát triển, **không tính đạt clean-checkout acceptance**.
 Script không thực hiện deploy hay API model trả phí.
 
@@ -98,9 +113,10 @@ Script không thực hiện deploy hay API model trả phí.
 ArtifactStore nhận tenant transaction đã kiểm membership; handle là UUID, key do
 server sinh. Blob ghi temp/fsync/publish atomic trước DB commit; rollback có thể
 để orphan blob. Delete chỉ tombstone và giữ blob để không xóa dữ liệu backup/pin;
-physical GC, quota và backup snapshot accounting thuộc các giai đoạn sau.
+physical GC và backup snapshot accounting thuộc các giai đoạn sau. G3 có admission
+quota cho upload; chưa tự xóa lịch sử phiên bản hoặc blob.
 
 Đọc [PLAN](Docs/PLAN.md), [contract G0](Docs/contracts/G1-contract.md),
-[G0](Docs/reports/G0.md), [G1](Docs/reports/G1.md), [G2](Docs/reports/G2.md).
-G3 làm importer/registry, G4 runner/jobs/search. Local wire pass không chứng minh
+[G0](Docs/reports/G0.md), [G1](Docs/reports/G1.md), [G2](Docs/reports/G2.md), [G3](Docs/reports/G3.md).
+G4 tiếp theo làm runner/jobs/search. Local wire pass không chứng minh
 đã kết nối host cloud hoặc đạt backup/restore/production.
