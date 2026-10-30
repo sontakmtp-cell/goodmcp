@@ -151,7 +151,7 @@ services:
     secrets: [owner_password]
     environment:
       HUB_PUBLIC_BASE_URL: ${HUB_PUBLIC_BASE_URL:-http://127.0.0.1:18080}
-    volumes: ["wire_state:/wirestate", "${HUB_G3_SAMPLES_DIR:-../.local/g3-samples}:/samples:ro"]
+    volumes: ["wire_state:/wirestate", "${HUB_G3_SAMPLES_DIR:-../.local/g3-samples}:/samples:ro", "${HUB_G4_BASELINE_DIR:-../.local/g4/measurements}:/baseline:ro"]
     command: [python, tests/wire_g2.py, full]
     mem_limit: 256m
     cpus: 1
@@ -162,6 +162,35 @@ services:
     command: [python, -m, goodmcp.auth_admin, fixtures]
     secrets: [admin_password, owner_password]
     volumes: [wire_state:/wirestate:ro]
+    environment:
+      <<: *app-env
+      HUB_ALLOW_TEST_FIXTURES: ${HUB_ALLOW_TEST_FIXTURES:-0}
+    mem_limit: 256m
+    cpus: 1
+
+  dispatcher:
+    <<: *app
+    profiles: [g4]
+    # Docker Desktop Linux socket is group 0. This is a privileged control plane;
+    # never expose it to HTTP or give its socket/credentials to plugin containers.
+    user: "10001:0"
+    command: [python, -m, goodmcp.dispatcher]
+    secrets: [runtime_password]
+    volumes: ["artifacts:/data", "/var/run/docker.sock:/var/run/docker.sock", "${HUB_G4_RELEASE_DIR:-../.local/g4/active}:/release:ro"]
+    environment:
+      <<: *app-env
+      HUB_RUNNER_PROJECT: ${HUB_RUNNER_PROJECT:-goodmcp-local}
+    restart: unless-stopped
+    stop_grace_period: 15s
+    mem_limit: 256m
+    cpus: 0.5
+
+  runtime_admin:
+    <<: *app
+    profiles: [ops]
+    command: [python, -m, goodmcp.runtime_admin]
+    secrets: [admin_password, runtime_password]
+    volumes: ["${HUB_G4_RELEASE_DIR:-../.local/g4/active}:/release:ro", "artifacts:/data"]
     environment:
       <<: *app-env
       HUB_ALLOW_TEST_FIXTURES: ${HUB_ALLOW_TEST_FIXTURES:-0}

@@ -17,6 +17,9 @@ from pydantic import BaseModel, Field, AnyHttpUrl
 from goodmcp.database import Database, Principal, NotFound, Forbidden
 from goodmcp.storage import Conflict, IntegrityError
 from apps.api.registry_api import routes, register_tools
+from apps.api.jobs_api import routes as job_routes, tools as job_tools
+from goodmcp.jobs import QueueQuota
+from apps.api.documents_api import routes as document_routes,tools as document_tools
 from goodmcp.auth_config import AuthSettings
 from goodmcp.version import REVISION, STAGE
 from apps.api.mcp_auth import DatabaseVerifier, AccessBoundary, RequestMetadata
@@ -24,7 +27,7 @@ from apps.api.mcp_auth import DatabaseVerifier, AccessBoundary, RequestMetadata
 settings = AuthSettings.from_env()
 database = Database()
 verifier = DatabaseVerifier(database, settings)
-mcp = MCPServer("goodmcp-hub", version="0.3.0", log_level="WARNING", token_verifier=verifier,
+mcp = MCPServer("goodmcp-hub", version="0.4.0", log_level="WARNING", token_verifier=verifier,
     auth=MCPAuthSettings(issuer_url=AnyHttpUrl(settings.issuer), resource_server_url=AnyHttpUrl(settings.resource),
                         required_scopes=["hub:read"], validate_token_resource=True))
 
@@ -90,12 +93,16 @@ def my_workspaces(request: Request):
 
 app.include_router(routes(database))
 register_tools(mcp, database)
+app.include_router(job_routes(database))
+job_tools(mcp,database)
+app.include_router(document_routes(database))
+document_tools(mcp,database)
 
 
 async def domain_error(request: Request, exc):
-    status, code = (404, "not_found") if isinstance(exc, NotFound) else (403, "forbidden") if isinstance(exc, Forbidden) else (409, "conflict") if isinstance(exc, Conflict) else (422, "invalid_input")
+    status, code = (429, "quota") if isinstance(exc, QueueQuota) else (404, "not_found") if isinstance(exc, NotFound) else (403, "forbidden") if isinstance(exc, Forbidden) else (409, "conflict") if isinstance(exc, Conflict) else (422, "invalid_input")
     return JSONResponse({"error": {"code": code, "message": str(exc), "retryable": False},
-                         "request_id": getattr(request.state, "request_id", str(uuid4()))}, status_code=status)
+                         "request_id": getattr(request.state, "request_id", str(uuid4()))}, status_code=status,headers={"Retry-After":"3"} if status==429 else None)
 
 
 for error_type in (NotFound, Forbidden, Conflict, IntegrityError, ValueError):

@@ -3,6 +3,8 @@
 > Cập nhật 30/10/2026, múi giờ Asia/Saigon. Đây là đặc tả để giao việc cho AI agent; các bước triển khai, benchmark và nghiệm thu dưới đây chưa được thực hiện.
 >
 > **Chọn VPS chạy ứng dụng và công cụ Python, Cloudflare giữ DNS/HTTPS, R2 dùng cho backup ngoài VPS.** MVP chỉ phục vụ Khầy với ba plugin mẫu; kiến trúc dữ liệu và quyền truy cập phải sẵn sàng cho nhiều người dùng và nhiều plugin.
+>
+> **Điều chỉnh G4 theo Khầy, 30/10/2026:** MVP dùng MCP liệt kê, tìm từ khóa và đọc tài liệu; AI agent tự điều phối. Không xây/benchmark TF-IDF hoặc yêu cầu recall@5 trong MVP. TF-IDF/tìm kiếm nâng cao để sau nếu thực tế cần; giữ nguyên máy tính Python.
 
 ## 1. Mục tiêu và phạm vi đã chốt
 
@@ -156,9 +158,9 @@ Mỗi ToolBinding khai báo tên MCP, schema input/output, adapter ID, digest im
 - Budget đồng bộ 10 giây; việc lâu hơn trả job_id, theo dõi/hủy qua hub_get_job và hub_cancel_job. Không giữ một request MCP nhiều phút để dựng index.
 - Job có queued/running/succeeded/failed/cancelled, lease, heartbeat, attempts và deadline. Kiểm tra quyền trên mọi lần poll/cancel/lấy output.
 - Idempotency key gắn workspace/thao tác; retry không nhân đôi tác dụng ghi. Crash hết lease được xử lý, không đánh dấu thành công nếu chưa có kết quả bền vững.
-- MVP tối đa 2 job nhẹ đồng thời, 1 job nặng toàn VPS, queue 20 job/workspace; xây index độc quyền với search nặng.
-- Giới hạn khởi điểm: máy tính 30 giây/256 MiB; search 60 giây/3 GiB; import/index 30 phút/5 GiB. G0 đo và khóa lại, đây chưa phải số đo đạt. Không cộng mức cấp phát vượt RAM máy.
-- Chỉ một runner Finance–Tax giữ index nóng theo plugin version, không nạp bản matrix trong từng API worker. Context và đường dẫn job phải tách workspace; cache index không được trở thành đường bỏ qua quyền.
+- MVP tối đa 2 job máy tính đồng thời, queue 20 job/workspace. Liệt kê/tìm từ khóa/đọc tài liệu là công cụ đọc có phân trang, không tạo job TF-IDF.
+- Máy tính giới hạn 30 giây/256 MiB. Không chạy builder/index/search process nặng trong MVP; các ngân sách search 3 GiB/build 5 GiB ở nghiên cứu G0 là tài liệu cho giai đoạn sau.
+- Context và đường dẫn job tách workspace. Công cụ tài liệu kiểm quyền và installation trên mỗi lần đọc; lưu plain text để tìm từ khóa không cấp quyền bỏ qua tenant.
 
 ### 4.4. Tích hợp từng mẫu
 
@@ -176,12 +178,11 @@ Mỗi ToolBinding khai báo tên MCP, schema input/output, adapter ID, digest im
 
 **Finance–Tax**
 
-- Bọc trực tiếp calculators.py, location_sim.py, tariff.py, refs.py và search_corpus.py. Kiểm tra CIT/schedule/payroll/FCT/tariff/địa điểm/compliance/ODI bằng cùng tham số với bản Python gốc.
-- Search MVP giữ **TF-IDF Python**, không thay bằng D1/FTS để giảm RAM.
-- Không nạp pickle tùy ý từ ZIP. Dựng lại index từ corpus bằng builder đã review trong môi trường cách ly có lockfile/hash; chỉ nạp artefact do pipeline tin cậy tạo. Nếu build quá nặng, build trên máy phát triển bằng cùng image rồi chuyển artefact có checksum lên VPS.
-- Metadata hiện chỉ có preview, không có full text. Lưu ánh xạ chunk đầy đủ như artefact bổ sung từ builder; không dùng preview làm toàn bộ nguồn.
-- Script semantic hiện đọc trường text vắng trong metadata và tính embedding corpus lại mỗi lượt. Giữ nguồn nhưng ghi chưa nghiệm thu; embedding để sau MVP, không tự tải model.
-- Index hiện đọc chủ yếu TXT/HTML. Giữ PDF gốc và báo coverage; không tuyên bố đã OCR/index tất cả PDF. OCR diện rộng nằm ngoài MVP.
+- Bọc trực tiếp calculators.py, location_sim.py, tariff.py, refs.py. Kiểm tra CIT/schedule/payroll/FCT/tariff/địa điểm/compliance/ODI bằng cùng tham số với bản Python gốc.
+- MCP MVP cung cấp **liệt kê tài liệu, tìm từ khóa literal và đọc plain text theo trang**. AI đang chat tự chọn từ khóa, đọc nguồn và tổng hợp; Hub không thêm model API hoặc tự đóng vai agent suy luận.
+- Không FTS, embedding hoặc semantic ranking trong MVP. Không chạy search_corpus.py/build_index.py, không nạp pickle/NPZ từ ZIP. TF-IDF hoặc tìm kiếm nâng cao sẽ được đánh giá sau theo nhu cầu thật.
+- Đọc nội dung tài liệu từ source resource bất biến, không coi preview trong metadata supplied là toàn văn. Trả handle nguồn, SHA-256 và offset trang; không tạo điểm relevance gây hiểu nhầm.
+- Giữ PDF gốc và báo rõ PDF chưa trích text/OCR. HTML chỉ tách chữ, không render script; các file đã quarantine ở G3 không tham gia tìm/đọc active.
 - Widget MVP gọi cùng tool Python. Không dùng kết quả công thức JS trong HTML cũ làm số liệu chính; HTML chưa review không chạy script trên origin quản trị.
 - Ghi nguồn/ngày dữ liệu/giả định. Khớp chương trình gốc chứng minh tích hợp đúng, không chứng minh nội dung thuế được kiểm toán pháp lý.
 
@@ -194,7 +195,7 @@ SDK Python v2, **MCP 2026-07-28, Streamable HTTP**; client kiểm tra pin đúng
 | Nhóm | Công cụ |
 |---|---|
 | Catalog | hub_list_plugins, hub_open_plugin, hub_get_skill, hub_get_agent |
-| Tài liệu | hub_search, hub_read_resource |
+| Tài liệu | hub_list_documents, hub_search (từ khóa), hub_read_document, hub_read_resource |
 | Quy trình | hub_prepare_workflow, hub_open_project, hub_read_project |
 | Lưu kết quả | hub_save_artifact, hub_commit_stage |
 | Job | hub_get_job, hub_cancel_job |
@@ -319,10 +320,10 @@ Mặc định giao tuần tự. Nếu Khầy giao nhiều agent, chỉ song song
 ### G4 — Công cụ Python và corpus
 
 - Image Finance–Tax, tool schemas, adapters, worker/job/poll/cancel và resource limits.
-- Bọc hàm/CLI gốc; index tin cậy, ánh xạ chunk đầy đủ, tải file theo quyền.
+- Bọc hàm/CLI gốc; MCP liệt kê, tìm từ khóa literal và đọc tài liệu theo quyền; AI agent tự điều phối. Không xây/benchmark TF-IDF trong MVP.
 - Ít nhất 30 test công cụ: CIT qua các mốc miễn/giảm và lỗ, payroll biên, FCT hai chiều, tariff/địa điểm/refs; kiểm tra JSON, exit code và rounding với baseline gốc.
-- Retrieval fixture 30 câu có nguồn đáp án, lập trước tối ưu; báo recall@5, mục tiêu 90%. Nếu baseline gốc không đạt, ghi lỗi/đề xuất sửa Python, không đổi thuật toán âm thầm để đủ điểm.
-- **Nghiệm thu:** wrapper khớp baseline; job nặng không giết API; timeout/cancel/crash có trạng thái thật; runner không đọc secret/tenant khác hoặc ra mạng trái quyền; benchmark lại toàn Compose.
+- Kiểm thử từ khóa/cụm từ, Unicode, all/any, phân trang/toàn văn, nguồn/hash, PDF chưa trích text, quarantine và tenant; không yêu cầu recall@5 hoặc semantic QA cho lookup literal.
+- **Nghiệm thu:** wrapper khớp baseline; công cụ đọc tài liệu còn đáp ứng khi hai job Python chạy; timeout/cancel/crash có trạng thái thật; runner không đọc secret/tenant khác hoặc ra mạng trái quyền; đo tài nguyên toàn Compose và thời gian lookup/call Python local.
 - **Prompt giao:** “Thực hiện G4, sở hữu runners/adapters, giữ Python; bàn giao parity tests, benchmark và G4.md; không thêm model API.”
 
 ### G5 — Workflow và dữ liệu dự án

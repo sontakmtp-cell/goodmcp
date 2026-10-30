@@ -135,9 +135,11 @@ class Registry:
                 with z.open(f["zip_path"]) as stream:
                     blob = self.store.put(iter(lambda: stream.read(1024 * 1024), b""), "application/octet-stream",
                                           max_bytes=f["bytes"], expected_sha256=f["sha256"])
-                self.c.execute(text("""INSERT INTO resources(workspace_id,plugin_version_id,artifact_id,logical_path,metadata)
-                    VALUES(:ws,:v,:a,:path,CAST(:data AS jsonb))"""), self._params(v=version, a=blob.id, path=path,
-                    data=json.dumps({k: f[k] for k in ("sha256", "bytes", "active", "quarantined")})))
+                resource=self.c.execute(text("""INSERT INTO resources(workspace_id,plugin_version_id,artifact_id,logical_path,metadata)
+                    VALUES(:ws,:v,:a,:path,CAST(:data AS jsonb)) RETURNING id"""), self._params(v=version, a=blob.id, path=path,
+                    data=json.dumps({k: f[k] for k in ("sha256", "bytes", "active", "quarantined")}))).scalar_one()
+                from .documents import project_document
+                project_document(self.t,self.store,resource,path,f,blob.id)
         for table, roles in (("skills", scan.skills), ("agents", scan.agents)):
             for role in roles:
                 self.c.execute(text(f"INSERT INTO {table}(workspace_id,plugin_version_id,name,body) VALUES(:ws,:v,:name,:body)"),

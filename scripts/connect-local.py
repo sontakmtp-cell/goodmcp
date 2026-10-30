@@ -28,9 +28,14 @@ def main():
     parser.add_argument("--resume-upload", type=UUID, help="Resume a previous upload of the same ZIP")
     parser.add_argument("--enable", action="store_true", help="Select validated version for this workspace")
     parser.add_argument("--expected-revision", type=int, default=0, help="0 for first install; current revision for an update")
+    parser.add_argument('--run-tool',choices=('cit_estimate','cit_schedule','payroll_total','fct_withhold','fct_grossup','tariff','location_sim','refs_calendar','refs_odi'))
+    parser.add_argument('--arguments-file',type=Path,help='JSON business arguments; no token/password')
+    parser.add_argument('--installation',type=UUID,help='Choose installation; otherwise find an enabled approved binding')
     args = parser.parse_args()
     if (args.resume_upload or args.enable) and not args.import_zip: parser.error("--import-zip required")
-    scope = "hub:read hub:write" if args.import_zip else "hub:read"
+    if args.run_tool and args.import_zip:parser.error('Choose either import or run')
+    if args.run_tool and not args.arguments_file:parser.error('--arguments-file required')
+    scope = 'hub:read tools:run' if args.run_tool else "hub:read hub:write" if args.import_zip else "hub:read"
     base = args.base_url.rstrip("/")
     parsed = urlsplit(base)
     if parsed.username or parsed.password or parsed.path or parsed.query or parsed.fragment or not parsed.hostname:
@@ -98,6 +103,30 @@ def main():
                         answer = await client.call_tool("hub_get_workspace", {"workspace_id": ws})
                         if answer.is_error: raise RuntimeError("Tool failed")
                         print(answer.structured_content)
+                        if args.run_tool:
+                            name='finance_'+args.run_tool
+                            prefix=base+'/api/v1/workspaces/'+ws
+                            headers={'Authorization':'Bearer '+tokens['access_token']}
+                            candidates=[{'installation_id':str(args.installation),'enabled':True}] if args.installation else http.get(prefix+'/plugins',headers=headers).json()['data']['items']
+                            selected=None
+                            for candidate in candidates:
+                                if not candidate['enabled']:continue
+                                response=http.get(prefix+'/installations/'+candidate['installation_id']+'/bindings',headers=headers)
+                                response.raise_for_status()
+                                if any(b['mcp_name']==name for b in response.json()['data']):selected=candidate['installation_id'];break
+                            if selected is None:raise RuntimeError('No enabled approved binding; run local.py runtime first')
+                            parameters=json.loads(args.arguments_file.read_text(encoding='utf8'))
+                            answer=await client.call_tool(name,{'installation_id':selected,'arguments':parameters,'idempotency_key':secrets.token_hex(24)})
+                            if answer.is_error:raise RuntimeError('Python invocation rejected')
+                            job=answer.structured_content['job'];print('Job handle: '+job['id'])
+                            until=time.monotonic()+180
+                            while job['state'] in ('queued','running') and time.monotonic()<until:
+                                await asyncio.sleep(0.3)
+                                answer=await client.call_tool('hub_get_job',{'job_id':job['id']})
+                                if answer.is_error:raise RuntimeError('Job lookup rejected')
+                                job=answer.structured_content['job']
+                            print(json.dumps(job,ensure_ascii=False))
+                            if job['state']!='succeeded':raise RuntimeError('Job did not succeed; use the reported job handle')
             asyncio.run(call())
         finally:
             revoked = http.post(issuer["revocation_endpoint"], data={"client_id": client_id, "token": tokens["refresh_token"]})

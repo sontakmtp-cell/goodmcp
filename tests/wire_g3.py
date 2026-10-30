@@ -201,7 +201,7 @@ async def sdk_tests(api, records):
         async with Client(streamable_http_client(BASE + "/mcp", http_client=http), mode="2026-07-28") as client:
             check("G3 SDK protocol pin", client.protocol_version=="2026-07-28")
             tools=await client.list_tools()
-            check("catalog tools available, no execution", {t.name for t in tools.tools}=={"hub_get_workspace","hub_list_plugins","hub_open_plugin","hub_get_skill","hub_get_agent","hub_list_resources","hub_read_resource"})
+            check("catalog tools available, no arbitrary execution", {"hub_get_workspace","hub_list_plugins","hub_open_plugin","hub_get_skill","hub_get_agent","hub_list_resources","hub_read_resource"}<={t.name for t in tools.tools} and 'execute_shell' not in {t.name for t in tools.tools})
             seen=[]; cursor=None
             while True:
                 r=await client.call_tool("hub_list_plugins", {"limit":1, **({"cursor":cursor} if cursor else {})})

@@ -1,9 +1,9 @@
-# goodmcp-hub — kho plugin local G3
+# goodmcp-hub — Python và tài liệu local G4
 
-Hub quản lý plugin theo workspace, giữ công cụ Python. **G3 có upload/resume ZIP,
-validator, immutable version, bật/tắt/xuất nguồn và catalog MCP** trên nền G1/G2.
-Chưa có UI quản trị, công cụ tài chính hoặc plugin runner. Chưa deploy cloud hoặc
-live-test connector cloud; gate host G2 vẫn mở.
+Hub quản lý plugin theo workspace, giữ công cụ Python. **G4 thêm job cho máy tính
+Python gốc và MCP liệt kê/tìm từ khóa/đọc tài liệu** trên nền G1–G3. AI đang chat
+tự điều phối việc đọc; MVP không xây TF-IDF, FTS hoặc thêm model API. Chưa có UI
+quản trị, chưa deploy/live-test connector cloud; gate host G2 vẫn mở.
 
 ## Chạy local
 
@@ -49,6 +49,9 @@ gửi cùng log. Compose chỉ mount từng secret cho service cần nó:
 
 API/worker non-root, rootfs read-only, không mount Docker socket hoặc plugin mẫu.
 Worker G3 chỉ kiểm/nhập dữ liệu ZIP; xử lý job/container plugin thuộc G4.
+Dispatcher G4 riêng có Docker socket để tạo container theo cấu hình cố định;
+API/import worker và container calculator không có socket. Chỉ bật với release
+được operator duyệt; chưa phải sandbox cho mã công khai.
 
 ## Kết nối và verify
 
@@ -74,16 +77,29 @@ bằng `--resume-upload UUID`; cập nhật cần `--expected-revision N`. Các 
 folder không được gọi là ZIP gốc nhà phát hành. [Hợp đồng G3](Docs/contracts/G3-registry.md)
 ghi API, canonical tree hash, quotas, cảnh báo nguồn và HTML quarantine.
 
+Sau khi nhập ba mẫu, build và bật các calculator Python:
+
+```powershell
+python scripts/prepare-g4.py
+python scripts/local.py up
+python scripts/local.py runtime --release PATH_TO_RELEASE_JSON
+uv run python scripts/connect-local.py --run-tool cit_estimate --arguments-file configs/examples/g4-cit.json
+```
+
+Lệnh prepare in đường dẫn release.json. CLI xin `tools:run`, nhận job, chờ kết quả
+và revoke grant cuối lượt. [Contract G4](Docs/contracts/G4-runtime.md) ghi tool tài
+liệu readonly, job/cancel/isolation và giới hạn PDF/encoding/source.
+
 Từ checkout có source **đã commit**, chạy:
 
 ```powershell
-./scripts/verify.ps1 -Stage G3
+./scripts/verify.ps1 -Stage G4
 ```
 
 Linux/POSIX:
 
 ```sh
-sh scripts/verify.sh G3
+sh scripts/verify.sh G4
 ```
 
 Cả hai gọi `scripts/verify.py`: xuất **git archive HEAD** vào thư mục sạch, build
@@ -97,7 +113,9 @@ khi thiếu migration/DB ngừng rồi khôi phục. `-Stage G1` vẫn chạy co
 Project test được dọn đúng tên sau khi thành công; failure giữ test state để điều
 tra. Không tác động dữ liệu `goodmcp-local` hoặc `plugin_example`.
 
-Bằng chứng G3: `Docs/reports/evidence/G3/verify.json` và `verify-console.txt`.
+Bằng chứng G4: `Docs/reports/evidence/G4/verify.json` và `verify-console.txt`.
+G4 chạy 47 parity cases, keyword/read paging, Docker job boundaries, timeout,
+cancel/crash/fencing và lấy mẫu memory Compose; không xây hoặc đo TF-IDF.
 `--working-tree` chỉ dùng phát triển, **không tính đạt clean-checkout acceptance**.
 Script không thực hiện deploy hay API model trả phí.
 
@@ -117,6 +135,6 @@ physical GC và backup snapshot accounting thuộc các giai đoạn sau. G3 có
 quota cho upload; chưa tự xóa lịch sử phiên bản hoặc blob.
 
 Đọc [PLAN](Docs/PLAN.md), [contract G0](Docs/contracts/G1-contract.md),
-[G0](Docs/reports/G0.md), [G1](Docs/reports/G1.md), [G2](Docs/reports/G2.md), [G3](Docs/reports/G3.md).
-G4 tiếp theo làm runner/jobs/search. Local wire pass không chứng minh
+[G0](Docs/reports/G0.md), [G1](Docs/reports/G1.md), [G2](Docs/reports/G2.md), [G3](Docs/reports/G3.md), [G4](Docs/reports/G4.md).
+G5 tiếp theo làm workflow/project. Local wire pass không chứng minh
 đã kết nối host cloud hoặc đạt backup/restore/production.
