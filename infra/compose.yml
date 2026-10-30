@@ -1,7 +1,7 @@
 name: goodmcp-local
 
 x-app: &app
-  image: goodmcp-hub:local
+  image: ${HUB_IMAGE:-goodmcp-hub:local}
   build:
     context: ..
     dockerfile: infra/Dockerfile
@@ -45,7 +45,7 @@ services:
     logging: *logging
 
   caddy:
-    image: goodmcp-caddy:local
+    image: ${HUB_CADDY_IMAGE:-goodmcp-caddy:local}
     build:
       context: .
       dockerfile: Dockerfile.caddy
@@ -139,7 +139,7 @@ services:
     cpus: 1
 
   wire:
-    image: goodmcp-hub:local
+    image: ${HUB_IMAGE:-goodmcp-hub:local}
     profiles: [test]
     user: "10001:10001"
     read_only: true

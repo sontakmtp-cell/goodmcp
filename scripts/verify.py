@@ -72,6 +72,7 @@ def main():
         sock.bind(("127.0.0.1", 0))
         port = sock.getsockname()[1]
     env = {**os.environ, "HUB_SECRETS_DIR": str(secret_dir), "HUB_PORT": str(port), "HUB_ALLOW_TEST_FIXTURES": "1", "HUB_G3_SAMPLES_DIR": str(sample_dir),
+           "HUB_IMAGE": project + "-hub:verified", "HUB_CADDY_IMAGE": project + "-caddy:verified",
            "HUB_OWNER_EMAIL": "owner@local.invalid", "HUB_PUBLIC_BASE_URL": "http://localhost:8080"}
     base = ["docker", "compose", "-p", project, "-f", str(source / "infra/compose.yml")]
     EVIDENCE.mkdir(parents=True, exist_ok=True)
@@ -110,6 +111,9 @@ def main():
     try:
         run("compose-config", "config", "--quiet")
         run("build-clean-source", "build", "api", "caddy")
+        built_images = {key: subprocess.check_output(["docker", "image", "inspect", env[key], "--format", "{{.Id}}"], text=True).strip()
+                        for key in ("HUB_IMAGE", "HUB_CADDY_IMAGE")}
+        evidence["built_images"] = built_images
         run("start-empty-postgres", "up", "-d", "--wait", "postgres")
         admin("roles")
         run("api-before-migration", "up", "-d", "--no-deps", "api")
@@ -181,6 +185,8 @@ def main():
         services = []
         for container in inspected:
             service = container["Config"]["Labels"]["com.docker.compose.service"]
+            if service in ("api", "auth", "worker", "caddy"):
+                assert container["Image"] == built_images["HUB_CADDY_IMAGE" if service == "caddy" else "HUB_IMAGE"]
             ports = container["HostConfig"]["PortBindings"] or {}
             if service == "caddy":
                 assert ports and all(v[0]["HostIp"] == "127.0.0.1" for v in ports.values())
