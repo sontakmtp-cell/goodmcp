@@ -1,2 +1,2 @@
-REVISION = "0002_g2"
-STAGE = "G2"
+REVISION = "0003_g3"
+STAGE = "G3"

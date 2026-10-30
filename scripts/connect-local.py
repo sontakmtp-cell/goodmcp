@@ -7,6 +7,9 @@ import argparse
 import asyncio
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import secrets
+import json
+from pathlib import Path
+from uuid import UUID
 import time
 from urllib.parse import urlencode, parse_qs, urlsplit
 import webbrowser
@@ -21,7 +24,13 @@ from mcp.client.streamable_http import streamable_http_client
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--base-url", default="http://127.0.0.1:18080")
+    parser.add_argument("--import-zip", type=Path, help="Upload/validate a ZIP; requests hub:write consent")
+    parser.add_argument("--resume-upload", type=UUID, help="Resume a previous upload of the same ZIP")
+    parser.add_argument("--enable", action="store_true", help="Select validated version for this workspace")
+    parser.add_argument("--expected-revision", type=int, default=0, help="0 for first install; current revision for an update")
     args = parser.parse_args()
+    if (args.resume_upload or args.enable) and not args.import_zip: parser.error("--import-zip required")
+    scope = "hub:read hub:write" if args.import_zip else "hub:read"
     base = args.base_url.rstrip("/")
     parsed = urlsplit(base)
     if parsed.username or parsed.password or parsed.path or parsed.query or parsed.fragment or not parsed.hostname:
@@ -51,12 +60,12 @@ def main():
         if issuer["issuer"] != base + "/auth": raise RuntimeError("Issuer mismatch")
         for key in ("registration_endpoint", "authorization_endpoint", "token_endpoint", "revocation_endpoint"):
             if not issuer[key].startswith(base + "/auth/"): raise RuntimeError("Unexpected endpoint origin")
-        registered = http.post(issuer["registration_endpoint"], json={"client_name": "Ephemeral readonly CLI", "redirect_uris": [callback], "scope": "hub:read"})
+        registered = http.post(issuer["registration_endpoint"], json={"client_name": "Ephemeral local CLI", "redirect_uris": [callback], "scope": scope})
         registered.raise_for_status()
         client_id = registered.json()["client_id"]
         url = issuer["authorization_endpoint"] + "?" + urlencode({"client_id": client_id, "response_type": "code", "redirect_uri": callback,
-            "resource": base + "/mcp", "scope": "hub:read", "code_challenge": create_s256_code_challenge(verifier), "code_challenge_method": "S256", "state": state})
-        print("Opening browser for login and readonly consent; no password is sent to this CLI.")
+            "resource": base + "/mcp", "scope": scope, "code_challenge": create_s256_code_challenge(verifier), "code_challenge_method": "S256", "state": state})
+        print("Opening browser for login and consent (" + scope + "); no password is sent to this CLI.")
         webbrowser.open(url)
         server.timeout = 1
         deadline = time.monotonic() + 300
@@ -70,6 +79,19 @@ def main():
             workspace = http.get(base + "/api/v1/me/workspaces", headers={"Authorization": "Bearer " + tokens["access_token"]})
             workspace.raise_for_status()
             ws = workspace.json()["data"][0]["workspace_id"]
+            if args.import_zip:
+                from import_plugin import upload_plugin
+                def request(method, path, **kwargs):
+                    headers = kwargs.pop("headers", {})
+                    answer = http.request(method, base + path, headers={"Authorization":"Bearer " + tokens["access_token"], **headers}, timeout=60, **kwargs)
+                    if answer.status_code == 401:
+                        refreshed = http.post(issuer["token_endpoint"], data={"grant_type":"refresh_token","client_id":client_id,
+                            "refresh_token":tokens["refresh_token"],"resource":base + "/mcp"})
+                        refreshed.raise_for_status(); tokens.update(refreshed.json())
+                        answer = http.request(method, base + path, headers={"Authorization":"Bearer " + tokens["access_token"], **headers}, timeout=60, **kwargs)
+                    return answer
+                print(json.dumps(upload_plugin(request, ws, args.import_zip, upload_id=args.resume_upload,
+                    enable=args.enable, expected_revision=args.expected_revision), ensure_ascii=False))
             async def call():
                 async with httpx2.AsyncClient(headers={"Authorization": "Bearer " + tokens["access_token"]}, timeout=30) as transport:
                     async with Client(streamable_http_client(base + "/mcp", http_client=transport), mode="2026-07-28") as client:

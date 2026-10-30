@@ -1,4 +1,4 @@
-param([ValidateSet('G1','G2')][string]$Stage = 'G1')
+param([ValidateSet('G1','G2','G3')][string]$Stage = 'G1')
 $ErrorActionPreference = 'Stop'
 $repoRoot = Split-Path -Parent $PSScriptRoot
 & python (Join-Path $PSScriptRoot 'verify.py') --stage $Stage

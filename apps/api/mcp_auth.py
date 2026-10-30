@@ -6,10 +6,27 @@ from mcp.server.auth.provider import TokenVerifier, AccessToken
 from sqlalchemy import text
 from starlette.concurrency import run_in_threadpool
 from starlette.responses import JSONResponse
+from starlette.exceptions import HTTPException
 
 from goodmcp.oauth_store import sha
 
 current_token = ContextVar("hub_verified_token", default=None)
+
+
+class RequestMetadata:
+    """Pure ASGI wrapper: no BaseHTTPMiddleware body/task retention for large uploads."""
+    def __init__(self, app): self.app = app
+
+    async def __call__(self, scope, receive, send):
+        if scope["type"] != "http": return await self.app(scope, receive, send)
+        request_id = str(uuid4())
+        scope.setdefault("state", {})["request_id"] = request_id
+        async def outgoing(message):
+            if message["type"] == "http.response.start":
+                message = {**message, "headers": [*(h for h in message.get("headers", []) if h[0].lower() not in (b"cache-control", b"x-request-id")),
+                    (b"x-request-id", request_id.encode()), (b"cache-control", b"no-store")]}
+            await send(message)
+        await self.app(scope, receive, outgoing)
 
 
 class DatabaseVerifier(TokenVerifier):
@@ -57,7 +74,7 @@ class AccessBoundary:
             if headers.get("host") != self.settings.authority: return await error(421, "invalid_host", "Unrecognized host")
             if headers.get("origin") and headers["origin"] != self.settings.origin: return await error(403, "forbidden", "Unrecognized origin")
         if not protected: return await self.app(scope, receive, send)
-        if duplicates & {"authorization", "x-workspace-id", "host", "origin"}:
+        if duplicates & {"authorization", "x-workspace-id", "host", "origin", "x-content-sha256", "content-length"}:
             return await error(400, "invalid_input", "Duplicate security header")
         authorization = headers.get("authorization", "")
         if not authorization.startswith("Bearer "): return await error(401, "unauthenticated", "Bearer token required", challenge=True)
@@ -71,6 +88,15 @@ class AccessBoundary:
         scope.setdefault("state", {})["access_token"] = token
         reset = current_token.set(token)
         try:
+            if path.startswith("/api/v1"):
+                count = 0
+                async def bounded_receive():
+                    nonlocal count
+                    message = await receive()
+                    count += len(message.get("body", b""))
+                    if count > 8 * 1024 * 1024: raise HTTPException(413, "API request exceeds 8 MiB")
+                    return message
+                return await self.app(scope, bounded_receive, send)
             if path.startswith("/mcp"):
                 if scope["method"] != "POST": return await error(405, "invalid_input", "Use modern MCP POST")
                 body = bytearray()

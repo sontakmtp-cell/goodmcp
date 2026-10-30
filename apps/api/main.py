@@ -4,6 +4,8 @@ from typing import Annotated
 
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
+from fastapi.exceptions import RequestValidationError
+from starlette.exceptions import HTTPException
 from sqlalchemy import text
 from mcp.server import MCPServer
 from mcp.server.auth.settings import AuthSettings as MCPAuthSettings
@@ -12,15 +14,17 @@ from mcp.server.transport_security import TransportSecuritySettings
 from mcp.types import ToolAnnotations
 from pydantic import BaseModel, Field, AnyHttpUrl
 
-from goodmcp.database import Database, Principal, NotFound
+from goodmcp.database import Database, Principal, NotFound, Forbidden
+from goodmcp.storage import Conflict, IntegrityError
+from apps.api.registry_api import routes, register_tools
 from goodmcp.auth_config import AuthSettings
 from goodmcp.version import REVISION, STAGE
-from apps.api.mcp_auth import DatabaseVerifier, AccessBoundary
+from apps.api.mcp_auth import DatabaseVerifier, AccessBoundary, RequestMetadata
 
 settings = AuthSettings.from_env()
 database = Database()
 verifier = DatabaseVerifier(database, settings)
-mcp = MCPServer("goodmcp-hub", version="0.2.0", log_level="WARNING", token_verifier=verifier,
+mcp = MCPServer("goodmcp-hub", version="0.3.0", log_level="WARNING", token_verifier=verifier,
     auth=MCPAuthSettings(issuer_url=AnyHttpUrl(settings.issuer), resource_server_url=AnyHttpUrl(settings.resource),
                         required_scopes=["hub:read"], validate_token_resource=True))
 
@@ -58,15 +62,6 @@ app = FastAPI(title="goodmcp local foundation", docs_url=None, redoc_url=None,
               openapi_url=None, lifespan=lifespan)
 
 
-@app.middleware("http")
-async def request_id(request, call_next):
-    request.state.request_id = str(uuid4())
-    response = await call_next(request)
-    response.headers["X-Request-ID"] = request.state.request_id
-    response.headers["Cache-Control"] = "no-store"
-    return response
-
-
 @app.get("/health/live")
 def live(request: Request):
     return {"data": {"status": "alive"}, "request_id": request.state.request_id}
@@ -93,6 +88,33 @@ def my_workspaces(request: Request):
     return {"data": [result.model_dump()], "request_id": request.state.request_id}
 
 
+app.include_router(routes(database))
+register_tools(mcp, database)
+
+
+async def domain_error(request: Request, exc):
+    status, code = (404, "not_found") if isinstance(exc, NotFound) else (403, "forbidden") if isinstance(exc, Forbidden) else (409, "conflict") if isinstance(exc, Conflict) else (422, "invalid_input")
+    return JSONResponse({"error": {"code": code, "message": str(exc), "retryable": False},
+                         "request_id": getattr(request.state, "request_id", str(uuid4()))}, status_code=status)
+
+
+for error_type in (NotFound, Forbidden, Conflict, IntegrityError, ValueError):
+    app.add_exception_handler(error_type, domain_error)
+
+
+@app.exception_handler(RequestValidationError)
+async def invalid_request(request: Request, exc):
+    return JSONResponse({"error": {"code": "invalid_input", "message": "Invalid request fields", "retryable": False},
+                         "request_id": request.state.request_id}, status_code=422)
+
+
+@app.exception_handler(HTTPException)
+async def http_error(request: Request, exc):
+    return JSONResponse({"error": {"code": "invalid_input" if exc.status_code < 500 else "runtime_unavailable",
+                         "message": "Request exceeds body limit" if exc.status_code == 413 else "Request rejected", "retryable": False},
+                         "request_id": request.state.request_id}, status_code=exc.status_code)
+
+
 @app.api_route("/api/v1/{path:path}", methods=["GET", "POST", "PUT", "PATCH", "DELETE"])
 def future_authenticated_api(path: str, request: Request):
     return JSONResponse({"error": {"code": "not_found", "message": "This operation is not implemented", "retryable": False},
@@ -107,4 +129,5 @@ async def unhandled(request: Request, exc):
 
 app.mount("/", mcp.streamable_http_app(stateless_http=True, json_response=True,
     transport_security=TransportSecuritySettings(allowed_hosts=[settings.authority], allowed_origins=[settings.origin])))
+app.add_middleware(RequestMetadata)
 app.add_middleware(AccessBoundary, verifier=verifier, settings=settings)

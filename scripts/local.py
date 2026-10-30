@@ -16,6 +16,7 @@ def main():
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     directory = module.setup(ROOT / ".local/secrets")
+    (ROOT / ".local/g3-samples").mkdir(parents=True, exist_ok=True)
     env = {**os.environ, "HUB_SECRETS_DIR": str(directory)}
     base = ["docker", "compose", "-p", "goodmcp-local", "-f", str(ROOT / "infra/compose.yml")]
 

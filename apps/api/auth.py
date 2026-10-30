@@ -209,7 +209,7 @@ async def authorize(request: Request):
             except ValueError: return fail("invalid_workspace", 403)
             member = next((m for m in store.memberships(conn, session["user_id"]) if m["workspace_id"] == workspace), None)
             if member is None: return fail("invalid_workspace", 403)
-            if member["role"] == "viewer" and set(req.scope.split()) & {"tools:run", "projects:write"}: return fail("invalid_scope", 403)
+            if member["role"] == "viewer" and set(req.scope.split()) & {"hub:write", "tools:run", "projects:write"}: return fail("invalid_scope", 403)
             conn.execute(text("UPDATE auth_browser_sessions SET pending_authorize=NULL,csrf_hash=:hash WHERE id=:id"),
                          {"id": session["id"], "hash": sha(secrets.token_urlsafe(32))})
             req.approved_workspace = workspace

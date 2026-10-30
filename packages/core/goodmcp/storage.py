@@ -114,6 +114,21 @@ class ArtifactStore:
         row = self._row(artifact_id)
         return ArtifactDescriptor(**{k: row[k] for k in ArtifactDescriptor.__dataclass_fields__})
 
+    @contextmanager
+    def open_verified(self, artifact_id):
+        """Internal seekable read handle for data parsers; caller never supplies a path."""
+        row = self._row(artifact_id)
+        with self._directory(self.prefix + ("blobs",)) as directory:
+            try: fd = os.open(row["sha256"], os.O_RDONLY | os.O_NOFOLLOW, dir_fd=directory)
+            except OSError as exc: raise IntegrityError("Stored blob is unavailable or unsafe") from exc
+            with os.fdopen(fd, "rb") as source:
+                h, count = hashlib.sha256(), 0
+                while block := source.read(1024 * 1024): h.update(block); count += len(block)
+                if count != row["bytes"] or h.hexdigest() != row["sha256"]:
+                    raise IntegrityError("Stored blob failed integrity check")
+                source.seek(0)
+                yield source
+
     @staticmethod
     def _read_blob(directory, checksum, expected_size):
         fd = os.open(checksum, os.O_RDONLY | os.O_NOFOLLOW, dir_fd=directory)
@@ -160,7 +175,9 @@ class ArtifactStore:
             raise Conflict("Artifact revision conflict or artifact is pinned")
         linked = self.tenant.connection.execute(text("""SELECT EXISTS(SELECT 1 FROM resources WHERE artifact_id=:id)
             OR EXISTS(SELECT 1 FROM plugin_versions WHERE source_artifact_id=:id)
-            OR EXISTS(SELECT 1 FROM jobs WHERE result_artifact_id=:id)"""), {"id": row["id"]}).scalar_one()
+            OR EXISTS(SELECT 1 FROM jobs WHERE result_artifact_id=:id)
+            OR EXISTS(SELECT 1 FROM plugin_upload_parts WHERE artifact_id=:id)
+            OR EXISTS(SELECT 1 FROM plugin_uploads WHERE source_artifact_id=:id)"""), {"id": row["id"]}).scalar_one()
         if linked: raise Conflict("Artifact is referenced")
         count = self.tenant.connection.execute(text("""UPDATE artifacts SET deleted_at=now(),revision=revision+1
             WHERE id=:id AND revision=:revision AND pin_count=0 AND deleted_at IS NULL"""),

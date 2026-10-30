@@ -18,6 +18,9 @@ import time
 import urllib.request
 import uuid
 import zipfile
+import sys
+
+if hasattr(sys.stdout, "reconfigure"): sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -31,7 +34,7 @@ def json_tail(value):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--stage", choices=["G1", "G2"], required=True)
+    parser.add_argument("--stage", choices=["G1", "G2", "G3"], required=True)
     parser.add_argument("--working-tree", action="store_true", help="Development only; does not satisfy clean-checkout acceptance")
     args = parser.parse_args()
     EVIDENCE = ROOT / "Docs/reports/evidence" / args.stage
@@ -57,10 +60,18 @@ def main():
     setup_module = importlib.util.module_from_spec(setup_spec)
     setup_spec.loader.exec_module(setup_module)
     secret_dir = setup_module.setup(scratch / "secrets")
+    sample_dir = scratch / "samples"
+    sample_dir.mkdir()
+    if args.stage == "G3":
+        spec = importlib.util.spec_from_file_location("pack_g3", source / "scripts/pack-g3-samples.py")
+        pack_module = importlib.util.module_from_spec(spec); spec.loader.exec_module(pack_module)
+        # Input fixtures live outside git; verified archived code still builds cleanly.
+        pack_module.ROOT = ROOT
+        pack_module.pack(sample_dir)
     with socket.socket() as sock:
         sock.bind(("127.0.0.1", 0))
         port = sock.getsockname()[1]
-    env = {**os.environ, "HUB_SECRETS_DIR": str(secret_dir), "HUB_PORT": str(port), "HUB_ALLOW_TEST_FIXTURES": "1",
+    env = {**os.environ, "HUB_SECRETS_DIR": str(secret_dir), "HUB_PORT": str(port), "HUB_ALLOW_TEST_FIXTURES": "1", "HUB_G3_SAMPLES_DIR": str(sample_dir),
            "HUB_OWNER_EMAIL": "owner@local.invalid", "HUB_PUBLIC_BASE_URL": "http://localhost:8080"}
     base = ["docker", "compose", "-p", project, "-f", str(source / "infra/compose.yml")]
     EVIDENCE.mkdir(parents=True, exist_ok=True)
@@ -90,7 +101,7 @@ def main():
             try:
                 with urllib.request.urlopen(f"http://127.0.0.1:{port}/health/ready", timeout=3) as response:
                     payload = json.load(response)
-                    assert response.status == 200 and payload["data"]["stage"] in ("G1", "G2")
+                    assert response.status == 200 and payload["data"]["stage"] in ("G1", "G2", "G3")
                     return payload
             except Exception:
                 if attempt == 49: raise
@@ -111,7 +122,7 @@ def main():
         assert initial["users"] == initial["workspaces"] == 1
         evidence["checks"]["single_owner_bootstrap_idempotent"] = True
         admin("fixtures")
-        if args.stage == "G2":
+        if args.stage in ("G2", "G3"):
             run("auth-workspace-fixture", "run", "--rm", "--no-deps", "auth_probe")
         run("start-local-stack", "up", "-d", "--wait", "api", "auth", "worker", "caddy")
         health()
@@ -119,7 +130,17 @@ def main():
         match = re.search(r"(\d+) passed", output)
         assert match, "No successful pytest summary"
         evidence["checks"]["pytest_passed"] = int(match.group(1))
-        if args.stage == "G2":
+        if args.stage == "G3":
+            result = json_tail(run("plugin-import-and-catalog-wire", "run", "--rm", "--no-deps", "wire", "python", "tests/wire_g3.py", "full"))
+            assert result["passed"]
+            evidence["g3_wire"] = result
+            evidence["g3_memory"] = {}
+            for service in ("api", "worker"):
+                observation = json_tail(run("import-memory-" + service, "exec", "-T", service, "python", "-c",
+                    "import json; from pathlib import Path; p=Path('/sys/fs/cgroup'); print(json.dumps({'peak_bytes':int((p/'memory.peak').read_text()),'events':(p/'memory.events').read_text()}))"))
+                assert "oom_kill 0" in observation["events"]
+                evidence["g3_memory"][service] = observation
+        if args.stage in ("G2", "G3"):
             result = json_tail(run("oauth-mcp-wire-full", "run", "--rm", "--no-deps", "wire"))
             assert result["passed"]
             evidence["wire_full"] = result
@@ -134,11 +155,15 @@ def main():
         after = json_tail(run("verify-persistence", "run", "--rm", "--no-deps", "tests", "python", "tests/persistence.py", "check"))
         assert before["artifact_id"] == after["artifact_id"] and after["persisted_after_recreate"]
         evidence["checks"]["db_and_blob_persist_after_recreate"] = True
-        if args.stage == "G2":
+        if args.stage in ("G2", "G3"):
             result = json_tail(run("oauth-survives-recreate", "run", "--rm", "--no-deps", "wire", "python", "tests/wire_g2.py", "resume"))
             assert result["passed"]
             evidence["wire_resume"] = result
             evidence["credential_storage"] = json_tail(run("inspect-credential-storage", "run", "--rm", "--no-deps", "auth_probe", "python", "-m", "goodmcp.auth_admin", "inspect"))
+        if args.stage == "G3":
+            result = json_tail(run("plugin-versions-survive-recreate", "run", "--rm", "--no-deps", "wire", "python", "tests/wire_g3.py", "resume"))
+            assert result["passed"]
+            evidence["g3_resume"] = result
         health()
         run("stop-db-for-negative-health", "stop", "postgres")
         run("readiness-denies-db-outage", "run", "--rm", "--no-deps", "tests", "python", "tests/readiness.py", "503")

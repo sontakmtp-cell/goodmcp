@@ -151,7 +151,7 @@ services:
     secrets: [owner_password]
     environment:
       HUB_PUBLIC_BASE_URL: ${HUB_PUBLIC_BASE_URL:-http://127.0.0.1:18080}
-    volumes: [wire_state:/wirestate]
+    volumes: ["wire_state:/wirestate", "${HUB_G3_SAMPLES_DIR:-../.local/g3-samples}:/samples:ro"]
     command: [python, tests/wire_g2.py, full]
     mem_limit: 256m
     cpus: 1

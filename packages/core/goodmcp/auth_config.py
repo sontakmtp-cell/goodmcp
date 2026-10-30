@@ -2,7 +2,7 @@ from dataclasses import dataclass
 import os
 from urllib.parse import urlsplit
 
-SCOPES = ("hub:read", "tools:run", "projects:read", "projects:write")
+SCOPES = ("hub:read", "hub:write", "tools:run", "projects:read", "projects:write")
 
 
 @dataclass(frozen=True)

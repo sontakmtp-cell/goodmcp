@@ -173,7 +173,7 @@ def full():
             async with Client(streamable_http_client(RESOURCE, http_client=http), mode="2026-07-28") as client:
                 check("SDK pin", client.protocol_version == "2026-07-28")
                 tools = await client.list_tools()
-                check("readonly tool catalog only", [t.name for t in tools.tools] == ["hub_get_workspace"] and tools.tools[0].annotations.read_only_hint)
+                check("readonly tool catalog only", "hub_get_workspace" in [t.name for t in tools.tools] and all(t.annotations.read_only_hint for t in tools.tools))
                 result = await client.call_tool("hub_get_workspace", {"workspace_id": stored_workspace})
                 check("authenticated tenant tool", not result.is_error and result.structured_content["workspace_id"] == stored_workspace)
                 result = await client.call_tool("hub_get_workspace", {"workspace_id": REVOKED_WORKSPACE})
