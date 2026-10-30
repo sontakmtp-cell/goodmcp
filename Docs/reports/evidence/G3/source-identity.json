@@ -1,0 +1,31 @@
+{
+  "source": "local_folder_snapshot_not_original_vendor_zip",
+  "g0_files_rechecked": true,
+  "tree_hash_format": "goodmcp-tree-v1",
+  "packages": [
+    {
+      "directory": "OPC Team",
+      "zip": "OPC Team.zip",
+      "zip_bytes": 532124,
+      "zip_sha256": "b12baf39b8baf7c2d7a9f4780f5f0c6b406a3441b65d4b8a1120e97b8fe4ed2f",
+      "tree_sha256": "93dc45c9f729e4fda4a6aface0772c38c1bcf89eeb3e9f4a146a2afe4a00c705",
+      "files": 56
+    },
+    {
+      "directory": "godot-roblox-experts",
+      "zip": "godot-roblox-experts.zip",
+      "zip_bytes": 88531,
+      "zip_sha256": "48e2bd90c8a89bb41ef95136d282d7a47f4f942c0ffea264d8bb147f64f53b43",
+      "tree_sha256": "f44bd2a2bac3a2587c8a04117c567a57e89f6c3cf45d2ab994396c7fbc118e16",
+      "files": 8
+    },
+    {
+      "directory": "vietnam-finance-tax-expert",
+      "zip": "vietnam-finance-tax-expert.zip",
+      "zip_bytes": 637250102,
+      "zip_sha256": "ae6a7e124a5309c1aa6d9fe5d9c508cc3cf0be166257b01f3dd6365ef8667cf0",
+      "tree_sha256": "2ecd5ff2b529aefbe81759402de0597504e292895ed78eae82b5e1c737dc92eb",
+      "files": 768
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "passed": true,
+  "method": "connect-local CLI with HTTP browser form surrogate and real TCP callback, official SDK, grants revoked",
+  "base_url": "http://127.0.0.1:18080",
+  "plugins": [
+    {
+      "upload_id": "41d48ca9-0a26-4a0f-ad72-6c927d5e28e8",
+      "version_id": "61815173-5152-4c01-b2c4-993a58fdfdaa",
+      "installation_id": "4418caa8-7db7-45ef-ab77-61eb72872ab9",
+      "revision": 1,
+      "enabled": true,
+      "directory": "OPC Team",
+      "tree_sha256": "93dc45c9f729e4fda4a6aface0772c38c1bcf89eeb3e9f4a146a2afe4a00c705",
+      "roles": 9,
+      "quarantined_files": 0
+    },
+    {
+      "upload_id": "37fa743e-d7d2-4d9d-b76b-1567a4b7c4eb",
+      "version_id": "dd043f6b-87c7-4f0e-bf7d-6748aaea1941",
+      "installation_id": "acc8f995-b18b-4901-9d72-1f2c8970e1e0",
+      "revision": 1,
+      "enabled": true,
+      "directory": "godot-roblox-experts",
+      "tree_sha256": "f44bd2a2bac3a2587c8a04117c567a57e89f6c3cf45d2ab994396c7fbc118e16",
+      "roles": 6,
+      "quarantined_files": 0
+    },
+    {
+      "upload_id": "c7afde7e-a918-4e7f-84cb-3dff4277c587",
+      "version_id": "65013366-4823-4294-88fa-21c6c4e3394f",
+      "installation_id": "bf79add8-02f3-490d-97b8-8e3513ace657",
+      "revision": 1,
+      "enabled": true,
+      "directory": "vietnam-finance-tax-expert",
+      "tree_sha256": "2ecd5ff2b529aefbe81759402de0597504e292895ed78eae82b5e1c737dc92eb",
+      "roles": 1,
+      "quarantined_files": 2
+    }
+  ],
+  "password_or_token_saved": false,
+  "workspace_preserved": "cfa8baa7-f581-406b-9ceb-a67e71088b46"
+}

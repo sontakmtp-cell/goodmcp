@@ -1,0 +1,28 @@
+{
+  "source_commit": "4755954623cd74fa10f262baa11944d6a232489f",
+  "run_id": "20261030T124417Z-cef1f3",
+  "type": "post-import cgroup peak plus PID1 process RSS high-water, not production benchmark",
+  "observations": {
+    "api": {
+      "peak_bytes": 540409856,
+      "events": "low 0\nhigh 0\nmax 9168\noom 0\noom_kill 0\noom_group_kill 0\n",
+      "process_rss": [
+        "VmHWM:\t  130484 kB",
+        "VmRSS:\t  125956 kB"
+      ]
+    },
+    "worker": {
+      "peak_bytes": 268435456,
+      "events": "low 0\nhigh 0\nmax 20877\noom 0\noom_kill 0\noom_group_kill 0\n",
+      "process_rss": [
+        "VmHWM:\t   59544 kB",
+        "VmRSS:\t   59544 kB"
+      ]
+    }
+  },
+  "limits_MiB": {
+    "api": 512,
+    "worker": 256
+  },
+  "oom_kills": 0
+}
