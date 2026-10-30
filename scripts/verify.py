@@ -172,7 +172,12 @@ def main():
                 "secret_names": [m["Destination"].split("/")[-1] for m in mounts if m["Destination"].startswith("/run/secrets/")]})
         evidence["services"] = services
         evidence["checks"]["only_loopback_caddy_no_admin_secrets_in_runtime"] = True
-        run("cleanup-own-test-project", "down", "--volumes", "--remove-orphans")
+        # Activate the test profile for down as well: otherwise Compose can retain
+        # the profile-only wire_state volume containing temporary test credentials.
+        run("cleanup-own-test-project", "--profile", "test", "--profile", "ops", "down", "--volumes", "--remove-orphans")
+        leftovers = subprocess.check_output(["docker", "volume", "ls", "--filter", "label=com.docker.compose.project=" + project, "--format", "{{.Name}}"], text=True).strip()
+        assert not leftovers, "Verification project volumes were not fully removed"
+        evidence["checks"]["all_test_volumes_removed"] = True
         evidence["status"] = "passed"
     except Exception:
         evidence["status"] = "failed"
