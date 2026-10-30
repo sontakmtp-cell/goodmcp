@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "method": "CLI OAuth browser-form surrogate, real TCP callback, official SDK; separate readonly SDK document workflow",
+  "base_url": "http://127.0.0.1:18080",
+  "workspace_id": "cfa8baa7-f581-406b-9ceb-a67e71088b46",
+  "job_id": "4803d087-5058-409a-b91c-8927a600d01c",
+  "calculator": "cit_estimate",
+  "cit_with_incentive_VND": 600000000,
+  "original_python": true,
+  "documents": {
+    "readonly_scope": "hub:read",
+    "protocol": "2026-07-28",
+    "list_keyword_read": true,
+    "calculator_denied_without_tools_run": true,
+    "source_sha256": "89c3c5decb90324070c2900700b294a3262537708bb69b39f3509faf3be8a96d"
+  },
+  "tokens_saved_or_printed": false,
+  "grants_revoked": true
+}

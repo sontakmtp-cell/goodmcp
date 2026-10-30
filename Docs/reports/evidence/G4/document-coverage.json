@@ -1,0 +1,60 @@
+{
+  "scope": "actual persistent local workspace, three enabled G3 plugins",
+  "rows": [
+    {
+      "name": "godot-roblox-experts",
+      "status": "readable_text",
+      "documents": 7,
+      "text_bytes": 87211
+    },
+    {
+      "name": "opc-team",
+      "status": "readable_text",
+      "documents": 46,
+      "text_bytes": 78622
+    },
+    {
+      "name": "vietnam-finance-tax-expert",
+      "status": "binary_text_source_not_extracted",
+      "documents": 2,
+      "text_bytes": 0
+    },
+    {
+      "name": "vietnam-finance-tax-expert",
+      "status": "pdf_content_with_text_extension_not_extracted",
+      "documents": 20,
+      "text_bytes": 0
+    },
+    {
+      "name": "vietnam-finance-tax-expert",
+      "status": "pdf_not_extracted_no_ocr",
+      "documents": 39,
+      "text_bytes": 0
+    },
+    {
+      "name": "vietnam-finance-tax-expert",
+      "status": "source_exceeds_text_limit",
+      "documents": 2,
+      "text_bytes": 0
+    },
+    {
+      "name": "vietnam-finance-tax-expert",
+      "status": "technical_source_metadata_not_search_text",
+      "documents": 1,
+      "text_bytes": 0
+    },
+    {
+      "name": "vietnam-finance-tax-expert",
+      "status": "readable_text",
+      "documents": 673,
+      "text_bytes": 37967742
+    }
+  ],
+  "total_documents": 790,
+  "readable_documents": 726,
+  "quarantined_HTML": 2,
+  "backup_files_inactive": 17,
+  "source_bytes_unchanged": true,
+  "OCR": false,
+  "semantic_ranking": false
+}

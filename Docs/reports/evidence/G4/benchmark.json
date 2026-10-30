@@ -1,0 +1,43 @@
+{
+  "source_commit": "bd492569c07599051a38669900c115ea267da56f",
+  "run_id": "20261030T133525Z-4dd101",
+  "mode": "MVP calculators and literal keyword documents; no TF-IDF build/search benchmark",
+  "standalone_parity_cases": 47,
+  "standalone_peak_RSS_MiB": 35.5859375,
+  "calculator_job_end_to_end_median_s": 1.0940731299997424,
+  "calculator_job_end_to_end_max_s": 2.6395159429957857,
+  "invocation_acceptance_max_s": 0.04096963600022718,
+  "document_list_search_and_paged_read_workflow_s": 0.42238560500118183,
+  "compose_samples": 35,
+  "sampled_max_total_MiB_including_test_clients": 815.03,
+  "sampled_max_application_and_runner_MiB_excluding_test_clients": 744.51,
+  "sampled_service_max_MiB": {
+    "dispatcher-1": 43.98,
+    "caddy-1": 13.29,
+    "worker-1": 183.1,
+    "auth-1": 70.45,
+    "api-1": 310.7,
+    "postgres-1": 103.4,
+    "wire-run-83d45602549f": 76.84,
+    "wire-run-ad79453bc82e": 70.52,
+    "dab0948d-ff02-4152-be88-cfb993350463-1": 20.56,
+    "38f23896-38d5-4ec0-98b2-3ea89430b7bf-1": 20.55,
+    "5772c423-48b6-4856-ab31-9034f4c0a072-1": 20.55,
+    "wire-run-5d34bece29f4": 70.52,
+    "wire-run-7b37d46e6915": 52.44
+  },
+  "sampling_note": "docker stats MemUsage snapshots; Linux cache-adjusted working set, includes control services; not true simultaneous RSS peak or production p95",
+  "harness_commands_s": 362.914,
+  "runner_boundaries": [
+    {
+      "image_id": "sha256:1f5a9fead877756bb149b10165d6d338dfb4e71922ef73ccc53ad16e843ddeff",
+      "name": "/goodmcp-g4-verify-20261030t133525z-4dd101-5772c423-48b6-4856-ab31-9034f4c0a072-1",
+      "network": "none",
+      "memory": 268435456,
+      "cpus": 1000000000,
+      "readonly_rootfs": true,
+      "mounts": [],
+      "user": "10001:10001"
+    }
+  ]
+}

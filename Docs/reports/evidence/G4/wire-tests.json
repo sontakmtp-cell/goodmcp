@@ -1,0 +1,883 @@
+{
+  "source_commit": "bd492569c07599051a38669900c115ea267da56f",
+  "run_id": "20261030T133525Z-4dd101",
+  "protocol": "2026-07-28",
+  "sections": {
+    "g4_database": {
+      "passed": true,
+      "checks": [
+        {
+          "name": "release FORCE RLS",
+          "passed": true
+        },
+        {
+          "name": "runtime cannot approve bindings",
+          "passed": true
+        },
+        {
+          "name": "runtime cannot approve releases",
+          "passed": true
+        },
+        {
+          "name": "foreign handles rejected",
+          "passed": true
+        },
+        {
+          "name": "contextless releases hidden",
+          "passed": true
+        },
+        {
+          "name": "claim binds server-stored user and workspace",
+          "passed": true
+        },
+        {
+          "name": "stale fenced attempt cannot publish or finish",
+          "passed": true
+        },
+        {
+          "name": "terminal job DB immutability",
+          "passed": true
+        },
+        {
+          "name": "cross-workspace binding/version FK rejected",
+          "passed": true
+        }
+      ]
+    },
+    "g4_wire": {
+      "passed": true,
+      "checks": [
+        {
+          "name": "operator approved 9 calculator/reference bindings",
+          "passed": true
+        },
+        {
+          "name": "read-only OAuth cannot execute",
+          "passed": true
+        },
+        {
+          "name": "invalid province rejected before queue",
+          "passed": true
+        },
+        {
+          "name": "invocation cannot select shell/image",
+          "passed": true
+        },
+        {
+          "name": "wire parity p01",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p01",
+          "passed": true
+        },
+        {
+          "name": "wire parity p02",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p02",
+          "passed": true
+        },
+        {
+          "name": "wire parity p03",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p03",
+          "passed": true
+        },
+        {
+          "name": "wire parity p04",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p04",
+          "passed": true
+        },
+        {
+          "name": "wire parity p05",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p05",
+          "passed": true
+        },
+        {
+          "name": "wire parity p06",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p06",
+          "passed": true
+        },
+        {
+          "name": "wire parity p07",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p07",
+          "passed": true
+        },
+        {
+          "name": "wire parity p08",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p08",
+          "passed": true
+        },
+        {
+          "name": "wire parity p09",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p09",
+          "passed": true
+        },
+        {
+          "name": "wire parity p10",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p10",
+          "passed": true
+        },
+        {
+          "name": "wire parity p11",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p11",
+          "passed": true
+        },
+        {
+          "name": "wire parity p12",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p12",
+          "passed": true
+        },
+        {
+          "name": "wire parity p13",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p13",
+          "passed": true
+        },
+        {
+          "name": "wire parity p14",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p14",
+          "passed": true
+        },
+        {
+          "name": "wire parity p15",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p15",
+          "passed": true
+        },
+        {
+          "name": "wire parity p16",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p16",
+          "passed": true
+        },
+        {
+          "name": "wire parity p17",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p17",
+          "passed": true
+        },
+        {
+          "name": "wire parity p18",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p18",
+          "passed": true
+        },
+        {
+          "name": "wire parity p19",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p19",
+          "passed": true
+        },
+        {
+          "name": "wire parity p20",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p20",
+          "passed": true
+        },
+        {
+          "name": "wire parity p21",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p21",
+          "passed": true
+        },
+        {
+          "name": "wire parity p22",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p22",
+          "passed": true
+        },
+        {
+          "name": "wire parity p23",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p23",
+          "passed": true
+        },
+        {
+          "name": "wire parity p24",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p24",
+          "passed": true
+        },
+        {
+          "name": "wire parity p25",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p25",
+          "passed": true
+        },
+        {
+          "name": "wire parity p26",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p26",
+          "passed": true
+        },
+        {
+          "name": "wire parity p27",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p27",
+          "passed": true
+        },
+        {
+          "name": "wire parity p28",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p28",
+          "passed": true
+        },
+        {
+          "name": "wire parity p29",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p29",
+          "passed": true
+        },
+        {
+          "name": "wire parity p30",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p30",
+          "passed": true
+        },
+        {
+          "name": "wire parity p31",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p31",
+          "passed": true
+        },
+        {
+          "name": "wire parity p32",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p32",
+          "passed": true
+        },
+        {
+          "name": "wire parity p33",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p33",
+          "passed": true
+        },
+        {
+          "name": "wire parity p34",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p34",
+          "passed": true
+        },
+        {
+          "name": "wire parity p35",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p35",
+          "passed": true
+        },
+        {
+          "name": "wire parity p36",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p36",
+          "passed": true
+        },
+        {
+          "name": "wire parity p37",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p37",
+          "passed": true
+        },
+        {
+          "name": "wire parity p38",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p38",
+          "passed": true
+        },
+        {
+          "name": "wire parity p39",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p39",
+          "passed": true
+        },
+        {
+          "name": "wire parity p40",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p40",
+          "passed": true
+        },
+        {
+          "name": "wire parity p41",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p41",
+          "passed": true
+        },
+        {
+          "name": "wire parity p42",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p42",
+          "passed": true
+        },
+        {
+          "name": "wire parity p43",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p43",
+          "passed": true
+        },
+        {
+          "name": "wire parity p44",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p44",
+          "passed": true
+        },
+        {
+          "name": "wire parity p45",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p45",
+          "passed": true
+        },
+        {
+          "name": "wire parity p46",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p46",
+          "passed": true
+        },
+        {
+          "name": "wire parity p47",
+          "passed": true
+        },
+        {
+          "name": "original value/hash p47",
+          "passed": true
+        },
+        {
+          "name": "same key/input reuses job",
+          "passed": true
+        },
+        {
+          "name": "conflicting idempotency input returns 409",
+          "passed": true
+        },
+        {
+          "name": "documents list source handles",
+          "passed": true
+        },
+        {
+          "name": "literal keyword lookup has no relevance scores",
+          "passed": true
+        },
+        {
+          "name": "agent can follow keyword result to source text",
+          "passed": true
+        },
+        {
+          "name": "full text paging preserves source characters",
+          "passed": true
+        },
+        {
+          "name": "keywords treated as literal not SQL or wildcards",
+          "passed": true
+        },
+        {
+          "name": "cross workspace job handle denied",
+          "passed": true
+        },
+        {
+          "name": "runner has no secrets DB network socket or source writes",
+          "passed": true
+        },
+        {
+          "name": "nonzero process exit is failed not success",
+          "passed": true
+        },
+        {
+          "name": "MCP declares typed Python input and job poll",
+          "passed": true
+        },
+        {
+          "name": "MCP document listing is readonly",
+          "passed": true
+        },
+        {
+          "name": "MCP agent can choose literal keywords",
+          "passed": true
+        },
+        {
+          "name": "MCP agent follows result to actual document",
+          "passed": true
+        },
+        {
+          "name": "MCP accepts job within sync budget",
+          "passed": true
+        },
+        {
+          "name": "MCP original Python result",
+          "passed": true
+        },
+        {
+          "name": "MCP polls durable typed result",
+          "passed": true
+        },
+        {
+          "name": "MCP rejects invalid financial input",
+          "passed": true
+        }
+      ],
+      "parity_cases": 47,
+      "parity": [
+        {
+          "id": "p01",
+          "job_id": "d2482d35-c3b0-44e8-b761-92386de84606",
+          "acceptance_s": 0.018377767999481875,
+          "end_to_end_s": 2.235409635002725
+        },
+        {
+          "id": "p02",
+          "job_id": "b50b2719-69e7-434e-a76e-2a7b56da3661",
+          "acceptance_s": 0.011383033001038712,
+          "end_to_end_s": 1.9665799490030622
+        },
+        {
+          "id": "p03",
+          "job_id": "f9f5e6e3-8ffa-4d61-a611-2207c55bb3ae",
+          "acceptance_s": 0.01602698100032285,
+          "end_to_end_s": 2.6395159429957857
+        },
+        {
+          "id": "p04",
+          "job_id": "92fc2fdb-c0f0-4daa-aaf1-ed6d6eefcdc6",
+          "acceptance_s": 0.012464601000829134,
+          "end_to_end_s": 2.022531221002282
+        },
+        {
+          "id": "p05",
+          "job_id": "fede3330-0ab3-4178-b34e-b52285338dd8",
+          "acceptance_s": 0.021599064995825756,
+          "end_to_end_s": 2.0760939929969027
+        },
+        {
+          "id": "p06",
+          "job_id": "8df00e8c-4b37-4b47-9c54-0cf6d9b3ecc5",
+          "acceptance_s": 0.010278830006427597,
+          "end_to_end_s": 1.103760025005613
+        },
+        {
+          "id": "p07",
+          "job_id": "7bc1f579-46ea-47be-8d4e-24063491b8f4",
+          "acceptance_s": 0.012775339993822854,
+          "end_to_end_s": 1.0016247739986284
+        },
+        {
+          "id": "p08",
+          "job_id": "6733ca96-605c-44b6-8d48-fef5b61e654f",
+          "acceptance_s": 0.01127773000189336,
+          "end_to_end_s": 1.0170563550054794
+        },
+        {
+          "id": "p09",
+          "job_id": "3fa9e151-cc29-4995-8a44-7b78626445af",
+          "acceptance_s": 0.01041907299804734,
+          "end_to_end_s": 0.9909815299979527
+        },
+        {
+          "id": "p10",
+          "job_id": "aff60e60-bd25-4377-b3ca-452cb3fe7003",
+          "acceptance_s": 0.04096963600022718,
+          "end_to_end_s": 1.0597873410006287
+        },
+        {
+          "id": "p11",
+          "job_id": "dfa6d0d8-10e2-4472-98b3-83f63d4aaea7",
+          "acceptance_s": 0.027225325000472367,
+          "end_to_end_s": 1.1066269720031414
+        },
+        {
+          "id": "p12",
+          "job_id": "deada71d-9bca-4399-a4c6-186b877a4933",
+          "acceptance_s": 0.019229133002227172,
+          "end_to_end_s": 1.1002046700014034
+        },
+        {
+          "id": "p13",
+          "job_id": "6dbe1d97-e737-472b-bbc5-48340195cb5f",
+          "acceptance_s": 0.01162212099734461,
+          "end_to_end_s": 0.9932966150008724
+        },
+        {
+          "id": "p14",
+          "job_id": "6af2f433-828e-447e-a191-81b44fc08d56",
+          "acceptance_s": 0.013330695001059212,
+          "end_to_end_s": 0.9943101120006759
+        },
+        {
+          "id": "p15",
+          "job_id": "cbb73664-3fde-48c8-865e-7ae1174bf981",
+          "acceptance_s": 0.011003424995578825,
+          "end_to_end_s": 1.1013956219976535
+        },
+        {
+          "id": "p16",
+          "job_id": "480f5cbf-ffd6-449b-b8e4-7a100e08b5d3",
+          "acceptance_s": 0.011865955995745026,
+          "end_to_end_s": 1.0937512480013538
+        },
+        {
+          "id": "p17",
+          "job_id": "2447521c-f4a3-4ab6-bf85-0c57dabc8a39",
+          "acceptance_s": 0.017031547002261505,
+          "end_to_end_s": 1.0007919370036689
+        },
+        {
+          "id": "p18",
+          "job_id": "7f5a40e2-83c8-41bc-8638-a47c102aff52",
+          "acceptance_s": 0.014999042999988887,
+          "end_to_end_s": 0.9899243270047009
+        },
+        {
+          "id": "p19",
+          "job_id": "2755a32b-2aa5-4836-b307-47661a808ddb",
+          "acceptance_s": 0.016096211998956278,
+          "end_to_end_s": 1.1125998019997496
+        },
+        {
+          "id": "p20",
+          "job_id": "8b43bb4d-4021-4561-961e-47adc5e3f788",
+          "acceptance_s": 0.013259919003758114,
+          "end_to_end_s": 0.9944255630034604
+        },
+        {
+          "id": "p21",
+          "job_id": "ee430ac3-c23c-42ea-9e3f-68ee768fb05c",
+          "acceptance_s": 0.01050570100051118,
+          "end_to_end_s": 0.979805024995585
+        },
+        {
+          "id": "p22",
+          "job_id": "70f165cd-20af-47f7-8042-62e15ae6b341",
+          "acceptance_s": 0.016707171002053656,
+          "end_to_end_s": 1.0940731299997424
+        },
+        {
+          "id": "p23",
+          "job_id": "69158569-6d0d-4aaf-aad6-1757f7fdefe3",
+          "acceptance_s": 0.011595983000006527,
+          "end_to_end_s": 1.2222324249960366
+        },
+        {
+          "id": "p24",
+          "job_id": "f1622828-f819-4992-bec7-728328079e2d",
+          "acceptance_s": 0.010689064001780935,
+          "end_to_end_s": 1.2159862150001572
+        },
+        {
+          "id": "p25",
+          "job_id": "2b1acbfe-8b5c-4e3c-8a93-9d39d76a5353",
+          "acceptance_s": 0.010891963996982668,
+          "end_to_end_s": 1.2077764939967892
+        },
+        {
+          "id": "p26",
+          "job_id": "b1097cd7-816b-44fc-8dc1-01e819609893",
+          "acceptance_s": 0.011207933996047359,
+          "end_to_end_s": 1.212515399995027
+        },
+        {
+          "id": "p27",
+          "job_id": "6ebc65fa-30a9-470c-b82b-c9a8bf623768",
+          "acceptance_s": 0.018801546000759117,
+          "end_to_end_s": 1.2218693899994832
+        },
+        {
+          "id": "p28",
+          "job_id": "0e15e471-5ace-4de1-a62d-4856a510e779",
+          "acceptance_s": 0.01395675499952631,
+          "end_to_end_s": 1.2214177169953473
+        },
+        {
+          "id": "p29",
+          "job_id": "a18d2182-f8f4-4e05-a0ee-a0b090d41ab4",
+          "acceptance_s": 0.011426730998209678,
+          "end_to_end_s": 1.0872106070019072
+        },
+        {
+          "id": "p30",
+          "job_id": "d39ea205-1da8-4208-a46b-498f83cd06b1",
+          "acceptance_s": 0.019299434999993537,
+          "end_to_end_s": 1.1338441539992345
+        },
+        {
+          "id": "p31",
+          "job_id": "87d7e3be-8dce-4bb9-a0e6-3384be20df38",
+          "acceptance_s": 0.01691076299903216,
+          "end_to_end_s": 1.2223592070004088
+        },
+        {
+          "id": "p32",
+          "job_id": "249343f3-d705-4c25-87fe-0152beb17aa5",
+          "acceptance_s": 0.011925810998945963,
+          "end_to_end_s": 1.1074244600022212
+        },
+        {
+          "id": "p33",
+          "job_id": "37a4c046-836a-493e-bc03-5d9ad233a763",
+          "acceptance_s": 0.01708302800398087,
+          "end_to_end_s": 1.0032563140048296
+        },
+        {
+          "id": "p34",
+          "job_id": "afe32b75-1c56-4695-aaa2-c5850c2ec922",
+          "acceptance_s": 0.01780933699774323,
+          "end_to_end_s": 1.0079440050030826
+        },
+        {
+          "id": "p35",
+          "job_id": "c792b5d2-ab7d-4b1a-9338-f441d43ecf53",
+          "acceptance_s": 0.019073724004556425,
+          "end_to_end_s": 1.1110480500065023
+        },
+        {
+          "id": "p36",
+          "job_id": "291f5c5f-e914-4303-bcc3-cfbbac8f603e",
+          "acceptance_s": 0.010672693999367766,
+          "end_to_end_s": 0.9793227940026554
+        },
+        {
+          "id": "p37",
+          "job_id": "5a47ef74-8c52-494a-a5ab-742659a8ad16",
+          "acceptance_s": 0.013276095000037458,
+          "end_to_end_s": 1.0035508559958544
+        },
+        {
+          "id": "p38",
+          "job_id": "24133bbd-d05b-4744-95ca-daa61f1cbb2e",
+          "acceptance_s": 0.011307057000522036,
+          "end_to_end_s": 0.9985552380021545
+        },
+        {
+          "id": "p39",
+          "job_id": "7dfab2e3-6ca3-4d52-8e73-b288866656b0",
+          "acceptance_s": 0.0107166590023553,
+          "end_to_end_s": 0.9875851409960887
+        },
+        {
+          "id": "p40",
+          "job_id": "333471e2-5e07-494f-8b5f-596d8332f075",
+          "acceptance_s": 0.015999845003534574,
+          "end_to_end_s": 0.9899094659995171
+        },
+        {
+          "id": "p41",
+          "job_id": "64fc8e91-f86e-4810-9478-111e9ac1f06a",
+          "acceptance_s": 0.01881151500128908,
+          "end_to_end_s": 1.01380882000376
+        },
+        {
+          "id": "p42",
+          "job_id": "aedad6ba-07c9-4847-b6b2-cd6b6e515752",
+          "acceptance_s": 0.017260237997106742,
+          "end_to_end_s": 1.1332305769974482
+        },
+        {
+          "id": "p43",
+          "job_id": "7b30b2a6-5b47-4eae-a116-de402f88a2fa",
+          "acceptance_s": 0.01318662000267068,
+          "end_to_end_s": 1.094854827002564
+        },
+        {
+          "id": "p44",
+          "job_id": "2b0437ca-e9e7-4a37-9f21-86f1b603ea63",
+          "acceptance_s": 0.020819671997742262,
+          "end_to_end_s": 1.1041794850025326
+        },
+        {
+          "id": "p45",
+          "job_id": "dfb9c590-5a78-4f14-b264-17f0479a4231",
+          "acceptance_s": 0.012480937002692372,
+          "end_to_end_s": 0.9944924420051393
+        },
+        {
+          "id": "p46",
+          "job_id": "fa53bd53-e10b-45ae-9738-55fa2cb300a4",
+          "acceptance_s": 0.010001175993238576,
+          "end_to_end_s": 0.9950614879999193
+        },
+        {
+          "id": "p47",
+          "job_id": "79c99f95-056c-40a4-9733-0eb2d714df2e",
+          "acceptance_s": 0.011007396999048069,
+          "end_to_end_s": 0.9999610390004818
+        }
+      ],
+      "calculator_end_to_end_median_s": 1.0940731299997424,
+      "document_lookup_and_read_s": 0.42238560500118183,
+      "source_tree_sha256": "2ecd5ff2b529aefbe81759402de0597504e292895ed78eae82b5e1c737dc92eb"
+    },
+    "g4_faults": {
+      "passed": true,
+      "checks": [
+        {
+          "name": "two light jobs can run concurrently",
+          "passed": true
+        },
+        {
+          "name": "third light job stays queued",
+          "passed": true
+        },
+        {
+          "name": "queued cancel is terminal",
+          "passed": true
+        },
+        {
+          "name": "document lookup remains responsive with two Python jobs",
+          "passed": true
+        },
+        {
+          "name": "running job stops before cancelled",
+          "passed": true
+        },
+        {
+          "name": "running job stops before cancelled",
+          "passed": true
+        },
+        {
+          "name": "execution timeout is failed and bounded",
+          "passed": true
+        },
+        {
+          "name": "completed result immutable on late cancel",
+          "passed": true
+        }
+      ],
+      "recovery_job_running": true
+    },
+    "g4_recovered": {
+      "passed": true,
+      "checks": [
+        {
+          "name": "dispatcher crash resumes only after lease with new attempt",
+          "passed": true
+        },
+        {
+          "name": "crashed attempt never reported success",
+          "passed": true
+        }
+      ]
+    },
+    "g4_quota": {
+      "passed": true,
+      "checks": [
+        {
+          "name": "twenty queued jobs admitted",
+          "passed": true
+        },
+        {
+          "name": "queue limit returns 429 with retry after",
+          "passed": true
+        },
+        {
+          "name": "queued quota fixtures cancelled without execution",
+          "passed": true
+        }
+      ]
+    },
+    "g4_resume": {
+      "passed": true,
+      "checks": [
+        {
+          "name": "job result artifact survives all-container recreation",
+          "passed": true
+        }
+      ]
+    }
+  },
+  "check_count": 139
+}

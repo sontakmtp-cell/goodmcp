@@ -1,6 +1,6 @@
 # goodmcp-hub — Kế hoạch MVP và lộ trình mở rộng
 
-> Cập nhật 30/10/2026, múi giờ Asia/Saigon. Đây là đặc tả để giao việc cho AI agent; các bước triển khai, benchmark và nghiệm thu dưới đây chưa được thực hiện.
+> Cập nhật 30/10/2026, múi giờ Asia/Saigon. Đây là đặc tả để giao việc cho AI agent; trạng thái thực hiện và chứng cứ nghiệm thu được cập nhật riêng trong `Docs/reports/Gx.md`.
 >
 > **Chọn VPS chạy ứng dụng và công cụ Python, Cloudflare giữ DNS/HTTPS, R2 dùng cho backup ngoài VPS.** MVP chỉ phục vụ Khầy với ba plugin mẫu; kiến trúc dữ liệu và quyền truy cập phải sẵn sàng cho nhiều người dùng và nhiều plugin.
 >

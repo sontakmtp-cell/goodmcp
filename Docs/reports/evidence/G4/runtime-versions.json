@@ -1,0 +1,6 @@
+{
+  "python": "3.12.12",
+  "pydantic": "2.14.2",
+  "scientific_packages_absent": true,
+  "image_digest": "sha256:1f5a9fead877756bb149b10165d6d338dfb4e71922ef73ccc53ad16e843ddeff"
+}
