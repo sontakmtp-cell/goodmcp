@@ -1,0 +1,6 @@
+interface:
+  display_name: "Kiểm kê nguồn lực"
+  short_description: "Hướng dẫn từng bước cho công ty một người"
+  default_prompt: "Dùng $opc-resource-audit để giúp tôi với kiểm kê nguồn lực."
+policy:
+  allow_implicit_invocation: true

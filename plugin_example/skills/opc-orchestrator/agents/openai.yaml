@@ -1,0 +1,6 @@
+interface:
+  display_name: "Điều phối đội OPC"
+  short_description: "Hướng dẫn từng bước cho công ty một người"
+  default_prompt: "Dùng $opc-orchestrator để giúp tôi với điều phối đội opc."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Tổ chức tài sản tái sử dụng"
+  short_description: "Hướng dẫn từng bước cho công ty một người"
+  default_prompt: "Dùng $opc-asset-ops để giúp tôi với tổ chức tài sản tái sử dụng."
+policy:
+  allow_implicit_invocation: true

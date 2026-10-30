@@ -1,0 +1,32 @@
+# Hệ điều hành
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Trình soạn thảo
+.vscode/
+.idea/
+*.swp
+
+# Môi trường / bí mật
+.env
+.env.*
+*.key
+*.pem
+
+# Gói phụ thuộc
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Nhật ký và tệp tạm
+*.log
+*.tmp
+dist/
+build/
+
+# Công cụ AI cục bộ
+.workbuddy-ai/
+.codebuddy/

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "author": {
+    "email": "haingocson@gmail.com",
+    "name": "Pham Ngoc Son"
+  },
+  "description": "One-Person Company expert team: founder resources, niche, value, business model, MVP, conversion, assets and operating review. Adapted from WorkBuddy for ChatGPT/Codex with explicit specialist model routing.",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "capabilities": [],
+        "category": "Business & Operations",
+        "composerIcon": "./assets/team.png",
+        "defaultPrompt": [
+          "Giúp tôi khởi động OPC Team và kiểm kê nguồn lực để xây công ty một người.",
+          "Giúp tôi tìm thị trường ngách phù hợp với nguồn lực hiện có.",
+          "Dùng OPC Team phân tích điểm nghẽn trong hoạt động kinh doanh của tôi."
+        ],
+        "developerName": "Pham Ngoc Son",
+        "displayName": "OPC Team",
+        "logo": "./assets/team.png",
+        "longDescription": "9 vai trò hỗ trợ kiểm kê nguồn lực, chọn thị trường ngách, thiết kế giá trị, mô hình kinh doanh, MVP, chuyển đổi, tài sản và đánh giá vận hành. Ưu tiên GPT-6.1 sol cho chiến lược, GPT-6 luna cho kiểm kê và tổ chức tài sản khi môi trường hỗ trợ chọn mô hình. Trả lời theo ngôn ngữ người dùng; hỗ trợ chế độ một trợ lý khi không có tác nhân phụ.",
+        "shortDescription": "Chuyên gia công ty một người"
+      }
+    }
+  },
+  "homepage": "https://github.com/easychen/opc-methodology",
+  "keywords": [
+    "one-person-company",
+    "opc",
+    "business-model",
+    "multi-agent",
+    "vietnamese"
+  ],
+  "license": "CC-BY-NC-SA-4.0",
+  "name": "opc-team",
+  "version": "1.1.3"
+}

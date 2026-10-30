@@ -1,0 +1,6 @@
+interface:
+  display_name: "Thiết kế giá trị"
+  short_description: "Hướng dẫn từng bước cho công ty một người"
+  default_prompt: "Dùng $opc-value-proposition để giúp tôi với thiết kế giá trị."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Chiến lược thị trường ngách"
+  short_description: "Hướng dẫn từng bước cho công ty một người"
+  default_prompt: "Dùng $opc-niche-positioning để giúp tôi với chiến lược thị trường ngách."
+policy:
+  allow_implicit_invocation: true

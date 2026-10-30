@@ -1,0 +1,65 @@
+[
+  {
+    "role": "opc-team-lead",
+    "skill": "opc-orchestrator",
+    "label": "Điều phối đội OPC",
+    "preferred_model": "gpt-6.1-sol",
+    "reasoning_effort": "high"
+  },
+  {
+    "role": "opc-resource-auditor",
+    "skill": "opc-resource-audit",
+    "label": "Kiểm kê nguồn lực",
+    "preferred_model": "gpt-6-luna",
+    "reasoning_effort": "medium"
+  },
+  {
+    "role": "opc-niche-strategist",
+    "skill": "opc-niche-positioning",
+    "label": "Chiến lược thị trường ngách",
+    "preferred_model": "gpt-6.1-sol",
+    "reasoning_effort": "high"
+  },
+  {
+    "role": "opc-value-designer",
+    "skill": "opc-value-proposition",
+    "label": "Thiết kế giá trị",
+    "preferred_model": "gpt-6.1-sol",
+    "reasoning_effort": "medium"
+  },
+  {
+    "role": "opc-model-architect",
+    "skill": "opc-business-model-design",
+    "label": "Thiết kế mô hình kinh doanh",
+    "preferred_model": "gpt-6.1-sol",
+    "reasoning_effort": "high"
+  },
+  {
+    "role": "opc-mvp-designer",
+    "skill": "opc-mvp-designer",
+    "label": "Thiết kế thử nghiệm MVP",
+    "preferred_model": "gpt-6.1-sol",
+    "reasoning_effort": "high"
+  },
+  {
+    "role": "opc-conversion-designer",
+    "skill": "opc-conversion-loop",
+    "label": "Thiết kế chuyển đổi",
+    "preferred_model": "gpt-6.1-sol",
+    "reasoning_effort": "medium"
+  },
+  {
+    "role": "opc-asset-strategist",
+    "skill": "opc-asset-ops",
+    "label": "Tổ chức tài sản tái sử dụng",
+    "preferred_model": "gpt-6-luna",
+    "reasoning_effort": "medium"
+  },
+  {
+    "role": "opc-dashboard-reviewer",
+    "skill": "opc-dashboard-review",
+    "label": "Chẩn đoán vận hành",
+    "preferred_model": "gpt-6.1-sol",
+    "reasoning_effort": "high"
+  }
+]
