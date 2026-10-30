@@ -225,7 +225,7 @@ def main():
             evidence["wire_negatives"] = result
         before = json_tail(run("seed-persistence", "run", "--rm", "--no-deps", "tests", "python", "tests/persistence.py", "seed"))
         # Stronger than process restart: recreate every service, retaining volumes.
-        run("recreate-stack-down-keep-volumes", "down")
+        run("recreate-stack-down-keep-volumes", "--profile", "g4", "down")
         run("recreate-stack-up", "up", "-d", "--wait", "postgres", "api", "auth", "worker", "caddy", *(['dispatcher'] if args.stage=='G4' else []))
         after = json_tail(run("verify-persistence", "run", "--rm", "--no-deps", "tests", "python", "tests/persistence.py", "check"))
         assert before["artifact_id"] == after["artifact_id"] and after["persisted_after_recreate"]
