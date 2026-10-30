@@ -1,0 +1,273 @@
+{
+  "frozen_before_build": true,
+  "method": "30 source-backed, multilingual document lookup questions; one relevant source family per question, macro recall@5",
+  "target_recall_at_5": 0.9,
+  "cases": [
+    {
+      "id": "q01",
+      "query": "Thuế thu nhập doanh nghiệp theo Luật 67/2025/QH15",
+      "expected_sources": [
+        "vn_cit_law_67_2025_english.txt",
+        "vn_cit_law_67_2025_english.html"
+      ],
+      "source_excerpt": "Source URL: http://english.luatvietnam.vn/thue/law-on-enterprise-income-tax-no-67-2025-qh15-404386-d1.html\nDownloaded: 2026-07-21 10:08:06\nTitle: Law on Corporate Income Tax 2025, No. 67/2025/QH15\n================================================================================\n\nLaw on Corporate Income Tax 2025, No. 67/2025/QH15\nHome\nLegal Normative"
+    },
+    {
+      "id": "q02",
+      "query": "越南 320/2025 企业所得税 实施指引",
+      "expected_sources": [
+        "chinatax_vn_cit_guidance_320_2025.txt",
+        "chinatax_vn_cit_guidance_320_2025.html"
+      ],
+      "source_excerpt": "Source URL: https://www.chinatax.gov.cn/chinatax/c102745/c5248465/content.html\nDownloaded: 2026-07-21 10:08:03\nTitle: \n\n    越南发布《2025年企业所得税法指南》_国家税务总局\n\n  \n================================================================================\n\n越南发布《2025年企业所得税法指南》_国家税务总局\n简\n繁\nEN\n本站热词：\n发票\n小微企业\n个人所得税\n发票查询\n社保\n首页\n总局概况\n信息公开\n新闻发布\n政策法规\n纳税服务\n互动交流\n专题专栏\n您所在的位置：\n首页\n>\n"
+    },
+    {
+      "id": "q03",
+      "query": "越南企业所得税 2025 修订 小微企业税率",
+      "expected_sources": [
+        "chinatax_vn_cit_law_2025_amendment.txt",
+        "chinatax_vn_cit_law_2025_amendment.html"
+      ],
+      "source_excerpt": "Source URL: https://www.chinatax.gov.cn/chinatax/c102745/c5242838/content.html\nDownloaded: 2026-07-21 10:08:03\nTitle: \n\n    越南通过企业所得税法修正案_国家税务总局\n\n  \n================================================================================\n\n越南通过企业所得税法修正案_国家税务总局\n简\n繁\nEN\n本站热词：\n发票\n小微企业\n个人所得税\n发票查询\n社保\n首页\n总局概况\n信息公开\n新闻发布\n政策法规\n纳税服务\n互动交流\n专题专栏\n您所在的位置：\n首页\n>\n新闻发布\n>\n专题专栏\n"
+    },
+    {
+      "id": "q04",
+      "query": "Vietnam PIT Circular 111 foreign workers resident tax",
+      "expected_sources": [
+        "vn_circular111_2013_pit_foreign_workers_man.txt",
+        "vn_circular111_2013_pit_foreign_workers_man.html"
+      ],
+      "source_excerpt": "Lưu ý về xác định tình trạng cư trú và tính thuế TNCN đối với lao động nước ngoài - MAN\nBlog\nNotes on determining residency status and calculating personal income tax for foreign workers.\nManaging personal income tax for foreign workers has always been a challenge for accounting and human resources departments. Recently, Official Letter No. 3363/TN"
+    },
+    {
+      "id": "q05",
+      "query": "Luật thuế thu nhập cá nhân 04/2007/QH12",
+      "expected_sources": [
+        "vn_pit_law_04_2007_luatvietnam.txt",
+        "vn_pit_law_04_2007_luatvietnam.html"
+      ],
+      "source_excerpt": "Law on personal income tax, No.04/2007/QH12\nHome\nLegal Normative Documents\nNew documents\nOfficial Gazette\nLuatVietnam's translation\nOthers\nNews\nServices\nAvailable translation\nOn-demand translation\nVietnamese\nHome\nLegal Normative Documents\nTax - Fee - Charge\nSearch\nAdvanced Search\nAdvanced search for legal documents\nFilter by\nReset\nTypes of document"
+    },
+    {
+      "id": "q06",
+      "query": "越南 增值税法 税率 进项税 抵扣",
+      "expected_sources": [
+        "vn_vat_law_vietnamese_chinese.txt",
+        "vn_vat_law_vietnamese_chinese.html"
+      ],
+      "source_excerpt": "Source URL: https://lawma.com.vn/blogs/default-handle-7/luat-thue-gia-tri-gia-tang\nDownloaded: 2026-07-21 10:08:11\nTitle: 增值税法 LUẬT THUẾ GIÁ TRỊ GIA TĂNG – 越南当地律师\n================================================================================\n\n增值税法 LUẬT THUẾ GIÁ TRỊ GIA TĂNG – 越南当地律师\n越南-中国法律\n首页\n越南-中国法律\n增值税法 LUẬT THUẾ GIÁ TRỊ GIA TĂNG\n增值税法 LUẬT THU"
+    },
+    {
+      "id": "q07",
+      "query": "Nghị định 15/2022 giảm thuế giá trị gia tăng",
+      "expected_sources": [
+        "vn_decree15_2022_vat_reduction_vcc.txt",
+        "vn_decree15_2022_vat_reduction_vcc.html"
+      ],
+      "source_excerpt": "Vietnam Competition and Consumer Authority\nHome\nNews\nGuidance on the VAT reduction adjustment on the selling prices of multi-level marketing goods\n16/02/2022 - Guidance on the VAT reduction adjustment on the selling prices of multi-level marketing goods\nOn January 28, 2022, Decree No. 15/2022/ND-CP was issued by the Government to regulate tax exemp"
+    },
+    {
+      "id": "q08",
+      "query": "Foreign contractor tax guide Vietnam APlusLaw",
+      "expected_sources": [
+        "apluslaw_fct_complete_guide.txt",
+        "apluslaw_fct_complete_guide.html"
+      ],
+      "source_excerpt": "Source URL: https://apluslaw.vn/en/research/foreign-contractor-tax.html?p=2987\nDownloaded: 2026-07-21 10:08:28\nTitle: Vietnam‘s Foreign Contractors Tax - A Complete Guide\n================================================================================\n\nVietnam‘s Foreign Contractors Tax - A Complete Guide\nSkip to content\nHome\n»\nResearch\n»\nVietnam‘s "
+    },
+    {
+      "id": "q09",
+      "query": "越南 外国承包商税 103/2014 通知",
+      "expected_sources": [
+        "vn_fct_circular103_2014_chinese_baochinhphu.txt",
+        "vn_fct_circular103_2014_chinese_baochinhphu.html"
+      ],
+      "source_excerpt": "Source: https://cn.baochinhphu.vn/%E9%80%82%E7%94%A8%E4%BA%8E%E5%9C%A8%E8%B6%8A%E4%BB%8E%E4%BA%8B%E7%BB%8F%E8%90%A5%E6%B4%BB%E5%8A%A8%E7%9A%84%E5%A4%96%E5%9B%BD%E7%BB%84%E7%BB%87%E4%B8%AA%E4%BA%BA%E7%9A%84%E7%A8%8E%E7%8E%87-11618288.htm\nDownloaded: 2026-07-21 12:29\nContent-Length: 2326 chars\n========================================================="
+    },
+    {
+      "id": "q10",
+      "query": "越南 外国承包商税 扣缴 指南",
+      "expected_sources": [
+        "indochinalink_fct_guide_chinese.txt",
+        "indochinalink_fct_guide_chinese.html"
+      ],
+      "source_excerpt": "Source URL: https://indochinalink.com/zh/foreign-contractor-tax-vietnam-withholding/\nDownloaded: 2026-07-21 10:08:24\nTitle: 越南外国承包商税 (FCT) 2026：代扣代缴义务、计算方法与法规更新 | Indochina Link\n================================================================================\n\n越南外国承包商税 (FCT) 2026：代扣代缴义务、计算方法与法规更新 | Indochina Link\n越南税务合规\n越南外国承包商税 (FCT) 2026：代扣代缴义务、计算"
+    },
+    {
+      "id": "q11",
+      "query": "Bộ luật lao động 45/2019/QH14",
+      "expected_sources": [
+        "vn_labor_code_45_2019_luatvietnam.txt",
+        "vn_labor_code_45_2019_luatvietnam.html"
+      ],
+      "source_excerpt": "Labor Code, Law No. 45/2019/QH14\nHome\nLegal Normative Documents\nNew documents\nOfficial Gazette\nLuatVietnam's translation\nOthers\nNews\nServices\nAvailable translation\nOn-demand translation\nVietnamese\nHome\nLegal Normative Documents\nLabor - Salary\nSearch\nAdvanced Search\nAdvanced search for legal documents\nFilter by\nReset\nTypes of documents\nLaw\nOrdinance"
+    },
+    {
+      "id": "q12",
+      "query": "Vietnam labour code ILO working hours overtime",
+      "expected_sources": [
+        "vn_labor_code_45_2019_ilo_pdf.txt"
+      ],
+      "source_excerpt": "%PDF-1.3\n%\n4 0 obj\n<< /Length 5 0 R /Filter /FlateDecode >>\nstream\nx\u0001ZMo6\u0012Wv[d(*I23\u001cr\u000b@\u000e霌a,\u000f+VQDGj;\t%Rd>_\u0015Iw}n]M/*/\u0018WW6U\u001a}WV)oy<\u001eƶU;.̟N'oy9\u0012\u001dҿ\u001eq׹aq?Lx\b3w2|,Ǔ\u0014\\\nU7FF)1?:i+\n\u001d6&)*zҝUU.ݰڋḪ;{vWکʘ~\u0006>\u0005\nF\u001fz>އüݾ\u000e}JlC\u000f-3b\u001f22~߄\t\u0003]ap!*֕S%dpnSWu]\fb>PF\u001b92VquA`n,Z\u001aS\n-эbm])Du=\t(kue\u0002iѿ\u0011wgV\u000b߾\u0007\u000b\u0000\ngmYR\u001aӫ\u0015sj\u0012RW\u0002\u001eؼD\u0015\n\u000b\u0005\f/߉%({\n\\B\u0003,\"\u000b%*|mo+Un]\u0006[~\nf\\\u001c\u0000!\u001eD\u000bK\u0016L\u0016,QͶĠ:7uH("
+    },
+    {
+      "id": "q13",
+      "query": "越南 劳动法 劳动合同 2019",
+      "expected_sources": [
+        "vn_labor_code_45_2019_chinese_taiwan_pdf.txt"
+      ],
+      "source_excerpt": "%PDF-1.7\n%\n1 0 obj\n<</Type /Catalog/Pages 2 0 R/Lang <9E43818DE825EF16C0BB381EA4A2677A1B8A5595E8B75548AF734579B7F14304>/StructTreeRoot 321 0 R/MarkInfo <</Marked true>>/Metadata 4823 0 R>>\nendobj\n4 0 obj\n<</Filter /FlateDecode/Length 1392>>\nstream\n~a_n6\u001cNf<]P\u0005KC(E# ;2|j7!nsI|<rی\u0012@T6%\u0000-ӻ!֚(%0L_\u0001\u0014\fs*0dB:r_9M1\b\u0019)-Z:31*\u0000qA/p>\u0013yp\u000bm\njP憢v4O\"HQ8pqnLUf'G"
+    },
+    {
+      "id": "q14",
+      "query": "Vietnam customs Decree 08 customs procedures",
+      "expected_sources": [
+        "vn_customs_decree08_luatvietnam.txt",
+        "vn_customs_decree08_luatvietnam.html"
+      ],
+      "source_excerpt": "Decree 08/2015/ND-CP of Government date issued 21/01/2015\nHome\nLegal Normative Documents\nNew documents\nOfficial Gazette\nLuatVietnam's translation\nOthers\nNews\nServices\nAvailable translation\nOn-demand translation\nVietnamese\nHome\nLegal Normative Documents\nExport - Import\nSearch\nAdvanced Search\nAdvanced search for legal documents\nFilter by\nReset\nTypes "
+    },
+    {
+      "id": "q15",
+      "query": "Vietnam environmental protection tax petroleum",
+      "expected_sources": [
+        "vn_environmental_tax_vnbriefing.txt",
+        "vn_environmental_tax_vnbriefing.html"
+      ],
+      "source_excerpt": "Vietnam’s Environmental Protection Tax in 2025\n×\nMenu\nAn Overview of Vietnam’s Environmental Protection Tax in 2025\nJanuary 3, 2025\nPosted by\nVietnam Briefing\nWritten by\nDezan Shira and Associates\nReading Time:\n3\nminutes\nIn December 2024, Vietnam’s National Assembly Standing Committee extended the environmental protection tax cut on petrol, oil, an"
+    },
+    {
+      "id": "q16",
+      "query": "Vietnam profit remittance abroad PLF",
+      "expected_sources": [
+        "vn_profit_transfer_plf.txt",
+        "vn_profit_transfer_plf.html"
+      ],
+      "source_excerpt": "Profit transfer | Procedures and key notes for foreign investors in Vietnam - Doing Business in Vietnam | Top Law Firm in Vietnam\nProfit transfer | Procedures and key notes for foreign investors in Vietnam\nCross-Border Investment\nDoing Business in Vietnam\nLegal Articles\n08/03/2023\nTrở về trang trước\nTransferring profits abroad is one of the top con"
+    },
+    {
+      "id": "q17",
+      "query": "越南 外汇 20/2022 境外汇款",
+      "expected_sources": [
+        "sbv_forex_circular_20_2022.txt",
+        "sbv_forex_circular_20_2022.html"
+      ],
+      "source_excerpt": "Source URL: https://www.sbv.gov.vn/en/web/sbv_portal/w/press-release-on-issuance-of-circular-no.-20/2022/tt-nhnn\nDownloaded: 2026-07-21 10:08:14\nTitle: Title - Ngân hàng Nhà nước Việt Nam\n================================================================================\n\nTitle - Ngân hàng Nhà nước Việt Nam\nNews\nMonetary Policy\nOrientations for moneta"
+    },
+    {
+      "id": "q18",
+      "query": "Vietnam direct investment capital account DICA foreign exchange",
+      "expected_sources": [
+        "vn_banking_dica_forex_indochinalink.txt"
+      ],
+      "source_excerpt": "【来源】https://indochinalink.com/zh/capital-account-dica-iica-compliance （Indochina Link，更新于2026-03-14）\n【抓取时间】2026-07-24\n【主题】银行 / 外汇 / DICA 直接投资资本账户（非税·财务金融）\n【语言】中文\n\n===== 越南外商投资企业银行账户与外汇合规（DICA / 支付账户 / 利润汇出）=====\n\n1. 三类核心账户\n- DICA 直接投资资本账户：注册资本出资、并购转让、利润/股息汇出的唯一合法通道（第06/2019/TT-NHNN号通知）。每种货币面额在一家SBV许可银行开一个。\n- 越南盾支付账户：日常运营（工资、供应商、税务、租金），可多家银行多个。\n- 外币"
+    },
+    {
+      "id": "q19",
+      "query": "越南会计准则 VAS 国际财务报告 IFRS",
+      "expected_sources": [
+        "indochinalink_accounting_vas_ifrs.txt",
+        "indochinalink_accounting_vas_ifrs.html"
+      ],
+      "source_excerpt": "Source URL: https://indochinalink.com/services/accounting\nDownloaded: 2026-07-21 10:08:41\nTitle: Accounting & Financial Reporting Services in Vietnam | Indochina Link\n================================================================================\n\nAccounting & Financial Reporting Services in Vietnam | Indochina Link\nAccounting Services\nAccounting "
+    },
+    {
+      "id": "q20",
+      "query": "Vietnam accounting Circular 99/2025 Parker Russell",
+      "expected_sources": [
+        "vn_accounting_circular99_2025_parkerrussell.txt"
+      ],
+      "source_excerpt": "【来源】https://parkerrussell.com.vn/news/key-highlights-of-circular-no-99-2025-tt-btc-replacing-circular-no-200-2014-tt-btc-effective-from-january-1-2026\n【抓取时间】2026-07-24\n【主题】会计 / 审计（非税·财务金融）\n【语言】中文编译（基于英文原文）\n\n===== 越南第99/2025/TT-BTC号通函(Circular 99/2025)取代第200/2014/TT-BTC号（2026-01-01生效）=====\n\n1. 适用范围（第1节）\n- 适用于所有类型企业，微型除外；首次纳入外商投资企业(FDI)，可按需求与能力全部或部分采"
+    },
+    {
+      "id": "q21",
+      "query": "Vietnam banking law 32/2024 credit institutions",
+      "expected_sources": [
+        "vn_banking_law_32_2024_dazpro.txt",
+        "vn_banking_law_32_2024_dazpro.html"
+      ],
+      "source_excerpt": "URL: https://dazpro.com/law-32-2024-vietnam-on-credit-institutions/\nTitle: Law 32/2024/Vietnam on Credit institutions - DAZPRO Law firm – Corporate Legal Services in Vietnam\nDownloaded: 2026-07-21 11:34:55\nContent-Type: text/html; charset=UTF-8\n================================================================================\n\nLaw 32/2024/Vietnam on "
+    },
+    {
+      "id": "q22",
+      "query": "Luật đất đai 31/2024/QH15",
+      "expected_sources": [
+        "vn_land_law_31_2024_luatvietnam.txt",
+        "vn_land_law_31_2024_luatvietnam.html"
+      ],
+      "source_excerpt": "Land Law 2024 No. 31/2024/QH15\nHome\nLegal Normative Documents\nNew documents\nOfficial Gazette\nLuatVietnam's translation\nOthers\nNews\nServices\nAvailable translation\nOn-demand translation\nVietnamese\nHome\nLegal Normative Documents\nLand - Housing\nSearch\nAdvanced Search\nAdvanced search for legal documents\nFilter by\nReset\nTypes of documents\nLaw\nOrdinance\nD"
+    },
+    {
+      "id": "q23",
+      "query": "Vietnam Investment Law 61/2020 conditional business",
+      "expected_sources": [
+        "vn_investment_law_61_2020_luatvietnam.txt",
+        "vn_investment_law_61_2020_luatvietnam.html"
+      ],
+      "source_excerpt": "Investment Law 2020, Law No. 61/2020/QH14\nHome\nLegal Normative Documents\nNew documents\nOfficial Gazette\nLuatVietnam's translation\nOthers\nNews\nServices\nAvailable translation\nOn-demand translation\nVietnamese\nHome\nLegal Normative Documents\nInvestment\nSearch\nAdvanced Search\nAdvanced search for legal documents\nFilter by\nReset\nTypes of documents\nLaw\nOrdi"
+    },
+    {
+      "id": "q24",
+      "query": "Vietnam investment incentives Global Law Experts",
+      "expected_sources": [
+        "global_law_experts_vn_investment_incentives.txt",
+        "global_law_experts_vn_investment_incentives.html"
+      ],
+      "source_excerpt": "Source URL: https://globallawexperts.com/vietnam-investment-incentives/\nDownloaded: 2026-07-21 10:08:37\nTitle: Vietnam Investment Incentives | Global Law Experts\n================================================================================\n\nVietnam Investment Incentives | Global Law Experts\nJoin as a Law Firm\nFind a Lawyer\nAbout Us\nFAQ\nSign In\n["
+    },
+    {
+      "id": "q25",
+      "query": "Vietnam tax administration Circular 80 Expertis",
+      "expected_sources": [
+        "vn_tax_admin_circular80_expertis.txt",
+        "vn_tax_admin_circular80_expertis.html"
+      ],
+      "source_excerpt": "Source URL: https://expertis.vn/en/kb/vbpl/thong-tu-80-2021-tt-btc\nDownloaded: 2026-07-21T11:26:43.441673\n\nCircular 80/2021/TT-BTC Guiding the management of taxes in 2022\nSkip to content\nLEGAL DOCUMENTS\nSearch\nHome\n/\nDocument\n/\nCircular 80/2021/TT-BTC provides guidance on tax management from January 1, 2022.\nText information\n+ Issuing authority: Mi"
+    },
+    {
+      "id": "q26",
+      "query": "Vietnam Decree 126 tax administration Mazars",
+      "expected_sources": [
+        "vn_tax_admin_decree126_mazars.txt",
+        "vn_tax_admin_decree126_mazars.html"
+      ],
+      "source_excerpt": "Source URL: https://www.mazars.vn/Home/Insights/Tax-Legal-Newsletter/Decree-126-guiding-Law-on-Tax-administration-2019\nDownloaded: 2026-07-21T11:26:30.997013\n\nTax Alert - Decree 126 guiding Law on Tax administration 2019 - Forvis Mazars\nTax Alert - Decree 126 guiding Law on Tax administration 2019\nInsights\nVietnam updates\nNewsletters & Alerts\nVietn"
+    },
+    {
+      "id": "q27",
+      "query": "Luật kiểm toán độc lập 67/2011/QH12",
+      "expected_sources": [
+        "vn_audit_law_67_2011_luatvietnam.txt",
+        "vn_audit_law_67_2011_luatvietnam.html"
+      ],
+      "source_excerpt": "Law on Independent Audit, No. 67/2011/QH12\nHome\nLegal Normative Documents\nNew documents\nOfficial Gazette\nLuatVietnam's translation\nOthers\nNews\nServices\nAvailable translation\nOn-demand translation\nVietnamese\nHome\nLegal Normative Documents\nAccounting - Audit; Policy\nSearch\nAdvanced Search\nAdvanced search for legal documents\nFilter by\nReset\nTypes of d"
+    },
+    {
+      "id": "q28",
+      "query": "Nghị định 90/2025 kiểm toán độc lập",
+      "expected_sources": [
+        "vn_audit_decree90_2025_luatvietnam.txt",
+        "vn_audit_decree90_2025_luatvietnam.html"
+      ],
+      "source_excerpt": "Source: https://english.luatvietnam.vn/ke-toan/decree-90-2025-nd-cp-detail-law-on-independent-audit-397394-d1.html\nExtracted: 2026-07-21 11:46\n\nDecree 90/2025/ND-CP detail Law on Independent Audit\nHome\nLegal Normative Documents\nNew documents\nOfficial Gazette\nLuatVietnam's translation\nOthers\nNews\nServices\nAvailable translation\nOn-demand translation\n"
+    },
+    {
+      "id": "q29",
+      "query": "Vietnam technology transfer law 2017",
+      "expected_sources": [
+        "vn_tech_transfer_law_2017_luatvietnam.txt",
+        "vn_tech_transfer_law_2017_luatvietnam.html"
+      ],
+      "source_excerpt": "Source: https://english.luatvietnam.vn/law-no-07-2017-qh14-dated-june-19-2017-of-the-national-assembly-on-technology-transfer-115516-doc1.html\nExtracted: 2026-07-21 11:46\n\nLaw on technology transfer, Law No. 07/2017/QH14\nHome\nLegal Normative Documents\nNew documents\nOfficial Gazette\nLuatVietnam's translation\nOthers\nNews\nServices\nAvailable translatio"
+    },
+    {
+      "id": "q30",
+      "query": "越南 20/2025 关联交易 转让定价",
+      "expected_sources": [
+        "chinatax_vn_tp_decree20_2025.txt",
+        "chinatax_vn_tp_decree20_2025.html"
+      ],
+      "source_excerpt": "Source URL: https://www.chinatax.gov.cn/chinatax/c102745/c5241418/content.html\nDownloaded: 2026-07-21 10:08:03\nTitle: \n\n    越南修订关联交易规则_国家税务总局\n\n  \n================================================================================\n\n越南修订关联交易规则_国家税务总局\n简\n繁\nEN\n本站热词：\n发票\n小微企业\n个人所得税\n发票查询\n社保\n首页\n总局概况\n信息公开\n新闻发布\n政策法规\n纳税服务\n互动交流\n专题专栏\n您所在的位置：\n首页\n>\n新闻发布\n>\n专题专栏\n>\n税收服务"
+    }
+  ]
+}

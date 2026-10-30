@@ -1,0 +1,466 @@
+{
+  "baseline": "direct original reviewed Python, same arguments; refs stdout exact",
+  "cases": [
+    {
+      "id": "p01",
+      "operation": "cit_estimate",
+      "arguments": {
+        "revenue": 50000000000.0,
+        "cost": 38000000000.0,
+        "rate": 10,
+        "free_years": 4,
+        "half_years": 9,
+        "year": 1
+      },
+      "label": "holiday boundary 1"
+    },
+    {
+      "id": "p02",
+      "operation": "cit_estimate",
+      "arguments": {
+        "revenue": 50000000000.0,
+        "cost": 38000000000.0,
+        "rate": 10,
+        "free_years": 4,
+        "half_years": 9,
+        "year": 4
+      },
+      "label": "holiday boundary 4"
+    },
+    {
+      "id": "p03",
+      "operation": "cit_estimate",
+      "arguments": {
+        "revenue": 50000000000.0,
+        "cost": 38000000000.0,
+        "rate": 10,
+        "free_years": 4,
+        "half_years": 9,
+        "year": 5
+      },
+      "label": "holiday boundary 5"
+    },
+    {
+      "id": "p04",
+      "operation": "cit_estimate",
+      "arguments": {
+        "revenue": 50000000000.0,
+        "cost": 38000000000.0,
+        "rate": 10,
+        "free_years": 4,
+        "half_years": 9,
+        "year": 13
+      },
+      "label": "holiday boundary 13"
+    },
+    {
+      "id": "p05",
+      "operation": "cit_estimate",
+      "arguments": {
+        "revenue": 50000000000.0,
+        "cost": 38000000000.0,
+        "rate": 10,
+        "free_years": 4,
+        "half_years": 9,
+        "year": 14
+      },
+      "label": "holiday boundary 14"
+    },
+    {
+      "id": "p06",
+      "operation": "cit_estimate",
+      "arguments": {
+        "revenue": 0,
+        "cost": 0,
+        "loss_carry": 0
+      },
+      "label": "loss / zero / ties-to-even rounding"
+    },
+    {
+      "id": "p07",
+      "operation": "cit_estimate",
+      "arguments": {
+        "revenue": 10,
+        "cost": 20,
+        "loss_carry": 0
+      },
+      "label": "loss / zero / ties-to-even rounding"
+    },
+    {
+      "id": "p08",
+      "operation": "cit_estimate",
+      "arguments": {
+        "revenue": 1000,
+        "cost": 0,
+        "loss_carry": 1200
+      },
+      "label": "loss / zero / ties-to-even rounding"
+    },
+    {
+      "id": "p09",
+      "operation": "cit_estimate",
+      "arguments": {
+        "revenue": 1000,
+        "cost": 100,
+        "loss_carry": 100
+      },
+      "label": "loss / zero / ties-to-even rounding"
+    },
+    {
+      "id": "p10",
+      "operation": "cit_estimate",
+      "arguments": {
+        "revenue": 100.5,
+        "cost": 0,
+        "loss_carry": 0
+      },
+      "label": "loss / zero / ties-to-even rounding"
+    },
+    {
+      "id": "p11",
+      "operation": "cit_estimate",
+      "arguments": {
+        "revenue": 101.5,
+        "cost": 0,
+        "loss_carry": 0
+      },
+      "label": "loss / zero / ties-to-even rounding"
+    },
+    {
+      "id": "p12",
+      "operation": "cit_schedule",
+      "arguments": {
+        "revenue": 1000,
+        "cost": 100,
+        "free_years": 2,
+        "half_years": 3,
+        "horizon": 6
+      },
+      "label": "schedule horizon and zero income"
+    },
+    {
+      "id": "p13",
+      "operation": "cit_schedule",
+      "arguments": {
+        "revenue": 0,
+        "cost": 1
+      },
+      "label": "schedule horizon and zero income"
+    },
+    {
+      "id": "p14",
+      "operation": "cit_schedule",
+      "arguments": {
+        "revenue": 1000,
+        "cost": 0,
+        "rate": 0
+      },
+      "label": "schedule horizon and zero income"
+    },
+    {
+      "id": "p15",
+      "operation": "cit_schedule",
+      "arguments": {
+        "revenue": 1000,
+        "cost": 0,
+        "horizon": 100
+      },
+      "label": "schedule horizon and zero income"
+    },
+    {
+      "id": "p16",
+      "operation": "payroll_total",
+      "arguments": {
+        "headcount": 1,
+        "monthly_gross_wage": 0
+      },
+      "label": "PIT bracket boundary 0"
+    },
+    {
+      "id": "p17",
+      "operation": "payroll_total",
+      "arguments": {
+        "headcount": 1,
+        "monthly_gross_wage": 11000000.0
+      },
+      "label": "PIT bracket boundary 11000000.0"
+    },
+    {
+      "id": "p18",
+      "operation": "payroll_total",
+      "arguments": {
+        "headcount": 1,
+        "monthly_gross_wage": 16000000.0
+      },
+      "label": "PIT bracket boundary 16000000.0"
+    },
+    {
+      "id": "p19",
+      "operation": "payroll_total",
+      "arguments": {
+        "headcount": 1,
+        "monthly_gross_wage": 21000000.0
+      },
+      "label": "PIT bracket boundary 21000000.0"
+    },
+    {
+      "id": "p20",
+      "operation": "payroll_total",
+      "arguments": {
+        "headcount": 1,
+        "monthly_gross_wage": 29000000.0
+      },
+      "label": "PIT bracket boundary 29000000.0"
+    },
+    {
+      "id": "p21",
+      "operation": "payroll_total",
+      "arguments": {
+        "headcount": 1,
+        "monthly_gross_wage": 43000000.0
+      },
+      "label": "PIT bracket boundary 43000000.0"
+    },
+    {
+      "id": "p22",
+      "operation": "payroll_total",
+      "arguments": {
+        "headcount": 1,
+        "monthly_gross_wage": 63000000.0
+      },
+      "label": "PIT bracket boundary 63000000.0"
+    },
+    {
+      "id": "p23",
+      "operation": "payroll_total",
+      "arguments": {
+        "headcount": 1,
+        "monthly_gross_wage": 91000000.0
+      },
+      "label": "PIT bracket boundary 91000000.0"
+    },
+    {
+      "id": "p24",
+      "operation": "payroll_total",
+      "arguments": {
+        "headcount": 1,
+        "monthly_gross_wage": 91000001.0
+      },
+      "label": "PIT bracket boundary 91000001.0"
+    },
+    {
+      "id": "p25",
+      "operation": "payroll_total",
+      "arguments": {
+        "headcount": 0,
+        "monthly_gross_wage": 25000000.0,
+        "dependents": 2
+      },
+      "label": "zero staff, dependents"
+    },
+    {
+      "id": "p26",
+      "operation": "fct_withhold",
+      "arguments": {
+        "gross_payment": 100000000.5,
+        "rate": 0
+      },
+      "label": "withholding and rounding"
+    },
+    {
+      "id": "p27",
+      "operation": "fct_grossup",
+      "arguments": {
+        "net_amount": 90000000.5,
+        "rate": 0
+      },
+      "label": "gross-up and rounding"
+    },
+    {
+      "id": "p28",
+      "operation": "fct_withhold",
+      "arguments": {
+        "gross_payment": 100000000.5,
+        "rate": 5
+      },
+      "label": "withholding and rounding"
+    },
+    {
+      "id": "p29",
+      "operation": "fct_grossup",
+      "arguments": {
+        "net_amount": 90000000.5,
+        "rate": 5
+      },
+      "label": "gross-up and rounding"
+    },
+    {
+      "id": "p30",
+      "operation": "fct_withhold",
+      "arguments": {
+        "gross_payment": 100000000.5,
+        "rate": 10
+      },
+      "label": "withholding and rounding"
+    },
+    {
+      "id": "p31",
+      "operation": "fct_grossup",
+      "arguments": {
+        "net_amount": 90000000.5,
+        "rate": 10
+      },
+      "label": "gross-up and rounding"
+    },
+    {
+      "id": "p32",
+      "operation": "fct_withhold",
+      "arguments": {
+        "gross_payment": 100000000.5,
+        "rate": 100
+      },
+      "label": "withholding and rounding"
+    },
+    {
+      "id": "p33",
+      "operation": "fct_grossup",
+      "arguments": {
+        "net_amount": 90000000.5,
+        "rate": 100
+      },
+      "label": "gross-up and rounding"
+    },
+    {
+      "id": "p34",
+      "operation": "tariff",
+      "arguments": {
+        "cif": 100000000.5,
+        "category": "machinery_import"
+      },
+      "label": "tariff category"
+    },
+    {
+      "id": "p35",
+      "operation": "tariff",
+      "arguments": {
+        "cif": 100000000.5,
+        "category": "raw_material"
+      },
+      "label": "tariff category"
+    },
+    {
+      "id": "p36",
+      "operation": "tariff",
+      "arguments": {
+        "cif": 100000000.5,
+        "category": "intermediate"
+      },
+      "label": "tariff category"
+    },
+    {
+      "id": "p37",
+      "operation": "tariff",
+      "arguments": {
+        "cif": 100000000.5,
+        "category": "finished_goods"
+      },
+      "label": "tariff category"
+    },
+    {
+      "id": "p38",
+      "operation": "tariff",
+      "arguments": {
+        "cif": 100000000.5,
+        "category": "alcohol"
+      },
+      "label": "tariff category"
+    },
+    {
+      "id": "p39",
+      "operation": "tariff",
+      "arguments": {
+        "cif": 100000000.5,
+        "category": "vehicle"
+      },
+      "label": "tariff category"
+    },
+    {
+      "id": "p40",
+      "operation": "tariff",
+      "arguments": {
+        "cif": 100000000.5,
+        "category": "tobacco"
+      },
+      "label": "tariff category"
+    },
+    {
+      "id": "p41",
+      "operation": "tariff",
+      "arguments": {
+        "cif": 1,
+        "category": "vehicle",
+        "vat_override": 0
+      },
+      "label": "explicit zero VAT"
+    },
+    {
+      "id": "p42",
+      "operation": "location_sim",
+      "arguments": {
+        "headcount": 0,
+        "factory_area": 0,
+        "land_area": 0
+      },
+      "label": "location includes original zero-override behavior"
+    },
+    {
+      "id": "p43",
+      "operation": "location_sim",
+      "arguments": {
+        "headcount": 100,
+        "factory_area": 5000,
+        "land_area": 50000
+      },
+      "label": "location includes original zero-override behavior"
+    },
+    {
+      "id": "p44",
+      "operation": "location_sim",
+      "arguments": {
+        "headcount": 20,
+        "factory_area": 100,
+        "land_area": 300,
+        "provinces": [
+          "bac_ninh",
+          "quang_ngai"
+        ],
+        "profit": 1000000.0
+      },
+      "label": "location includes original zero-override behavior"
+    },
+    {
+      "id": "p45",
+      "operation": "location_sim",
+      "arguments": {
+        "headcount": 1,
+        "factory_area": 1,
+        "land_area": 1,
+        "profit": 1000000.0,
+        "cit_override": 0
+      },
+      "label": "location includes original zero-override behavior"
+    },
+    {
+      "id": "p46",
+      "operation": "refs_calendar",
+      "arguments": {},
+      "label": "original printed text and data"
+    },
+    {
+      "id": "p47",
+      "operation": "refs_odi",
+      "arguments": {},
+      "label": "original printed text and data"
+    }
+  ]
+}
