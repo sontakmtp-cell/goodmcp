@@ -33,3 +33,8 @@ build/
 
 # G0 rebuildable local index and run scratch (evidence is copied to Docs/reports)
 .g0-local/
+
+# Local G1 credentials and verification scratch
+.local/
+.pytest_cache/
+!.env.example

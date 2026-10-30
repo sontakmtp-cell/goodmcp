@@ -1,0 +1,5 @@
+FROM caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+# Local proxy listens on 8080, so remove the upstream executable's low-port file
+# capability. Otherwise cap_drop ALL + no-new-privileges can reject exec itself.
+RUN setcap -r /usr/bin/caddy
+USER 10001:10001

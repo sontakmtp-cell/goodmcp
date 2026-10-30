@@ -1,0 +1,16 @@
+*
+!pyproject.toml
+!uv.lock
+!apps/
+!apps/api/
+!apps/api/**
+!packages/
+!packages/core/
+!packages/core/**
+!infra/
+!infra/migrations/
+!infra/migrations/**
+!infra/alembic.ini
+!tests/
+!tests/**
+**/__pycache__
