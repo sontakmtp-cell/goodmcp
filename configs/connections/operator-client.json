@@ -1,0 +1,9 @@
+{
+  "client_id": "goodmcp-local-cli",
+  "client_name": "Local readonly CLI",
+  "redirect_uris": ["http://127.0.0.1:8766/callback"],
+  "token_endpoint_auth_method": "none",
+  "grant_types": ["authorization_code", "refresh_token"],
+  "response_types": ["code"],
+  "scope": "hub:read"
+}

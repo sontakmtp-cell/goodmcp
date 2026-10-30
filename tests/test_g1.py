@@ -3,6 +3,7 @@ import json
 import os
 from pathlib import Path
 from uuid import uuid4
+from urllib.parse import urlsplit
 
 import httpx
 import pytest
@@ -225,7 +226,7 @@ def test_runtime_process_has_only_runtime_secret_and_no_host_control():
 
 
 def test_health_and_all_business_routes_fail_closed_even_with_forged_headers():
-    with httpx.Client(base_url="http://api:8000") as client:
+    with httpx.Client(base_url="http://api:8000", headers={"Host": urlsplit(os.environ["HUB_PUBLIC_BASE_URL"]).netloc}) as client:
         for path in ("/health/live", "/health/ready"):
             r = client.get(path)
             assert r.status_code == 200 and r.json()["request_id"] == r.headers["x-request-id"]

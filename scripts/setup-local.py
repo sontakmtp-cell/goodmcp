@@ -7,7 +7,7 @@ import secrets
 def setup(directory):
     directory = Path(directory).resolve()
     directory.mkdir(parents=True, exist_ok=True, mode=0o700)
-    for name in ("admin_password", "migrator_password", "runtime_password", "owner_password"):
+    for name in ("admin_password", "migrator_password", "runtime_password", "owner_password", "auth_password"):
         path = directory / name
         if path.exists():
             if len(path.read_text(encoding="utf-8").strip()) < 16:

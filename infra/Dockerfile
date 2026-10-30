@@ -3,7 +3,7 @@ COPY --from=ghcr.io/astral-sh/uv:0.9.7@sha256:ba4857bf2a068e9bc0e64eed8563b06590
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 UV_NO_CACHE=1
 WORKDIR /app
 COPY pyproject.toml uv.lock ./
-RUN uv sync --frozen --no-dev --no-install-project && mkdir /data && chown 10001:10001 /data
+RUN uv sync --frozen --no-dev --no-install-project && mkdir /data /wirestate && chown 10001:10001 /data /wirestate
 ENV PATH="/app/.venv/bin:$PATH" PYTHONPATH="/app/packages/core:/app"
 COPY apps/api /app/apps/api
 COPY packages/core /app/packages/core

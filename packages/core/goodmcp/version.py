@@ -1,0 +1,2 @@
+REVISION = "0002_g2"
+STAGE = "G2"

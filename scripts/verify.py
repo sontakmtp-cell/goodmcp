@@ -20,7 +20,6 @@ import uuid
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-EVIDENCE = ROOT / "Docs/reports/evidence/G1"
 
 
 def json_tail(value):
@@ -32,11 +31,12 @@ def json_tail(value):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--stage", choices=["G1"], required=True)
+    parser.add_argument("--stage", choices=["G1", "G2"], required=True)
     parser.add_argument("--working-tree", action="store_true", help="Development only; does not satisfy clean-checkout acceptance")
     args = parser.parse_args()
+    EVIDENCE = ROOT / "Docs/reports/evidence" / args.stage
     stamp = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ") + "-" + uuid.uuid4().hex[:6]
-    project = "goodmcp-g1-verify-" + stamp.lower()
+    project = "goodmcp-" + args.stage.lower() + "-verify-" + stamp.lower()
     scratch = ROOT / ".local/verify" / stamp
     source = scratch / "source"
     scratch.mkdir(parents=True)
@@ -61,12 +61,12 @@ def main():
         sock.bind(("127.0.0.1", 0))
         port = sock.getsockname()[1]
     env = {**os.environ, "HUB_SECRETS_DIR": str(secret_dir), "HUB_PORT": str(port), "HUB_ALLOW_TEST_FIXTURES": "1",
-           "HUB_OWNER_EMAIL": "owner@local.invalid"}
+           "HUB_OWNER_EMAIL": "owner@local.invalid", "HUB_PUBLIC_BASE_URL": "http://localhost:8080"}
     base = ["docker", "compose", "-p", project, "-f", str(source / "infra/compose.yml")]
     EVIDENCE.mkdir(parents=True, exist_ok=True)
     commands = []
     log = []
-    evidence = {"stage": "G1", "status": "in_progress", "source_commit": commit,
+    evidence = {"stage": args.stage, "status": "in_progress", "source_commit": commit,
                 "source_mode": "working_tree_dev" if args.working_tree else "clean_git_archive",
                 "run_id": stamp, "project": project, "checks": {}, "commands": commands}
 
@@ -90,7 +90,7 @@ def main():
             try:
                 with urllib.request.urlopen(f"http://127.0.0.1:{port}/health/ready", timeout=3) as response:
                     payload = json.load(response)
-                    assert response.status == 200 and payload["data"]["stage"] == "G1"
+                    assert response.status == 200 and payload["data"]["stage"] in ("G1", "G2")
                     return payload
             except Exception:
                 if attempt == 49: raise
@@ -111,19 +111,34 @@ def main():
         assert initial["users"] == initial["workspaces"] == 1
         evidence["checks"]["single_owner_bootstrap_idempotent"] = True
         admin("fixtures")
-        run("start-local-stack", "up", "-d", "--wait", "api", "worker", "caddy")
+        if args.stage == "G2":
+            run("auth-workspace-fixture", "run", "--rm", "--no-deps", "auth_probe")
+        run("start-local-stack", "up", "-d", "--wait", "api", "auth", "worker", "caddy")
         health()
         output = run("postgres-and-filesystem-tests", "run", "--rm", "--no-deps", "tests")
         match = re.search(r"(\d+) passed", output)
         assert match, "No successful pytest summary"
         evidence["checks"]["pytest_passed"] = int(match.group(1))
+        if args.stage == "G2":
+            result = json_tail(run("oauth-mcp-wire-full", "run", "--rm", "--no-deps", "wire"))
+            assert result["passed"]
+            evidence["wire_full"] = result
+            run("oauth-negative-fixtures", "run", "--rm", "--no-deps", "auth_probe", "python", "-m", "goodmcp.auth_admin", "negatives")
+            result = json_tail(run("oauth-wire-negative-tokens", "run", "--rm", "--no-deps", "wire", "python", "tests/wire_g2.py", "negatives"))
+            assert result["passed"]
+            evidence["wire_negatives"] = result
         before = json_tail(run("seed-persistence", "run", "--rm", "--no-deps", "tests", "python", "tests/persistence.py", "seed"))
         # Stronger than process restart: recreate every service, retaining volumes.
         run("recreate-stack-down-keep-volumes", "down")
-        run("recreate-stack-up", "up", "-d", "--wait", "postgres", "api", "worker", "caddy")
+        run("recreate-stack-up", "up", "-d", "--wait", "postgres", "api", "auth", "worker", "caddy")
         after = json_tail(run("verify-persistence", "run", "--rm", "--no-deps", "tests", "python", "tests/persistence.py", "check"))
         assert before["artifact_id"] == after["artifact_id"] and after["persisted_after_recreate"]
         evidence["checks"]["db_and_blob_persist_after_recreate"] = True
+        if args.stage == "G2":
+            result = json_tail(run("oauth-survives-recreate", "run", "--rm", "--no-deps", "wire", "python", "tests/wire_g2.py", "resume"))
+            assert result["passed"]
+            evidence["wire_resume"] = result
+            evidence["credential_storage"] = json_tail(run("inspect-credential-storage", "run", "--rm", "--no-deps", "auth_probe", "python", "-m", "goodmcp.auth_admin", "inspect"))
         health()
         run("stop-db-for-negative-health", "stop", "postgres")
         run("readiness-denies-db-outage", "run", "--rm", "--no-deps", "tests", "python", "tests/readiness.py", "503")
@@ -150,6 +165,8 @@ def main():
             if service in ("api", "worker"):
                 assert container["Config"]["User"] == "10001:10001" and container["HostConfig"]["ReadonlyRootfs"]
                 assert all(m["Destination"].split("/")[-1] not in ("admin_password", "migrator_password", "owner_password") for m in mounts)
+            if service == "auth":
+                assert [m["Destination"] for m in mounts if m["Destination"].startswith("/run/secrets/")] == ["/run/secrets/auth_password"]
             services.append({"service": service, "image_id": container["Image"], "user": container["Config"]["User"],
                 "ports": ports, "readonly_rootfs": container["HostConfig"]["ReadonlyRootfs"],
                 "secret_names": [m["Destination"].split("/")[-1] for m in mounts if m["Destination"].startswith("/run/secrets/")]})
@@ -169,7 +186,7 @@ def main():
                 raise RuntimeError("Secret found in evidence; refusing to publish")
         (EVIDENCE / "verify.json").write_text(encoded, encoding="utf-8")
         (EVIDENCE / "verify-console.txt").write_text(console, encoding="utf-8")
-    print("G1 passed: " + evidence["source_mode"] + ", " + str(evidence["checks"]["pytest_passed"]) + " PostgreSQL/filesystem tests", flush=True)
+    print(args.stage + " passed: " + evidence["source_mode"] + ", " + str(evidence["checks"]["pytest_passed"]) + " PostgreSQL/filesystem tests", flush=True)
 
 
 if __name__ == "__main__": main()

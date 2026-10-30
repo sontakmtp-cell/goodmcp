@@ -1,7 +1,7 @@
 name: goodmcp-local
 
 x-app: &app
-  image: goodmcp-g1:local
+  image: goodmcp-hub:local
   build:
     context: ..
     dockerfile: infra/Dockerfile
@@ -15,6 +15,8 @@ x-app: &app
     HUB_DB_HOST: postgres
     HUB_DB_NAME: goodmcp
     HUB_STORAGE_ROOT: /data
+    HUB_PUBLIC_BASE_URL: ${HUB_PUBLIC_BASE_URL:-http://127.0.0.1:18080}
+    HUB_ALLOW_HTTP_LOOPBACK: "1"
   networks: [private]
   logging: &logging
     driver: json-file
@@ -57,6 +59,7 @@ services:
     networks: [gateway]
     depends_on:
       api: {condition: service_healthy}
+      auth: {condition: service_healthy}
     restart: unless-stopped
     mem_limit: 128m
     cpus: 0.25
@@ -75,6 +78,22 @@ services:
     volumes: [artifacts:/data]
     healthcheck:
       test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health/ready',timeout=2)"]
+      interval: 3s
+      timeout: 4s
+      retries: 30
+
+  auth:
+    <<: *app
+    command: [uvicorn, apps.api.auth:app, --host, 0.0.0.0, --port, "8001", --no-access-log]
+    secrets: [auth_password]
+    networks: [private, gateway]
+    depends_on:
+      postgres: {condition: service_healthy}
+    restart: unless-stopped
+    mem_limit: 512m
+    cpus: 1
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8001/health/ready',timeout=2)"]
       interval: 3s
       timeout: 4s
       retries: 30
@@ -102,7 +121,7 @@ services:
     <<: *app
     profiles: [ops]
     command: [python, -m, goodmcp.admin, owner]
-    secrets: [admin_password, migrator_password, runtime_password, owner_password]
+    secrets: [admin_password, migrator_password, runtime_password, owner_password, auth_password]
     environment:
       <<: *app-env
       HUB_OWNER_EMAIL: ${HUB_OWNER_EMAIL:-owner@local.invalid}
@@ -119,14 +138,46 @@ services:
     mem_limit: 512m
     cpus: 1
 
+  wire:
+    image: goodmcp-hub:local
+    profiles: [test]
+    user: "10001:10001"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    pids_limit: 128
+    tmpfs: ["/tmp:rw,noexec,nosuid,size=64m"]
+    network_mode: service:caddy
+    secrets: [owner_password]
+    environment:
+      HUB_PUBLIC_BASE_URL: ${HUB_PUBLIC_BASE_URL:-http://127.0.0.1:18080}
+    volumes: [wire_state:/wirestate]
+    command: [python, tests/wire_g2.py, full]
+    mem_limit: 256m
+    cpus: 1
+
+  auth_probe:
+    <<: *app
+    profiles: [test]
+    command: [python, -m, goodmcp.auth_admin, fixtures]
+    secrets: [admin_password, owner_password]
+    volumes: [wire_state:/wirestate:ro]
+    environment:
+      <<: *app-env
+      HUB_ALLOW_TEST_FIXTURES: ${HUB_ALLOW_TEST_FIXTURES:-0}
+    mem_limit: 256m
+    cpus: 1
+
 networks:
   private: {internal: true}
   gateway: {}
 volumes:
   postgres_data:
   artifacts:
+  wire_state:
 secrets:
   admin_password: {file: "${HUB_SECRETS_DIR:-../.local/secrets}/admin_password"}
   migrator_password: {file: "${HUB_SECRETS_DIR:-../.local/secrets}/migrator_password"}
   runtime_password: {file: "${HUB_SECRETS_DIR:-../.local/secrets}/runtime_password"}
   owner_password: {file: "${HUB_SECRETS_DIR:-../.local/secrets}/owner_password"}
+  auth_password: {file: "${HUB_SECRETS_DIR:-../.local/secrets}/auth_password"}

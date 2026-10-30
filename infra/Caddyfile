@@ -3,5 +3,11 @@
     auto_https off
 }
 :8080 {
-    reverse_proxy api:8000
+    @issuer path /auth/* /.well-known/oauth-authorization-server/auth
+    handle @issuer {
+        reverse_proxy auth:8001
+    }
+    handle {
+        reverse_proxy api:8000
+    }
 }

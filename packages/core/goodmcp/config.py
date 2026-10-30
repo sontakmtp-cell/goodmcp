@@ -13,6 +13,7 @@ def secret(name: str) -> str:
 
 def database_url(role: str = "runtime") -> URL:
     names = {"runtime": ("hub_runtime", "runtime_password"),
+             "auth": ("hub_auth", "auth_password"),
              "migrator": ("hub_migrator", "migrator_password"),
              "admin": ("postgres", "admin_password")}
     user, filename = names[role]

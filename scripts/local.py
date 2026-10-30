@@ -27,8 +27,8 @@ def main():
         run("run", "--rm", "--no-deps", "admin", "python", "-m", "goodmcp.admin", "roles")
         run("run", "--rm", "--no-deps", "migrate")
         run("run", "--rm", "--no-deps", "admin")
-        run("up", "-d", "--wait", "api", "worker", "caddy")
-        print("G1 local: http://127.0.0.1:" + env.get("HUB_PORT", "18080") + "/health/ready")
+        run("up", "-d", "--wait", "api", "auth", "worker", "caddy")
+        print("Local Hub: " + env.get("HUB_PUBLIC_BASE_URL", "http://127.0.0.1:18080") + "/health/ready")
     elif args.operation == "down": run("down")
     else: run("ps")
 

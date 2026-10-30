@@ -1,22 +1,14 @@
 """Explicit operator-only CLI. Admin secret never mounted into API/worker/tests."""
 import argparse
-import base64
-import hashlib
 import json
 import os
-import secrets
 from uuid import uuid4
 
 import psycopg
 from psycopg import sql
 from .config import database_url, secret
 from .fixtures import USER_A, USER_B, VIEWER, WORKSPACE_A, WORKSPACE_B, PROJECT_A, PROJECT_B
-
-
-def password_hash(value):
-    salt = secrets.token_bytes(16)
-    digest = hashlib.scrypt(value.encode(), salt=salt, n=16384, r=8, p=1)
-    return "scrypt$16384$8$1$" + base64.b64encode(salt).decode() + "$" + base64.b64encode(digest).decode()
+from .passwords import password_hash
 
 
 def connect():
@@ -25,7 +17,7 @@ def connect():
 
 
 def roles(conn):
-    for name, filename in (("hub_migrator", "migrator_password"), ("hub_runtime", "runtime_password")):
+    for name, filename in (("hub_migrator", "migrator_password"), ("hub_runtime", "runtime_password"), ("hub_auth", "auth_password")):
         exists = conn.execute("SELECT 1 FROM pg_roles WHERE rolname=%s", (name,)).fetchone()
         verb = "ALTER" if exists else "CREATE"
         conn.execute(sql.SQL(verb + " ROLE {} LOGIN NOSUPERUSER NOBYPASSRLS NOCREATEDB NOCREATEROLE NOREPLICATION NOINHERIT PASSWORD {}").format(
@@ -33,7 +25,7 @@ def roles(conn):
     conn.execute("ALTER DATABASE goodmcp OWNER TO hub_migrator")
     conn.execute("ALTER SCHEMA public OWNER TO hub_migrator")
     conn.execute("REVOKE ALL ON DATABASE goodmcp FROM PUBLIC")
-    conn.execute("GRANT CONNECT ON DATABASE goodmcp TO hub_runtime,hub_migrator")
+    conn.execute("GRANT CONNECT ON DATABASE goodmcp TO hub_runtime,hub_migrator,hub_auth")
     conn.execute("REVOKE ALL ON SCHEMA public FROM PUBLIC")
 
 
