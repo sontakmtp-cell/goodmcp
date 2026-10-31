@@ -78,8 +78,15 @@ class AccessBoundary:
             return await error(400, "invalid_input", "Duplicate security header")
         authorization = headers.get("authorization", "")
         if not authorization.startswith("Bearer "): return await error(401, "unauthenticated", "Bearer token required", challenge=True)
-        try: token = await self.verifier.verify_token(authorization[7:])
-        except Exception: return await error(503, "runtime_unavailable", "Authorization unavailable")
+        # This is a NEW HTTP security boundary. ASGI tasks can inherit a context
+        # holding a credential from an earlier request; it must not skip the DB
+        # expiry/revocation check. Only the inner MCP check may reuse the token
+        # that this boundary has just verified for the current request.
+        inherited = current_token.set(None)
+        try:
+            try: token = await self.verifier.verify_token(authorization[7:])
+            except Exception: return await error(503, "runtime_unavailable", "Authorization unavailable")
+        finally: current_token.reset(inherited)
         if token is None: return await error(401, "unauthenticated", "Invalid or expired token", challenge=True)
         if "hub:read" not in token.scopes: return await error(403, "forbidden", "Insufficient scope", challenge=True)
         selected = headers.get("x-workspace-id")

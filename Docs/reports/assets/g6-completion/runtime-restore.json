@@ -1,0 +1,11 @@
+{
+  "restored": true,
+  "image_digest": "sha256:1f5a9fead877756bb149b10165d6d338dfb4e71922ef73ccc53ad16e843ddeff",
+  "release_digest": "9613a98c728057a19bdfbd9e2189afc61eb3a4683cbec2a01363879d18d8a9b9",
+  "build_ref": "iy1wgson9ja7hobsfaartfs4w",
+  "validated_blobs": 18,
+  "release_or_database_changed": false,
+  "recovery_archive": "H:\\AI\\goodmcp\\.local\\g4\\recovery\\approved-1f5a9fea.oci.tar",
+  "recovery_archive_sha256": "d803141981b64fbf4239adf8ec6868a467fe00d6da8c6b6ad3acc42c9c137ac3",
+  "active_release_matches_original": true
+}

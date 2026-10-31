@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-31",
+  "surface": "in-app browser via cua_repl fallback",
+  "scope": "G6 local UI; not host cloud/device/production acceptance",
+  "viewports": [
+    {
+      "surface": "portal",
+      "width": 320,
+      "height": 740,
+      "horizontal_overflow": false
+    },
+    {
+      "surface": "portal",
+      "width": 390,
+      "height": 844,
+      "horizontal_overflow": false
+    },
+    {
+      "surface": "portal",
+      "width": 768,
+      "height": 1024,
+      "horizontal_overflow": false
+    },
+    {
+      "surface": "portal",
+      "width": 1448,
+      "height": 1086,
+      "horizontal_overflow": false
+    },
+    {
+      "surface": "admin list/schema",
+      "width": 390,
+      "height": 844,
+      "horizontal_overflow": false
+    },
+    {
+      "surface": "admin",
+      "width": 1280,
+      "height": 720,
+      "horizontal_overflow": false
+    }
+  ],
+  "verified": [
+    "Public page does not show private catalog",
+    "Enter selects Claude and opens matching guide",
+    "Pause button toggles using Enter",
+    "OAuth PKCE initiated in app, local harness completes login/consent, real callback resolves workspace and role",
+    "ZIP selected through filechooser, uploaded, worker ready, compact source preview",
+    "Confirm Escape closes and returns focus to action",
+    "Synthetic data-only plugin enabled, ZIP export received as browser download event, plugin disabled again at revision 2",
+    "Real Python schema form submits invocation and surfaces runtime_unavailable",
+    "Revoke browser path returns public only after protected GET is rejected",
+    "No error console entries in final inspected browser session"
+  ],
+  "limitations": [
+    "Native clipboard independently read empty although write promise resolved; UI contract checks exact URL separately",
+    "Login/password/consent were completed by local HTTP harness, not full manual browser input",
+    "No OS reduced-motion emulation or screen-reader/device test",
+    "No all-pages/all-breakpoints audit",
+    "Full HTTP harness still fails revoke after multi-step workload; browser pass is not global revoke acceptance"
+  ],
+  "screenshots": [
+    "portal-desktop.png",
+    "portal-mobile.png",
+    "admin-desktop.png",
+    "admin-mobile.png",
+    "upload-preview.png"
+  ],
+  "synthetic_fixture_restored": "g6-browser-acceptance disabled at revision 2; other g6-ui-acceptance installations disabled by HTTP harness; no delete API used"
+}

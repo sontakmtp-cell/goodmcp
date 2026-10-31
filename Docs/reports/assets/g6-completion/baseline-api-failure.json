@@ -1,0 +1,106 @@
+{
+  "scope": "real local HTTP via Vite proxy; synthetic labelled private fixture; no production or model API",
+  "checks": [
+    {
+      "name": "frontend proxy health uses real backend",
+      "passed": true
+    },
+    {
+      "name": "unauthenticated REST remains protected",
+      "passed": true
+    },
+    {
+      "name": "workspace and admin role come from verified identity",
+      "passed": true
+    },
+    {
+      "name": "upload creation is idempotent",
+      "passed": true
+    },
+    {
+      "name": "resume status identifies accepted part without completing",
+      "passed": true
+    },
+    {
+      "name": "missing-part complete rejects without pretending success",
+      "passed": true
+    },
+    {
+      "name": "real import worker publishes source-only preview",
+      "passed": true
+    },
+    {
+      "name": "private catalog includes installed synthetic plugin",
+      "passed": true
+    },
+    {
+      "name": "version detail is immutable and source export matches hash",
+      "passed": true
+    },
+    {
+      "name": "stale installation revision is rejected",
+      "passed": true
+    },
+    {
+      "name": "document list search and plain text read use real source",
+      "passed": true
+    },
+    {
+      "name": "project pin revision draft and text read persist",
+      "passed": true
+    },
+    {
+      "name": "stale project save is rejected",
+      "passed": true
+    },
+    {
+      "name": "Python form schema comes from reviewed binding",
+      "passed": true
+    },
+    {
+      "name": "tool submission retries reuse one job",
+      "passed": true
+    },
+    {
+      "name": "approved Python runner returns durable successful result",
+      "passed": false,
+      "observed_state": "failed",
+      "error_code": "runtime_unavailable"
+    },
+    {
+      "name": "job cancel reflects real terminal or pending stop",
+      "passed": true
+    },
+    {
+      "name": "existing approved local Finance runtime was exercised",
+      "passed": true
+    },
+    {
+      "name": "unavailable API remains explicit: /users",
+      "passed": true
+    },
+    {
+      "name": "unavailable API remains explicit: /connections",
+      "passed": true
+    },
+    {
+      "name": "unavailable API remains explicit: /logs",
+      "passed": true
+    },
+    {
+      "name": "unavailable API remains explicit: /backup",
+      "passed": true
+    },
+    {
+      "name": "unavailable API remains explicit: /metrics",
+      "passed": true
+    },
+    {
+      "name": "revoke invalidates the actual web-shaped grant",
+      "passed": false,
+      "revoke_status": 200,
+      "access_after_revoke": 200
+    }
+  ],
+  "fixture_retained_disabled": true
+}
