@@ -40,8 +40,9 @@ def main():
     parser.add_argument("--stage", choices=["G1", "G2", "G3", "G4", "G5"], required=True)
     parser.add_argument('--g4-release',type=Path,help='Development only: reuse offline release with --working-tree')
     parser.add_argument("--working-tree", action="store_true", help="Development only; does not satisfy clean-checkout acceptance")
+    parser.add_argument('--evidence-dir',type=Path,help='Separate evidence directory to preserve an earlier acceptance run')
     args = parser.parse_args()
-    EVIDENCE = ROOT / "Docs/reports/evidence" / args.stage
+    EVIDENCE = (args.evidence_dir or ROOT / "Docs/reports/evidence" / args.stage).resolve()
     stamp = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ") + "-" + uuid.uuid4().hex[:6]
     project = "goodmcp-" + args.stage.lower() + "-verify-" + stamp.lower()
     scratch = ROOT / ".local/verify" / stamp
@@ -162,6 +163,20 @@ def main():
         evidence["built_images"] = built_images
         run("start-empty-postgres", "up", "-d", "--wait", "postgres")
         admin("roles")
+        if args.stage=='G5':
+            # Independent DB in this test project's PostgreSQL, with actual pre-G5 data.
+            # This does not replace fresh-install, readiness or tenant regressions below.
+            run('upgrade-fixture-create-database','run','--rm','--no-deps','admin','python','tests/migration_g5.py','create')
+            upgrade_env=['-e','HUB_DB_NAME=goodmcp_g5_upgrade']
+            run('upgrade-fixture-migrate-g4','run','--rm','--no-deps',*upgrade_env,'migrate',
+                'alembic','-c','infra/alembic.ini','upgrade','0004_g4')
+            run('upgrade-fixture-seed-old-projects','run','--rm','--no-deps',*upgrade_env,'runtime_admin','python','tests/migration_g5.py','seed')
+            run('upgrade-existing-g4-data-to-g5','run','--rm','--no-deps',*upgrade_env,'migrate')
+            run('upgrade-existing-g5-idempotent','run','--rm','--no-deps',*upgrade_env,'migrate')
+            evidence['g5_upgrade']=json_tail(run('verify-legacy-lead-recovery-and-history','run','--rm','--no-deps',*upgrade_env,
+                'runtime_admin','python','tests/migration_g5.py','check'))
+            assert evidence['g5_upgrade']['passed']
+            run('upgrade-fixture-remove-database','run','--rm','--no-deps','admin','python','tests/migration_g5.py','drop')
         run("api-before-migration", "up", "-d", "--no-deps", "api")
         run("readiness-denies-missing-migration", "run", "--rm", "--no-deps", "tests", "python", "tests/readiness.py", "503")
         run("migration-up", "run", "--rm", "--no-deps", "migrate")

@@ -331,3 +331,85 @@ def test_pinned_required_outputs_and_scorecard_schema(db,storage_root):
         valid=save(w,p,2,path='opc-doc/outputs/01-resource-audit/scorecard.json',content=json.dumps(value))
         result=commit(w,p,3,[first['file']['artifact_id'],valid['file']['artifact_id']])
         assert result['resume_stage']==STAGES[1]
+
+
+@pytest.mark.parametrize('current,destination',[(STAGES[0],STAGES[1]),(STAGES[0],STAGES[-1]),
+    ('05-mvp-design','execution'),('execution','07-asset-ops'),('07-asset-ops','08-dashboard-review'),
+    ('08-dashboard-review','08-dashboard-review')])
+def test_review_rollback_cannot_advance_or_stay(db,storage_root,project,current,destination):
+    p,_=project
+    with db.tenant(LEAD,WORKSPACE_A) as t:
+        w=Workflows(t,storage_root)
+        w._state_file(w.project(p['id']),STATE_PATH,{'stage':current,'status':'in_progress','custom':'preserve'},0)
+    with pytest.raises(ValueError,match='Rollback'):
+        with db.tenant(LEAD,WORKSPACE_A) as t:
+            commit(Workflows(t,storage_root),p,0,stage=current,action='rollback',next_stage=destination)
+    with db.tenant(LEAD,WORKSPACE_A) as t:
+        w=Workflows(t,storage_root); state=w.read_project(p['id'])
+        assert state['resume_stage']==current and state['revision']==0
+        assert state['checkpoint']['custom']=='preserve'
+        assert t.connection.execute(text('SELECT count(*) FROM stage_commits WHERE project_id=:p'),{'p':p['id']}).scalar_one()==0
+
+
+def test_review_many_commits_rotate_summary_without_losing_history(db,storage_root,project):
+    p,_=project; entries=[]; first_file=None
+    for n in range(75):
+        content=f'REVIEW_ENTRY_{n:03d}\n'+('x'*7900 if n%2 else 'Việt🙂'*1500)
+        entries.append(content)
+        payload={'expected_revision':n,'idempotency_key':f'review-summary-{n}', 'stage':STAGES[0],
+            'action':'checkpoint','summary':content}
+        with db.tenant(LEAD,WORKSPACE_A) as t:
+            w=Workflows(t,storage_root); result=w.commit_stage(p['id'],payload)
+            if n==0: first_file=w._latest(p['id'],SUMMARY_PATH)['id']
+            if n in (30,60): assert w.commit_stage(p['id'],payload)==result
+    with db.tenant(LEAD,WORKSPACE_A) as t:
+        w=Workflows(t,storage_root); state=w.read_project(p['id'],limit=100)
+        assert state['revision']==75 and state['resume_stage']==STAGES[0]
+        segments=sorted((f for f in state['files'] if '/session-summary-segments/' in f['logical_path']),key=lambda f:f['logical_path'])
+        assert len(segments)>=2
+        active=w._latest(p['id'],SUMMARY_PATH)
+        ids=[f['artifact_id'] for f in segments]+[active['artifact_id']]
+        parts=[b''.join(w.store.stream(artifact)) for artifact in ids]
+        assert all(len(part)<=262144 for part in parts)
+        history=''.join(part.decode('utf8') for part in parts)
+        for n,content in enumerate(entries):
+            assert history.count(f'REVIEW_ENTRY_{n:03d}\n')==1 and content in history
+        assert w.read_file(p['id'],first_file)['content'].endswith(entries[0])
+        assert len(w.file_history(p['id'],SUMMARY_PATH,limit=100)['items'])==75
+
+
+@pytest.mark.parametrize('current,destination',[('02-niche-positioning',STAGES[0]),('execution','06-conversion-loop'),
+    ('07-asset-ops','execution'),('08-dashboard-review','07-asset-ops')])
+def test_review_rollback_to_earlier_stage_preserves_context(db,storage_root,project,current,destination):
+    p,_=project
+    with db.tenant(LEAD,WORKSPACE_A) as t:
+        w=Workflows(t,storage_root)
+        w._state_file(w.project(p['id']),STATE_PATH,{'stage':current,'status':'in_progress','extension':42},0)
+        result=commit(w,p,0,stage=current,action='rollback',next_stage=destination)
+        assert result['resume_stage']==destination and result['checkpoint']['extension']==42
+        assert len(w.file_history(p['id'],STATE_PATH)['items'])==3
+
+
+def test_review_summary_rotation_preserves_legacy_bytes_and_rolls_back_atomically(db,storage_root,project,monkeypatch):
+    p,_=project; legacy='Prior legacy summary\n'+'x'*252000
+    with db.tenant(LEAD,WORKSPACE_A) as t:
+        w=Workflows(t,storage_root); old=w._file(w.project(p['id']),SUMMARY_PATH,legacy,'text/markdown',0,'state')
+    original=Workflows._state_file
+    def fail(self,project,path,value,revision):
+        if path==STATE_PATH: raise OSError('checkpoint failure after summary rotation')
+        return original(self,project,path,value,revision)
+    request={'expected_revision':0,'idempotency_key':'rotate-retry','stage':STAGES[0],'action':'checkpoint','summary':'Việt🙂'*1500}
+    with monkeypatch.context() as m:
+        m.setattr(Workflows,'_state_file',fail)
+        with pytest.raises(OSError):
+            with db.tenant(LEAD,WORKSPACE_A) as t: Workflows(t,storage_root).commit_stage(p['id'],request)
+    with db.tenant(LEAD,WORKSPACE_A) as t:
+        w=Workflows(t,storage_root); state=w.read_project(p['id'])
+        assert state['revision']==0 and not any('/session-summary-segments/' in f['logical_path'] for f in state['files'])
+        assert w._latest(p['id'],SUMMARY_PATH)['id']==old['id']
+        assert b''.join(w.store.stream(old['artifact_id'])).decode()==legacy
+        result=w.commit_stage(p['id'],request); assert w.commit_stage(p['id'],request)==result
+        segments=[f for f in w.read_project(p['id'])['files'] if '/session-summary-segments/' in f['logical_path']]
+        assert len(segments)==1 and segments[0]['artifact_id']==old['artifact_id']
+        assert b''.join(w.store.stream(segments[0]['artifact_id'])).decode()==legacy
+        assert w.read_file(p['id'],old['id'])['sha256']==w.store.get(old['artifact_id']).sha256

@@ -19,6 +19,9 @@ from .jobs import canonical
 from .workflow_spec import (STAGES, SKILLS, LEGACY, STATE_PATH, SUMMARY_PATH, OpenProject,
     SaveArtifact, CommitStage, HostReport, canonical_stage, checkpoint, resume_stage, logical_path, history_append)
 
+MAX_FILE_BYTES = 256 * 1024
+SUMMARY_SEGMENTS = 'opc-doc/outputs/00-orchestrator/session-summary-segments/'
+
 
 class Workflows(Registry):
     def permission(self, write=False):
@@ -32,6 +35,8 @@ class Workflows(Registry):
         row = self.c.execute(text('SELECT * FROM projects WHERE workspace_id=:ws AND id=:id'+(' FOR UPDATE' if write else '')),
                               self._params(id=UUID(str(project_id)))).mappings().one_or_none()
         if row is None: raise NotFound('Project not found')
+        if write and row['lead_user_id'] is None:
+            raise Conflict('Legacy project needs an operator-confirmed lead assignment')
         if write and row['lead_user_id'] != self.t.context.user_id:
             raise Forbidden('Only the authenticated project lead can save shared project data')
         return row
@@ -77,12 +82,12 @@ class Workflows(Registry):
 
     def _file(self, project, path, content, media_type, revision, status):
         raw = content.encode('utf8')
-        if len(raw)>262144: raise ValueError('Project file exceeds 256 KiB')
+        if len(raw)>MAX_FILE_BYTES: raise ValueError('Project file exceeds 256 KiB')
         if media_type=='application/json':
             try: json.loads(raw)
             except ValueError: raise ValueError('Invalid JSON output') from None
         previous = self._latest(project['id'],path)
-        blob = self.store.put([raw],media_type,max_bytes=262144,project_id=project['id'])
+        blob = self.store.put([raw],media_type,max_bytes=MAX_FILE_BYTES,project_id=project['id'])
         # Read durable content back before making the pointer visible.
         if b''.join(self.store.stream(blob.id)) != raw: raise ValueError('Artifact readback failed')
         return self._link(project,path,blob.id,revision,status,previous)
@@ -98,6 +103,19 @@ class Workflows(Registry):
 
     def _state_file(self, project, path, value, revision):
         return self._file(project,path,canonical(value),'application/json',revision,'state')
+
+    def _append_summary(self, project, entry, revision):
+        summary=self._latest(project['id'],SUMMARY_PATH)
+        previous=b''.join(self.store.stream(summary['artifact_id'])) if summary else b''
+        addition=entry.encode('utf8')
+        if len(addition)>MAX_FILE_BYTES: raise ValueError('Summary entry exceeds file limit')
+        if previous and len(previous)+len(addition)>MAX_FILE_BYTES:
+            # Preserve the full old segment with the same immutable blob/handle.
+            # The archive and new active pointer commit with the checkpoint or roll back together.
+            path=SUMMARY_SEGMENTS+f"{summary['project_revision']:012d}.md"
+            self._link(project,path,summary['artifact_id'],revision,'state')
+            previous=b''
+        self._file(project,SUMMARY_PATH,previous.decode('utf8')+entry,'text/markdown',revision,'state')
 
     def output_requirements(self, project, stage):
         """Read filename declarations as data from the pinned skill's output section."""
@@ -184,6 +202,7 @@ class Workflows(Registry):
         cp = self._checkpoint(project) if project['state'].get('workflow')=='opc-v2' else None
         return {'id':project['id'],'name':project['name'],'revision':project['revision'],
             'plugin_version_id':project['plugin_version_id'],'lead_user_id':project['lead_user_id'],
+            'lead_assignment_required':project['lead_user_id'] is None,
             'workflow':project['state'].get('workflow'),'checkpoint':cp,'resume_stage':resume_stage(cp) if cp else None,
             'files':[dict(x) for x in rows[:limit]],'legacy_conflicts':self._legacy_conflicts(project['id']),
             'next_cursor':rows[limit-1]['logical_path'] if len(rows)>limit else None}
@@ -287,7 +306,8 @@ class Workflows(Registry):
             if {x['stage'] for x in skips}!=set(STAGES[STAGES.index(stage):STAGES.index(next_stage)]):
                 raise ValueError('Each skipped stage needs a reason, authorization and missing evidence')
         elif p.action=='rollback':
-            if not next_stage or next_stage==stage: raise ValueError('Rollback needs a different explicit destination')
+            if not next_stage or STAGES.index(next_stage)>=STAGES.index(stage):
+                raise ValueError('Rollback requires an earlier stage; use an authorized skip or conditional completion to advance')
             if skips: raise ValueError('Rollback cannot skip stages')
         else:
             if next_stage or skips: raise ValueError('Draft checkpoint cannot advance or skip')
@@ -344,10 +364,7 @@ class Workflows(Registry):
         for f in files:
             if p.action=='complete': self._link(project,f['logical_path'],f['artifact_id'],revision,'confirmed')
         for path,value in merges.items(): self._state_file(project,path,value,revision)
-        summary=self._latest(project['id'],SUMMARY_PATH)
-        old_summary=b''.join(self.store.stream(summary['artifact_id'])).decode('utf8') if summary else ''
-        self._file(project,SUMMARY_PATH,old_summary+'\n\n'+now+' | '+stage+' | '+p.action+'\n'+p.summary,
-                   'text/markdown',revision,'state')
+        self._append_summary(project,'\n\n'+now+' | '+stage+' | '+p.action+'\n'+p.summary,revision)
         marker=self._state_file(project,STATE_PATH,cp,revision)  # published last, same transaction
         snapshot={'checkpoint':cp,'artifact_ids':[str(x) for x in p.artifact_ids],
                   'plugin_version_id':str(project['plugin_version_id']),'checkpoint_file_id':str(marker['id']),

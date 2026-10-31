@@ -39,6 +39,12 @@ def full():
     check('real OPC nine roles retained',len(brief['team_roster'])==9)
     check('no host subagents means honest sequential mode',brief['execution_mode']=='single_assistant_sequential'
         and brief['reported_model']=='unknown' and not brief['server_invokes_models'] and brief['execution_status']=='not_started')
+    rejected=api.request('POST',f'/projects/{pid}/stage-commits',json={'expected_revision':0,'idempotency_key':uuid4().hex,
+        'stage':'01-resource-audit','action':'rollback','next_stage':'08-dashboard-review','authorization':'User requests destination',
+        'summary':'Forward jump must not be treated as rollback'})
+    check('HTTP rollback cannot bypass dependencies by advancing',rejected.status_code==422)
+    unchanged=api.data('GET',f'/projects/{pid}')
+    check('rejected forward rollback preserves checkpoint and revision',unchanged['revision']==0 and unchanged['resume_stage']=='01-resource-audit')
     save={'expected_revision':0,'idempotency_key':uuid4().hex,'logical_path':path,
           'content':'# Resource inventory\n\nUser context: local fixture.\nUnknowns: market demand unverified.'}
     draft=api.data('POST',f'/projects/{pid}/artifacts',json=save)
@@ -109,8 +115,22 @@ def full():
     job=wait(api,api.data('POST','/invocations',json=invocation)['id'])
     check('G4 Python job writes durable result to correctly pinned project',job['state']=='succeeded' and bool(job['result_artifact_id']))
     check('G4 Python binding rejects different project pin',api.request('POST','/invocations',json={**invocation,'project_id':pid,'idempotency_key':uuid4().hex}).status_code==409)
+    long_project=api.data('POST','/projects',json={'installation_id':opc['installation']['id'],'name':'G5 segmented history','idempotency_key':uuid4().hex})
+    first_summary=None
+    for n in range(18):
+        result=api.data('POST',f'/projects/{long_project["id"]}/stage-commits',json={'expected_revision':n,'idempotency_key':f'summary-segment-{n}',
+            'stage':'01-resource-audit','action':'checkpoint','summary':f'SEGMENT_ENTRY_{n:02d}\n'+'🙂'*7900})
+        if n==0:
+            files=api.data('GET',f'/projects/{long_project["id"]}')['files']
+            first_summary=next(f['id'] for f in files if f['logical_path'].endswith('/session-summary.md'))
+    long_state=api.data('GET',f'/projects/{long_project["id"]}')
+    archives=[f['id'] for f in long_state['files'] if '/session-summary-segments/' in f['logical_path']]
+    check('HTTP commits continue beyond 512 KiB total summary',result['revision']==18 and len(archives)>=2)
+    old=api.data('GET',f'/projects/{long_project["id"]}/files/{first_summary}')
+    check('old summary handle remains readable after rotation','SEGMENT_ENTRY_00\n' in old['content'])
     STATE.write_text(json.dumps({'project_id':pid,'version_id':opc['version_id'],'revision':4,'confirmed_file_id':history[-1]['id'],
-        'content':save['content'],'sha256':confirmed['sha256'],'finance_project_id':fp['id'],'job_id':job['id']}))
+        'content':save['content'],'sha256':confirmed['sha256'],'finance_project_id':fp['id'],'job_id':job['id'],
+        'summary_project_id':long_project['id'],'summary_archives':archives,'first_summary_file_id':first_summary}))
     return {'project_id':pid,'plugin_version_id':opc['version_id'],'final_revision':4,'llm_api_calls':0,'host_gate':'protocol_only'}
 
 
@@ -151,6 +171,11 @@ def resume():
     page=api.data('GET',f'/projects/{pid}/files/{state["confirmed_file_id"]}')
     check('confirmed file and hash survive recreate',page['content']==state['content'] and page['sha256']==state['sha256'])
     check('project Python result survives recreate',api.data('GET','/jobs/'+state['job_id'])['state']=='succeeded')
+    long_state=api.data('GET',f'/projects/{state["summary_project_id"]}')
+    current_archives=[f['id'] for f in long_state['files'] if '/session-summary-segments/' in f['logical_path']]
+    check('summary segments and revision survive recreation',long_state['revision']==18 and current_archives==state['summary_archives'])
+    old=api.data('GET',f'/projects/{state["summary_project_id"]}/files/{state["first_summary_file_id"]}')
+    check('pre-rotation historical summary remains readable after restart','SEGMENT_ENTRY_00\n' in old['content'])
     asyncio.run(mcp_chat(api,pid,state['version_id']))
     return {'project_id':pid,'resume_stage':p['resume_stage'],'revision':p['revision'],'new_oauth_grant':True,'llm_api_calls':0}
 

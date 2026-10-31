@@ -16,7 +16,7 @@ from goodmcp.storage import ArtifactStore, IntegrityError, Conflict
 
 PRIVATE_TABLES = ["plugin_packages", "plugin_versions", "installations", "skills", "agents", "resources", "tool_bindings",
                   "projects", "artifacts", "stage_commits", "jobs", "job_attempts", "audit_events", "connections", "oauth_grants", "tokens", "host_profiles",
-                  "project_files", "project_operations"]
+                  "project_files", "project_operations", "project_lead_assignments"]
 
 
 def sqlstate(error): return error.value.orig.sqlstate

@@ -96,6 +96,16 @@ rollback có thể thành orphan; không GC ở G5. Không gọi là rollback fi
 History, file versions, stage commits và pin được bảo vệ ở DB; file labels không
 trở thành đường dẫn vật lý. Storage key vẫn do ArtifactStore server sinh.
 
+Summary không tăng vô hạn trong một file. Trước khi nối vượt 256 KiB UTF-8,
+server giữ nguyên blob hiện tại dưới logical path
+`opc-doc/outputs/00-orchestrator/session-summary-segments/{project_revision:012d}.md`,
+rồi mở segment mới tại `session-summary.md`. Các segment tìm được qua danh sách
+file có phân trang; đọc segment bằng handle/range như mọi file project. Mọi
+revision/handle cũ của `session-summary.md` vẫn đọc được bằng file history.
+Archive và checkpoint cùng transaction; retry không tạo segment trùng, không
+cắt mất nội dung cũ hoặc nới trần file. `session-summary.md` chứa segment đang
+hoạt động, không còn đồng nghĩa toàn bộ lịch sử nhiều segment.
+
 Decision: id, stage, decision, evidence[], authorization. Assumption: id, statement,
 status, evidence[]. Review: id, review, evidence[]. Server thêm timestamp theo timezone
 dự án. Record cùng ID/nội dung không nhân đôi; cùng ID khác nội dung trả conflict,
@@ -111,7 +121,9 @@ thực evidence vẫn thuộc lead và người dùng.
 Mặc định 01 → 02 → 03 → 04 → 05 → 06 → execution. Complete 06 không tự chạy
 07/08. Execution/07/08 phải có next_stage tường minh. Draft/checkpoint không chuyển
 bước. Skip yêu cầu destination, và từng bước bị bỏ qua có stage/reason/authorization/
-missing_evidence. Rollback dùng destination tường minh và đánh dấu downstream stale;
+missing_evidence. Rollback chỉ nhận destination đứng trước stage hiện tại trong
+thứ tự 01–06 → execution → 07 → 08; cùng stage hoặc đích tương lai trả 422.
+Muốn đi tiếp phải dùng complete/skip có điều kiện tương ứng. Rollback đánh dấu downstream stale;
 giữ lịch sử cũ, chỉ xóa stale của bước vừa được xác nhận lại.
 
 New checkpoint numbering_version=2. completed resume next_stage; draft/in_progress
@@ -129,6 +141,33 @@ không rename hoặc xóa output cũ. Lần đầu execution material thuộc 05
 Chat mới: xin grant có project scopes → hub_list_projects → hub_read_project →
 hub_prepare_workflow → đọc file/nguồn bằng handle và cursor → làm tiếp resume_stage.
 Không dùng MCP session ID làm database hoặc khóa retry.
+
+## Project có trước G5 và lead chưa rõ
+
+Migration nối tiếp `0006_g5_review` không sửa migration G5 đã chạy và không tự
+gán owner/member làm lead theo số lượng thành viên hoặc đóng góp lịch sử. Project
+lead NULL vẫn đọc được, trả thêm `lead_assignment_required=true`; ghi trả 409
+với thông báo cần operator-confirmed lead assignment.
+
+Operator dùng admin CLI ở local/VPS, không qua REST/MCP:
+
+```powershell
+docker compose -p goodmcp-local -f infra/compose.yml run --rm --no-deps admin python -m goodmcp.project_admin list-unassigned --workspace WORKSPACE_UUID
+docker compose -p goodmcp-local -f infra/compose.yml run --rm --no-deps admin python -m goodmcp.project_admin assign-lead --workspace WORKSPACE_UUID --project PROJECT_UUID --lead-user LEAD_UUID --confirmed-by OWNER_UUID --evidence "Tham chiếu xác nhận quyền sở hữu đã được operator kiểm tra"
+```
+
+Chỉ gán sau khi đã xác minh mapping và xác nhận của workspace owner; chưa rõ thì
+giữ NULL. Đây là operator attestation dựa trên admin credential, không tự xác thực
+nội dung bằng chứng hoặc chữ ký của user ID được truyền. Lead phải là user và
+membership active, cùng workspace, role owner/admin/member; confirmer phải là
+owner active cùng workspace. Viewer/foreign/inactive/missing evidence bị chặn.
+
+Function invoker chỉ operator admin gọi được; runtime không có EXECUTE/INSERT
+quyền để tự nhận project. Assignment/proof và audit được lưu immutable, rồi cập
+nhật duy nhất lead NULL trong cùng transaction. Retry cùng mapping/proof trả
+cùng assignment ID; không đổi lead đã có, pin, revision, state, artifact hoặc
+stage history. Project cũ chưa có plugin pin vẫn cần mapping phiên bản có căn cứ;
+lệnh này không tự ghim một plugin hoặc chuyển định dạng workflow.
 
 ## Host profile và model
 
