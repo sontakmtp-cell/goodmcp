@@ -1,0 +1,78 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "fresh OAuth after full recreation resumes stage pin revision",
+      "passed": true
+    },
+    {
+      "name": "checkpoint unknown extension survives recreate",
+      "passed": true
+    },
+    {
+      "name": "confirmed file and hash survive recreate",
+      "passed": true
+    },
+    {
+      "name": "project Python result survives recreate",
+      "passed": true
+    },
+    {
+      "name": "G5 typed workflow tools exposed",
+      "passed": true
+    },
+    {
+      "name": "MCP hub_list_projects",
+      "passed": true
+    },
+    {
+      "name": "new MCP chat discovers existing project",
+      "passed": true
+    },
+    {
+      "name": "MCP hub_read_project",
+      "passed": true
+    },
+    {
+      "name": "new chat resumes exact stage and pin",
+      "passed": true
+    },
+    {
+      "name": "MCP hub_report_host",
+      "passed": true
+    },
+    {
+      "name": "MCP hub_prepare_workflow",
+      "passed": true
+    },
+    {
+      "name": "MCP brief honestly reports unknown actual model",
+      "passed": true
+    },
+    {
+      "name": "MCP hub_report_host",
+      "passed": true
+    },
+    {
+      "name": "MCP hub_prepare_workflow",
+      "passed": true
+    },
+    {
+      "name": "native mode is availability only, never execution claim",
+      "passed": true
+    },
+    {
+      "name": "MCP unknown project is_error",
+      "passed": true
+    },
+    {
+      "name": "MCP revision conflict is_error",
+      "passed": true
+    }
+  ],
+  "project_id": "d0d8288b-750c-4e38-8b88-fe11b6ffe4b4",
+  "resume_stage": "02-niche-positioning",
+  "revision": 4,
+  "new_oauth_grant": true,
+  "llm_api_calls": 0
+}

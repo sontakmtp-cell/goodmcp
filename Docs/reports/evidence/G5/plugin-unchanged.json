@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "files": 832,
+  "packages": [
+    {
+      "directory": "godot-roblox-experts",
+      "files": 8,
+      "all_bytes_and_sha256_match_G0": true
+    },
+    {
+      "directory": "OPC Team",
+      "files": 56,
+      "all_bytes_and_sha256_match_G0": true
+    },
+    {
+      "directory": "vietnam-finance-tax-expert",
+      "files": 768,
+      "all_bytes_and_sha256_match_G0": true
+    }
+  ]
+}

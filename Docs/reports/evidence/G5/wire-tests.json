@@ -1,0 +1,158 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "create retry returns same pinned project",
+      "passed": true
+    },
+    {
+      "name": "open pins original OPC version",
+      "passed": true
+    },
+    {
+      "name": "project discoverable across chats",
+      "passed": true
+    },
+    {
+      "name": "real OPC nine roles retained",
+      "passed": true
+    },
+    {
+      "name": "no host subagents means honest sequential mode",
+      "passed": true
+    },
+    {
+      "name": "draft save retry does not duplicate",
+      "passed": true
+    },
+    {
+      "name": "draft does not advance",
+      "passed": true
+    },
+    {
+      "name": "unknown lead claim rejected",
+      "passed": true
+    },
+    {
+      "name": "stale save rejected",
+      "passed": true
+    },
+    {
+      "name": "idempotency input conflict rejected",
+      "passed": true
+    },
+    {
+      "name": "project reader cannot write",
+      "passed": true
+    },
+    {
+      "name": "hub scopes do not imply project access",
+      "passed": true
+    },
+    {
+      "name": "grant cannot choose foreign workspace project",
+      "passed": true
+    },
+    {
+      "name": "commit retries return stable result",
+      "passed": true
+    },
+    {
+      "name": "confirmed stage resumes next stage",
+      "passed": true
+    },
+    {
+      "name": "stale commit does not erase history",
+      "passed": true
+    },
+    {
+      "name": "draft and confirmed revisions preserved",
+      "passed": true
+    },
+    {
+      "name": "historical artifact checksum and content available",
+      "passed": true
+    },
+    {
+      "name": "concurrent HTTP writers preserve winner",
+      "passed": true
+    },
+    {
+      "name": "G5 typed workflow tools exposed",
+      "passed": true
+    },
+    {
+      "name": "MCP hub_list_projects",
+      "passed": true
+    },
+    {
+      "name": "new MCP chat discovers existing project",
+      "passed": true
+    },
+    {
+      "name": "MCP hub_read_project",
+      "passed": true
+    },
+    {
+      "name": "new chat resumes exact stage and pin",
+      "passed": true
+    },
+    {
+      "name": "MCP hub_report_host",
+      "passed": true
+    },
+    {
+      "name": "MCP hub_prepare_workflow",
+      "passed": true
+    },
+    {
+      "name": "MCP brief honestly reports unknown actual model",
+      "passed": true
+    },
+    {
+      "name": "MCP hub_report_host",
+      "passed": true
+    },
+    {
+      "name": "MCP hub_prepare_workflow",
+      "passed": true
+    },
+    {
+      "name": "native mode is availability only, never execution claim",
+      "passed": true
+    },
+    {
+      "name": "MCP unknown project is_error",
+      "passed": true
+    },
+    {
+      "name": "MCP revision conflict is_error",
+      "passed": true
+    },
+    {
+      "name": "test update imported without executing code",
+      "passed": true
+    },
+    {
+      "name": "installation update leaves project pinned to original source",
+      "passed": true
+    },
+    {
+      "name": "pinned source handles remain readable after update",
+      "passed": true
+    },
+    {
+      "name": "G4 Python job writes durable result to correctly pinned project",
+      "passed": true
+    },
+    {
+      "name": "G4 Python binding rejects different project pin",
+      "passed": true
+    }
+  ],
+  "project_id": "d0d8288b-750c-4e38-8b88-fe11b6ffe4b4",
+  "plugin_version_id": "e5960298-c2ef-4ff4-902f-bde15e905922",
+  "final_revision": 4,
+  "llm_api_calls": 0,
+  "host_gate": "protocol_only"
+}

@@ -20,6 +20,7 @@ from apps.api.registry_api import routes, register_tools
 from apps.api.jobs_api import routes as job_routes, tools as job_tools
 from goodmcp.jobs import QueueQuota
 from apps.api.documents_api import routes as document_routes,tools as document_tools
+from apps.api.workflows_api import routes as workflow_routes, tools as workflow_tools
 from goodmcp.auth_config import AuthSettings
 from goodmcp.version import REVISION, STAGE
 from apps.api.mcp_auth import DatabaseVerifier, AccessBoundary, RequestMetadata
@@ -27,7 +28,7 @@ from apps.api.mcp_auth import DatabaseVerifier, AccessBoundary, RequestMetadata
 settings = AuthSettings.from_env()
 database = Database()
 verifier = DatabaseVerifier(database, settings)
-mcp = MCPServer("goodmcp-hub", version="0.4.0", log_level="WARNING", token_verifier=verifier,
+mcp = MCPServer("goodmcp-hub", version="0.5.0", log_level="WARNING", token_verifier=verifier,
     auth=MCPAuthSettings(issuer_url=AnyHttpUrl(settings.issuer), resource_server_url=AnyHttpUrl(settings.resource),
                         required_scopes=["hub:read"], validate_token_resource=True))
 
@@ -97,6 +98,8 @@ app.include_router(job_routes(database))
 job_tools(mcp,database)
 app.include_router(document_routes(database))
 document_tools(mcp,database)
+app.include_router(workflow_routes(database))
+workflow_tools(mcp,database)
 
 
 async def domain_error(request: Request, exc):
