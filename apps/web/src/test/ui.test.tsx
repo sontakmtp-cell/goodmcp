@@ -65,6 +65,9 @@ describe("portal privacy and interaction", () => {
     expect(
       screen.getByRole("heading", { name: "Kết nối với Claude" }),
     ).toBeVisible();
+    expect(
+      screen.getByRole("button", { name: /Đóng hướng dẫn Claude/ }),
+    ).toBeVisible();
     expect(screen.getByText(/Chưa nghiệm thu kết nối Claude/)).toBeVisible();
   });
   it("reports clipboard success only after write succeeds", async () => {
@@ -109,13 +112,28 @@ describe("portal privacy and interaction", () => {
       )
       .mockResolvedValueOnce(response({ items: [], next_cursor: null }));
     vi.stubGlobal("fetch", f);
-    render(<Catalog api={api()} />);
+    render(
+      <Catalog api={api()} canAdmin={false} onAdmin={() => {}} />,
+    );
     expect(await screen.findByText("Fixture plugin")).toBeVisible();
     expect(screen.queryByText("Hidden disabled")).toBeNull();
     fireEvent.click(screen.getByRole("button", { name: "Trang tiếp" }));
     await waitFor(() => expect(f).toHaveBeenCalledTimes(2));
     expect(f.mock.calls[1][0]).toContain("cursor=next-id");
     expect(await screen.findByText(/Chưa có plugin đang bật/)).toBeVisible();
+  });
+  it("shows page number and admin CTA in empty catalog for admins", async () => {
+    const f = vi
+      .fn()
+      .mockResolvedValue(response({ items: [], next_cursor: null }));
+    vi.stubGlobal("fetch", f);
+    const onAdmin = vi.fn();
+    render(<Catalog api={api()} canAdmin={true} onAdmin={onAdmin} />);
+    expect(await screen.findByText(/Chưa có plugin đang bật/)).toBeVisible();
+    expect(screen.getByText("Trang 1")).toBeVisible();
+    const cta = screen.getByRole("button", { name: /Mở trang quản trị/ });
+    fireEvent.click(cta);
+    expect(onAdmin).toHaveBeenCalled();
   });
   it("does not leak raw server error messages into the interface", async () => {
     vi.stubGlobal(
@@ -129,7 +147,9 @@ describe("portal privacy and interaction", () => {
           ),
         ),
     );
-    render(<Catalog api={api()} />);
+    render(
+      <Catalog api={api()} canAdmin={false} onAdmin={() => {}} />,
+    );
     expect(await screen.findByRole("alert")).toHaveTextContent(
       "Máy chủ đang gặp lỗi",
     );
@@ -140,7 +160,9 @@ describe("portal privacy and interaction", () => {
       "fetch",
       vi.fn(() => new Promise(() => {})),
     );
-    render(<Catalog api={api()} />);
+    render(
+      <Catalog api={api()} canAdmin={false} onAdmin={() => {}} />,
+    );
     expect(screen.getByRole("status")).toHaveTextContent("Đang tải");
     expect(document.querySelector("[aria-busy=true]")).toBeTruthy();
   });

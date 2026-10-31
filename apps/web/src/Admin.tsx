@@ -189,6 +189,7 @@ function Shield() {
 }
 function PluginList({ api }: { api: Api }) {
   const [cursor, setCursor] = useState(""),
+    [page, setPage] = useState(1),
     [selected, setSelected] = useState<Plugin | null>(null),
     [upload, setUpload] = useState(false);
   const state = useData(
@@ -254,9 +255,26 @@ function PluginList({ api }: { api: Api }) {
         )}
         <div className="actions">
           <button onClick={state.reload}>Tải lại</button>
-          {cursor && <button onClick={() => setCursor("")}>Về đầu</button>}
+          <span className="pagination-info" aria-live="polite">
+            Trang {page}
+          </span>
+          {cursor && (
+            <button
+              onClick={() => {
+                setCursor("");
+                setPage(1);
+              }}
+            >
+              Về đầu
+            </button>
+          )}
           {state.data?.next_cursor && (
-            <button onClick={() => setCursor(state.data!.next_cursor!)}>
+            <button
+              onClick={() => {
+                setCursor(state.data!.next_cursor!);
+                setPage((p) => p + 1);
+              }}
+            >
               Trang tiếp
             </button>
           )}
@@ -322,6 +340,7 @@ function System({ api }: { api: Api }) {
 }
 function Projects({ api }: { api: Api }) {
   const [cursor, setCursor] = useState(""),
+    [page, setPage] = useState(1),
     [selected, setSelected] = useState(""),
     [create, setCreate] = useState(false),
     [name, setName] = useState(""),
@@ -448,9 +467,26 @@ function Projects({ api }: { api: Api }) {
         )}
         <div className="actions">
           <button onClick={state.reload}>Tải lại</button>
-          {cursor && <button onClick={() => setCursor("")}>Về đầu</button>}
+          <span className="pagination-info" aria-live="polite">
+            Trang {page}
+          </span>
+          {cursor && (
+            <button
+              onClick={() => {
+                setCursor("");
+                setPage(1);
+              }}
+            >
+              Về đầu
+            </button>
+          )}
           {state.data?.next_cursor && (
-            <button onClick={() => setCursor(state.data!.next_cursor!)}>
+            <button
+              onClick={() => {
+                setCursor(state.data!.next_cursor!);
+                setPage((p) => p + 1);
+              }}
+            >
               Trang tiếp
             </button>
           )}

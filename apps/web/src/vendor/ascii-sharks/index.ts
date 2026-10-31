@@ -1,3 +1,3 @@
 export { OceanEngine } from "./engine";
 export { AsciiRenderer, paintGrid } from "./renderer";
-export { World, type SharkKind, type SharkSpec } from "./world";
+export { World, type SharkKind, type SharkSpec, type SharkPalette, DEFAULT_PALETTES } from "./world";

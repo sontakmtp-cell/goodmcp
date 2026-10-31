@@ -21,14 +21,49 @@ export const SHARK_NODES = 20;
 export type SharkKind = "classic" | "hammerhead" | "zebra" | "tiger" | "greathammer" | "mako" | "thresher" | "nurse";
 
 /** Which sharks to put in the water; size is relative to the biggest. */
-export type SharkSpec = { kind: SharkKind; size: number };
+export interface SharkPalette {
+  name: string;
+  tint: [number, number, number];
+  accent: string;
+  eyeColor?: string;
+  markColor?: string;
+}
+
+export const DEFAULT_PALETTES: SharkPalette[] = [
+  {
+    name: "Cyber Cyan",
+    tint: [0.35, 1.25, 1.75],
+    accent: "#00f0ff",
+    eyeColor: "#cbfdff",
+  },
+  {
+    name: "Solar Flare",
+    tint: [1.85, 0.95, 0.25],
+    accent: "#ff9900",
+    eyeColor: "#fff1cc",
+  },
+  {
+    name: "Jade Hammerhead",
+    tint: [0.25, 1.75, 0.7],
+    accent: "#00ff77",
+    eyeColor: "#dcffe7",
+  },
+  {
+    name: "Violet Specter",
+    tint: [1.5, 0.45, 1.85],
+    accent: "#d946ef",
+    eyeColor: "#fce7f3",
+  },
+];
+
+export type SharkSpec = { kind: SharkKind; size: number; palette?: SharkPalette };
 
 // The landing hero: four of the same shark at different depths.
 const DEFAULT_SHARKS: SharkSpec[] = [
-  { kind: "classic", size: 1 },
-  { kind: "classic", size: 0.7 },
-  { kind: "classic", size: 0.84 },
-  { kind: "classic", size: 0.77 },
+  { kind: "classic", size: 0.95, palette: DEFAULT_PALETTES[0] },
+  { kind: "classic", size: 0.72, palette: DEFAULT_PALETTES[1] },
+  { kind: "hammerhead", size: 0.88, palette: DEFAULT_PALETTES[2] },
+  { kind: "classic", size: 0.6, palette: DEFAULT_PALETTES[3] },
 ];
 
 export interface Fish {
@@ -71,6 +106,7 @@ export interface Shark {
   retargetAt: number;
   /** 0 far / dim → 1 near / bright. */
   depth: number;
+  palette: SharkPalette;
 }
 
 export interface WorldEvent {
@@ -143,6 +179,7 @@ export class World {
     this.sharks = [];
     for (let i = 0; i < sharkCount; i++) {
       const { kind, size } = this.sharkSpecs[i];
+      const palette = this.sharkSpecs[i].palette || DEFAULT_PALETTES[i % DEFAULT_PALETTES.length];
       const length = baseLength * size;
       const orbitRadius = minSide * rand(0.28, 0.4);
       const a = (i / sharkCount) * TAU + rand(-0.4, 0.4);
@@ -172,6 +209,7 @@ export class World {
         target: null,
         retargetAt: 0,
         depth: size,
+        palette,
       });
     }
     // Smaller (farther) sharks draw first so the big one swims over them.

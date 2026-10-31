@@ -38,8 +38,17 @@ export function description(plugin: Plugin) {
           : "Kỹ năng và tài liệu riêng trong vùng dữ liệu của bạn.")
   );
 }
-export function Catalog({ api }: { api: Api }) {
-  const [cursor, setCursor] = useState("");
+export function Catalog({
+  api,
+  canAdmin,
+  onAdmin,
+}: {
+  api: Api;
+  canAdmin: boolean;
+  onAdmin: () => void;
+}) {
+  const [cursor, setCursor] = useState(""),
+    [page, setPage] = useState(1);
   const state = useData(
     () =>
       api.request<Page<Plugin>>(
@@ -64,14 +73,40 @@ export function Catalog({ api }: { api: Api }) {
           ))}
         </div>
       ) : (
-        empty(
-          "Chưa có plugin đang bật trên trang này. Quản trị viên có thể nhập và bật plugin.",
-        )
+        <>
+          {empty(
+            "Chưa có plugin đang bật trên trang này. Quản trị viên có thể nhập và bật plugin.",
+          )}
+          {canAdmin && (
+            <div className="actions">
+              <button className="primary" onClick={onAdmin}>
+                Mở trang quản trị <ArrowRight />
+              </button>
+            </div>
+          )}
+        </>
       )}
       <div className="actions">
-        {cursor && <button onClick={() => setCursor("")}>Về đầu</button>}
+        <span className="pagination-info" aria-live="polite">
+          Trang {page}
+        </span>
+        {cursor && (
+          <button
+            onClick={() => {
+              setCursor("");
+              setPage(1);
+            }}
+          >
+            Về đầu
+          </button>
+        )}
         {state.data?.next_cursor && (
-          <button onClick={() => setCursor(state.data!.next_cursor!)}>
+          <button
+            onClick={() => {
+              setCursor(state.data!.next_cursor!);
+              setPage((p) => p + 1);
+            }}
+          >
             Trang tiếp
           </button>
         )}
@@ -97,8 +132,8 @@ export function Portal({
   const copy = useAction();
   return (
     <div className="portal">
+      <Sharks />
       <section className="hero">
-        <Sharks />
         <header className="portal-header">
           <a className="brand" href="/" aria-label="GoodMCP trang chủ">
             <Graph weight="duotone" size={30} />
@@ -163,27 +198,39 @@ export function Portal({
                   Đường dẫn MCP
                 </label>
                 <input id="mcp-url" readOnly value={mcpUrl} />
-                <button
-                  className="primary"
-                  onClick={() =>
-                    copy.run(async () => {
-                      if (!navigator.clipboard)
-                        throw new Error(
-                          "Trình duyệt không cho sao chép. Hãy chọn và sao chép đường dẫn thủ công.",
-                        );
-                      try {
-                        await navigator.clipboard.writeText(mcpUrl);
-                      } catch {
-                        throw new Error(
-                          "Không sao chép được. Hãy chọn và sao chép đường dẫn thủ công.",
-                        );
-                      }
-                    }, "Đã sao chép đường dẫn.")
-                  }
-                >
-                  <Copy />
-                  Sao chép
-                </button>
+                <div className="copy-btn-wrapper">
+                  <div className="line horizontal top" aria-hidden="true" />
+                  <div className="line vertical right" aria-hidden="true" />
+                  <div className="line horizontal bottom" aria-hidden="true" />
+                  <div className="line vertical left" aria-hidden="true" />
+
+                  <div className="dot top left" aria-hidden="true" />
+                  <div className="dot top right" aria-hidden="true" />
+                  <div className="dot bottom right" aria-hidden="true" />
+                  <div className="dot bottom left" aria-hidden="true" />
+
+                  <button
+                    className="copy-btn"
+                    onClick={() =>
+                      copy.run(async () => {
+                        if (!navigator.clipboard)
+                          throw new Error(
+                            "Trình duyệt không cho sao chép. Hãy chọn và sao chép đường dẫn thủ công.",
+                          );
+                        try {
+                          await navigator.clipboard.writeText(mcpUrl);
+                        } catch {
+                          throw new Error(
+                            "Không sao chép được. Hãy chọn và sao chép đường dẫn thủ công.",
+                          );
+                        }
+                      }, "Đã sao chép đường dẫn.")
+                    }
+                  >
+                    <Copy />
+                    Sao chép
+                  </button>
+                </div>
               </div>
               <p className="url-hint">
                 {placeholder
@@ -197,7 +244,9 @@ export function Portal({
                 onClick={() => setGuide(!guide)}
               >
                 <BookOpen />
-                Hướng dẫn kết nối {platform}
+                {guide
+                  ? `Đóng hướng dẫn ${platform}`
+                  : `Hướng dẫn kết nối ${platform}`}
               </button>
               {guide && (
                 <div className="guide">
@@ -236,7 +285,11 @@ export function Portal({
             </h2>
             <p>Giữ tài liệu, kỹ năng và tiến độ trong cùng một nơi.</p>
             {api ? (
-              <Catalog api={api} />
+              <Catalog
+                api={api}
+                canAdmin={["owner", "admin"].includes(api.workspace.role)}
+                onAdmin={onAdmin}
+              />
             ) : (
               <div className="public-info">
                 <ShieldCheck size={30} />
@@ -274,19 +327,6 @@ export function Portal({
           )}
         </main>
       </section>
-      <footer>
-        <a className="brand" href="/">
-          GoodMCP
-        </a>
-        <span>Công cụ của bạn. Trong cuộc chat của bạn.</span>
-        <a
-          href="https://github.com/stackedlol/ascii-sharks"
-          target="_blank"
-          rel="noreferrer"
-        >
-          ASCII sharks · MIT
-        </a>
-      </footer>
     </div>
   );
 }

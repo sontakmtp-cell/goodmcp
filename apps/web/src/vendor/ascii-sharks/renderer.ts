@@ -294,6 +294,7 @@ export class AsciiRenderer {
   private sharkKey = new Uint32Array(0);
   private sharkDepth = new Float32Array(0);
   private sharkKind = new Uint8Array(0);
+  private sharkIdx = new Uint8Array(0);
   /** Cells darkened by a shark's shadow on the seabed. */
   private sharkShadow = new Uint8Array(0);
   private spine = new Float32Array(SHARK_NODES * 2);
@@ -375,6 +376,7 @@ export class AsciiRenderer {
       this.sharkKey = new Uint32Array(n);
       this.sharkDepth = new Float32Array(n);
       this.sharkKind = new Uint8Array(n);
+      this.sharkIdx = new Uint8Array(n);
       this.sharkShadow = new Uint8Array(n);
       this.fishStamp = new Uint32Array(n);
     }
@@ -423,7 +425,7 @@ export class AsciiRenderer {
 
     this.drawHeat();
     this.drawFish();
-    this.drawSharks(t);
+    this.drawSharks(t, world.sharks);
   }
 
   // ── simulation → field ──────────────────────────────────────────────
@@ -645,11 +647,12 @@ export class AsciiRenderer {
    * Fully covered cells become solid skin; partial cells become edge glyphs.
    */
   private rasterizeSharks(sharks: Shark[], t: number) {
-    const { sharkFlag, sharkShade, sharkKey, sharkDepth, sharkKind, sharkShadow, spine, arc, cw, ch, cols, rows } = this;
+    const { sharkFlag, sharkShade, sharkKey, sharkDepth, sharkKind, sharkIdx, sharkShadow, spine, arc, cw, ch, cols, rows } = this;
     sharkFlag.fill(0);
     sharkShadow.fill(0);
 
-    for (const sh of sharks) {
+    for (let sIdx = 0; sIdx < sharks.length; sIdx++) {
+      const sh = sharks[sIdx];
       const L = sh.length;
       const N = SHARK_NODES;
       const n = sh.nodes;
@@ -733,6 +736,7 @@ export class AsciiRenderer {
           sharkKey[i] = key;
           sharkDepth[i] = sh.depth;
           sharkKind[i] = kindIndex;
+          sharkIdx[i] = sIdx;
 
           if (centerHit && coverage >= 0.6) {
             sharkFlag[i] = flag;
@@ -750,8 +754,8 @@ export class AsciiRenderer {
     }
   }
 
-  private drawSharks(t: number) {
-    const { ctx, cols, rows, cw, ch, sharkFlag, sharkShade, sharkKey, sharkDepth, sharkKind } = this;
+  private drawSharks(t: number, sharks: Shark[]) {
+    const { ctx, cols, rows, cw, ch, sharkFlag, sharkShade, sharkKey, sharkDepth, sharkKind, sharkIdx } = this;
     const n = cols * rows;
     for (let i = 0; i < n; i++) {
       const flag = sharkFlag[i];
@@ -763,7 +767,12 @@ export class AsciiRenderer {
       const key = sharkKey[i];
       const shade = sharkShade[i];
       const dim = 0.7 + 0.3 * sharkDepth[i];
-      const [tr, tg, tb] = SHAPES[KINDS[sharkKind[i]]].tint;
+      
+      const sIdx = sharkIdx[i];
+      const sh = sharks[sIdx] || sharks[0];
+      const palette = sh?.palette;
+      const [tr, tg, tb] = palette ? palette.tint : SHAPES[KINDS[sharkKind[i]]].tint;
+      const accent = palette?.accent || ACCENTS[key % ACCENTS.length];
 
       // Colours re-roll on a staggered clock so the hide shimmers.
       const tick = Math.floor(t * 2.4 + (key % 997) / 97);
@@ -774,8 +783,8 @@ export class AsciiRenderer {
         const set = shade >= 0.5 ? EDGE_HEAVY : EDGE_LIGHT;
         const g = (70 + shade * 80) * dim;
         ctx.fillStyle =
-          roll < 0.07
-            ? ACCENTS[key % ACCENTS.length]
+          roll < 0.08
+            ? accent
             : `rgb(${Math.round(g * tr)},${Math.round(g * tg)},${Math.min(255, Math.round(g * tb + 6))})`;
         ctx.fillText(set[(key >>> 8) % set.length], x + cw / 2, y + ch / 2 + 1);
         continue;
@@ -787,7 +796,7 @@ export class AsciiRenderer {
         level = 226;
         glyph = RIDGE_GLYPHS[(key >>> 8) % RIDGE_GLYPHS.length];
       } else if (flag === FLAG_EYE) {
-        level = 12;
+        level = 16;
         glyph = "o";
       } else if (flag === FLAG_MARK) {
         level = 24 + shade * 22;
@@ -801,16 +810,16 @@ export class AsciiRenderer {
         glyph = SKIN_RAMP[clamp(Math.floor((1 - shade) * 8.99) + jitter, 0, SKIN_RAMP.length - 1)];
       }
       level *= dim;
-      // Tinted per species; the classic tint is a cool blue-grey, like a back seen through deep water.
+      // Tinted per shark unique palette
       ctx.fillStyle = `rgb(${Math.min(255, Math.round(level * tr))},${Math.min(255, Math.round(level * tg))},${Math.min(255, Math.round(level * tb + 4))})`;
       ctx.fillRect(x + 1, y + 1, cw - 1, ch - 1);
 
       let color: string;
-      if (flag === FLAG_EYE) color = "#9aa0ad";
-      else if (flag === FLAG_MARK) color = `rgb(${Math.round(70 * tr)},${Math.round(70 * tg)},${Math.round(70 * tb)})`;
-      else if (roll < 0.09) color = ACCENTS[key % ACCENTS.length];
-      else if (roll < 0.13) color = "#ffffff";
-      else color = shade > 0.55 ? "#0e0f13" : "#1b1d24";
+      if (flag === FLAG_EYE) color = palette?.eyeColor || "#ffffff";
+      else if (flag === FLAG_MARK) color = palette?.markColor || `rgb(${Math.round(70 * tr)},${Math.round(70 * tg)},${Math.round(70 * tb)})`;
+      else if (roll < 0.1) color = accent;
+      else if (roll < 0.15) color = "#ffffff";
+      else color = shade > 0.55 ? "#080a0e" : "#141820";
       ctx.fillStyle = color;
       ctx.fillText(glyph, x + cw / 2, y + ch / 2 + 1);
     }
