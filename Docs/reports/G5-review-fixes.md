@@ -1,6 +1,6 @@
 # G5 — xác minh và sửa phản hồi PR #1
 
-Ngày 31/10/2026, Asia/Saigon. Trạng thái: **in_progress — targeted tests passed, chờ full regression**.
+Ngày 31/10/2026, Asia/Saigon. Trạng thái: **passed (local, clean git archive)**.
 Theo [comment của Khầy](https://github.com/sontakmtp-cell/goodmcp/pull/1#issuecomment-6536961901).
 Không merge PR, không gọi LLM API, không sửa plugin mẫu hoặc công thức Python.
 
@@ -46,17 +46,44 @@ riêng `goodmcp-g5-review-repro-d0cfc7ff`, không dùng database local của Kh�
 
 ## 3. Toàn bộ kiểm thử G1–G5
 
-Đang chuẩn bị chạy `python scripts/verify.py --stage G5 --evidence-dir Docs/reports/evidence/G5-review` từ **git archive** của
-commit sửa lỗi. Harness chạy fresh install, migration G4 có dữ liệu cũ, 47 parity
-cases, pytest, HTTP/OAuth/MCP, timeout/cancel/crash/fencing, tenant isolation,
-recreate/resume và health failure/recovery; cleanup đúng project kiểm thử.
+Đã chạy:
 
-Không coi targeted pass là full regression pass. Kết quả cuối và commit được
-kiểm sẽ được ghi tại đây cùng evidence trước khi push lên PR.
+```powershell
+python scripts/verify.py --stage G5 --evidence-dir Docs/reports/evidence/G5-review
+```
+
+Source **2609bffd44807f8a1965f45e1a04f962e9551e61**, mode **clean_git_archive**,
+run `20261031T011953Z-a72508`. 77 hash file của source archive được giữ trong
+[source-manifest.json](evidence/G5-review/source-manifest.json). Thời gian cộng
+các lệnh harness **425,45 giây**; không coi đây là benchmark production.
+
+| Kiểm tra cuối | Kết quả |
+|---|---|
+| Toàn bộ pytest PostgreSQL/ArtifactStore G1–G5 | **199 passed** |
+| Database G4 có project/artifact/decision cũ → migration mới → recovery có proof | **22/22** |
+| G5 HTTP/OAuth/MCP, gồm rollback sai hướng và tổng summary trên 512 KiB | **41/41** |
+| Sau recreate, đúng pin/revision/checkpoint và summary archive/handle cũ | **19/19** |
+| Python gốc/container parity G4 | **47/47** |
+| G1–G4: tenant/RLS/pool/storage, import/version/ZIP export, OAuth/negative tokens, document lookup, queue/cancel/timeout/crash/fencing | **Pass** |
+| Fresh install, migration idempotent, DB outage/recovery, secret/port boundaries | **Pass** |
+| Cleanup hai Compose project kiểm thử và volume của chúng | **Đã dọn, không đụng dữ liệu local thật** |
+
+[verify.json](evidence/G5-review/verify.json) và
+[verify-console.txt](evidence/G5-review/verify-console.txt) giữ toàn bộ lệnh/exit
+code/kết quả. Các phần đọc nhanh: [upgrade.json](evidence/G5-review/upgrade.json),
+[wire-tests.json](evidence/G5-review/wire-tests.json), [resume.json](evidence/G5-review/resume.json).
+Kết quả G5 ban đầu trong `evidence/G5` được giữ để đối chiếu; không ghi đè bằng
+chứng của lần này. 832 file plugin mẫu vẫn đúng byte/SHA-256 G0:
+[plugin-unchanged.json](evidence/G5-review/plugin-unchanged.json).
 
 ## 4. Vận hành
 
-Chưa tự gán lead cho project thực tế nào. Mapping chưa được xác minh phải giữ NULL.
+Đã chạy `python scripts/local.py up`, nâng stack persistent lên **0006_g5_review**;
+HTTP readiness vẫn **G5/ready**, một user/workspace, ba plugin enabled, 16 vai trò.
+Bootstrap owner `created=false`; số project/lead trước và sau giữ nguyên, bảng
+assignment không phát sinh bản ghi. [local-smoke.json](evidence/G5-review/local-smoke.json).
+
+Không tự gán lead cho project thực tế nào. Mapping chưa được xác minh phải giữ NULL.
 CLI dựa trên admin credential và xác nhận operator đã kiểm; không chứng thực một
 user ID hoặc nội dung evidence bằng API/LLM. Chưa chuyển lead đã có hoặc tự ghim
 plugin cho project chưa có pin. UI, host cloud và production acceptance vẫn ở các

@@ -1,0 +1,174 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "create retry returns same pinned project",
+      "passed": true
+    },
+    {
+      "name": "open pins original OPC version",
+      "passed": true
+    },
+    {
+      "name": "project discoverable across chats",
+      "passed": true
+    },
+    {
+      "name": "real OPC nine roles retained",
+      "passed": true
+    },
+    {
+      "name": "no host subagents means honest sequential mode",
+      "passed": true
+    },
+    {
+      "name": "HTTP rollback cannot bypass dependencies by advancing",
+      "passed": true
+    },
+    {
+      "name": "rejected forward rollback preserves checkpoint and revision",
+      "passed": true
+    },
+    {
+      "name": "draft save retry does not duplicate",
+      "passed": true
+    },
+    {
+      "name": "draft does not advance",
+      "passed": true
+    },
+    {
+      "name": "unknown lead claim rejected",
+      "passed": true
+    },
+    {
+      "name": "stale save rejected",
+      "passed": true
+    },
+    {
+      "name": "idempotency input conflict rejected",
+      "passed": true
+    },
+    {
+      "name": "project reader cannot write",
+      "passed": true
+    },
+    {
+      "name": "hub scopes do not imply project access",
+      "passed": true
+    },
+    {
+      "name": "grant cannot choose foreign workspace project",
+      "passed": true
+    },
+    {
+      "name": "commit retries return stable result",
+      "passed": true
+    },
+    {
+      "name": "confirmed stage resumes next stage",
+      "passed": true
+    },
+    {
+      "name": "stale commit does not erase history",
+      "passed": true
+    },
+    {
+      "name": "draft and confirmed revisions preserved",
+      "passed": true
+    },
+    {
+      "name": "historical artifact checksum and content available",
+      "passed": true
+    },
+    {
+      "name": "concurrent HTTP writers preserve winner",
+      "passed": true
+    },
+    {
+      "name": "G5 typed workflow tools exposed",
+      "passed": true
+    },
+    {
+      "name": "MCP hub_list_projects",
+      "passed": true
+    },
+    {
+      "name": "new MCP chat discovers existing project",
+      "passed": true
+    },
+    {
+      "name": "MCP hub_read_project",
+      "passed": true
+    },
+    {
+      "name": "new chat resumes exact stage and pin",
+      "passed": true
+    },
+    {
+      "name": "MCP hub_report_host",
+      "passed": true
+    },
+    {
+      "name": "MCP hub_prepare_workflow",
+      "passed": true
+    },
+    {
+      "name": "MCP brief honestly reports unknown actual model",
+      "passed": true
+    },
+    {
+      "name": "MCP hub_report_host",
+      "passed": true
+    },
+    {
+      "name": "MCP hub_prepare_workflow",
+      "passed": true
+    },
+    {
+      "name": "native mode is availability only, never execution claim",
+      "passed": true
+    },
+    {
+      "name": "MCP unknown project is_error",
+      "passed": true
+    },
+    {
+      "name": "MCP revision conflict is_error",
+      "passed": true
+    },
+    {
+      "name": "test update imported without executing code",
+      "passed": true
+    },
+    {
+      "name": "installation update leaves project pinned to original source",
+      "passed": true
+    },
+    {
+      "name": "pinned source handles remain readable after update",
+      "passed": true
+    },
+    {
+      "name": "G4 Python job writes durable result to correctly pinned project",
+      "passed": true
+    },
+    {
+      "name": "G4 Python binding rejects different project pin",
+      "passed": true
+    },
+    {
+      "name": "HTTP commits continue beyond 512 KiB total summary",
+      "passed": true
+    },
+    {
+      "name": "old summary handle remains readable after rotation",
+      "passed": true
+    }
+  ],
+  "project_id": "07f45475-d11d-495d-bdc6-92cb67439555",
+  "plugin_version_id": "9de5ceb3-9581-4593-8969-db3c50118a6a",
+  "final_revision": 4,
+  "llm_api_calls": 0,
+  "host_gate": "protocol_only"
+}

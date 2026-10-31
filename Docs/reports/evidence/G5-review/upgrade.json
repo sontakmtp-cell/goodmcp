@@ -1,0 +1,95 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "upgrade leaves unknown ownership unresolved, even with an owner and member",
+      "passed": true
+    },
+    {
+      "name": "upgrade preserves legacy pin revision and state",
+      "passed": true
+    },
+    {
+      "name": "operator can list projects needing explicit ownership confirmation",
+      "passed": true
+    },
+    {
+      "name": "read reports unresolved lead",
+      "passed": true
+    },
+    {
+      "name": "no self-claim through project write",
+      "passed": true
+    },
+    {
+      "name": "missing proof rejected",
+      "passed": true
+    },
+    {
+      "name": "member cannot confirm ownership",
+      "passed": true
+    },
+    {
+      "name": "foreign workspace lead rejected",
+      "passed": true
+    },
+    {
+      "name": "viewer lead rejected",
+      "passed": true
+    },
+    {
+      "name": "inactive membership lead rejected",
+      "passed": true
+    },
+    {
+      "name": "operator assignment retry is idempotent",
+      "passed": true
+    },
+    {
+      "name": "assignment changes only verified lead",
+      "passed": true
+    },
+    {
+      "name": "ambiguous project remains unassigned",
+      "passed": true
+    },
+    {
+      "name": "ownership proof and audit retained",
+      "passed": true
+    },
+    {
+      "name": "lead remains immutable after recovery",
+      "passed": true
+    },
+    {
+      "name": "unassigned project cannot bypass assignment",
+      "passed": true
+    },
+    {
+      "name": "runtime cannot execute operator function",
+      "passed": true
+    },
+    {
+      "name": "ownership records hidden without tenant context",
+      "passed": true
+    },
+    {
+      "name": "prior artifact bytes and checksum survive actual migration",
+      "passed": true
+    },
+    {
+      "name": "verified lead can save and resume old project",
+      "passed": true
+    },
+    {
+      "name": "legacy context survives new commit",
+      "passed": true
+    },
+    {
+      "name": "old decision and assumption history remain exact",
+      "passed": true
+    }
+  ],
+  "upgrade_from": "0004_g4",
+  "ownership_auto_assigned": false
+}

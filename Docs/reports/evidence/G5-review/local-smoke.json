@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "before": {
+    "revision": "0005_g5",
+    "projects": 0,
+    "assigned_leads": 0,
+    "unassigned_leads": 0
+  },
+  "after": {
+    "revision": "0006_g5_review",
+    "projects": 0,
+    "assigned_leads": 0,
+    "unassigned_leads": 0,
+    "assignment_records": 0,
+    "users": 1,
+    "workspaces": 1,
+    "enabled_plugins": 3,
+    "roles": 16
+  },
+  "health": {
+    "data": {
+      "status": "ready",
+      "stage": "G5"
+    },
+    "request_id": "da523674-edf3-4577-9893-554ca0c7a30d"
+  },
+  "ownership_auto_assigned": false
+}
