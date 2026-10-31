@@ -1,0 +1,10 @@
+{
+  "transport": "streamable-http",
+  "url": "https://goodmcp.si/mcp",
+  "protocol": "2026-07-28",
+  "oauth_issuer": "https://goodmcp.si/auth",
+  "scopes_for_full_workflow": [
+    "hub:read", "hub:write", "tools:run", "projects:read", "projects:write"
+  ],
+  "note": "Operator reference; configure OAuth in the actual host UI. No tokens or client secrets belong in this file."
+}

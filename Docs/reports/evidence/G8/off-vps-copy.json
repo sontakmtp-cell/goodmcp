@@ -1,0 +1,11 @@
+{
+  "observed_at": "2026-10-31T08:40:17.659119+00:00",
+  "archive": "H:\\AI\\goodmcp\\.local\\g8\\recovery\\restic-20261031.tar",
+  "bytes": 1152245760,
+  "sha256": "be732690dc31c0d0bfe52a18c1b922854e71ffd929de48b757edc5e0840d15c9",
+  "remote_sha256_matches": true,
+  "encrypted_restic_repository": true,
+  "snapshot": "2ffabcd5a7938121afd11c1d9c5a850b447172c8111943f46fce2f7ccd41bc46",
+  "decryption_key_outside_vps_exists": true,
+  "automatic_off_vps": false
+}

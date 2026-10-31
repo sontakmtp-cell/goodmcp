@@ -1,0 +1,86 @@
+{
+  "observed_at": "2026-10-31T08:35:46.995713+00:00",
+  "method": "Unauthenticated GET, TLS verified, redirects not followed, no cookies retained; local-network probe, not provider-cloud evidence.",
+  "records": [
+    {
+      "url": "https://goodmcp.si/",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "observed_at": "2026-10-31T08:35:33.945994+00:00",
+      "status": 521,
+      "content_type": "text/html; charset=UTF-8",
+      "server": "cloudflare",
+      "bytes": 6988,
+      "response_sha256": "b812d0a69a7585779ee6c63b2cd5476950d547c7f6634b9386e82d8eec41cf25",
+      "page_title": "goodmcp.si | 521: Web server is down"
+    },
+    {
+      "url": "https://goodmcp.si/mcp",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "observed_at": "2026-10-31T08:35:45.661149+00:00",
+      "status": 521,
+      "content_type": "text/html; charset=UTF-8",
+      "server": "cloudflare",
+      "bytes": 6988,
+      "response_sha256": "597bc3d6353b678b618ec31602a746eb1f7c9af5e4a0648fdbb59c47d20d1ba2",
+      "page_title": "goodmcp.si | 521: Web server is down"
+    },
+    {
+      "url": "https://goodmcp.si/.well-known/oauth-protected-resource/mcp",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "observed_at": "2026-10-31T08:35:45.948565+00:00",
+      "status": 521,
+      "content_type": "text/html; charset=UTF-8",
+      "server": "cloudflare",
+      "bytes": 6988,
+      "response_sha256": "bdce6188195e6c322ad77caa2146868b82b5e04113a4c486e52afabfcb565a5f",
+      "page_title": "goodmcp.si | 521: Web server is down"
+    },
+    {
+      "url": "https://goodmcp.si/.well-known/oauth-authorization-server/auth",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "observed_at": "2026-10-31T08:35:46.315880+00:00",
+      "status": 521,
+      "content_type": "text/html; charset=UTF-8",
+      "server": "cloudflare",
+      "bytes": 6988,
+      "response_sha256": "1fbdc0da0964566e195328770ecc0bf4094bdc2a1077aa5be3b31d7973e4d7d8",
+      "page_title": "goodmcp.si | 521: Web server is down"
+    },
+    {
+      "url": "https://goodmcp.si/health/ready",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "observed_at": "2026-10-31T08:35:46.602770+00:00",
+      "status": 521,
+      "content_type": "text/html; charset=UTF-8",
+      "server": "cloudflare",
+      "bytes": 6988,
+      "response_sha256": "4209c1bf1a4a67b99e0cbd5a99b82a590a00d5ac724857598c717518dcc3be91",
+      "page_title": "goodmcp.si | 521: Web server is down"
+    }
+  ]
+}

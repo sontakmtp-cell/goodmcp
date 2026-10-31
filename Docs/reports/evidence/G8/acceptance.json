@@ -1,0 +1,37 @@
+{
+  "stage": "G8",
+  "status": "partial",
+  "updated_at": "2026-10-31T08:48:31.529937+00:00",
+  "url": "https://goodmcp.si/mcp",
+  "web": "https://goodmcp.si/admin",
+  "source_mode": "working_tree_dev",
+  "criteria": {
+    "public_https_hub": true,
+    "web_sso_python_project": true,
+    "restart_observed": true,
+    "clean_db_volume_restore": true,
+    "restore_protocol_checks": 68,
+    "artifact_hashes_after_restore": 991,
+    "encrypted_off_vps_copy_verified": true,
+    "automatic_off_vps_backup": false,
+    "all_g7_cloud_scenario_steps": false,
+    "native_cloudflare_2fa_verified": false,
+    "github_mobile_security_owner_reported": true,
+    "new_machine_rto_certified": false,
+    "independent_operator_handoff_exercised": false
+  },
+  "snapshot_id": "2ffabcd5a7938121afd11c1d9c5a850b447172c8111943f46fce2f7ccd41bc46",
+  "deferred_by_owner": [
+    "R2 activation",
+    "Additional native Cloudflare 2FA"
+  ],
+  "remaining": [
+    "Cloud G7 Godot open and exact revoked-token MCP 401 observation",
+    "Automated off-VPS backup",
+    "Full replacement-machine restore drill before RTO commitment",
+    "Independent operator runbook exercise"
+  ],
+  "test_chatgpt_connection": "revoked; later consent canceled, no new grant",
+  "claim_all_four_hosts_supported": false,
+  "paid_services_activated": []
+}

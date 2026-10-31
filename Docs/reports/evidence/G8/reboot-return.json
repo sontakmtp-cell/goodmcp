@@ -1,0 +1,15 @@
+{
+  "observed_at": "2026-10-31T08:35:50.003113+00:00",
+  "elapsed_s": 40.516,
+  "connection_failures": [
+    "SSHException",
+    "SSHException",
+    "SSHException",
+    "SSHException",
+    "SSHException",
+    "SSHException"
+  ],
+  "exit_code": 0,
+  "stdout": "8a3d20f6-62df-4872-b72e-bc900255a0ff\n6.8.0-147-generic\n 15:35:47 up 0 min,  1 user,  load average: 0.72, 0.15, 0.05\nNAME                        IMAGE                                                                                          COMMAND                  SERVICE      CREATED          STATUS                           PORTS\ngoodmcp-prod-api-1          goodmcp-hub:g8r4-20261031                                                                      \"uvicorn apps.api.ma\u2026\"   api          13 minutes ago   Up 1 second (health: starting)   \ngoodmcp-prod-auth-1         goodmcp-hub:g8r4-20261031                                                                      \"uvicorn apps.api.au\u2026\"   auth         13 minutes ago   Up 1 second (health: starting)   \ngoodmcp-prod-caddy-1        goodmcp-caddy:local                                                                            \"caddy run --config \u2026\"   caddy        41 minutes ago   Up 1 second                      80/tcp, 443/tcp, 2019/tcp, 443/udp, 0.0.0.0:80->8080/tcp, [::]:80->8080/tcp, 0.0.0.0:443->8443/tcp, [::]:443->8443/tcp\ngoodmcp-prod-dispatcher-1   goodmcp-hub:g8r4-20261031                                                                      \"python -m goodmcp.d\u2026\"   dispatcher   13 minutes ago   Up 1 second                      \ngoodmcp-prod-postgres-1     postgres:18.1-alpine@sha256:aa6eb304ddb6dd26df23d05db4e5cb05af8951cda3e0dc57731b771e0ef4ab29   \"docker-entrypoint.s\u2026\"   postgres     44 minutes ago   Up 1 second (health: starting)   5432/tcp\ngoodmcp-prod-worker-1       goodmcp-hub:g8r4-20261031                                                                      \"python -m apps.api.\u2026\"   worker       13 minutes ago   Up 1 second                      \nactive\nactive\n",
+  "stderr": ""
+}

@@ -1,0 +1,5 @@
+{
+  "exit_code": 0,
+  "stdout": "003ee28f-8dfb-4916-a4b8-09254520cf49\n6.8.0-31-generic\nenabled\nenabled\n",
+  "stderr": "Running timer as unit: goodmcp-g8-reboot.timer\nWill run service as unit: goodmcp-g8-reboot.service\n"
+}

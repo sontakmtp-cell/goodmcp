@@ -1,0 +1,9 @@
+{
+  "checked_at": "2026-10-31T07:06:30.069086+00:00",
+  "json_files_valid": 16,
+  "missing_relative_links": [],
+  "known_secret_values_checked": 10,
+  "known_secret_matches": [],
+  "plugin_unchanged": true,
+  "scope_note": "Exact known local/test secrets only; not a guarantee to detect all possible credentials."
+}

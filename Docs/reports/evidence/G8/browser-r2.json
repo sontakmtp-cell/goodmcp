@@ -1,0 +1,16 @@
+{
+  "observed_at": "2026-10-31T14:32:15.0029445+07:00",
+  "service": "Cloudflare R2 Dashboard",
+  "status": "blocked_billing_subscription",
+  "current_due_usd": 0,
+  "monthly_base_usd": 0,
+  "free_standard_storage_gb": 10,
+  "free_class_a_operations": 1000000,
+  "free_class_b_operations": 10000000,
+  "additional_usage_billable": true,
+  "existing_payment_method_on_file": true,
+  "subscription_auto_renews": true,
+  "terms_acceptance_required": true,
+  "action_taken": "Viewed plans only; did not subscribe or enter payment",
+  "source": "Authenticated dashboard R2 plans page"
+}

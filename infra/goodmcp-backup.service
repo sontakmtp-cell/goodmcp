@@ -1,0 +1,9 @@
+[Unit]
+Description=Consistent encrypted GoodMCP database and artifact backup
+After=docker.service network-online.target
+Requires=docker.service
+[Service]
+Type=oneshot
+ExecStart=/bin/sh /opt/goodmcp/releases/g8/infra/backup.sh
+TimeoutStartSec=30min
+UMask=0077

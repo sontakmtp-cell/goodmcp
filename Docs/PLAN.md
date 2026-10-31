@@ -333,13 +333,17 @@ Mặc định giao tuần tự. Nếu Khầy giao nhiều agent, chỉ song song
 - **Nghiệm thu:** chat khác tiếp tục đúng bước/version; draft không chuyển bước; xung đột không mất lịch sử; thiếu subagent không giả kết quả; output ghim đúng plugin version.
 - **Prompt giao:** “Thực hiện G5 theo hợp đồng OPC và tenant core; không gọi LLM API; kiểm tra resume/conflict và bàn giao G5.md.”
 
-### G6 — Trang quản trị
+### G6 — User Portal và Admin Dashboard
 
-- Màn hình plugin/công cụ/dự án/kết nối AI/hoạt động-tài nguyên-backup.
-- Upload progress/resume, capability chưa hỗ trợ, version/rollback, tài liệu, run/cancel, export, revoke.
-- Form tính toán gọi Python; cấu hình host dùng URL thật khi đã deploy, chưa deploy thì ghi rõ placeholder.
-- **Nghiệm thu:** Khầy nhập/bật plugin và dùng tool không sửa JSON/lệnh tay; keyboard/mobile đạt; lỗi mạng/auth/quota rõ; không lộ secret hoặc chạy script HTML chưa duyệt.
-- **Prompt giao:** “Thực hiện G6, sở hữu apps/web và UI tests; dùng API đã chốt, không nhân đôi công thức Python trong frontend; bàn giao G6.md.”
+- **Trạng thái 31/10/2026:** G6 local đạt: build, 46 UI tests, 1 live React→Python/revoke, 45 kiểm tra backend và HTTP/MCP 26/26 ở hai phiên độc lập; đã đóng lỗi runtime/revoke. Xem [G6.md](reports/G6.md), không suy thành production readiness.
+- Đặc tả trước triển khai: [G6-UI.md](design/G6-UI.md); frontend React/TypeScript/Vite trong apps/web, dùng chung backend và OAuth G2; giữ nguyên API, schema và nghiệp vụ G1–G5.
+- **User Portal:** trang chủ theo UI-mock/GoodMCP_landing_page.png, hiệu ứng stackedlol/ascii-sharks có giấy phép MIT, danh mục private chỉ sau xác thực, mô tả dễ hiểu, hướng dẫn từng nền tảng, URL MCP có nút sao chép và nhãn placeholder trước deploy. Không đăng ký công khai, billing, marketplace hoặc công khai plugin riêng.
+- **Admin:** đúng 5 nhóm Tổng quan; MCP & Plugin; Dự án; Người dùng & Kết nối; Hệ thống. Thao tác thường dùng ở danh sách; versions/rollback, tài liệu và Python nằm trong chi tiết.
+- Upload ZIP chunk 8 MiB/resume theo trạng thái server, preview rồi bật; version/revision chống ghi đè; tài liệu plain text; form theo input_schema gọi Python, theo dõi/hủy job theo ID; tải ZIP gốc. Dự án đọc/resume, tạo và lưu draft qua G5.
+- Chỉ xây hành động có API thật. G2 hỗ trợ đăng nhập/consent và revoke grant hiện tại; chưa có API liệt kê/quản trị người dùng, toàn bộ kết nối, logs, số liệu tài nguyên, backup hoặc export toàn bộ project. Các mục này hiển thị lý do chưa hỗ trợ, không tạo dữ liệu giả/nút thành công giả. File project đọc/tải từng trang, không gọi đó là export toàn bộ.
+- **Nghiệm thu:** nhập/bật plugin và chạy tool bằng form; không sửa JSON/lệnh tay cho schema hỗ trợ; UI tests trạng thái loading/empty/error/success, auth/role/quota/conflict, upload retry/resume, XSS, bàn phím và responsive. Báo cáo tách test fixture, API local thật và kiểm tra trình duyệt; không suy thành G7 hay production.
+- **Bàn giao:** Docs/reports/G6.md, evidence kiểm thử, chức năng hoàn thành và giới hạn API. Không gọi LLM, nhân đôi công thức Python, sửa plugin_example hoặc triển khai G7–G8.
+- **Prompt giao:** “Thực hiện G6 theo Docs/design/G6-UI.md; sở hữu apps/web và UI tests; kiểm API thật trước mỗi chức năng, giữ G1–G5; bàn giao G6.md với giới hạn và chứng cứ local.”
 
 ### G7 — Nghiệm thu chéo nền tảng
 

@@ -1,0 +1,46 @@
+# Used with compose.yml; requires an operator env file outside the repository.
+services:
+  postgres:
+    mem_limit: 768m
+    memswap_limit: 768m
+  api:
+    environment:
+      HUB_ALLOW_HTTP_LOOPBACK: "0"
+    mem_limit: 512m
+    memswap_limit: 512m
+  auth:
+    environment:
+      HUB_ALLOW_HTTP_LOOPBACK: "0"
+      HUB_OIDC_CONFIG_FILE: /run/secrets/oidc_config
+    secrets: [oidc_config]
+    mem_limit: 384m
+    memswap_limit: 384m
+  worker:
+    environment:
+      HUB_ALLOW_HTTP_LOOPBACK: "0"
+    mem_limit: 256m
+    memswap_limit: 256m
+  dispatcher:
+    # Docker socket group is detected on the target host, not assumed to be 0.
+    user: "10001:10001"
+    group_add: ["${HUB_DOCKER_GID:?Detect Docker socket group on the VPS}"]
+    environment:
+      HUB_ALLOW_HTTP_LOOPBACK: "0"
+    mem_limit: 192m
+    memswap_limit: 192m
+  caddy:
+    ports: !override ["80:8080", "443:8443"]
+    volumes: !override
+      - ./Caddyfile.production:/etc/caddy/Caddyfile:ro
+      - ${HUB_WEB_DIST:?Provide built frontend}:/srv/web:ro
+      - ${HUB_STATE_DIR:-/opt/goodmcp/state}:/srv/state:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    tmpfs: !reset []
+    mem_limit: 128m
+    memswap_limit: 128m
+secrets:
+  oidc_config: {file: "${HUB_SECRETS_DIR}/oidc_config"}
+volumes:
+  caddy_data:
+  caddy_config:

@@ -1,0 +1,187 @@
+{
+  "observed_at": "2026-10-31T07:57:04.998051+00:00",
+  "method": "Unauthenticated GET, TLS verified, redirects not followed, no cookies retained; local-network probe, not provider-cloud evidence.",
+  "records": [
+    {
+      "url": "https://goodmcp.si/",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "observed_at": "2026-10-31T07:57:00.198634+00:00",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "cloudflare",
+      "bytes": 698,
+      "response_sha256": "e055bd9a71af02c902b8eb4a8130d03f4098f6c3645a7dda2b222180d8b5bb53",
+      "page_title": "GoodMCP — Kết nối AI của bạn"
+    },
+    {
+      "url": "https://goodmcp.si/mcp",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "observed_at": "2026-10-31T07:57:00.661874+00:00",
+      "status": 401,
+      "content_type": "application/json",
+      "server": "cloudflare",
+      "bytes": 140,
+      "response_sha256": "7a922cfe69806c30ed33321c503fd6123d33d1d41e18f2652c265c260812e521",
+      "metadata": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "Bearer token required",
+          "retryable": false
+        }
+      }
+    },
+    {
+      "url": "https://goodmcp.si/.well-known/oauth-protected-resource/mcp",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "observed_at": "2026-10-31T07:57:01.026497+00:00",
+      "status": 200,
+      "content_type": "application/json",
+      "server": "cloudflare",
+      "bytes": 159,
+      "response_sha256": "53ca47a56da1419fd27c0e75699ce5a0d84dc10054dbacf4d507a8e4010b1848",
+      "metadata": {
+        "resource": "https://goodmcp.si/mcp",
+        "authorization_servers": [
+          "https://goodmcp.si/auth"
+        ]
+      }
+    },
+    {
+      "url": "https://goodmcp.si/.well-known/oauth-authorization-server/auth",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "observed_at": "2026-10-31T07:57:01.336275+00:00",
+      "status": 200,
+      "content_type": "application/json",
+      "server": "cloudflare",
+      "bytes": 694,
+      "response_sha256": "7243af73006188bd5db5ba3b4cd1381c9309d955d5053c6561d4ba8a006e1486",
+      "metadata": {
+        "issuer": "https://goodmcp.si/auth",
+        "authorization_endpoint": "https://goodmcp.si/auth/authorize",
+        "token_endpoint": "https://goodmcp.si/auth/token",
+        "registration_endpoint": "https://goodmcp.si/auth/register"
+      }
+    },
+    {
+      "url": "https://goodmcp.si/health/ready",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "observed_at": "2026-10-31T07:57:01.747012+00:00",
+      "status": 200,
+      "content_type": "application/json",
+      "server": "cloudflare",
+      "bytes": 92,
+      "response_sha256": "7ebb2f61e90f3e6a775dd26034250ce4bf6a2eecfe58cd96e9f311e2a41e6089",
+      "metadata": {}
+    },
+    {
+      "url": "https://www.goodmcp.si/",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "observed_at": "2026-10-31T07:57:02.302306+00:00",
+      "status": 301,
+      "content_type": null,
+      "server": "cloudflare",
+      "bytes": 0,
+      "response_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "redirect_without_query": "https://goodmcp.si/",
+      "page_title": null
+    },
+    {
+      "url": "https://www.goodmcp.si/mcp",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "observed_at": "2026-10-31T07:57:02.809883+00:00",
+      "status": 301,
+      "content_type": null,
+      "server": "cloudflare",
+      "bytes": 0,
+      "response_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "redirect_without_query": "https://goodmcp.si/mcp",
+      "page_title": null
+    },
+    {
+      "url": "https://www.goodmcp.si/.well-known/oauth-protected-resource/mcp",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "observed_at": "2026-10-31T07:57:03.317159+00:00",
+      "status": 301,
+      "content_type": null,
+      "server": "cloudflare",
+      "bytes": 0,
+      "response_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "redirect_without_query": "https://goodmcp.si/.well-known/oauth-protected-resource/mcp",
+      "page_title": null
+    },
+    {
+      "url": "https://www.goodmcp.si/.well-known/oauth-authorization-server/auth",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "observed_at": "2026-10-31T07:57:03.957209+00:00",
+      "status": 301,
+      "content_type": null,
+      "server": "cloudflare",
+      "bytes": 0,
+      "response_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "redirect_without_query": "https://goodmcp.si/.well-known/oauth-authorization-server/auth",
+      "page_title": null
+    },
+    {
+      "url": "https://www.goodmcp.si/health/ready",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "observed_at": "2026-10-31T07:57:04.587993+00:00",
+      "status": 301,
+      "content_type": null,
+      "server": "cloudflare",
+      "bytes": 0,
+      "response_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "redirect_without_query": "https://goodmcp.si/health/ready",
+      "page_title": null
+    }
+  ]
+}

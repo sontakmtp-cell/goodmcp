@@ -1,0 +1,5 @@
+# Private restore drill. Never publish this password-login instance to the Internet.
+services:
+  dispatcher:
+    user: "10001:10001"
+    group_add: ["${HUB_DOCKER_GID:?Detect Docker socket group}"]

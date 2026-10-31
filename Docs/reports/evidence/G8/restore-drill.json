@@ -1,0 +1,5 @@
+{
+  "exit_code": 1,
+  "stdout": "restoring <Snapshot f87544f2 of [/var/lib/docker/volumes/goodmcp-prod_artifacts/_data /opt/goodmcp/backups/staging /opt/goodmcp/releases/g8 /opt/goodmcp/finance /opt/goodmcp/secrets /opt/goodmcp/deploy.env /opt/goodmcp/compose /opt/goodmcp/approved-finance.oci.tar /opt/goodmcp/app-images.tar /opt/goodmcp/postgres-image.tar] at 2026-10-31 14:59:44.797036447 +0700 +07 by root@vpssieutoc.1793430802> to /opt/goodmcp/restore-drill-20261031\nSummary: Restored 1122 files/dirs (2.310 GiB) in 0:18\n",
+  "stderr": "open /opt/goodmcp/restore-drill-20261031/opt/goodmcp/releases/g8/infra/compose.yml: no such file or directory\n"
+}

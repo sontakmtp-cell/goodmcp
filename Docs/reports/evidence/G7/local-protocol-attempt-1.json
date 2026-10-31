@@ -1,0 +1,96 @@
+{
+  "status": "failed",
+  "classification": "protocol_only",
+  "started_at": "2026-10-31T06:58:40.890560+00:00",
+  "endpoint": "http://127.0.0.1:18080/mcp",
+  "protocol": "2026-07-28",
+  "host": "official Python SDK; local HTTP harness",
+  "requested_model": null,
+  "reported_model": "unknown",
+  "model_api_calls": 0,
+  "checks": [
+    {
+      "name": "Persistent stack ready",
+      "passed": true
+    },
+    {
+      "name": "Local protected resource discovery",
+      "passed": true
+    },
+    {
+      "name": "Local issuer and S256 discovery",
+      "passed": true
+    },
+    {
+      "name": "OAuth DCR session-A",
+      "passed": true
+    },
+    {
+      "name": "OAuth form responds with HTML",
+      "passed": true
+    },
+    {
+      "name": "OAuth CSRF present",
+      "passed": true
+    },
+    {
+      "name": "Owner login session-A",
+      "passed": true
+    },
+    {
+      "name": "Owner workspace available session-A",
+      "passed": true
+    },
+    {
+      "name": "OAuth form responds with HTML",
+      "passed": true
+    },
+    {
+      "name": "OAuth CSRF present",
+      "passed": true
+    },
+    {
+      "name": "Explicit consent session-A",
+      "passed": true
+    },
+    {
+      "name": "OAuth state and issuer binding session-A",
+      "passed": true
+    },
+    {
+      "name": "PKCE token exchange session-A",
+      "passed": true
+    },
+    {
+      "name": "SDK strict modern protocol session-A",
+      "passed": true,
+      "observed_protocol": "2026-07-28"
+    }
+  ],
+  "calls": [],
+  "grants": [
+    {
+      "label": "session-A",
+      "revoke_http": 200,
+      "rest_after_revoke": 401,
+      "mcp_after_revoke": 401,
+      "passed": true
+    }
+  ],
+  "source_commit": "8b886d53b7eefe548710b709ad322cafef11dc2c",
+  "versions": {
+    "mcp": "2.3.0",
+    "httpx": "0.28.1",
+    "httpx2": "2.16.0"
+  },
+  "readiness": {
+    "status": "ready",
+    "stage": "G5"
+  },
+  "failure": {
+    "type": "ExceptionGroup",
+    "check": "unexpected harness exception; inspect locally"
+  },
+  "ended_at": "2026-10-31T06:58:53.301381+00:00",
+  "fixture_retained": "One labelled project/output if created; existing installations unchanged; test grants revoked as recorded."
+}

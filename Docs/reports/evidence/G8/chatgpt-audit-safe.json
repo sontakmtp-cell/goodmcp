@@ -1,0 +1,5 @@
+{
+  "exit_code": 0,
+  "stdout": "               client_id               |                                  scopes                                   | revoked_at | token_count | used_codes \n---------------------------------------+---------------------------------------------------------------------------+------------+-------------+------------\n https://chatgpt.com/oauth/client.json | [\"hub:read\", \"hub:write\", \"tools:run\", \"projects:read\", \"projects:write\"] |            |           0 |          0\n(1 row)\n\n",
+  "stderr": ""
+}

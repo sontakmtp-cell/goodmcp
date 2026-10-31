@@ -1,0 +1,5 @@
+[Unit]
+Description=GoodMCP disk and backup age check
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /opt/goodmcp/releases/g8/infra/health.py

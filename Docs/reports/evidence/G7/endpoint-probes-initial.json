@@ -1,0 +1,195 @@
+{
+  "observed_at": "2026-10-31T06:57:06.523787+00:00",
+  "method": "unauthenticated GET, TLS verification enabled, no redirects followed; not a cloud-host test",
+  "records": [
+    {
+      "url": "https://goodmcp.si/",
+      "dns": [
+        "76.76.21.21"
+      ],
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "Vercel",
+      "redirect": "",
+      "bytes": 1230,
+      "page_title": "goodmcp.si — Domain For Sale"
+    },
+    {
+      "url": "https://goodmcp.si/mcp",
+      "dns": [
+        "76.76.21.21"
+      ],
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "Vercel",
+      "redirect": "",
+      "bytes": 1230,
+      "page_title": "goodmcp.si — Domain For Sale"
+    },
+    {
+      "url": "https://goodmcp.si/.well-known/oauth-protected-resource/mcp",
+      "dns": [
+        "76.76.21.21"
+      ],
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "Vercel",
+      "redirect": "",
+      "bytes": 1230,
+      "page_title": "goodmcp.si — Domain For Sale"
+    },
+    {
+      "url": "https://goodmcp.si/.well-known/oauth-authorization-server/auth",
+      "dns": [
+        "76.76.21.21"
+      ],
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "Vercel",
+      "redirect": "",
+      "bytes": 1230,
+      "page_title": "goodmcp.si — Domain For Sale"
+    },
+    {
+      "url": "https://goodmcp.si/health/ready",
+      "dns": [
+        "76.76.21.21"
+      ],
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "Vercel",
+      "redirect": "",
+      "bytes": 1230,
+      "page_title": "goodmcp.si — Domain For Sale"
+    },
+    {
+      "url": "https://mcp.goodmcp.si/",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "status": 401,
+      "content_type": "application/json",
+      "server": "cloudflare",
+      "redirect": "",
+      "bytes": 174,
+      "json": {
+        "error": "invalid_token",
+        "error_description": "Missing or invalid access token",
+        "resource_metadata": "https://mcp.goodmcp.si/.well-known/cloudflare-access-protected-resource/"
+      }
+    },
+    {
+      "url": "https://mcp.goodmcp.si/mcp",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "status": 401,
+      "content_type": "application/json",
+      "server": "cloudflare",
+      "redirect": "",
+      "bytes": 177,
+      "json": {
+        "error": "invalid_token",
+        "error_description": "Missing or invalid access token",
+        "resource_metadata": "https://mcp.goodmcp.si/.well-known/cloudflare-access-protected-resource/mcp"
+      }
+    },
+    {
+      "url": "https://mcp.goodmcp.si/.well-known/oauth-protected-resource/mcp",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "status": 200,
+      "content_type": "application/json; charset=utf-8",
+      "server": "cloudflare",
+      "redirect": "",
+      "bytes": 115,
+      "json": {
+        "resource": "https://mcp.goodmcp.si/mcp",
+        "authorization_servers": [
+          "https://divine-boat-8096.cloudflareaccess.com"
+        ]
+      }
+    },
+    {
+      "url": "https://mcp.goodmcp.si/.well-known/oauth-authorization-server/auth",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "status": 404,
+      "content_type": null,
+      "server": "cloudflare",
+      "redirect": "",
+      "bytes": 0,
+      "page_title": null,
+      "error_excerpt": ""
+    },
+    {
+      "url": "https://mcp.goodmcp.si/health/ready",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "status": 401,
+      "content_type": "application/json",
+      "server": "cloudflare",
+      "redirect": "",
+      "bytes": 186,
+      "json": {
+        "error": "invalid_token",
+        "error_description": "Missing or invalid access token",
+        "resource_metadata": "https://mcp.goodmcp.si/.well-known/cloudflare-access-protected-resource/health/ready"
+      }
+    },
+    {
+      "url": "https://auth.goodmcp.si/",
+      "dns": {
+        "error_type": "gaierror",
+        "errno": 11001
+      },
+      "error_type": "ConnectError",
+      "error": "[Errno 11001] getaddrinfo failed"
+    },
+    {
+      "url": "https://auth.goodmcp.si/.well-known/oauth-authorization-server",
+      "dns": {
+        "error_type": "gaierror",
+        "errno": 11001
+      },
+      "error_type": "ConnectError",
+      "error": "[Errno 11001] getaddrinfo failed"
+    },
+    {
+      "url": "https://admin.goodmcp.si/",
+      "dns": {
+        "error_type": "gaierror",
+        "errno": 11001
+      },
+      "error_type": "ConnectError",
+      "error": "[Errno 11001] getaddrinfo failed"
+    },
+    {
+      "url": "https://admin.goodmcp.si/.well-known/oauth-authorization-server",
+      "dns": {
+        "error_type": "gaierror",
+        "errno": 11001
+      },
+      "error_type": "ConnectError",
+      "error": "[Errno 11001] getaddrinfo failed"
+    }
+  ]
+}

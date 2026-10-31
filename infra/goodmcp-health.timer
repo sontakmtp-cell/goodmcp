@@ -1,0 +1,7 @@
+[Unit]
+Description=GoodMCP capacity and backup age guard
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=1min
+[Install]
+WantedBy=timers.target

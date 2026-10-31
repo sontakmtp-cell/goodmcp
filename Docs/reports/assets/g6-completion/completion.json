@@ -1,0 +1,13 @@
+{
+  "status": "passed_local",
+  "scope": "G6 existing API scope; no G7/G8 or production",
+  "ui_passed": 46,
+  "opt_in_live_react_flow_passed": 1,
+  "backend_regressions_passed": 45,
+  "http_mcp_passed": 26,
+  "independent_http_runs": 2,
+  "python_image_restored_exactly": "sha256:1f5a9fead877756bb149b10165d6d338dfb4e71922ef73ccc53ad16e843ddeff",
+  "revoke_protected_api_status": 401,
+  "browser_success_recapture": "not_run: required Terra agent hit usage limit; earlier visual/responsive evidence retained, product UI unchanged",
+  "no_new_api_or_migration": true
+}

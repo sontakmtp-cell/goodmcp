@@ -21,6 +21,20 @@ def validate_redirect(value, *, allow_loopback):
     return value
 
 
+def redirect_csp_origin(value):
+    """A CSP source for an already registered callback, without path/query data."""
+    validate_redirect(value, allow_loopback=True)
+    parsed = urlsplit(value)
+    host = parsed.hostname.encode('idna').decode('ascii')
+    if ':' in host:
+        if not re.fullmatch(r'[0-9A-Fa-f:]+', host):
+            raise ValueError('Invalid callback address')
+        host = '[' + host + ']'
+    elif not re.fullmatch(r'[A-Za-z0-9.-]+', host):
+        raise ValueError('Invalid callback hostname')
+    return parsed.scheme + '://' + host + (':' + str(parsed.port) if parsed.port else '')
+
+
 def validate_metadata(data, *, allow_loopback):
     if not isinstance(data, dict): raise ValueError("Client metadata must be an object")
     redirects = data.get("redirect_uris")
@@ -35,6 +49,27 @@ def validate_metadata(data, *, allow_loopback):
     scope = data.get("scope", "hub:read")
     if not isinstance(scope, str) or not scope.split() or set(scope.split()) - set(SCOPES): raise ValueError("Invalid scopes")
     return {"name": name, "redirect_uris": redirects, "allowed_scopes": sorted(set(scope.split()))}
+
+
+def validate_cimd_metadata(data, *, allow_loopback):
+    """Negotiate published CIMD methods with our public-PKCE-only AS policy.
+
+    The plural field advertises capabilities; the legacy singular field is a
+    preference. Selecting their intersection is not permission to accept a
+    private_key_jwt assertion without verifying it. Token processing still only
+    accepts 'none' plus S256. Missing resource-specific scope metadata allows the
+    server's supported scopes to be requested, subject to explicit owner consent.
+    """
+    if not isinstance(data, dict):
+        raise ValueError('Client metadata must be an object')
+    effective = dict(data)
+    if 'token_endpoint_auth_methods_supported' in data:
+        methods = data['token_endpoint_auth_methods_supported']
+        if not isinstance(methods, list) or not methods or not all(isinstance(x, str) for x in methods) or 'none' not in methods:
+            raise ValueError('No supported CIMD authentication method')
+        effective['token_endpoint_auth_method'] = 'none'
+    effective.setdefault('scope', ' '.join(SCOPES))
+    return validate_metadata(effective, allow_loopback=allow_loopback)
 
 
 def public_addresses(hostname):

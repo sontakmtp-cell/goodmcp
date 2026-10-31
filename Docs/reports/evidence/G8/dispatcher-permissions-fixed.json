@@ -1,0 +1,5 @@
+{
+  "exit_code": 0,
+  "stdout": "0 running\n",
+  "stderr": "time=\"2026-10-31T14:55:12+07:00\" level=warning msg=\"volume \\\"goodmcp-prod_artifacts\\\" already exists but was not created by Docker Compose. Use `external: true` to use an existing volume\"\n Container goodmcp-prod-dispatcher-1  Recreate\n Container goodmcp-prod-dispatcher-1  Recreated\n Container goodmcp-prod-dispatcher-1  Starting\n Container goodmcp-prod-dispatcher-1  Started\n  File \"<string>\", line 1\n    from pathlib import Path;import json;print(json.loads(Path(/release/release.json).read_text())[image_digest])\n                                                               ^\nSyntaxError: invalid syntax\n"
+}

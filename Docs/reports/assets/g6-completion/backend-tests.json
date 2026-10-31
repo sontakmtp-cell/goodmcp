@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "command": "docker compose -p goodmcp-local -f infra/compose.yml exec -T api python -m pytest tests/test_auth_boundary.py tests/test_auth_units.py tests/test_auth_database.py tests/test_runtime_units.py -q",
+  "passed_tests": 45,
+  "warning": "pytest cache cannot be written in read-only container; tests passed",
+  "regression_before_fix": {
+    "inherited_revoked_token_http_status": 200,
+    "database_queries": 0,
+    "failing_regression_cases": 2
+  },
+  "regression_after_fix": {
+    "inherited_revoked_token_http_status": 401,
+    "fresh_database_query_per_request": true,
+    "inner_mcp_cache_preserved": true
+  }
+}

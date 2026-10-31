@@ -1,0 +1,30 @@
+{
+  "observed_at": "2026-10-31T07:04:11.988208+00:00",
+  "scope": "local frontend tests/build; not browser, host cloud or production acceptance",
+  "commands": [
+    {
+      "label": "ui-tests",
+      "command": [
+        "cmd",
+        "/c",
+        "npm",
+        "test"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 98.703
+    },
+    {
+      "label": "ui-build",
+      "command": [
+        "cmd",
+        "/c",
+        "npm",
+        "run",
+        "build"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 14.906
+    }
+  ],
+  "passed": true
+}

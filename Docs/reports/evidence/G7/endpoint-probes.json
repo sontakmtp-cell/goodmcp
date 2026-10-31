@@ -1,0 +1,258 @@
+{
+  "observed_at": "2026-10-31T07:01:27.094189+00:00",
+  "method": "Unauthenticated GET, TLS verified, redirects not followed, no cookies retained; local-network probe, not provider-cloud evidence.",
+  "records": [
+    {
+      "url": "https://goodmcp.si/",
+      "dns": [
+        "76.76.21.21"
+      ],
+      "observed_at": "2026-10-31T07:01:23.365836+00:00",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "Vercel",
+      "bytes": 1230,
+      "response_sha256": "8d9d5e4d8b6c55641234d0a54f5e78b2a42d3ffaf61996075a5bf93621ab4504",
+      "page_title": "goodmcp.si — Domain For Sale"
+    },
+    {
+      "url": "https://goodmcp.si/mcp",
+      "dns": [
+        "76.76.21.21"
+      ],
+      "observed_at": "2026-10-31T07:01:23.957194+00:00",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "Vercel",
+      "bytes": 1230,
+      "response_sha256": "8d9d5e4d8b6c55641234d0a54f5e78b2a42d3ffaf61996075a5bf93621ab4504",
+      "page_title": "goodmcp.si — Domain For Sale"
+    },
+    {
+      "url": "https://goodmcp.si/.well-known/oauth-protected-resource/mcp",
+      "dns": [
+        "76.76.21.21"
+      ],
+      "observed_at": "2026-10-31T07:01:24.230974+00:00",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "Vercel",
+      "bytes": 1230,
+      "response_sha256": "8d9d5e4d8b6c55641234d0a54f5e78b2a42d3ffaf61996075a5bf93621ab4504",
+      "page_title": "goodmcp.si — Domain For Sale"
+    },
+    {
+      "url": "https://goodmcp.si/.well-known/oauth-authorization-server/auth",
+      "dns": [
+        "76.76.21.21"
+      ],
+      "observed_at": "2026-10-31T07:01:24.718423+00:00",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "Vercel",
+      "bytes": 1230,
+      "response_sha256": "8d9d5e4d8b6c55641234d0a54f5e78b2a42d3ffaf61996075a5bf93621ab4504",
+      "page_title": "goodmcp.si — Domain For Sale"
+    },
+    {
+      "url": "https://goodmcp.si/health/ready",
+      "dns": [
+        "76.76.21.21"
+      ],
+      "observed_at": "2026-10-31T07:01:24.940580+00:00",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "Vercel",
+      "bytes": 1230,
+      "response_sha256": "8d9d5e4d8b6c55641234d0a54f5e78b2a42d3ffaf61996075a5bf93621ab4504",
+      "page_title": "goodmcp.si — Domain For Sale"
+    },
+    {
+      "url": "https://mcp.goodmcp.si/",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "observed_at": "2026-10-31T07:01:25.164317+00:00",
+      "status": 401,
+      "content_type": "application/json",
+      "server": "cloudflare",
+      "bytes": 174,
+      "response_sha256": "4078e1e01315c656f41069c220393f082a3795a6643a1c0742a584d617a6faee",
+      "metadata": {
+        "error": "invalid_token",
+        "error_description": "Missing or invalid access token",
+        "resource_metadata": "https://mcp.goodmcp.si/.well-known/cloudflare-access-protected-resource/"
+      }
+    },
+    {
+      "url": "https://mcp.goodmcp.si/mcp",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "observed_at": "2026-10-31T07:01:25.412602+00:00",
+      "status": 401,
+      "content_type": "application/json",
+      "server": "cloudflare",
+      "bytes": 177,
+      "response_sha256": "b80966faef07464b17164e996bf019ff0c59d73292ae05c6477f49623bd73ec0",
+      "metadata": {
+        "error": "invalid_token",
+        "error_description": "Missing or invalid access token",
+        "resource_metadata": "https://mcp.goodmcp.si/.well-known/cloudflare-access-protected-resource/mcp"
+      }
+    },
+    {
+      "url": "https://mcp.goodmcp.si/.well-known/oauth-protected-resource/mcp",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "observed_at": "2026-10-31T07:01:25.699468+00:00",
+      "status": 200,
+      "content_type": "application/json; charset=utf-8",
+      "server": "cloudflare",
+      "bytes": 115,
+      "response_sha256": "448b9a0eed95b4ccd78a861bba534a1a565ec68845987edc08fa05f1756813f7",
+      "metadata": {
+        "resource": "https://mcp.goodmcp.si/mcp",
+        "authorization_servers": [
+          "https://divine-boat-8096.cloudflareaccess.com"
+        ]
+      }
+    },
+    {
+      "url": "https://mcp.goodmcp.si/.well-known/oauth-authorization-server/auth",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "observed_at": "2026-10-31T07:01:26.370286+00:00",
+      "status": 404,
+      "content_type": null,
+      "server": "cloudflare",
+      "bytes": 0,
+      "response_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "page_title": null
+    },
+    {
+      "url": "https://mcp.goodmcp.si/health/ready",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "observed_at": "2026-10-31T07:01:26.647671+00:00",
+      "status": 401,
+      "content_type": "application/json",
+      "server": "cloudflare",
+      "bytes": 186,
+      "response_sha256": "6b9d6595bf0304a77aecfb1895195bb41ec1cc70fdf55926ad92cb999aee09a3",
+      "metadata": {
+        "error": "invalid_token",
+        "error_description": "Missing or invalid access token",
+        "resource_metadata": "https://mcp.goodmcp.si/.well-known/cloudflare-access-protected-resource/health/ready"
+      }
+    },
+    {
+      "url": "https://auth.goodmcp.si/",
+      "dns": {
+        "error_type": "gaierror",
+        "errno": 11001
+      },
+      "observed_at": "2026-10-31T07:01:27.061941+00:00",
+      "error_type": "DNS resolution failed"
+    },
+    {
+      "url": "https://auth.goodmcp.si/mcp",
+      "dns": {
+        "error_type": "gaierror",
+        "errno": 11001
+      },
+      "observed_at": "2026-10-31T07:01:27.061941+00:00",
+      "error_type": "DNS resolution failed"
+    },
+    {
+      "url": "https://auth.goodmcp.si/.well-known/oauth-protected-resource/mcp",
+      "dns": {
+        "error_type": "gaierror",
+        "errno": 11001
+      },
+      "observed_at": "2026-10-31T07:01:27.061941+00:00",
+      "error_type": "DNS resolution failed"
+    },
+    {
+      "url": "https://auth.goodmcp.si/.well-known/oauth-authorization-server/auth",
+      "dns": {
+        "error_type": "gaierror",
+        "errno": 11001
+      },
+      "observed_at": "2026-10-31T07:01:27.061941+00:00",
+      "error_type": "DNS resolution failed"
+    },
+    {
+      "url": "https://auth.goodmcp.si/health/ready",
+      "dns": {
+        "error_type": "gaierror",
+        "errno": 11001
+      },
+      "observed_at": "2026-10-31T07:01:27.061941+00:00",
+      "error_type": "DNS resolution failed"
+    },
+    {
+      "url": "https://admin.goodmcp.si/",
+      "dns": {
+        "error_type": "gaierror",
+        "errno": 11001
+      },
+      "observed_at": "2026-10-31T07:01:27.094189+00:00",
+      "error_type": "DNS resolution failed"
+    },
+    {
+      "url": "https://admin.goodmcp.si/mcp",
+      "dns": {
+        "error_type": "gaierror",
+        "errno": 11001
+      },
+      "observed_at": "2026-10-31T07:01:27.094189+00:00",
+      "error_type": "DNS resolution failed"
+    },
+    {
+      "url": "https://admin.goodmcp.si/.well-known/oauth-protected-resource/mcp",
+      "dns": {
+        "error_type": "gaierror",
+        "errno": 11001
+      },
+      "observed_at": "2026-10-31T07:01:27.094189+00:00",
+      "error_type": "DNS resolution failed"
+    },
+    {
+      "url": "https://admin.goodmcp.si/.well-known/oauth-authorization-server/auth",
+      "dns": {
+        "error_type": "gaierror",
+        "errno": 11001
+      },
+      "observed_at": "2026-10-31T07:01:27.094189+00:00",
+      "error_type": "DNS resolution failed"
+    },
+    {
+      "url": "https://admin.goodmcp.si/health/ready",
+      "dns": {
+        "error_type": "gaierror",
+        "errno": 11001
+      },
+      "observed_at": "2026-10-31T07:01:27.094189+00:00",
+      "error_type": "DNS resolution failed"
+    }
+  ]
+}

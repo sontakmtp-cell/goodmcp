@@ -1,0 +1,54 @@
+{
+  "observed_date": "2026-10-31",
+  "surface": "user browser extension, existing authenticated browser profile",
+  "scope": "read-only UI inventory; no connector created and no chat sent",
+  "hosts": {
+    "chatgpt": {
+      "account": "redacted",
+      "signed_in": true,
+      "plan_observed": "Plus",
+      "requested_model": null,
+      "reported_model": "unknown",
+      "custom_mcp": "Opened custom MCP form, entered test name and https://goodmcp.si/mcp with OAuth default. Advanced OAuth discovery reported: Không thể tìm thấy cài đặt OAuth. Hãy kiểm tra URL máy chủ và thử lại hoặc nhập cài đặt theo cách thủ công. Risk checkbox remained unchecked; no connector created.",
+      "live_e2e": false,
+      "model_selector_label": "Cao (effort label; model name not observed)"
+    },
+    "claude": {
+      "account": "redacted",
+      "signed_in": true,
+      "plan_observed": "Free",
+      "requested_model": null,
+      "reported_model": "unknown",
+      "custom_mcp": "Customize > Connectors > Add connector menu shows Add custom connector disabled. Cause unknown; this observation does not establish a general plan restriction.",
+      "live_e2e": false,
+      "model_selector_label": "Sonnet 5.5 Cao"
+    },
+    "gemini": {
+      "account": "redacted",
+      "signed_in": true,
+      "plan_observed": null,
+      "requested_model": null,
+      "reported_model": "unknown",
+      "custom_mcp": "Entered https://goodmcp.si/mcp and pressed Next; Gemini showed consent warning that it may share account-accessible information with the server. Stopped before acknowledgement and Connect because this URL resolves to a domain-for-sale page, not a verified Hub. No MCP error was observed and no connector created.",
+      "live_e2e": false,
+      "model_selector_label": "Flash"
+    },
+    "grok": {
+      "account": "redacted",
+      "signed_in": true,
+      "plan_observed": null,
+      "requested_model": null,
+      "reported_model": "unknown",
+      "custom_mcp": "Security verification cleared automatically. Plugin section > New connector > Custom showed name, server URL and Add connector button; no separate URL or metadata check before the add action was visible. Discovery not executed: untrusted endpoint https://goodmcp.si/mcp. No values entered; form cancelled. Existing Blender connector at mcp.goodmcp.si marked Needs attention was untouched and is not evidence of GoodMCP Hub.",
+      "live_e2e": false,
+      "model_selector_label": "Nhanh"
+    }
+  },
+  "public_endpoint_verified": false,
+  "notes": "ChatGPT advanced OAuth discovery failed in real host UI with exact error recorded above. Gemini reached consent only; no discovery result observed. Grok pre-permission discovery not available in observed form and not executed. No owner credentials, connector creation, chat, inference, tool call, revoke, or cloud acceptance. Localhost is not evidence of cloud reachability.",
+  "recorded_at_utc": "2026-10-31T06:59:13Z",
+  "recorded_at_asia_saigon": "2026-10-31T13:59:13+07:00",
+  "timestamp_note": "Record update time; individual UI observations occurred earlier on the same date and were not individually timestamped.",
+  "screenshot_evidence": "none; observations recorded from UI accessibility state",
+  "cleanup": "All test forms cancelled; no connector created or existing connector modified."
+}

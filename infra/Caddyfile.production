@@ -1,0 +1,74 @@
+{
+    admin off
+    http_port 8080
+    https_port 8443
+}
+goodmcp.si {
+    # Observe MCP and token-exchange status only. Never log URLs, bodies or credentials.
+    log {
+        output file /data/logs/mcp.jsonl {
+            roll_size 1MiB
+            roll_keep 2
+        }
+        format filter {
+            wrap json
+            fields {
+                request>headers delete
+                request>uri delete
+                request>remote_ip delete
+                request>remote_port delete
+                request>client_ip delete
+                resp_headers delete
+            }
+        }
+    }
+    @not_observed not path /mcp /mcp/* /auth/token
+    log_skip @not_observed
+    log_append mcp_protocol {http.request.header.MCP-Protocol-Version}
+    log_append mcp_method {http.request.header.Mcp-Method}
+    log_append mcp_name {http.request.header.Mcp-Name}
+    log_append request_id {http.response.header.X-Request-ID}
+    tls {
+        issuer acme {
+            disable_tlsalpn_challenge
+        }
+    }
+    header {
+        X-Content-Type-Options nosniff
+        Referrer-Policy same-origin
+        Strict-Transport-Security "max-age=31536000"
+    }
+    @issuer path /auth/* /.well-known/oauth-authorization-server/auth
+    handle @issuer {
+        reverse_proxy auth:8001
+    }
+    @storage_full {
+        method POST
+        path /api/v1/workspaces/*/uploads
+        file {
+            root /srv/state
+            try_files disk-full
+        }
+    }
+    handle @storage_full {
+        header Cache-Control no-store
+        respond "Storage capacity reached; new uploads paused." 503
+    }
+    @backend path /mcp /mcp/* /api/* /.well-known/* /health/*
+    handle @backend {
+        reverse_proxy api:8000
+    }
+    handle {
+        root * /srv/web
+        try_files {path} /index.html
+        file_server
+    }
+}
+www.goodmcp.si {
+    tls {
+        issuer acme {
+            disable_tlsalpn_challenge
+        }
+    }
+    redir https://goodmcp.si{uri} permanent
+}

@@ -1,0 +1,120 @@
+{
+  "observed_at": "2026-10-31T08:43:07.332375+00:00",
+  "initial_urllib_attempt": {
+    "http_status": 403,
+    "cause": "not established; no latency sample accepted"
+  },
+  "readiness_from_owner_pc": {
+    "client": "httpx, same client as public probes",
+    "sample_seconds": [
+      0.406,
+      0.141,
+      0.125,
+      0.109,
+      0.125,
+      0.141,
+      0.109,
+      0.141,
+      0.109,
+      0.219,
+      0.125,
+      0.109
+    ],
+    "median_s": 0.125,
+    "max_s": 0.406
+  },
+  "observed_cloud_tool_server_durations": [
+    {
+      "timestamp": 1793435033.3346658,
+      "tool": "hub_list_plugins",
+      "status": 200,
+      "seconds": 0.080535913,
+      "protocol": "2026-07-28"
+    },
+    {
+      "timestamp": 1793435038.9895396,
+      "tool": "hub_open_plugin",
+      "status": 200,
+      "seconds": 0.023048165,
+      "protocol": "2026-07-28"
+    },
+    {
+      "timestamp": 1793435142.5124943,
+      "tool": "finance_cit_estimate",
+      "status": 200,
+      "seconds": 0.065882749,
+      "protocol": "2026-07-28"
+    },
+    {
+      "timestamp": 1793435146.7244074,
+      "tool": "hub_get_job",
+      "status": 200,
+      "seconds": 0.021060531,
+      "protocol": "2026-07-28"
+    },
+    {
+      "timestamp": 1793435278.3764236,
+      "tool": "hub_search",
+      "status": 200,
+      "seconds": 0.04970503,
+      "protocol": "2026-07-28"
+    },
+    {
+      "timestamp": 1793435280.0333087,
+      "tool": "hub_open_plugin",
+      "status": 200,
+      "seconds": 0.016281048,
+      "protocol": "2026-07-28"
+    },
+    {
+      "timestamp": 1793435285.6320608,
+      "tool": "hub_get_skill",
+      "status": 200,
+      "seconds": 0.023583707,
+      "protocol": "2026-07-28"
+    },
+    {
+      "timestamp": 1793435287.2702281,
+      "tool": "hub_read_document",
+      "status": 200,
+      "seconds": 0.027779029,
+      "protocol": "2026-07-28"
+    },
+    {
+      "timestamp": 1793435313.3463378,
+      "tool": "hub_open_project",
+      "status": 200,
+      "seconds": 0.04493433,
+      "protocol": "2026-07-28"
+    },
+    {
+      "timestamp": 1793435319.4281275,
+      "tool": "hub_save_artifact",
+      "status": 200,
+      "seconds": 0.063275069,
+      "protocol": "2026-07-28"
+    },
+    {
+      "timestamp": 1793435323.2709632,
+      "tool": "hub_read_project_file",
+      "status": 200,
+      "seconds": 0.014753254,
+      "protocol": "2026-07-28"
+    },
+    {
+      "timestamp": 1793435349.3937783,
+      "tool": "hub_read_project",
+      "status": 200,
+      "seconds": 0.029941158,
+      "protocol": "2026-07-28"
+    },
+    {
+      "timestamp": 1793435353.7555137,
+      "tool": "hub_read_project_file",
+      "status": 200,
+      "seconds": 0.018039661,
+      "protocol": "2026-07-28"
+    }
+  ],
+  "scope": "Sequential readiness probes + already executed cloud calls; not concurrent load, host inference timing or an uptime SLA."
+}

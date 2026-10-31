@@ -1,0 +1,18 @@
+{
+  "observed_at": "2026-10-31T15:04:01.2226381+07:00",
+  "status": "blocked",
+  "sso": "Cloudflare SSO returned Hub consent",
+  "application": "GoodMCP Web",
+  "scopes": [
+    "hub:read",
+    "hub:write",
+    "tools:run",
+    "projects:read",
+    "projects:write"
+  ],
+  "consent_confirmed_by_user": true,
+  "action": "Clicked Cho phép",
+  "result_path": "/auth/authorize",
+  "visible_error": "invalid_origin",
+  "admin_login_complete": false
+}

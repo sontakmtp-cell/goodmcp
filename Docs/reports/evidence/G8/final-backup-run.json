@@ -1,0 +1,5 @@
+{
+  "exit_code": 0,
+  "stdout": "{\"completed_at\": \"2026-10-31T08:34:42.689730+00:00\", \"snapshot_id\": \"2ffabcd5a7938121afd11c1d9c5a850b447172c8111943f46fce2f7ccd41bc46\", \"off_vps_automatic\": false}\nNEXT                        LEFT LAST PASSED UNIT                 ACTIVATES\nSun 2026-11-01 03:01:02 +07  11h -         - goodmcp-backup.timer goodmcp-backup.service\n\n1 timers listed.\nPass --all to see loaded but inactive timers, too.\n",
+  "stderr": "Created symlink /etc/systemd/system/timers.target.wants/goodmcp-backup.timer \u2192 /etc/systemd/system/goodmcp-backup.timer.\n"
+}

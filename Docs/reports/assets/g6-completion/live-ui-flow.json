@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "layer": "real React DOM in jsdom with actual local OAuth/API/Python; not a real-browser capture",
+  "calculation": {
+    "input": {
+      "revenue": 1000,
+      "cost": 600,
+      "rate": 20
+    },
+    "result": {
+      "annual_revenue": 1000,
+      "annual_tax_saving_VND": 0,
+      "applied_cit_rate_pct": 20,
+      "cit_with_incentive_VND": 80,
+      "cit_without_incentive_VND": 80,
+      "currency": "VND",
+      "deductible_cost": 600,
+      "effective_rate_pct": 20,
+      "query_year": 1,
+      "tax_holiday_free_years": 0,
+      "tax_holiday_half_years": 0,
+      "taxable_income": 400
+    },
+    "provenance": {
+      "adapter_id": "cit_estimate",
+      "image_digest": "sha256:1f5a9fead877756bb149b10165d6d338dfb4e71922ef73ccc53ad16e843ddeff",
+      "original_python": true,
+      "plugin_version_id": "65013366-4823-4294-88fa-21c6c4e3394f",
+      "release_digest": "9613a98c728057a19bdfbd9e2189afc61eb3a4683cbec2a01363879d18d8a9b9",
+      "source_date": "unknown",
+      "source_tree_sha256": "2ecd5ff2b529aefbe81759402de0597504e292895ed78eae82b5e1c737dc92eb"
+    }
+  },
+  "revoke": {
+    "protected_api_status": 401,
+    "private_ui_removed": true
+  },
+  "api_mocks": false
+}

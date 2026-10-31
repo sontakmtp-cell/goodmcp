@@ -3,6 +3,7 @@ from contextlib import asynccontextmanager
 from datetime import timedelta
 from html import escape
 import json
+import logging
 import os
 import re
 import secrets
@@ -20,8 +21,18 @@ from goodmcp.auth_config import AuthSettings, SCOPES
 from goodmcp.oauth_store import AuthStore, sha, now
 from goodmcp.oauth_server import GrantServer, BufferedRequest
 from goodmcp.version import REVISION
+from goodmcp import cloudflare_sso
+from goodmcp.oauth_clients import redirect_csp_origin
 
 COOKIE = "hub_session"
+BASE_CSP = "default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'"
+
+
+def consent_csp(redirect_uri):
+    # Chrome checks redirect destinations following a form POST against the
+    # initiating document's form-action. Allow only the validated client's origin;
+    # exact callback URI validation and PKCE remain mandatory in the OAuth server.
+    return BASE_CSP.replace("form-action 'self'", "form-action 'self' " + redirect_csp_origin(redirect_uri))
 
 
 @asynccontextmanager
@@ -65,8 +76,11 @@ async def transport_guards(request, call_next):
     response = await call_next(request)
     response.headers["Cache-Control"] = "no-store"
     response.headers["Pragma"] = "no-cache"
-    response.headers["Referrer-Policy"] = "no-referrer"
-    response.headers["Content-Security-Policy"] = "default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'"
+    # no-referrer makes browser form POSTs send Origin:null, which our strict
+    # origin guard correctly rejects. Keep same-origin forms functional without
+    # disclosing authorization URLs to other origins.
+    response.headers["Referrer-Policy"] = "same-origin"
+    response.headers.setdefault("Content-Security-Policy", BASE_CSP)
     response.headers["X-Content-Type-Options"] = "nosniff"
     return response
 
@@ -120,6 +134,12 @@ async def login_form(request: Request):
     created = await run_in_threadpool(create)
     if created is None: return fail("rate_limited", 429)
     cookie, csrf = created
+    sso = cloudflare_sso.configuration()
+    if sso:
+        response = RedirectResponse(cloudflare_sso.authorization_url(sso, cookie,
+            store.settings.base + '/auth/sso/callback'), status_code=302)
+        set_cookie(response, cookie, store.settings)
+        return response
     response = page("Đăng nhập goodmcp", '<form method="post" action="/auth/login">'
         f'<input type="hidden" name="csrf" value="{csrf}">'
         '<p><label>Email <input name="email" type="email" maxlength="254" autocomplete="username" required></label></p>'
@@ -131,6 +151,8 @@ async def login_form(request: Request):
 
 @app.post("/auth/login")
 async def login(request: Request):
+    if cloudflare_sso.configuration():
+        return fail('sso_required', 403)
     form = await request.form()
     if len(list(form.multi_items())) != len(form): return fail("duplicate_parameter")
     email, password = str(form.get("email", "")).strip().lower(), str(form.get("password", ""))
@@ -140,6 +162,26 @@ async def login(request: Request):
     if result["status"] != 303: return fail(result["error"], result["status"])
     response = RedirectResponse(result["next"], status_code=303)
     set_cookie(response, result["cookie"], store.settings)
+    return response
+
+
+@app.get('/auth/sso/callback')
+async def sso_callback(request: Request):
+    config = cloudflare_sso.configuration()
+    if config is None:
+        return fail('sso_unavailable', 404)
+    if any(len(request.query_params.getlist(k)) != 1 for k in request.query_params):
+        return fail('invalid_sso_callback')
+    if request.query_params.get('error'):
+        return fail('sso_denied', 403)
+    try:
+        result = await run_in_threadpool(cloudflare_sso.finish, request.app.state.store, config,
+            request.cookies.get(COOKIE), request.query_params.get('state'), request.query_params.get('code'))
+    except Exception as exc:
+        logging.getLogger(__name__).warning('SSO callback failed: %s', type(exc).__name__)
+        return fail('sso_failed', 403)
+    response = RedirectResponse(result['next'], status_code=303)
+    set_cookie(response, result['cookie'], request.app.state.store.settings)
     return response
 
 
@@ -182,11 +224,13 @@ async def authorize_form(request: Request):
             conn.execute(text("UPDATE auth_browser_sessions SET csrf_hash=:csrf,pending_authorize=:pending WHERE id=:id"),
                          {"csrf": sha(csrf), "pending": "/auth/authorize?" + str(request.query_params), "id": session["id"]})
             options = "".join(f'<option value="{m["workspace_id"]}">{escape(m["name"])} ({m["role"]})</option>' for m in memberships)
-            return page("Cấp quyền kết nối", f'<p>Ứng dụng: <strong>{escape(req.client.row["name"])}</strong></p>'
+            response = page("Cấp quyền kết nối", f'<p>Ứng dụng: <strong>{escape(req.client.row["name"])}</strong></p>'
                 f'<p>Quyền yêu cầu: {escape(req.scope)}</p><p>Máy chủ: {escape(store.settings.resource)}</p>'
                 '<form method="post" action="/auth/authorize">'
                 f'<input name="csrf" type="hidden" value="{csrf}"><label>Vùng dữ liệu <select name="workspace_id">{options}</select></label>'
                 '<p><button name="consent" value="allow">Cho phép</button> <button name="consent" value="deny">Từ chối</button></p></form>')
+            response.headers['Content-Security-Policy'] = consent_csp(req.payload.data['redirect_uri'])
+            return response
     return await run_in_threadpool(render)
 
 
@@ -214,7 +258,9 @@ async def authorize(request: Request):
                          {"id": session["id"], "hash": sha(secrets.token_urlsafe(32))})
             req.approved_workspace = workspace
             # Authlib validates PKCE/redirect and issues an RFC9207 issuer-bound code response.
-            return server.create_authorization_response(req, grant_user=session["user_id"] if form.get("consent") == "allow" else None, grant=grant)
+            response = server.create_authorization_response(req, grant_user=session["user_id"] if form.get("consent") == "allow" else None, grant=grant)
+            response.headers['Content-Security-Policy'] = consent_csp(req.payload.data['redirect_uri'])
+            return response
     return await run_in_threadpool(issue)
 
 

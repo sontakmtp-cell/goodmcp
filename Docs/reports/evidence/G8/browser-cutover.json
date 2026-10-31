@@ -1,0 +1,11 @@
+{
+  "observed_at": "2026-10-31T14:57:40.8002838+07:00",
+  "browser": "Chrome extension",
+  "url": "https://goodmcp.si/admin",
+  "result": "old domain for sale landing",
+  "hard_reload": "same landing",
+  "cache_busting_query": "same landing",
+  "status": "blocked_wrong_content",
+  "login_attempted": false,
+  "connector_created": false
+}

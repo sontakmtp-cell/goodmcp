@@ -1,0 +1,54 @@
+{
+  "observed_at": "2026-10-31T07:18:44.663809+00:00",
+  "timezone": "Asia/Saigon",
+  "user_correction": "goodmcp.si was supplied by mistake; intended Hub is local on 127.0.0.1:18080",
+  "env_file_exists": false,
+  "env_example_exists": true,
+  "runtime_public_base_url": "http://127.0.0.1:18080",
+  "mcp_endpoint": "http://127.0.0.1:18080/mcp",
+  "oauth_issuer": "http://127.0.0.1:18080/auth",
+  "login_url": "http://127.0.0.1:18080/auth/login",
+  "records": [
+    {
+      "path": "/auth",
+      "status": 404,
+      "content_type": "text/plain; charset=utf-8"
+    },
+    {
+      "path": "/auth/login",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/health/ready",
+      "status": 200,
+      "content_type": "application/json",
+      "metadata": {},
+      "readiness": "ready"
+    },
+    {
+      "path": "/.well-known/oauth-protected-resource/mcp",
+      "status": 200,
+      "content_type": "application/json",
+      "metadata": {
+        "resource": "http://127.0.0.1:18080/mcp",
+        "authorization_servers": [
+          "http://127.0.0.1:18080/auth"
+        ]
+      }
+    },
+    {
+      "path": "/.well-known/oauth-authorization-server/auth",
+      "status": 200,
+      "content_type": "application/json",
+      "metadata": {
+        "issuer": "http://127.0.0.1:18080/auth",
+        "authorization_endpoint": "http://127.0.0.1:18080/auth/authorize",
+        "token_endpoint": "http://127.0.0.1:18080/auth/token"
+      }
+    }
+  ],
+  "g7_status": "blocked",
+  "blocker": "No verified cloud-to-local transport for this Hub; loopback endpoint does not establish cloud reachability.",
+  "previous_public_probes": "Historical wrong-endpoint attempts, not a defect of the local Hub; retained unchanged for audit."
+}
