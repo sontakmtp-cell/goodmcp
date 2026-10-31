@@ -1,9 +1,17 @@
-# goodmcp-hub — Python và tài liệu local G4
+# goodmcp-hub — Python, tài liệu và dự án local G5
 
-Hub quản lý plugin theo workspace, giữ công cụ Python. **G4 thêm job cho máy tính
-Python gốc và MCP liệt kê/tìm từ khóa/đọc tài liệu** trên nền G1–G3. AI đang chat
-tự điều phối việc đọc; MVP không xây TF-IDF, FTS hoặc thêm model API. Chưa có UI
+Hub quản lý plugin theo workspace, giữ công cụ Python. **G5 thêm dự án ghim phiên
+bản, output có lịch sử, checkpoint OPC và brief theo khả năng host** trên nền
+Python/tài liệu G4. Chat mới tìm/mở dự án và tiếp tục đúng bước; draft không tự
+hoàn thành, ghi cạnh tranh bị báo conflict. AI đang chat tự điều phối; Hub không gọi
+LLM API, xây TF-IDF hoặc FTS. Chưa có UI
 quản trị, chưa deploy/live-test connector cloud; gate host G2 vẫn mở.
+
+Hợp đồng G5 cho client/UI: [G5-workflows.md](Docs/contracts/G5-workflows.md).
+Luồng MCP: xin scopes `hub:read hub:write projects:read projects:write` →
+`hub_open_project` → `hub_prepare_workflow` → `hub_save_artifact` (draft) →
+`hub_commit_stage` sau xác nhận người dùng. Chat sau dùng `hub_list_projects` và
+`hub_read_project`; đọc file/nguồn theo handle. Brief không phải subagent đã chạy.
 
 ## Chạy local
 
@@ -93,13 +101,13 @@ liệu readonly, job/cancel/isolation và giới hạn PDF/encoding/source.
 Từ checkout có source **đã commit**, chạy:
 
 ```powershell
-./scripts/verify.ps1 -Stage G4
+./scripts/verify.ps1 -Stage G5
 ```
 
 Linux/POSIX:
 
 ```sh
-sh scripts/verify.sh G4
+sh scripts/verify.sh G5
 ```
 
 Cả hai gọi `scripts/verify.py`: xuất **git archive HEAD** vào thư mục sạch, build
@@ -117,6 +125,15 @@ Bằng chứng G4: `Docs/reports/evidence/G4/verify.json` và `verify-console.tx
 G4 chạy 47 parity cases, keyword/read paging, Docker job boundaries, timeout,
 cancel/crash/fencing và lấy mẫu memory Compose; không xây hoặc đo TF-IDF.
 `--working-tree` chỉ dùng phát triển, **không tính đạt clean-checkout acceptance**.
+
+G5 kế thừa hồi quy G1–G4, thêm concurrent project writes, draft/complete/skip/
+rollback, legacy checkpoints, lịch sử, host reports, MCP bằng grant mới và resume
+sau recreate. [Báo cáo G5](Docs/reports/G5.md) và
+`Docs/reports/evidence/G5/verify.json` ghi đúng source mode đã chạy. Khi kiểm mã
+đang sửa chưa commit, dùng `python scripts/verify.py --stage G5 --working-tree`;
+muốn tái dùng image Python đã build offline, thêm
+`--g4-release .local/g4/active/release.json`. Mọi test vẫn chạy trong database và
+volume test mới, không dùng dữ liệu workspace thật.
 Script không thực hiện deploy hay API model trả phí.
 
 ## Cấu trúc và bước tiếp

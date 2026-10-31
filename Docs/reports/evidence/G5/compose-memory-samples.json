@@ -1,0 +1,2949 @@
+[
+  {
+    "time": 1793407109.8053803,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "49.32%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "16.44%",
+        "MemUsage": "42.09MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "872B / 126B",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.00%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "9.99%",
+        "MemUsage": "12.79MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "640MB / 669MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.13%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.50%",
+        "MemUsage": "58.87MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "52.1kB / 57.3kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.12%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.34MB / 77.9MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "22.63%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "58.78%",
+        "MemUsage": "301MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "672MB / 641MB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "4.1kB / 158MB",
+        "CPUPerc": "0.20%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "8.72%",
+        "MemUsage": "89.26MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "81.5MB / 7.38MB",
+        "PIDs": "13"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "97.24%",
+        "Container": "2ae1b841dfb3",
+        "ID": "2ae1b841dfb3",
+        "MemPerc": "22.61%",
+        "MemUsage": "57.87MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-wire-run-be987f518c5d",
+        "NetIO": "640MB / 669MB",
+        "PIDs": "1"
+      }
+    ]
+  },
+  {
+    "time": 1793407114.170288,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "1.24%",
+        "Container": "2ae1b841dfb3",
+        "ID": "2ae1b841dfb3",
+        "MemPerc": "28.28%",
+        "MemUsage": "72.4MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-wire-run-be987f518c5d",
+        "NetIO": "640MB / 669MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 8.19kB",
+        "CPUPerc": "2.18%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "16.94%",
+        "MemUsage": "43.37MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "44kB / 28.1kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.61%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.01%",
+        "MemUsage": "12.81MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "640MB / 669MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "25.21%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.50%",
+        "MemUsage": "58.88MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "86.3kB / 96.6kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.17%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.35MB / 77.9MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "30.69%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "58.78%",
+        "MemUsage": "301MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "672MB / 641MB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "4.1kB / 158MB",
+        "CPUPerc": "5.36%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "9.21%",
+        "MemUsage": "94.31MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "81.6MB / 7.67MB",
+        "PIDs": "14"
+      }
+    ]
+  },
+  {
+    "time": 1793407118.2438672,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "1.08%",
+        "Container": "2ae1b841dfb3",
+        "ID": "2ae1b841dfb3",
+        "MemPerc": "28.28%",
+        "MemUsage": "72.39MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-wire-run-be987f518c5d",
+        "NetIO": "640MB / 669MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 24.6kB",
+        "CPUPerc": "1.89%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "16.95%",
+        "MemUsage": "43.39MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "103kB / 60.9kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.64%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.01%",
+        "MemUsage": "12.81MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "640MB / 669MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.12%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.50%",
+        "MemUsage": "58.87MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "86.8kB / 97.2kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.13%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.35MB / 77.9MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "4.85%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "58.78%",
+        "MemUsage": "301MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "673MB / 641MB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "4.1kB / 158MB",
+        "CPUPerc": "4.69%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "9.28%",
+        "MemUsage": "95MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "81.7MB / 7.9MB",
+        "PIDs": "14"
+      }
+    ]
+  },
+  {
+    "time": 1793407122.0360372,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "1.22%",
+        "Container": "2ae1b841dfb3",
+        "ID": "2ae1b841dfb3",
+        "MemPerc": "28.28%",
+        "MemUsage": "72.39MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-wire-run-be987f518c5d",
+        "NetIO": "640MB / 669MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 41kB",
+        "CPUPerc": "1.85%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "16.95%",
+        "MemUsage": "43.4MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "155kB / 86.5kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.65%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.01%",
+        "MemUsage": "12.82MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "640MB / 669MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.11%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.50%",
+        "MemUsage": "58.88MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "87.2kB / 97.6kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.11%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.36MB / 77.9MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "5.41%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "58.78%",
+        "MemUsage": "301MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "673MB / 641MB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "4.1kB / 158MB",
+        "CPUPerc": "4.21%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "9.29%",
+        "MemUsage": "95.11MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "81.8MB / 8.11MB",
+        "PIDs": "14"
+      }
+    ]
+  },
+  {
+    "time": 1793407126.2934191,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "1.23%",
+        "Container": "2ae1b841dfb3",
+        "ID": "2ae1b841dfb3",
+        "MemPerc": "28.28%",
+        "MemUsage": "72.39MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-wire-run-be987f518c5d",
+        "NetIO": "640MB / 669MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 53.2kB",
+        "CPUPerc": "2.28%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "16.96%",
+        "MemUsage": "43.42MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "209kB / 118kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.57%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.01%",
+        "MemUsage": "12.81MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "640MB / 669MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.13%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.50%",
+        "MemUsage": "58.87MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "87.6kB / 98.1kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.11%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.36MB / 77.9MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "4.80%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "58.78%",
+        "MemUsage": "301MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "673MB / 641MB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "4.1kB / 158MB",
+        "CPUPerc": "4.80%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "9.75%",
+        "MemUsage": "99.88MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "82MB / 8.3MB",
+        "PIDs": "15"
+      }
+    ]
+  },
+  {
+    "time": 1793407130.0750935,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "1.26%",
+        "Container": "2ae1b841dfb3",
+        "ID": "2ae1b841dfb3",
+        "MemPerc": "28.28%",
+        "MemUsage": "72.39MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-wire-run-be987f518c5d",
+        "NetIO": "640MB / 669MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 77.8kB",
+        "CPUPerc": "1.76%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "16.99%",
+        "MemUsage": "43.48MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "261kB / 150kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.56%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.01%",
+        "MemUsage": "12.81MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "640MB / 669MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "23.72%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.50%",
+        "MemUsage": "58.87MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "88.3kB / 99.1kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.11%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.36MB / 77.9MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "29.50%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "58.78%",
+        "MemUsage": "300.9MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "673MB / 641MB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "4.1kB / 159MB",
+        "CPUPerc": "4.45%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "9.79%",
+        "MemUsage": "100.2MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "82.1MB / 8.52MB",
+        "PIDs": "15"
+      }
+    ]
+  },
+  {
+    "time": 1793407133.9842947,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "1.02%",
+        "Container": "2ae1b841dfb3",
+        "ID": "2ae1b841dfb3",
+        "MemPerc": "28.28%",
+        "MemUsage": "72.39MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-wire-run-be987f518c5d",
+        "NetIO": "640MB / 669MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 90.1kB",
+        "CPUPerc": "2.43%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "16.99%",
+        "MemUsage": "43.49MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "306kB / 174kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.54%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.01%",
+        "MemUsage": "12.81MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "640MB / 669MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "3.58%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.50%",
+        "MemUsage": "58.87MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "88.7kB / 99.5kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.10%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.37MB / 78MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "15.31%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "58.78%",
+        "MemUsage": "301MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "673MB / 641MB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "4.1kB / 159MB",
+        "CPUPerc": "6.99%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "9.80%",
+        "MemUsage": "100.3MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "82.2MB / 8.71MB",
+        "PIDs": "15"
+      }
+    ]
+  },
+  {
+    "time": 1793407138.2438812,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "1.26%",
+        "Container": "2ae1b841dfb3",
+        "ID": "2ae1b841dfb3",
+        "MemPerc": "28.28%",
+        "MemUsage": "72.4MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-wire-run-be987f518c5d",
+        "NetIO": "640MB / 669MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 106kB",
+        "CPUPerc": "2.08%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "16.99%",
+        "MemUsage": "43.49MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "358kB / 201kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.56%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.01%",
+        "MemUsage": "12.82MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "640MB / 669MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.11%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.50%",
+        "MemUsage": "58.87MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "89.1kB / 100kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.11%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.37MB / 78MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "5.20%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "58.79%",
+        "MemUsage": "301MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "673MB / 642MB",
+        "PIDs": "3"
+      },
+      {
+        "BlockIO": "4.1kB / 160MB",
+        "CPUPerc": "13.16%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "9.82%",
+        "MemUsage": "100.6MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "82.3MB / 8.91MB",
+        "PIDs": "15"
+      }
+    ]
+  },
+  {
+    "time": 1793407142.2969942,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "1.07%",
+        "Container": "2ae1b841dfb3",
+        "ID": "2ae1b841dfb3",
+        "MemPerc": "28.28%",
+        "MemUsage": "72.39MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-wire-run-be987f518c5d",
+        "NetIO": "640MB / 669MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 123kB",
+        "CPUPerc": "2.14%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "16.99%",
+        "MemUsage": "43.5MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "410kB / 228kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.56%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.02%",
+        "MemUsage": "12.82MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "640MB / 669MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.12%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.50%",
+        "MemUsage": "58.87MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "89.5kB / 100kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.13%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.37MB / 78MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "4.91%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "58.79%",
+        "MemUsage": "301MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "674MB / 642MB",
+        "PIDs": "3"
+      },
+      {
+        "BlockIO": "4.1kB / 160MB",
+        "CPUPerc": "6.60%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "9.86%",
+        "MemUsage": "101MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "82.4MB / 9.12MB",
+        "PIDs": "15"
+      }
+    ]
+  },
+  {
+    "time": 1793407146.0982306,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "1.16%",
+        "Container": "2ae1b841dfb3",
+        "ID": "2ae1b841dfb3",
+        "MemPerc": "28.28%",
+        "MemUsage": "72.4MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-wire-run-be987f518c5d",
+        "NetIO": "640MB / 669MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 139kB",
+        "CPUPerc": "1.88%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "17.00%",
+        "MemUsage": "43.51MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "455kB / 254kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.48%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.02%",
+        "MemUsage": "12.82MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "640MB / 669MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "23.46%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.50%",
+        "MemUsage": "58.87MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "90.3kB / 101kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.12%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.38MB / 78MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "23.64%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "61.16%",
+        "MemUsage": "313.1MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "674MB / 642MB",
+        "PIDs": "4"
+      },
+      {
+        "BlockIO": "4.1kB / 160MB",
+        "CPUPerc": "6.02%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "9.90%",
+        "MemUsage": "101.4MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "82.5MB / 9.32MB",
+        "PIDs": "15"
+      }
+    ]
+  },
+  {
+    "time": 1793407150.1782522,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "1.28%",
+        "Container": "2ae1b841dfb3",
+        "ID": "2ae1b841dfb3",
+        "MemPerc": "28.28%",
+        "MemUsage": "72.41MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-wire-run-be987f518c5d",
+        "NetIO": "640MB / 669MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 152kB",
+        "CPUPerc": "1.94%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "17.00%",
+        "MemUsage": "43.51MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "502kB / 279kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.61%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.02%",
+        "MemUsage": "12.82MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "640MB / 669MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "24.58%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.50%",
+        "MemUsage": "58.87MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "90.7kB / 102kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.13%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.38MB / 78MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "32.24%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "58.78%",
+        "MemUsage": "301MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "674MB / 642MB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "4.1kB / 160MB",
+        "CPUPerc": "3.95%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "9.89%",
+        "MemUsage": "101.2MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "82.6MB / 9.46MB",
+        "PIDs": "15"
+      }
+    ]
+  },
+  {
+    "time": 1793407154.2047179,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "1.07%",
+        "Container": "2ae1b841dfb3",
+        "ID": "2ae1b841dfb3",
+        "MemPerc": "28.28%",
+        "MemUsage": "72.4MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-wire-run-be987f518c5d",
+        "NetIO": "640MB / 669MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 168kB",
+        "CPUPerc": "2.06%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "17.00%",
+        "MemUsage": "43.52MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "556kB / 307kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.61%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.02%",
+        "MemUsage": "12.83MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "640MB / 669MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.13%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.50%",
+        "MemUsage": "58.88MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "91kB / 102kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.13%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.38MB / 78MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "4.76%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "58.78%",
+        "MemUsage": "301MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "674MB / 642MB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "4.1kB / 160MB",
+        "CPUPerc": "7.89%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "9.89%",
+        "MemUsage": "101.3MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "82.7MB / 9.72MB",
+        "PIDs": "15"
+      }
+    ]
+  },
+  {
+    "time": 1793407158.2577975,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "1.54%",
+        "Container": "2ae1b841dfb3",
+        "ID": "2ae1b841dfb3",
+        "MemPerc": "28.28%",
+        "MemUsage": "72.41MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-wire-run-be987f518c5d",
+        "NetIO": "640MB / 669MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 184kB",
+        "CPUPerc": "2.24%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "17.01%",
+        "MemUsage": "43.54MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "613kB / 335kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.58%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.03%",
+        "MemUsage": "12.84MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "640MB / 669MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.12%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.50%",
+        "MemUsage": "58.87MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "91.4kB / 103kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.10%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.39MB / 78MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "5.88%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "58.78%",
+        "MemUsage": "301MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "674MB / 642MB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "4.1kB / 161MB",
+        "CPUPerc": "8.66%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "9.88%",
+        "MemUsage": "101.2MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "82.9MB / 9.94MB",
+        "PIDs": "15"
+      }
+    ]
+  },
+  {
+    "time": 1793407162.2916892,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "1.41%",
+        "Container": "2ae1b841dfb3",
+        "ID": "2ae1b841dfb3",
+        "MemPerc": "28.30%",
+        "MemUsage": "72.45MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-wire-run-be987f518c5d",
+        "NetIO": "641MB / 669MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 217kB",
+        "CPUPerc": "2.04%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "17.04%",
+        "MemUsage": "43.61MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "667kB / 363kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.71%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.03%",
+        "MemUsage": "12.84MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "641MB / 669MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.12%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.50%",
+        "MemUsage": "58.87MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "91.8kB / 103kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.11%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.39MB / 78MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "7.24%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "58.78%",
+        "MemUsage": "301MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "675MB / 642MB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "4.1kB / 161MB",
+        "CPUPerc": "47.66%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "9.89%",
+        "MemUsage": "101.3MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "83MB / 10.7MB",
+        "PIDs": "15"
+      }
+    ]
+  },
+  {
+    "time": 1793407166.1686227,
+    "services": [
+      {
+        "BlockIO": "0B / 225kB",
+        "CPUPerc": "1.37%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "17.04%",
+        "MemUsage": "43.61MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "707kB / 386kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.70%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.04%",
+        "MemUsage": "12.85MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "641MB / 669MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "25.45%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.50%",
+        "MemUsage": "58.88MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "97kB / 108kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.15%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.39MB / 78MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "29.31%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "58.84%",
+        "MemUsage": "301.3MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "676MB / 642MB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "4.1kB / 161MB",
+        "CPUPerc": "9.00%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "9.90%",
+        "MemUsage": "101.4MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "83.1MB / 11.3MB",
+        "PIDs": "15"
+      }
+    ]
+  },
+  {
+    "time": 1793407169.9524572,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "99.22%",
+        "Container": "636919de15ae",
+        "ID": "636919de15ae",
+        "MemPerc": "23.28%",
+        "MemUsage": "59.59MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-wire-run-cfc20c8f13da",
+        "NetIO": "641MB / 669MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 229kB",
+        "CPUPerc": "0.62%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "17.04%",
+        "MemUsage": "43.62MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "724kB / 398kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.61%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.03%",
+        "MemUsage": "12.84MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "641MB / 669MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "19.38%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.50%",
+        "MemUsage": "58.87MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "97.5kB / 109kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.12%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.4MB / 78MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "28.60%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "58.79%",
+        "MemUsage": "301MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "676MB / 643MB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "4.1kB / 161MB",
+        "CPUPerc": "3.91%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "9.91%",
+        "MemUsage": "101.4MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "83.2MB / 11.4MB",
+        "PIDs": "15"
+      }
+    ]
+  },
+  {
+    "time": 1793407173.7503877,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.00%",
+        "Container": "f6121f98fd46",
+        "ID": "f6121f98fd46",
+        "MemPerc": "8.02%",
+        "MemUsage": "20.54MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-87bb3e60-bfb5-48b9-b53a-65ed36638c6a-1",
+        "NetIO": "0B / 0B",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "1.47%",
+        "Container": "636919de15ae",
+        "ID": "636919de15ae",
+        "MemPerc": "28.25%",
+        "MemUsage": "72.32MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-wire-run-cfc20c8f13da",
+        "NetIO": "641MB / 669MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 229kB",
+        "CPUPerc": "1.27%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "17.07%",
+        "MemUsage": "43.7MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "737kB / 407kB",
+        "PIDs": "3"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.94%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.03%",
+        "MemUsage": "12.84MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "641MB / 669MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.19%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.50%",
+        "MemUsage": "58.88MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "97.9kB / 109kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.21%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.4MB / 78MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "6.35%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "58.85%",
+        "MemUsage": "301.3MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "676MB / 643MB",
+        "PIDs": "3"
+      },
+      {
+        "BlockIO": "4.1kB / 161MB",
+        "CPUPerc": "3.71%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "9.95%",
+        "MemUsage": "101.9MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "83.3MB / 11.6MB",
+        "PIDs": "15"
+      }
+    ]
+  },
+  {
+    "time": 1793407178.5407627,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "1.10%",
+        "Container": "636919de15ae",
+        "ID": "636919de15ae",
+        "MemPerc": "28.25%",
+        "MemUsage": "72.32MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-wire-run-cfc20c8f13da",
+        "NetIO": "641MB / 669MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 229kB",
+        "CPUPerc": "1.02%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "17.07%",
+        "MemUsage": "43.71MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "757kB / 423kB",
+        "PIDs": "3"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.89%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.03%",
+        "MemUsage": "12.84MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "641MB / 669MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.11%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.50%",
+        "MemUsage": "58.88MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "98.3kB / 110kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.20%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.4MB / 78MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "3.96%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "58.80%",
+        "MemUsage": "301MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "676MB / 643MB",
+        "PIDs": "3"
+      },
+      {
+        "BlockIO": "4.1kB / 161MB",
+        "CPUPerc": "2.84%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "9.95%",
+        "MemUsage": "101.8MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "83.3MB / 11.8MB",
+        "PIDs": "15"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.00%",
+        "Container": "d59b7087edfc",
+        "ID": "d59b7087edfc",
+        "MemPerc": "8.03%",
+        "MemUsage": "20.55MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-d21e22c3-3ce8-4067-a576-fae8639074bd-1",
+        "NetIO": "0B / 0B",
+        "PIDs": "1"
+      }
+    ]
+  },
+  {
+    "time": 1793407182.3259594,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.00%",
+        "Container": "d59b7087edfc",
+        "ID": "d59b7087edfc",
+        "MemPerc": "8.03%",
+        "MemUsage": "20.55MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-d21e22c3-3ce8-4067-a576-fae8639074bd-1",
+        "NetIO": "0B / 0B",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "1.47%",
+        "Container": "636919de15ae",
+        "ID": "636919de15ae",
+        "MemPerc": "28.25%",
+        "MemUsage": "72.32MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-wire-run-cfc20c8f13da",
+        "NetIO": "641MB / 669MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 229kB",
+        "CPUPerc": "1.13%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "17.07%",
+        "MemUsage": "43.71MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "768kB / 434kB",
+        "PIDs": "3"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.56%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.03%",
+        "MemUsage": "12.84MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "641MB / 669MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "23.71%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.52%",
+        "MemUsage": "58.99MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "99.1kB / 111kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.12%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.41MB / 78MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "25.26%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "61.28%",
+        "MemUsage": "313.8MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "676MB / 643MB",
+        "PIDs": "4"
+      },
+      {
+        "BlockIO": "4.1kB / 161MB",
+        "CPUPerc": "2.08%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "9.96%",
+        "MemUsage": "102MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "83.4MB / 11.9MB",
+        "PIDs": "15"
+      }
+    ]
+  },
+  {
+    "time": 1793407186.098497,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.00%",
+        "Container": "d59b7087edfc",
+        "ID": "d59b7087edfc",
+        "MemPerc": "8.03%",
+        "MemUsage": "20.55MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-d21e22c3-3ce8-4067-a576-fae8639074bd-1",
+        "NetIO": "0B / 0B",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "1.34%",
+        "Container": "636919de15ae",
+        "ID": "636919de15ae",
+        "MemPerc": "28.25%",
+        "MemUsage": "72.32MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-wire-run-cfc20c8f13da",
+        "NetIO": "641MB / 669MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 229kB",
+        "CPUPerc": "0.73%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "17.07%",
+        "MemUsage": "43.71MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "779kB / 444kB",
+        "PIDs": "3"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.53%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.23%",
+        "MemUsage": "13.09MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "641MB / 669MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "23.03%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.50%",
+        "MemUsage": "58.87MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "99.5kB / 111kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.10%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.41MB / 78MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "25.48%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "58.79%",
+        "MemUsage": "301MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "676MB / 643MB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "4.1kB / 161MB",
+        "CPUPerc": "1.85%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "9.94%",
+        "MemUsage": "101.8MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "83.5MB / 12MB",
+        "PIDs": "15"
+      }
+    ]
+  },
+  {
+    "time": 1793407189.8833659,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.00%",
+        "Container": "d59b7087edfc",
+        "ID": "d59b7087edfc",
+        "MemPerc": "8.03%",
+        "MemUsage": "20.55MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-d21e22c3-3ce8-4067-a576-fae8639074bd-1",
+        "NetIO": "0B / 0B",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "1.56%",
+        "Container": "636919de15ae",
+        "ID": "636919de15ae",
+        "MemPerc": "28.25%",
+        "MemUsage": "72.32MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-wire-run-cfc20c8f13da",
+        "NetIO": "641MB / 669MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 229kB",
+        "CPUPerc": "1.16%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "17.07%",
+        "MemUsage": "43.71MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "789kB / 454kB",
+        "PIDs": "3"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.84%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.42%",
+        "MemUsage": "13.34MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "641MB / 669MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "3.05%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.50%",
+        "MemUsage": "58.88MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "99.9kB / 112kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.11%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.41MB / 78MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "15.30%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "58.79%",
+        "MemUsage": "301MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "676MB / 643MB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "4.1kB / 161MB",
+        "CPUPerc": "7.91%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "9.97%",
+        "MemUsage": "102.1MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "83.6MB / 12.2MB",
+        "PIDs": "15"
+      }
+    ]
+  },
+  {
+    "time": 1793407193.6614647,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.00%",
+        "Container": "d59b7087edfc",
+        "ID": "d59b7087edfc",
+        "MemPerc": "8.03%",
+        "MemUsage": "20.55MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-d21e22c3-3ce8-4067-a576-fae8639074bd-1",
+        "NetIO": "0B / 0B",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "1.42%",
+        "Container": "636919de15ae",
+        "ID": "636919de15ae",
+        "MemPerc": "28.25%",
+        "MemUsage": "72.32MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-wire-run-cfc20c8f13da",
+        "NetIO": "641MB / 669MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 229kB",
+        "CPUPerc": "1.52%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "17.07%",
+        "MemUsage": "43.71MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "800kB / 464kB",
+        "PIDs": "3"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.71%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.03%",
+        "MemUsage": "12.84MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "641MB / 669MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.17%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.50%",
+        "MemUsage": "58.87MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "100kB / 112kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.32%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.41MB / 78MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "5.65%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "58.79%",
+        "MemUsage": "301MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "677MB / 643MB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "4.1kB / 161MB",
+        "CPUPerc": "5.49%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "9.98%",
+        "MemUsage": "102.2MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "83.6MB / 12.3MB",
+        "PIDs": "15"
+      }
+    ]
+  },
+  {
+    "time": 1793407197.4782987,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.00%",
+        "Container": "d59b7087edfc",
+        "ID": "d59b7087edfc",
+        "MemPerc": "8.03%",
+        "MemUsage": "20.55MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-d21e22c3-3ce8-4067-a576-fae8639074bd-1",
+        "NetIO": "0B / 0B",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "1.40%",
+        "Container": "636919de15ae",
+        "ID": "636919de15ae",
+        "MemPerc": "28.25%",
+        "MemUsage": "72.32MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-wire-run-cfc20c8f13da",
+        "NetIO": "641MB / 669MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 229kB",
+        "CPUPerc": "1.04%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "17.07%",
+        "MemUsage": "43.71MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "808kB / 473kB",
+        "PIDs": "3"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.94%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.42%",
+        "MemUsage": "13.34MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "641MB / 669MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.17%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.50%",
+        "MemUsage": "58.88MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "101kB / 113kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.14%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.42MB / 78MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "8.07%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "58.79%",
+        "MemUsage": "301MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "677MB / 643MB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "4.1kB / 161MB",
+        "CPUPerc": "9.73%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "9.96%",
+        "MemUsage": "102MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "83.7MB / 12.4MB",
+        "PIDs": "15"
+      }
+    ]
+  },
+  {
+    "time": 1793407201.244132,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.00%",
+        "Container": "d59b7087edfc",
+        "ID": "d59b7087edfc",
+        "MemPerc": "8.03%",
+        "MemUsage": "20.55MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-d21e22c3-3ce8-4067-a576-fae8639074bd-1",
+        "NetIO": "0B / 0B",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "1.36%",
+        "Container": "636919de15ae",
+        "ID": "636919de15ae",
+        "MemPerc": "28.25%",
+        "MemUsage": "72.32MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-wire-run-cfc20c8f13da",
+        "NetIO": "641MB / 669MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 229kB",
+        "CPUPerc": "1.18%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "17.07%",
+        "MemUsage": "43.71MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "819kB / 483kB",
+        "PIDs": "3"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.69%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.04%",
+        "MemUsage": "12.85MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "641MB / 669MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.20%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.50%",
+        "MemUsage": "58.87MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "101kB / 113kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.17%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.42MB / 78MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "4.68%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "58.79%",
+        "MemUsage": "301MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "677MB / 643MB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "4.1kB / 161MB",
+        "CPUPerc": "2.35%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "9.93%",
+        "MemUsage": "101.7MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "83.8MB / 12.5MB",
+        "PIDs": "15"
+      }
+    ]
+  },
+  {
+    "time": 1793407205.1549737,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.00%",
+        "Container": "d59b7087edfc",
+        "ID": "d59b7087edfc",
+        "MemPerc": "8.03%",
+        "MemUsage": "20.55MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-d21e22c3-3ce8-4067-a576-fae8639074bd-1",
+        "NetIO": "0B / 0B",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "1.81%",
+        "Container": "636919de15ae",
+        "ID": "636919de15ae",
+        "MemPerc": "28.25%",
+        "MemUsage": "72.32MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-wire-run-cfc20c8f13da",
+        "NetIO": "641MB / 669MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 229kB",
+        "CPUPerc": "1.65%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "17.07%",
+        "MemUsage": "43.71MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "830kB / 493kB",
+        "PIDs": "3"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.80%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.04%",
+        "MemUsage": "12.85MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "641MB / 669MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "2.39%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.85%",
+        "MemUsage": "60.68MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "101kB / 114kB",
+        "PIDs": "8"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.10%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.42MB / 78MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "8.09%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "59.12%",
+        "MemUsage": "302.7MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "677MB / 643MB",
+        "PIDs": "8"
+      },
+      {
+        "BlockIO": "4.1kB / 161MB",
+        "CPUPerc": "3.02%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "9.96%",
+        "MemUsage": "101.9MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "83.9MB / 12.6MB",
+        "PIDs": "15"
+      }
+    ]
+  },
+  {
+    "time": 1793407211.0948682,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.00%",
+        "Container": "d59b7087edfc",
+        "ID": "d59b7087edfc",
+        "MemPerc": "0.00%",
+        "MemUsage": "0B / 0B",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-d21e22c3-3ce8-4067-a576-fae8639074bd-1",
+        "NetIO": "0B / 0B",
+        "PIDs": "0"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.00%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.04%",
+        "MemUsage": "12.85MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "641MB / 669MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "27.66%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.50%",
+        "MemUsage": "58.88MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "102kB / 115kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.25%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.43MB / 78MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "23.33%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "58.79%",
+        "MemUsage": "301MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "677MB / 643MB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "4.1kB / 162MB",
+        "CPUPerc": "1.07%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "8.91%",
+        "MemUsage": "91.25MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "83.9MB / 12.7MB",
+        "PIDs": "13"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.00%",
+        "Container": "77f363121985",
+        "ID": "77f363121985",
+        "MemPerc": "8.03%",
+        "MemUsage": "20.55MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-649d29b8-46f6-4f1e-96b1-022e2cc93bd6-1",
+        "NetIO": "0B / 0B",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "49.52%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "14.65%",
+        "MemUsage": "37.5MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "652B / 126B",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "99.39%",
+        "Container": "cae590d1e807",
+        "ID": "cae590d1e807",
+        "MemPerc": "18.39%",
+        "MemUsage": "47.08MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-wire-run-b9017878e62e",
+        "NetIO": "641MB / 669MB",
+        "PIDs": "1"
+      }
+    ]
+  },
+  {
+    "time": 1793407214.8973777,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.89%",
+        "Container": "cae590d1e807",
+        "ID": "cae590d1e807",
+        "MemPerc": "27.54%",
+        "MemUsage": "70.5MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-wire-run-b9017878e62e",
+        "NetIO": "641MB / 670MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.87%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "16.90%",
+        "MemUsage": "43.25MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "10.4kB / 9.4kB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.51%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.04%",
+        "MemUsage": "12.85MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "641MB / 670MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.19%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.50%",
+        "MemUsage": "58.87MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "103kB / 115kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.38%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.43MB / 78MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "3.12%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "58.79%",
+        "MemUsage": "301MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "677MB / 643MB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "4.1kB / 162MB",
+        "CPUPerc": "5.72%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "9.18%",
+        "MemUsage": "94.04MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "84MB / 12.8MB",
+        "PIDs": "14"
+      }
+    ]
+  },
+  {
+    "time": 1793407218.6793954,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "1.06%",
+        "Container": "cae590d1e807",
+        "ID": "cae590d1e807",
+        "MemPerc": "27.54%",
+        "MemUsage": "70.51MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-wire-run-b9017878e62e",
+        "NetIO": "641MB / 670MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.82%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "16.90%",
+        "MemUsage": "43.25MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "18.5kB / 17.8kB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.45%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.04%",
+        "MemUsage": "12.85MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "641MB / 670MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.24%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.50%",
+        "MemUsage": "58.88MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "103kB / 116kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.24%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.44MB / 78MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "30.19%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "58.80%",
+        "MemUsage": "301MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "677MB / 643MB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "4.1kB / 162MB",
+        "CPUPerc": "5.11%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "9.19%",
+        "MemUsage": "94.07MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "84MB / 12.9MB",
+        "PIDs": "14"
+      }
+    ]
+  },
+  {
+    "time": 1793407222.46074,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.75%",
+        "Container": "cae590d1e807",
+        "ID": "cae590d1e807",
+        "MemPerc": "27.54%",
+        "MemUsage": "70.51MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-wire-run-b9017878e62e",
+        "NetIO": "641MB / 670MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.55%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "16.90%",
+        "MemUsage": "43.25MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "27kB / 26.8kB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.26%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.04%",
+        "MemUsage": "12.85MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "641MB / 670MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "24.60%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.50%",
+        "MemUsage": "58.88MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "104kB / 117kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.40%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.44MB / 78MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "26.17%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "58.79%",
+        "MemUsage": "301MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "677MB / 644MB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "4.1kB / 162MB",
+        "CPUPerc": "3.74%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "9.18%",
+        "MemUsage": "94.02MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "84MB / 12.9MB",
+        "PIDs": "14"
+      }
+    ]
+  },
+  {
+    "time": 1793407226.2342577,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.71%",
+        "Container": "cae590d1e807",
+        "ID": "cae590d1e807",
+        "MemPerc": "27.54%",
+        "MemUsage": "70.51MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-wire-run-b9017878e62e",
+        "NetIO": "641MB / 670MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.81%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "16.90%",
+        "MemUsage": "43.25MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "32.9kB / 32.9kB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.39%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.04%",
+        "MemUsage": "12.85MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "641MB / 670MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "4.78%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.50%",
+        "MemUsage": "58.88MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "104kB / 117kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.17%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.44MB / 78MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "6.82%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "58.79%",
+        "MemUsage": "301MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "677MB / 644MB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "4.1kB / 162MB",
+        "CPUPerc": "2.42%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "9.18%",
+        "MemUsage": "94.03MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "84.1MB / 13MB",
+        "PIDs": "14"
+      }
+    ]
+  },
+  {
+    "time": 1793407230.0176907,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.86%",
+        "Container": "cae590d1e807",
+        "ID": "cae590d1e807",
+        "MemPerc": "27.54%",
+        "MemUsage": "70.51MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-wire-run-b9017878e62e",
+        "NetIO": "641MB / 670MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "1.01%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "16.90%",
+        "MemUsage": "43.25MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "43.7kB / 44.1kB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.38%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.04%",
+        "MemUsage": "12.85MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "641MB / 670MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "28.13%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.50%",
+        "MemUsage": "58.87MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "105kB / 117kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.24%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.44MB / 78MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "2.45%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "58.79%",
+        "MemUsage": "301MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "677MB / 644MB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "4.1kB / 162MB",
+        "CPUPerc": "2.08%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "9.19%",
+        "MemUsage": "94.08MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "84.1MB / 13.1MB",
+        "PIDs": "14"
+      }
+    ]
+  },
+  {
+    "time": 1793407233.842386,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.73%",
+        "Container": "cae590d1e807",
+        "ID": "cae590d1e807",
+        "MemPerc": "27.54%",
+        "MemUsage": "70.51MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-wire-run-b9017878e62e",
+        "NetIO": "641MB / 670MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.63%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "16.90%",
+        "MemUsage": "43.26MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "52.2kB / 53kB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.41%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.04%",
+        "MemUsage": "12.85MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "641MB / 670MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.19%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.50%",
+        "MemUsage": "58.87MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "105kB / 118kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.17%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.45MB / 78MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "3.29%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "58.79%",
+        "MemUsage": "301MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "677MB / 644MB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "4.1kB / 162MB",
+        "CPUPerc": "2.49%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "9.18%",
+        "MemUsage": "94.03MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "84.2MB / 13.1MB",
+        "PIDs": "14"
+      }
+    ]
+  },
+  {
+    "time": 1793407237.6482985,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "1.66%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "16.93%",
+        "MemUsage": "43.35MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "65.5kB / 64.8kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.49%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.04%",
+        "MemUsage": "12.85MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "641MB / 670MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.18%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.50%",
+        "MemUsage": "58.87MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "105kB / 118kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.30%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.45MB / 78MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "3.45%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "58.79%",
+        "MemUsage": "301MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "678MB / 644MB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "4.1kB / 162MB",
+        "CPUPerc": "8.24%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "9.29%",
+        "MemUsage": "95.09MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "84.2MB / 13.2MB",
+        "PIDs": "14"
+      }
+    ]
+  },
+  {
+    "time": 1793407241.3899162,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "98.94%",
+        "Container": "13bf4da3c289",
+        "ID": "13bf4da3c289",
+        "MemPerc": "15.74%",
+        "MemUsage": "40.29MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-wire-run-52e6318cb6a3",
+        "NetIO": "641MB / 670MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.30%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.24%",
+        "MemUsage": "13.1MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "641MB / 670MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.09%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.50%",
+        "MemUsage": "58.87MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "106kB / 119kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.12%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.45MB / 78MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "3.64%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "58.79%",
+        "MemUsage": "301MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "678MB / 644MB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "4.1kB / 162MB",
+        "CPUPerc": "6.45%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "8.96%",
+        "MemUsage": "91.74MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "84.3MB / 13.3MB",
+        "PIDs": "13"
+      }
+    ]
+  },
+  {
+    "time": 1793407245.1507814,
+    "services": [
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "50.17%",
+        "Container": "f260981be404",
+        "ID": "f260981be404",
+        "MemPerc": "13.13%",
+        "MemUsage": "33.61MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-dispatcher-1",
+        "NetIO": "610B / 84B",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "61.4kB / 0B",
+        "CPUPerc": "0.00%",
+        "Container": "68d1d55d5bbe",
+        "ID": "68d1d55d5bbe",
+        "MemPerc": "10.05%",
+        "MemUsage": "12.86MiB / 128MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-caddy-1",
+        "NetIO": "641MB / 670MB",
+        "PIDs": "7"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "22.59%",
+        "Container": "b6cfde8651a2",
+        "ID": "b6cfde8651a2",
+        "MemPerc": "11.50%",
+        "MemUsage": "58.88MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-auth-1",
+        "NetIO": "107kB / 120kB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.78GB / 1.28GB",
+        "CPUPerc": "0.11%",
+        "Container": "fc41544cc098",
+        "ID": "fc41544cc098",
+        "MemPerc": "71.47%",
+        "MemUsage": "183MiB / 256MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-worker-1",
+        "NetIO": "1.46MB / 78MB",
+        "PIDs": "1"
+      },
+      {
+        "BlockIO": "1.12GB / 646MB",
+        "CPUPerc": "22.24%",
+        "Container": "c27ca84cbf59",
+        "ID": "c27ca84cbf59",
+        "MemPerc": "61.30%",
+        "MemUsage": "313.9MiB / 512MiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-api-1",
+        "NetIO": "678MB / 644MB",
+        "PIDs": "3"
+      },
+      {
+        "BlockIO": "4.1kB / 162MB",
+        "CPUPerc": "2.23%",
+        "Container": "a691076e9e0d",
+        "ID": "a691076e9e0d",
+        "MemPerc": "8.95%",
+        "MemUsage": "91.6MiB / 1GiB",
+        "Name": "goodmcp-g5-verify-20261031t003550z-249bc5-postgres-1",
+        "NetIO": "84.3MB / 13.4MB",
+        "PIDs": "13"
+      }
+    ]
+  }
+]
