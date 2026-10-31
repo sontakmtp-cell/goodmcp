@@ -1,0 +1,26 @@
+{
+  "observed_at": "2026-10-31T15:11:28.4102092+07:00",
+  "sso": "success_after_r2",
+  "client": "GoodMCP Web",
+  "scopes": [
+    "hub:read",
+    "hub:write",
+    "tools:run",
+    "projects:read",
+    "projects:write"
+  ],
+  "project": "G8 browser acceptance CIT",
+  "pinned_version": "65013366-4823-4294-88fa-21c6c4e3394f",
+  "revision": 1,
+  "draft_path": "opc-doc/outputs/g8-acceptance.md",
+  "readback": "G8 browser acceptance: project save and reopen test. CIT job pending.",
+  "job_id": "51b3554e-6531-4bff-8e17-747790087dcc",
+  "job_status": "completed",
+  "revenue": 1000,
+  "cost": 600,
+  "rate_pct": 20,
+  "result_vnd": 80,
+  "original_python": true,
+  "release_digest": "9613a98c728057a19bdfbd9e2189afc61eb3a4683cbec2a01363879d18d8a9b9",
+  "cloud_host_acceptance": false
+}

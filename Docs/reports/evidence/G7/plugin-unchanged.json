@@ -1,0 +1,7 @@
+{
+  "checked_at": "2026-10-31T07:06:29.937877+00:00",
+  "baseline": "G0/inventory-before.json",
+  "file_count": 832,
+  "passed": true,
+  "mismatches": []
+}

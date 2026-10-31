@@ -1,0 +1,5 @@
+{
+  "exit_code": 0,
+  "stdout": "5abb489639a092d65b058a6016e392c3d0705e0a1895fb849df475dc70bce814  /opt/goodmcp/artifacts.tar.gz\n91cefec01ace93a4da7adf15423378467b7b9edd8b21690c7ae76fa930614a13  /opt/goodmcp/source.tar.gz\n30c93def32085720d993f657418e4133f87a35e58983ccc5c50ac22be3934f56  /opt/goodmcp/app-images.tar\n68b7787a9a105a0f68d16c99f0d0140c3c04d8d92b7460c2cb78257058c0fb29  /opt/goodmcp/database.dump\n",
+  "stderr": "/opt/goodmcp/artifacts.tar.gz.zst: 1768992131 bytes \n"
+}

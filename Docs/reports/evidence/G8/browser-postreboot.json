@@ -1,0 +1,13 @@
+{
+  "observed_at": "2026-10-31T15:39:26.0338812+07:00",
+  "web_sso": "passed",
+  "web_project": "G8 browser acceptance CIT",
+  "web_project_revision": 1,
+  "web_draft_path": "opc-doc/outputs/g8-acceptance.md",
+  "web_readback": "G8 browser acceptance: project save and reopen test. CIT job pending.",
+  "chatgpt_reconnect": "consent_declined_no_new_grant",
+  "chatgpt_postreboot_project_read": false,
+  "godot_open": false,
+  "reason": "new grant requires action-time confirmation; parent requested cancel",
+  "extra_job_created": false
+}

@@ -1,0 +1,5 @@
+{
+  "exit_code": 0,
+  "stdout": "Reading package lists...\nBuilding dependency tree...\nReading state information...\nzstd is already the newest version (1.5.5+dfsg2-2build1.1).\nzstd set to manually installed.\n0 upgraded, 0 newly installed, 0 to remove and 7 not upgraded.\n",
+  "stderr": ""
+}

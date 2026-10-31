@@ -1,11 +1,24 @@
-# goodmcp-hub — Python, tài liệu và dự án local G5
+# goodmcp-hub — Python, tài liệu và dự án theo workspace
+
+**Cập nhật G6–G8, 31/10/2026:** đã có UI quản trị và Hub triển khai tại
+[goodmcp.si](https://goodmcp.si/admin), MCP **https://goodmcp.si/mcp**, đăng nhập
+Cloudflare SSO. Web/Python, reboot và restore đã có bằng chứng thực. **G7/G8 còn
+tiêu chí chưa đóng**: các bước cloud còn thiếu, backup ngoài VPS tự động và diễn
+tập bàn giao/thay máy; không công bố hỗ trợ đủ bốn host hoặc cam kết RPO/RTO.
+Xem [G7](Docs/reports/G7.md), [G8](Docs/reports/G8.md) và
+[runbook vận hành](Docs/runbooks/G8-operations.md).
+
+Repo chứa source/config mẫu và báo cáo đã loại secret. Dữ liệu runtime, credential,
+backup mã hóa và corpus/index plugin cục bộ không được coi là nội dung repo;
+GitHub không thay cho bản backup production. Giữ quyền phân phối dữ liệu nguồn
+trước khi thêm plugin/corpus vào một repository public.
 
 Hub quản lý plugin theo workspace, giữ công cụ Python. **G5 thêm dự án ghim phiên
 bản, output có lịch sử, checkpoint OPC và brief theo khả năng host** trên nền
 Python/tài liệu G4. Chat mới tìm/mở dự án và tiếp tục đúng bước; draft không tự
 hoàn thành, ghi cạnh tranh bị báo conflict. AI đang chat tự điều phối; Hub không gọi
-LLM API, xây TF-IDF hoặc FTS. Chưa có UI
-quản trị, chưa deploy/live-test connector cloud; gate host G2 vẫn mở.
+LLM API, xây TF-IDF hoặc FTS. Phần chạy local bên dưới giữ hướng dẫn nền G5;
+trạng thái UI/production và giới hạn cloud hiện tại nằm trong các báo cáo trên.
 
 Hợp đồng G5 cho client/UI: [G5-workflows.md](Docs/contracts/G5-workflows.md).
 Luồng MCP: xin scopes `hub:read hub:write projects:read projects:write` →

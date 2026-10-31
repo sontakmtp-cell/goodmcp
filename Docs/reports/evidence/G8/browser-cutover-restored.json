@@ -1,0 +1,10 @@
+{
+  "observed_at": "2026-10-31T14:59:50.1021122+07:00",
+  "browser": "Chrome extension",
+  "url": "https://goodmcp.si/admin",
+  "title": "GoodMCP — Kết nối AI của bạn",
+  "visible_heading": "Quản trị GoodMCP",
+  "login_button_visible": true,
+  "login_clicked": false,
+  "status": "hub_ui_visible"
+}

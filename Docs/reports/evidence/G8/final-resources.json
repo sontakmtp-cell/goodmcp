@@ -1,0 +1,5 @@
+{
+  "exit_code": 0,
+  "stdout": "goodmcp-prod-worker-1 52.96MiB / 256MiB 0.28%\ngoodmcp-prod-dispatcher-1 50.5MiB / 192MiB 0.73%\ngoodmcp-prod-auth-1 82.17MiB / 384MiB 54.45%\ngoodmcp-prod-api-1 89.21MiB / 512MiB 0.24%\ngoodmcp-prod-caddy-1 52.56MiB / 128MiB 0.60%\ngoodmcp-prod-postgres-1 69.55MiB / 768MiB 4.23%\n               total        used        free      shared  buff/cache   available\nMem:      4106080256   833032192  2866733056    19378176   666210304  3273048064\nSwap:     1073737728      274432  1073463296\nFilesystem       1B-blocks        Used   Available Use% Mounted on\n/dev/vda1      52721094656 11349229568 38670954496  23% /\n{\"observed_at\": \"2026-10-31T08:42:41.350394+00:00\", \"disk_used_percent\": 21.53, \"disk_warning\": false, \"new_uploads_paused\": false, \"backup_age_seconds\": 478.660664, \"backup_overdue\": false, \"off_vps_automatic\": false, \"off_vps_note\": \"R2 deferred by owner; encrypted copy must be retrieved separately.\"}\n",
+  "stderr": ""
+}

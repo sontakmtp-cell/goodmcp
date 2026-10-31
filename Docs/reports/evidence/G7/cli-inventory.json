@@ -1,0 +1,22 @@
+{
+  "observed_at": "2026-10-31T07:01:52.236327+00:00",
+  "scope": "version only; no auth/configuration/connection/inference test",
+  "clients": {
+    "claude": {
+      "exit_code": 3221225477,
+      "version_output": ""
+    },
+    "gemini": {
+      "exit_code": 0,
+      "version_output": "0.45.2"
+    },
+    "grok": {
+      "exit_code": 0,
+      "version_output": "grok 1.0.46 (2765805b9442) [stable]"
+    },
+    "codex": {
+      "exit_code": 0,
+      "version_output": "codex-cli 0.162.0"
+    }
+  }
+}

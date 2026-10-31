@@ -1,0 +1,21 @@
+{
+  "method": "Local writers stopped for PostgreSQL custom dump and artifact archive, then restarted; new Hub data only.",
+  "files": {
+    "database.dump": {
+      "bytes": 16084715,
+      "sha256": "68b7787a9a105a0f68d16c99f0d0140c3c04d8d92b7460c2cb78257058c0fb29"
+    },
+    "artifacts.tar.gz": {
+      "bytes": 1768992131,
+      "sha256": "5abb489639a092d65b058a6016e392c3d0705e0a1895fb849df475dc70bce814"
+    },
+    "source.tar.gz": {
+      "bytes": 564022,
+      "sha256": "91cefec01ace93a4da7adf15423378467b7b9edd8b21690c7ae76fa930614a13"
+    },
+    "app-images.tar": {
+      "bytes": 127311360,
+      "sha256": "30c93def32085720d993f657418e4133f87a35e58983ccc5c50ac22be3934f56"
+    }
+  }
+}

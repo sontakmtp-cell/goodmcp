@@ -1,0 +1,337 @@
+{
+  "passed": true,
+  "cases": [
+    {
+      "id": "p01",
+      "operation": "cit_estimate",
+      "passed": true,
+      "elapsed_s": 0.0027627399999801128,
+      "result_sha256": "1bc3c545422871a5ce18d6738fa15a17d8b18f077b7cc4613eb70bc5fd7dc857"
+    },
+    {
+      "id": "p02",
+      "operation": "cit_estimate",
+      "passed": true,
+      "elapsed_s": 0.002493026000138343,
+      "result_sha256": "e394c68b3c28c5d980ac8e18fdfccc4c8bdb7f9519eeba60e3ca44a3d912fb7f"
+    },
+    {
+      "id": "p03",
+      "operation": "cit_estimate",
+      "passed": true,
+      "elapsed_s": 0.0016989199998533877,
+      "result_sha256": "58531ce2e6af69826330bde3c0839f0c5927c3a94e9d016ccd618031f0e1b2ad"
+    },
+    {
+      "id": "p04",
+      "operation": "cit_estimate",
+      "passed": true,
+      "elapsed_s": 0.0018150659998354968,
+      "result_sha256": "1d89c62890d1b35dc1b75906a1976a0aa3338da466d3692f166b54a3ef86d16f"
+    },
+    {
+      "id": "p05",
+      "operation": "cit_estimate",
+      "passed": true,
+      "elapsed_s": 0.0035619199998109252,
+      "result_sha256": "e4ee9254eec7d31a50830e1c0f66cd226b43064b86b89b1c9832b8e7294b29f0"
+    },
+    {
+      "id": "p06",
+      "operation": "cit_estimate",
+      "passed": true,
+      "elapsed_s": 0.0026221690000056697,
+      "result_sha256": "9af64f9388aebb281687b857250e681ee382ab47249939e13d37c32d24e8c744"
+    },
+    {
+      "id": "p07",
+      "operation": "cit_estimate",
+      "passed": true,
+      "elapsed_s": 0.0031671660003667057,
+      "result_sha256": "aba1f30d23c39ab43b56028da304baa6bb1e7342d1e53230d0962d1eea0574dd"
+    },
+    {
+      "id": "p08",
+      "operation": "cit_estimate",
+      "passed": true,
+      "elapsed_s": 0.0026223370000479918,
+      "result_sha256": "eb1d26fe9cdfa03891db091638698b759fdb6e34f13c732e934be1942372d12e"
+    },
+    {
+      "id": "p09",
+      "operation": "cit_estimate",
+      "passed": true,
+      "elapsed_s": 0.0027430739996816556,
+      "result_sha256": "0d471523d2ad845078622a654a4c04893c5047a0b1e06ab9384393b43fb1c5b4"
+    },
+    {
+      "id": "p10",
+      "operation": "cit_estimate",
+      "passed": true,
+      "elapsed_s": 0.002601468000193563,
+      "result_sha256": "6a09b4da14a1141d95fd76e8a23de3f367ad9a4b83ea59857e5590792dde9257"
+    },
+    {
+      "id": "p11",
+      "operation": "cit_estimate",
+      "passed": true,
+      "elapsed_s": 0.002560075000019424,
+      "result_sha256": "869c3c6bff70d9dffaad7546a16eef907474091a4bfeed61919843cbc464a4d4"
+    },
+    {
+      "id": "p12",
+      "operation": "cit_schedule",
+      "passed": true,
+      "elapsed_s": 0.0021568970000771515,
+      "result_sha256": "591d810b97c13e9b9cdc64231984a065191cc3ace6d5c8d165c45a84437ec7d9"
+    },
+    {
+      "id": "p13",
+      "operation": "cit_schedule",
+      "passed": true,
+      "elapsed_s": 0.0020857409999734955,
+      "result_sha256": "1e6deefebb628fdd59d338d85b78088a2ddbd9556fffeab29cc24b0f730224e4"
+    },
+    {
+      "id": "p14",
+      "operation": "cit_schedule",
+      "passed": true,
+      "elapsed_s": 0.00215130800006591,
+      "result_sha256": "6fd0455b8959275905ed55104b08c3aaca9a084c950d497f73793244534578cc"
+    },
+    {
+      "id": "p15",
+      "operation": "cit_schedule",
+      "passed": true,
+      "elapsed_s": 0.0025672100000520004,
+      "result_sha256": "0723bc41bffc3d976cc42d1a2c962fde63caedd4f6a59dee77e4ad76ad583e8b"
+    },
+    {
+      "id": "p16",
+      "operation": "payroll_total",
+      "passed": true,
+      "elapsed_s": 0.0016190119999919261,
+      "result_sha256": "1c31d762781a6ddf5ebc0743e06bc69c42ebd4a03b7bdcb183e829dfae04d0b5"
+    },
+    {
+      "id": "p17",
+      "operation": "payroll_total",
+      "passed": true,
+      "elapsed_s": 0.0015387179996650957,
+      "result_sha256": "85ce1b733c5deb81b3a264e4bc2076bffa3df3d8ea343ea3efee4d7baa1dc019"
+    },
+    {
+      "id": "p18",
+      "operation": "payroll_total",
+      "passed": true,
+      "elapsed_s": 0.0018601609999677748,
+      "result_sha256": "7fc6c5f34cb819eb11b0ab66073b9db0b98253b754b5393a9117d97e99080102"
+    },
+    {
+      "id": "p19",
+      "operation": "payroll_total",
+      "passed": true,
+      "elapsed_s": 0.0032420520001323894,
+      "result_sha256": "a0a8db9bd40a6242cdf54a8289b699c5260810028b541e668e296442f66ee2a4"
+    },
+    {
+      "id": "p20",
+      "operation": "payroll_total",
+      "passed": true,
+      "elapsed_s": 0.0017203330003212614,
+      "result_sha256": "8665cb3d9b82068f3256a7529d798d87da48bf93f74e96d7dea5e6358e12b108"
+    },
+    {
+      "id": "p21",
+      "operation": "payroll_total",
+      "passed": true,
+      "elapsed_s": 0.0018439190002936812,
+      "result_sha256": "44f78e5161b5275f2bc64a17ddb055a9566fd3ae728961d4dda830f972b4cab3"
+    },
+    {
+      "id": "p22",
+      "operation": "payroll_total",
+      "passed": true,
+      "elapsed_s": 0.0015261700000337441,
+      "result_sha256": "c9cc43041fe3d75058026b17ce5303b9343bc1d65892ed305886a4f85b5917b2"
+    },
+    {
+      "id": "p23",
+      "operation": "payroll_total",
+      "passed": true,
+      "elapsed_s": 0.0014710179998473905,
+      "result_sha256": "6b073e356827cf5acc5da2654fbc7ec2af23e3276e5fcaf0fd7a00a6ff7fde73"
+    },
+    {
+      "id": "p24",
+      "operation": "payroll_total",
+      "passed": true,
+      "elapsed_s": 0.001498385000104463,
+      "result_sha256": "8b125652e4b9c380acfa41025b2d6bab9b14f05aa8008d7261253f9fdd578051"
+    },
+    {
+      "id": "p25",
+      "operation": "payroll_total",
+      "passed": true,
+      "elapsed_s": 0.0015186280002126296,
+      "result_sha256": "2ff4eb9498f634165ba62381c3825ecdbf3435ec1726f3ac8da9ddc138d288b8"
+    },
+    {
+      "id": "p26",
+      "operation": "fct_withhold",
+      "passed": true,
+      "elapsed_s": 0.001472086999910971,
+      "result_sha256": "a62e916b2421745346cace292ed01d95559fd0a524943f325cf5336a89d7ed68"
+    },
+    {
+      "id": "p27",
+      "operation": "fct_grossup",
+      "passed": true,
+      "elapsed_s": 0.0015039209997667058,
+      "result_sha256": "9f573991309305e7e53d305834b7db30f581f009ed3b0983d190895f06fc5a9c"
+    },
+    {
+      "id": "p28",
+      "operation": "fct_withhold",
+      "passed": true,
+      "elapsed_s": 0.0022307100002763036,
+      "result_sha256": "babc3283394af6aed96353bbfebb4930c74e6cd2cd70aa9d5c4495d6f96f1d6c"
+    },
+    {
+      "id": "p29",
+      "operation": "fct_grossup",
+      "passed": true,
+      "elapsed_s": 0.0018087309999827994,
+      "result_sha256": "3d73fc310d864a5e44c988abca782475d7c514328767bdd5d635fe78fa5203c5"
+    },
+    {
+      "id": "p30",
+      "operation": "fct_withhold",
+      "passed": true,
+      "elapsed_s": 0.0018059950002680125,
+      "result_sha256": "6e6b09fee4c858a44014ab297929651b6f1bd7a93eb46b189e62be569f3a2b98"
+    },
+    {
+      "id": "p31",
+      "operation": "fct_grossup",
+      "passed": true,
+      "elapsed_s": 0.0016935399999056244,
+      "result_sha256": "2e73766dde26756eb7934c1169a60546c35adf6bb32397e35cdffc4eae7a42cd"
+    },
+    {
+      "id": "p32",
+      "operation": "fct_withhold",
+      "passed": true,
+      "elapsed_s": 0.001511986999958026,
+      "result_sha256": "cf06829fccefaa1324e50ff0ca6c9c6c0fd520bf1850cb7f657543db3674be29"
+    },
+    {
+      "id": "p33",
+      "operation": "fct_grossup",
+      "passed": true,
+      "elapsed_s": 0.001443197999833501,
+      "result_sha256": "26b34393d7e8aaf33b5f55f409ae874ed8a5d34f99979bb586ff505a2cabf62e"
+    },
+    {
+      "id": "p34",
+      "operation": "tariff",
+      "passed": true,
+      "elapsed_s": 0.0013099319999128056,
+      "result_sha256": "2c11dd4c708aac3f9463451e4ccb11477a14308acf0ef7c8a225021622be95cf"
+    },
+    {
+      "id": "p35",
+      "operation": "tariff",
+      "passed": true,
+      "elapsed_s": 0.0006334810000225843,
+      "result_sha256": "f08c899eab91171ec77d09f9bb4195eea70815a2a641154b2c6bf7a85804426d"
+    },
+    {
+      "id": "p36",
+      "operation": "tariff",
+      "passed": true,
+      "elapsed_s": 0.0006316789999800676,
+      "result_sha256": "c1ac33a9cc28012aa09d37bedca473c251e75653d4a62d2e43dbfa9f7127f921"
+    },
+    {
+      "id": "p37",
+      "operation": "tariff",
+      "passed": true,
+      "elapsed_s": 0.0006063069999981963,
+      "result_sha256": "69810f5af3cac97b0d5c8b046d33ab8693a15838ba17b74abc1fe71bc1a04ac6"
+    },
+    {
+      "id": "p38",
+      "operation": "tariff",
+      "passed": true,
+      "elapsed_s": 0.0005766990002484818,
+      "result_sha256": "b31fcb1cee2c95e5299e8f77234a85afc2f6e5a66775207bae78a4ca26e8a836"
+    },
+    {
+      "id": "p39",
+      "operation": "tariff",
+      "passed": true,
+      "elapsed_s": 0.0006236650001483213,
+      "result_sha256": "965cd0c7981f6707fa7dd8f0cd5581416b4d6878ded13e6406fe004ed788cab8"
+    },
+    {
+      "id": "p40",
+      "operation": "tariff",
+      "passed": true,
+      "elapsed_s": 0.0005874779999430757,
+      "result_sha256": "72f64a8eed5e113cc8031fdd6dca3777d0d49e72503bd1824699a942a4359853"
+    },
+    {
+      "id": "p41",
+      "operation": "tariff",
+      "passed": true,
+      "elapsed_s": 0.0006249650000427209,
+      "result_sha256": "6a87ec22b4651028de7c090a8dcae194770656d8156ceafd5d81792ce21a6e77"
+    },
+    {
+      "id": "p42",
+      "operation": "location_sim",
+      "passed": true,
+      "elapsed_s": 0.0036689790003947564,
+      "result_sha256": "a6a9e8f67159f3a70197f3b4a150faf1a9a5993372c7c0386f0ba931ad1a1679"
+    },
+    {
+      "id": "p43",
+      "operation": "location_sim",
+      "passed": true,
+      "elapsed_s": 0.002964898000300309,
+      "result_sha256": "11ad32e01e89e1b6013c1f1f797d524fc29833ea9599734b8d455c476555497c"
+    },
+    {
+      "id": "p44",
+      "operation": "location_sim",
+      "passed": true,
+      "elapsed_s": 0.0028975879999961762,
+      "result_sha256": "4bce9ca28d5e28409a944b2048620709bf161000f90f7ac7c741e28bc8eb499a"
+    },
+    {
+      "id": "p45",
+      "operation": "location_sim",
+      "passed": true,
+      "elapsed_s": 0.0025612679996811494,
+      "result_sha256": "99824c3769666c150df52043f42b56fce3f3edb93062114d927d58544d6c2d07"
+    },
+    {
+      "id": "p46",
+      "operation": "refs_calendar",
+      "passed": true,
+      "elapsed_s": 0.0015352210002674838,
+      "result_sha256": "a276634e32064609f0d72a2f009d98065aaee6cc3d03c6c31d196a8886ecc940"
+    },
+    {
+      "id": "p47",
+      "operation": "refs_odi",
+      "passed": true,
+      "elapsed_s": 0.0013810099999318481,
+      "result_sha256": "779f1d75345cc07ae55f1c5d5a7883a9ca883f956170bae2c4ab71d3eff6cc56"
+    }
+  ],
+  "count": 47,
+  "fixture_sha256": "753981010a1db392c621690f84a758d9de1b1f79e9a03a94c80e78ad5c1a0077",
+  "peak_rss_MiB": 35.296875
+}

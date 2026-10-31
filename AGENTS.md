@@ -1,0 +1,1 @@
+Nếu muốn điều khiển máy tính hoặc trình duyệt web thì hãy gọi subagent GPT-6.1 Terra medium thực hiện

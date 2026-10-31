@@ -1,0 +1,167 @@
+{
+  "observed_at": "2026-10-31T07:56:45.653529+00:00",
+  "method": "Unauthenticated GET, TLS verified, redirects not followed, no cookies retained; local-network probe, not provider-cloud evidence.",
+  "records": [
+    {
+      "url": "https://goodmcp.si/",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "observed_at": "2026-10-31T07:56:41.375170+00:00",
+      "status": 525,
+      "content_type": "text/html; charset=UTF-8",
+      "server": "cloudflare",
+      "bytes": 7741,
+      "response_sha256": "ceb92c432b898778c02788bcc6c6c924778e0b2bdce83117d44a39563b87ee59",
+      "page_title": "goodmcp.si | 525: SSL handshake failed"
+    },
+    {
+      "url": "https://goodmcp.si/mcp",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "observed_at": "2026-10-31T07:56:42.110466+00:00",
+      "status": 525,
+      "content_type": "text/html; charset=UTF-8",
+      "server": "cloudflare",
+      "bytes": 7741,
+      "response_sha256": "d576ce5e5ec633556c6af8972d9ba2047e718cafabb1d51e2a052a6b04d6683d",
+      "page_title": "goodmcp.si | 525: SSL handshake failed"
+    },
+    {
+      "url": "https://goodmcp.si/.well-known/oauth-protected-resource/mcp",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "observed_at": "2026-10-31T07:56:42.487473+00:00",
+      "status": 525,
+      "content_type": "text/html; charset=UTF-8",
+      "server": "cloudflare",
+      "bytes": 7741,
+      "response_sha256": "1977fafbad2f049903e2dfb6987af8bcd8744e9a891d1de94d1b4f929412573f",
+      "page_title": "goodmcp.si | 525: SSL handshake failed"
+    },
+    {
+      "url": "https://goodmcp.si/.well-known/oauth-authorization-server/auth",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "observed_at": "2026-10-31T07:56:42.864832+00:00",
+      "status": 525,
+      "content_type": "text/html; charset=UTF-8",
+      "server": "cloudflare",
+      "bytes": 7741,
+      "response_sha256": "3d34756f171b5af7cd836a2008a5043d6fb004dbd466ee62bf7af4f150fe02fd",
+      "page_title": "goodmcp.si | 525: SSL handshake failed"
+    },
+    {
+      "url": "https://goodmcp.si/health/ready",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "observed_at": "2026-10-31T07:56:43.301668+00:00",
+      "status": 525,
+      "content_type": "text/html; charset=UTF-8",
+      "server": "cloudflare",
+      "bytes": 7741,
+      "response_sha256": "42a37ff318e8959aa0bf10f56813005c379ebd7f9b27ad8c4f7f575ff422e5b1",
+      "page_title": "goodmcp.si | 525: SSL handshake failed"
+    },
+    {
+      "url": "https://www.goodmcp.si/",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "observed_at": "2026-10-31T07:56:43.846947+00:00",
+      "status": 525,
+      "content_type": "text/html; charset=UTF-8",
+      "server": "cloudflare",
+      "bytes": 7761,
+      "response_sha256": "4f8f40705f26ee95415ceb5f2b8df0d535f3f62adb8733beff95758963758856",
+      "page_title": "goodmcp.si | 525: SSL handshake failed"
+    },
+    {
+      "url": "https://www.goodmcp.si/mcp",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "observed_at": "2026-10-31T07:56:44.196938+00:00",
+      "status": 525,
+      "content_type": "text/html; charset=UTF-8",
+      "server": "cloudflare",
+      "bytes": 7761,
+      "response_sha256": "6e63a7a61c81d9c0fd717ac1219215d170f22fda43c0e5389e502ff85b629f26",
+      "page_title": "goodmcp.si | 525: SSL handshake failed"
+    },
+    {
+      "url": "https://www.goodmcp.si/.well-known/oauth-protected-resource/mcp",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "observed_at": "2026-10-31T07:56:44.545612+00:00",
+      "status": 525,
+      "content_type": "text/html; charset=UTF-8",
+      "server": "cloudflare",
+      "bytes": 7761,
+      "response_sha256": "3ee99fa039a70ab81e30ddd36a3eb9407ce58f80ad36ff30fac9ec793f010670",
+      "page_title": "goodmcp.si | 525: SSL handshake failed"
+    },
+    {
+      "url": "https://www.goodmcp.si/.well-known/oauth-authorization-server/auth",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "observed_at": "2026-10-31T07:56:44.911649+00:00",
+      "status": 525,
+      "content_type": "text/html; charset=UTF-8",
+      "server": "cloudflare",
+      "bytes": 7761,
+      "response_sha256": "7baae178c03c7aa8b592274fbc6b0bf96fa90a213110f3ac52f09ff67fbbacbf",
+      "page_title": "goodmcp.si | 525: SSL handshake failed"
+    },
+    {
+      "url": "https://www.goodmcp.si/health/ready",
+      "dns": [
+        "104.21.73.199",
+        "172.67.165.206",
+        "2606:4700:3031::ac43:a5ce",
+        "2606:4700:3034::6815:49c7"
+      ],
+      "observed_at": "2026-10-31T07:56:45.289871+00:00",
+      "status": 301,
+      "content_type": null,
+      "server": "cloudflare",
+      "bytes": 0,
+      "response_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "redirect_without_query": "https://goodmcp.si/health/ready",
+      "page_title": null
+    }
+  ]
+}

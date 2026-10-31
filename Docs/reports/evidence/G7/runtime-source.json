@@ -1,0 +1,155 @@
+{
+  "observed_at": "2026-10-31T07:00:40.989281+00:00",
+  "source_commit": "8b886d53b7eefe548710b709ad322cafef11dc2c",
+  "source_mode": "working tree for new G7 harness; clean git archive for G5 regression",
+  "source_sha256": {
+    "apps/api/auth.py": "88d210a3c0d44bc5c3e8a28dfc4c2818bcd5578310dc1b1891a80e231cf2be65",
+    "apps/api/documents_api.py": "85940210caf1889fbfc44b23bd3097bf9157794e539cadd671dcfe32786248d7",
+    "apps/api/jobs_api.py": "90c1e1a65f5f85fdc6d3c9b1ecdd550fbad0842b3a702ae630ab518d76282661",
+    "apps/api/main.py": "b78b59f48f6905ab8a67147530b455895a451644ebfa424cadb699f842dcf457",
+    "apps/api/mcp_auth.py": "f6b38d686151fbbcbb06fa16ff197608ba036e56a5d48770acfa2da464506e8d",
+    "apps/api/registry_api.py": "6bde5dd81433f569bbb5b2f286b9d40cc58e6ac7fc8e49ec9cbf8c8348db2177",
+    "apps/api/worker.py": "7b416eeecd18aab3f4226d2de215332c0b9da2bf6e649bfd3a70471af407723e",
+    "apps/api/workflows_api.py": "a447218966bea54f50c6940739024b2d973d3a385ae45fe7af3fe18cd6cc6a03",
+    "packages/core/goodmcp/admin.py": "30d220a7c9d1443ee067f190688e4a35fcfdce67b28a15f5c90917343da578b4",
+    "packages/core/goodmcp/auth_admin.py": "2077ef91709eb01d08e881b19cc53990598f9b5b262bcbd650f647c295e68e47",
+    "packages/core/goodmcp/auth_config.py": "06a8a3c478162b13f277c4eece814ceda1db2b4f0873982eab5d6a4cdf6f039e",
+    "packages/core/goodmcp/config.py": "3f56d09b3337eabc07af2d1c7365d55f40879fc52a18f6b57d00655a802db57b",
+    "packages/core/goodmcp/database.py": "83e9357f46a6ebbcfbee868bb38cddb14baca02d656756f92595782489a2b66f",
+    "packages/core/goodmcp/dispatcher.py": "3d3935c426253cd04c93ac7dcd37b7712d15ede2057f6c7a7108ad7a8098f3a7",
+    "packages/core/goodmcp/docker_engine.py": "1774b5b0fe561536677b999c10337ef13bde486f57d15069ebb9179c9edf4e0c",
+    "packages/core/goodmcp/documents.py": "09a6f50e3d920ae93d2ad2fbe8ab1b47dc25b5c7f33ae000ef1c5b58fa2f8a8c",
+    "packages/core/goodmcp/finance_spec.py": "7e650aa161bdc4b5cc0b0c8837abdfcac2b528fc10216ec690de4a4fe4ecfd8b",
+    "packages/core/goodmcp/fixtures.py": "fdd23b5d5468d771186020a53b9754b0ed0cc2f6d191b2eb1253e1a9fe830901",
+    "packages/core/goodmcp/import_worker.py": "eb0ee61a914c277353c13e146ffd26518786ed25db81d249727297e334206550",
+    "packages/core/goodmcp/jobs.py": "d46e16d17020805e59ecf4119957ba6141a3510c4b6f1b3f28b8211670ac4746",
+    "packages/core/goodmcp/oauth_clients.py": "3efbcd5f9c4b46abb7aa3da2ab0bfa2744ce093308e978e8546a622791bad8cd",
+    "packages/core/goodmcp/oauth_server.py": "97bd1d3ad153d374c570081dfccf66f6df637707ace12651898c83c45bbaa919",
+    "packages/core/goodmcp/oauth_store.py": "7e397013763c9694da65c1bbd93b2865c5c5c975de208ffadb684cbf5bc77ef3",
+    "packages/core/goodmcp/passwords.py": "827425141147dfe4e363e8e8fb0c4cb0afc5d0fb276efcdea6aefd006a1a4889",
+    "packages/core/goodmcp/plugin_scan.py": "11a91522bf387619086620d6ac0af91b41c8dc5f68adaea5764b0532efd6beee",
+    "packages/core/goodmcp/project_admin.py": "d9c5eff6b3e412b68f8096ddd356922d021bf26c694954d2ff822077ca3b845c",
+    "packages/core/goodmcp/registry.py": "d1b6604f3d3ba24115de8badb75c5d211dd468732caa977d827855a8a29fcb0b",
+    "packages/core/goodmcp/runtime_admin.py": "e6a8f6fd9ce7f5d4c57b7b3939dd8f1ffeb90155396a668eeb384fe4f9513923",
+    "packages/core/goodmcp/schema_v1.py": "24b549af681cc1825b6a1537e40cfab08920fd823dff0a161d03922fc28e6d72",
+    "packages/core/goodmcp/storage.py": "1dc6c7a8caed883d8372b3dee3d4735760e9bfacf9e5a085074fd43974353f84",
+    "packages/core/goodmcp/version.py": "f17d5ffdebcaefe23cbcb26cb395f7178049df078147276f55a17796cbdf5344",
+    "packages/core/goodmcp/workflows.py": "0e197622de291b4b36249823549b66260d27e51db4708c165c8927a0708e8418",
+    "packages/core/goodmcp/workflow_spec.py": "ab575ff36b2c3d3937cf357e2930dc7005cbe93e3d1d9c0b607d4030ff84daac",
+    "packages/core/goodmcp/__init__.py": "14ac54c59d53e13cbb352de09f64ba77e39f97a3cb982d55a3a034ba7e03de35",
+    "infra/alembic.ini": "73910fc48923e49c3c926b45474e131865c7b1f22dd5b61fb9a4268cf2f4aaf4",
+    "infra/Caddyfile": "4a181a34316933be12085acc8a8a3a30e72ba359cecdb82a97c402d647c03fc4",
+    "infra/compose.yml": "1c5e1d962f79048991d0ab981061c5fe673bddd11ce9c3394d912578b831b88d",
+    "infra/Dockerfile": "337b8fe8c2991bc706a053e1548c03835ead084370abd2a093df3523b972a9f2",
+    "infra/Dockerfile.caddy": "cbc285ff2f60b86dc51a506b804933142ce0b46da46ddd9823c9928f52defe7e",
+    "tests/wire_g7.py": "fff68775aa0175ddeec22d4d39a83f5e3c9746b55e6bb680c95a87bd52674fb8",
+    "pyproject.toml": "1f939a5a8ed16abc16d8ca0ae73683cc0fc937b9d5f7c812996a8de0ef141952",
+    "uv.lock": "5f95ba03ee1af9f4068cd5de9ce468f16423659d9b3817e3313b111c36bb0374",
+    "scripts/probe-g7.py": "6f6398f2ab24a7cab6d85e8236b28d6ff3dc2ddfbfee2725da9819e1b794d25f"
+  },
+  "local_stack": [
+    {
+      "service": "api",
+      "image_id": "sha256:eebe5ecfdb61f393b42ee73d76a65db6b275e0b72f6396b53f965d72e723e0e5",
+      "status": "running",
+      "started_at": "2026-10-31T06:13:33.598008058Z",
+      "public_base_url": "http://127.0.0.1:18080",
+      "port_bindings": {}
+    },
+    {
+      "service": "auth",
+      "image_id": "sha256:eebe5ecfdb61f393b42ee73d76a65db6b275e0b72f6396b53f965d72e723e0e5",
+      "status": "running",
+      "started_at": "2026-10-31T06:13:33.764848438Z",
+      "public_base_url": "http://127.0.0.1:18080",
+      "port_bindings": {}
+    },
+    {
+      "service": "worker",
+      "image_id": "sha256:eebe5ecfdb61f393b42ee73d76a65db6b275e0b72f6396b53f965d72e723e0e5",
+      "status": "running",
+      "started_at": "2026-10-31T06:13:42.945602556Z",
+      "public_base_url": "http://127.0.0.1:18080",
+      "port_bindings": {}
+    },
+    {
+      "service": "dispatcher",
+      "image_id": "sha256:eebe5ecfdb61f393b42ee73d76a65db6b275e0b72f6396b53f965d72e723e0e5",
+      "status": "running",
+      "started_at": "2026-10-31T06:13:33.824123242Z",
+      "public_base_url": "http://127.0.0.1:18080",
+      "port_bindings": {}
+    },
+    {
+      "service": "caddy",
+      "image_id": "sha256:65da76849baf35ed6870d8d5f207eb2b3424bf545787613debf68ebf55fa44c4",
+      "status": "running",
+      "started_at": "2026-10-31T06:13:33.820586562Z",
+      "public_base_url": null,
+      "port_bindings": {
+        "8080/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "18080"
+          }
+        ]
+      }
+    },
+    {
+      "service": "postgres",
+      "image_id": "sha256:aa6eb304ddb6dd26df23d05db4e5cb05af8951cda3e0dc57731b771e0ef4ab29",
+      "status": "running",
+      "started_at": "2026-10-31T06:13:33.602133088Z",
+      "public_base_url": null,
+      "port_bindings": {}
+    }
+  ],
+  "runtime_release": {
+    "mode": "python-calculators-keyword-mvp",
+    "image_digest": "sha256:1f5a9fead877756bb149b10165d6d338dfb4e71922ef73ccc53ad16e843ddeff",
+    "release_digest": "9613a98c728057a19bdfbd9e2189afc61eb3a4683cbec2a01363879d18d8a9b9",
+    "source_tree_sha256": "2ecd5ff2b529aefbe81759402de0597504e292895ed78eae82b5e1c737dc92eb",
+    "source_zip_sha256": "ae6a7e124a5309c1aa6d9fe5d9c508cc3cf0be166257b01f3dd6365ef8667cf0",
+    "registry_files": {
+      "references/data/compliance_calendar.json": "b31f7a67b266833bec7d6e69d794373c045716a62814cb625e789a9930489e31",
+      "references/data/cost_reference.json": "c9bc0e7126b7f971b3902511e917236f338f1e5e6e44b45976415e89e847d630",
+      "references/data/odi_checklist.json": "9c29fdd83ebe981ac30756996432e470071466a6b5595e726cfcdd3dd951017e",
+      "references/data/tariff_reference.json": "babb51789061321b1b5e3d919079c7b0ec6e0c20ebe0e7dda09e699a75787318",
+      "references/data/tax_treaty_rates.json": "e47ee2cbfbdc3db422e9466282584549d67856d68893053fa0fa44f567c15862",
+      "references/tools/calculators.py": "613e45472a70e22bc9333a8b62c9fd06b4b0fa63b3b693790682648c9fff9109",
+      "references/tools/location_sim.py": "f9e1a890d1a0518f74bc5f8da9db930f102cff986328408a55b4b2c937923c6b",
+      "references/tools/refs.py": "3d170feecd0a022b4b3cb3d0152bf54c67a6812d792f5111f4de36070aa1ecc5",
+      "references/tools/tariff.py": "228a9693ff50ae7031c567a8da92ac9f6a5bbe81d53b72bd8edb70de4be3813f"
+    },
+    "manifest": {
+      "mode": "python-calculators-keyword-mvp",
+      "source_tree_sha256": "2ecd5ff2b529aefbe81759402de0597504e292895ed78eae82b5e1c737dc92eb",
+      "source_zip_sha256": "ae6a7e124a5309c1aa6d9fe5d9c508cc3cf0be166257b01f3dd6365ef8667cf0",
+      "registry_files": {
+        "references/data/compliance_calendar.json": "b31f7a67b266833bec7d6e69d794373c045716a62814cb625e789a9930489e31",
+        "references/data/cost_reference.json": "c9bc0e7126b7f971b3902511e917236f338f1e5e6e44b45976415e89e847d630",
+        "references/data/odi_checklist.json": "9c29fdd83ebe981ac30756996432e470071466a6b5595e726cfcdd3dd951017e",
+        "references/data/tariff_reference.json": "babb51789061321b1b5e3d919079c7b0ec6e0c20ebe0e7dda09e699a75787318",
+        "references/data/tax_treaty_rates.json": "e47ee2cbfbdc3db422e9466282584549d67856d68893053fa0fa44f567c15862",
+        "references/tools/calculators.py": "613e45472a70e22bc9333a8b62c9fd06b4b0fa63b3b693790682648c9fff9109",
+        "references/tools/location_sim.py": "f9e1a890d1a0518f74bc5f8da9db930f102cff986328408a55b4b2c937923c6b",
+        "references/tools/refs.py": "3d170feecd0a022b4b3cb3d0152bf54c67a6812d792f5111f4de36070aa1ecc5",
+        "references/tools/tariff.py": "228a9693ff50ae7031c567a8da92ac9f6a5bbe81d53b72bd8edb70de4be3813f"
+      },
+      "lock_sha256": "fc05028b6b080d4656d84b61d5cb8ca83187c18212efdb0998738e4c93bd2ff1",
+      "runtime_files": {
+        "adapter.py": "789fd1845716ba5a069cd17aecc7bca651c517c98d7164a47852c1a67fd637d1",
+        "common.py": "74bd4c5769584b30fc67a2afd3af4aab101dd77ba755ddfe259b83966fd98d96",
+        "finance_spec.py": "97c1705d3e5cbef6fdee73f504e649fa61ef437ba4164fd176c35eb2da432650",
+        "main.py": "eb1bf7ccf89589d3b5d5daf8569f35ed5bc6276c9aa9ea204f80f4dc63d0e800",
+        "reviewed-source.json": "355ad8bb0e9d0c53b81f0edb140007ca6996539d2d5ca010c210e6fa52d2d968"
+      }
+    }
+  },
+  "live_image_source_check": {
+    "method": "docker exec hashes of application source only; compared with working tree",
+    "file_count": 34,
+    "mismatches": [],
+    "passed": true
+  }
+}

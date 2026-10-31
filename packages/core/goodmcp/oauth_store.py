@@ -11,7 +11,7 @@ from uuid import uuid4
 from sqlalchemy import create_engine, text
 from .config import database_url
 from .auth_config import AuthSettings
-from .oauth_clients import validate_metadata, fetch_cimd
+from .oauth_clients import validate_metadata, validate_cimd_metadata, fetch_cimd
 from .passwords import password_hash, verify_password, hasher
 
 
@@ -94,7 +94,7 @@ class AuthStore:
             if row is None and conn.execute(text("SELECT count(*) FROM oauth_clients")).scalar_one() >= 500: return None
             try:
                 raw = fetch_cimd(client_id)
-                data = validate_metadata(raw, allow_loopback=not self.settings.secure_cookie)
+                data = validate_cimd_metadata(raw, allow_loopback=not self.settings.secure_cookie)
             except Exception: return None
             conn.execute(text("""INSERT INTO oauth_clients(client_id,name,redirect_uris,allowed_scopes,source,metadata_expires_at)
                 VALUES(:id,:name,CAST(:redirects AS jsonb),CAST(:scopes AS jsonb),'cimd',:expiry)

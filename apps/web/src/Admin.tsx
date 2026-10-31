@@ -130,13 +130,13 @@ export function Admin({
                 </button>
               </div>
               <section className="panel">
-                <h2>Đang dùng backend local</h2>
+                <h2>Workspace đang kết nối</h2>
                 <p>
                   Thao tác sử dụng API và quyền đã cấp cho vùng dữ liệu này.
                 </p>
                 <p className="hint">
-                  Kết nối AI cloud và triển khai production chưa được nghiệm
-                  thu. Đường dẫn mẫu ở cổng người dùng chưa hoạt động.
+                  Mỗi kết nối AI cần được cấp quyền riêng trước khi đọc tài liệu,
+                  chạy công cụ hoặc làm việc với dự án.
                 </p>
               </section>
             </>
@@ -315,7 +315,7 @@ function System({ api }: { api: Api }) {
                 setHealth("Chưa xác định");
                 throw new Error("Chưa nhận được trạng thái hợp lệ.");
               }
-              setHealth("API và cơ sở dữ liệu sẵn sàng (local).");
+              setHealth("API và cơ sở dữ liệu sẵn sàng.");
             })
           }
         >
@@ -331,8 +331,8 @@ function System({ api }: { api: Api }) {
           và kiểm tra backup.
         </p>
         <p className="hint">
-          Không có số liệu giả hoặc thao tác sao lưu từ giao diện. Cấu hình vận
-          hành production thuộc giai đoạn G8.
+          Quản trị viên theo dõi nhật ký và sao lưu trên máy chủ. Các chức năng
+          này chưa có điều khiển trong giao diện.
         </p>
       </section>
     </>

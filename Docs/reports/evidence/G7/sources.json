@@ -1,0 +1,54 @@
+{
+  "checked_on": "2026-10-31",
+  "timezone": "Asia/Saigon",
+  "sources": [
+    {
+      "host": "ChatGPT",
+      "url": "https://developers.openai.com/apps-sdk/deploy/connect-chatgpt",
+      "retrieval": "OpenAI Docs search then fetch_openai_doc",
+      "finding": "Testing requires reachable public HTTPS or Secure MCP Tunnel, auth discovery and actual tool calls. Adding a custom MCP server is subject to account/workspace policies."
+    },
+    {
+      "host": "ChatGPT tunnel",
+      "url": "https://developers.openai.com/api/docs/guides/secure-mcp-tunnels",
+      "retrieval": "fetch_openai_doc",
+      "finding": "Private outbound tunnel is an option, but needs tunnel_id, runtime API key and workspace association. OAuth authorization server is not automatically tunneled. Not configured or tested here."
+    },
+    {
+      "host": "Claude",
+      "url": "https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp",
+      "retrieval": "web open",
+      "finding": "Docs include Free with one custom connector; remote connector requests originate from Anthropic cloud including Desktop. UI availability must still be checked."
+    },
+    {
+      "host": "Gemini",
+      "url": "https://support.google.com/gemini/answer/17209137?hl=en-SY",
+      "retrieval": "official-domain search then web open; hl=en and hl=en-45 retrieval failed",
+      "finding": "Docs specify personal account, US, 18+, Keep Activity on, English. Observed Vietnamese UI still exposes custom form; no account eligibility conclusion inferred."
+    },
+    {
+      "host": "Grok",
+      "url": "https://docs.x.ai/grok/connectors",
+      "retrieval": "web open",
+      "finding": "Custom MCP connector via server URL; server needs public internet reachability. Capability documentation is not evidence this Hub is connected."
+    },
+    {
+      "host": "Claude Code",
+      "url": "https://code.claude.com/docs/en/mcp",
+      "retrieval": "web open",
+      "finding": "Separate MCP client product. Not substituted for Claude web acceptance."
+    },
+    {
+      "host": "Gemini CLI",
+      "url": "https://geminicli.com/docs/tools/mcp-server/",
+      "retrieval": "web open",
+      "finding": "Separate MCP client product. CLI version detection is not inference or web acceptance."
+    },
+    {
+      "host": "Grok CLI",
+      "url": "https://docs.x.ai/build/cli/reference",
+      "retrieval": "official search result",
+      "finding": "Supplementary CLI reference; not used as proof of any tested MCP connection."
+    }
+  ]
+}

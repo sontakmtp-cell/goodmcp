@@ -1,0 +1,5 @@
+{
+  "exit_code": 1,
+  "stdout": "{\"status\": \"ok\"}\n",
+  "stderr": " Container goodmcp-prod-postgres-1  Running\n Container goodmcp-prod-postgres-1  Waiting\n Container goodmcp-prod-postgres-1  Healthy\nRefusing to overwrite a database with existing identity tables\n"
+}

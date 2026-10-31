@@ -1,0 +1,5 @@
+{
+  "exit_code": 0,
+  "stdout": "BEGIN\nDO\nUPDATE 1\nUPDATE 36\n                  id                  |               client_id               |          revoked_at           | active_tokens \n--------------------------------------+---------------------------------------+-------------------------------+---------------\n 98db754b-edcc-4094-891b-dd8a9d6217df | https://chatgpt.com/oauth/client.json | 2026-10-31 08:31:00.918762+00 |             0\n(1 row)\n\nCOMMIT\n",
+  "stderr": ""
+}

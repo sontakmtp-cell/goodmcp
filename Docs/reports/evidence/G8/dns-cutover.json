@@ -1,0 +1,92 @@
+{
+  "changes": [
+    {
+      "deleted_dns_id": "689754e6ded9afaa424564e035c8e17a"
+    },
+    {
+      "deleted_dns_id": "d978d1c3187ac028a4e67f43622684d7"
+    },
+    {
+      "deleted_dns_id": "ff665d15619cbd02afc4ff7b892e7b33"
+    },
+    {
+      "deleted_dns_id": "fca96cdf11f90ca5f19ea30089a44c00"
+    },
+    {
+      "root": {
+        "id": "b1e52af42f7bdca07ac96b12d644f485",
+        "name": "goodmcp.si",
+        "type": "A",
+        "content": "110.172.28.251",
+        "proxiable": true,
+        "proxied": true,
+        "ttl": 1,
+        "settings": {},
+        "meta": {},
+        "comment": "GoodMCP Hub VPS production G8",
+        "tags": [],
+        "created_on": "2026-10-03T18:17:31.951925Z",
+        "modified_on": "2026-10-31T07:55:55.86865Z",
+        "comment_modified_on": "2026-10-31T07:55:55.86865Z"
+      },
+      "success": true
+    },
+    {
+      "www": {
+        "id": "b26599a8faf302758cdbc6cbc94ddf54",
+        "name": "www.goodmcp.si",
+        "type": "CNAME",
+        "content": "goodmcp.si",
+        "proxiable": true,
+        "proxied": true,
+        "ttl": 1,
+        "settings": {
+          "flatten_cname": false
+        },
+        "meta": {},
+        "comment": "GoodMCP canonical redirect",
+        "tags": [],
+        "created_on": "2026-10-31T07:55:56.112771Z",
+        "modified_on": "2026-10-31T07:55:56.112771Z",
+        "comment_modified_on": "2026-10-31T07:55:56.112771Z"
+      },
+      "success": true
+    },
+    {
+      "ssl": {
+        "id": "ssl",
+        "value": "strict",
+        "modified_on": "2026-10-31T07:55:56.558982Z",
+        "certificate_status": "active",
+        "validation_errors": [],
+        "editable": true
+      }
+    },
+    {
+      "cache": {
+        "description": "",
+        "id": "e52182f574804f539a121287209491ce",
+        "kind": "zone",
+        "last_updated": "2026-10-31T07:55:56.942094Z",
+        "name": "GoodMCP private traffic bypass cache",
+        "phase": "http_request_cache_settings",
+        "rules": [
+          {
+            "action": "set_cache_settings",
+            "action_parameters": {
+              "cache": false
+            },
+            "description": "Do not cache Hub auth MCP API or private resources",
+            "enabled": true,
+            "expression": "http.host in {\"goodmcp.si\" \"www.goodmcp.si\"}",
+            "id": "e7809a17b9414beabe1ab33f5fa47732",
+            "last_updated": "2026-10-31T07:55:56.942094Z",
+            "ref": "e7809a17b9414beabe1ab33f5fa47732",
+            "version": "1"
+          }
+        ],
+        "version": "1"
+      }
+    }
+  ]
+}

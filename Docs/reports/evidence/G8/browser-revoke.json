@@ -1,0 +1,12 @@
+{
+  "observed_at": "2026-10-31T15:33:37.7868941+07:00",
+  "client": "GoodMCP G8 Full",
+  "grant_id": "98db754b-edcc-4094-891b-dd8a9d6217df",
+  "revoke_source": "root reported backend exact grant",
+  "first_ui": "Kết nối của bạn với GoodMCP G8 Full đã hết hạn",
+  "reconnect_clicked": false,
+  "second_request_utc": "2026-10-31T08:33:09Z",
+  "backend_observed": "root reported token endpoint POST 400 at 08:33:10.967 UTC",
+  "outcome": "denied_refresh_400",
+  "mcp_401_observed": false
+}

@@ -1,0 +1,5 @@
+{
+  "exit_code": 0,
+  "stdout": "{\"observed_at\": \"2026-10-31T07:58:55.672789+00:00\", \"disk_used_percent\": 21.67, \"disk_warning\": false, \"new_uploads_paused\": false, \"backup_age_seconds\": null, \"backup_overdue\": true, \"off_vps_automatic\": false, \"off_vps_note\": \"R2 deferred by owner; encrypted copy must be retrieved separately.\"}\n",
+  "stderr": "Created symlink /etc/systemd/system/timers.target.wants/goodmcp-health.timer \u2192 /etc/systemd/system/goodmcp-health.timer.\n"
+}
