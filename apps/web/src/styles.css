@@ -1044,6 +1044,7 @@ footer > a:last-child {
   padding: 36px;
   max-width: 1230px;
   margin: auto;
+  overflow-wrap: anywhere;
 }
 .admin-main > .eyebrow {
   color: #607088;
@@ -1547,3 +1548,11 @@ summary {
     scroll-behavior: auto !important;
   }
 }
+.workspace-bar { position: relative; z-index: 2; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; padding: 16px 32px; border-bottom: 1px solid var(--line, #ddd); background: var(--paper, #fff); }
+.workspace-bar > label { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; min-width: 0; max-width: 100%; }
+.workspace-bar select { width: min(360px, 100%); min-width: 0; margin: 0; }
+.workspace-bar > .actions { flex-wrap: wrap; margin: 0; }
+.workspace-main { max-width: 1200px; margin: 0 auto; }
+.list-item > label { max-width: 100%; min-width: 0; }
+.list-item .item-content { min-width: 0; overflow-wrap: anywhere; }
+@media (max-width: 600px) { .workspace-bar { padding: 12px 16px; gap: 10px; } .workspace-bar > label { width: 100%; } .workspace-bar select { width: 100%; } .workspace-bar > .actions { gap: 6px; } .workspace-main .detail-tabs { flex-wrap: wrap; } }

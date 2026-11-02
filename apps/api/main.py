@@ -88,6 +88,8 @@ def ready(request: Request):
 @app.get("/api/v1/me/workspaces")
 def my_workspaces(request: Request):
     token = request.state.access_token
+    if token.claims.get('web'):
+        return {'data': [{'workspace_id': w['id'], 'name': w['name'], 'role': w['role']} for w in token.claims['workspaces']], 'request_id': request.state.request_id}
     result = workspace_info(token, token.claims["workspace_id"])
     return {"data": [result.model_dump()], "request_id": request.state.request_id}
 

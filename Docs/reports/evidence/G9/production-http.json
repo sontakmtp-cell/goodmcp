@@ -1,0 +1,73 @@
+{
+  "passed": true,
+  "scope": "public_http_without_google_completion",
+  "checks": [
+    {
+      "path": "/",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/app",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/admin",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/platform",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/health/ready",
+      "status": 200,
+      "passed": true,
+      "body": {
+        "data": {
+          "status": "ready",
+          "stage": "G9"
+        },
+        "request_id": "608a9c20-8930-4290-bd1f-e6ef9b311b3b"
+      }
+    },
+    {
+      "path": "/auth/web/session",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "path": "/api/v1/me/workspaces",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "path": "/auth/web/config",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/auth/.well-known/oauth-authorization-server",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/mcp",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "path": "/auth/google/start",
+      "status": 302,
+      "passed": true,
+      "cookie_flags": {
+        "HttpOnly": true,
+        "Secure": true,
+        "SameSite=lax": true
+      }
+    }
+  ]
+}

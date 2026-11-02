@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "scope": "isolated_real_python_runner",
+  "project": "goodmcp-g9-verify-20261101t013659z-80388b",
+  "job_id": "925390bd-04c5-4979-976f-c457a5762bf7",
+  "workspace_id": "37f0e643-b888-4712-a060-27b35e88256f",
+  "checks_passed": 9,
+  "state": "cancelled",
+  "attempts": 1,
+  "terminal_delay_s": 30.188,
+  "result_artifact_id": null,
+  "new_artifact_count": 0,
+  "command": "auth_tests python tests/g9_running_revocation.py WORKSPACE_UUID; HUB_ALLOW_TEST_FIXTURES=1, HUB_TEST_AUTH=1",
+  "earlier_harness_attempts": [
+    "Concurrent main-suite database recreate caused OperationalError; separated onto retained isolated project",
+    "Probe approval initially lacked HUB_ALLOW_TEST_FIXTURES; fixed test-run configuration"
+  ],
+  "physical_container_removal_verified": true
+}

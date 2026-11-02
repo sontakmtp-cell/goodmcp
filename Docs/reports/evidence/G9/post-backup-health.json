@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "after_final_backup": true,
+  "readiness": 200,
+  "anonymous_mcp": 401,
+  "anonymous_session": 401
+}

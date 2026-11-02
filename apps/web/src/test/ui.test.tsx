@@ -221,28 +221,11 @@ describe("admin boundaries and real API mappings", () => {
     expect(screen.queryByText("Kết quả từ máy chủ")).toBeNull();
   });
   it("removes private catalog after a live-shaped 401 response", async () => {
-    sessionStorage.setItem(
-      "goodmcp:oauth",
-      JSON.stringify({
-        state: "state",
-        verifier: "verifier",
-        client_id: "client",
-        redirect_uri: location.origin + "/oauth/callback",
-        created: Date.now(),
-        admin: false,
-      }),
-    );
-    history.replaceState(
-      null,
-      "",
-      "/oauth/callback?state=state&iss=http%3A%2F%2F127.0.0.1%3A18080%2Fauth&code=test-code",
-    );
     const f = vi
       .fn()
       .mockResolvedValueOnce(
-        new Response(JSON.stringify({ access_token: "fixture-only" })),
+        response({user:{id:"user",email:"test@example.com",email_verified:true,platform_admin:false},csrf:"csrf",workspace_id:workspace.workspace_id,workspaces:[{id:workspace.workspace_id,name:workspace.name,role:workspace.role}],google_enabled:true}),
       )
-      .mockResolvedValueOnce(response([workspace]))
       .mockResolvedValueOnce(response({ items: [plugin], next_cursor: "next" }))
       .mockResolvedValueOnce(response(null, 401));
     vi.stubGlobal("fetch", f);

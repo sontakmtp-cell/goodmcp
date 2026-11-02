@@ -1,6 +1,10 @@
 from contextvars import ContextVar
 import json
+import os
+from http.cookies import SimpleCookie
+from pathlib import Path
 from uuid import UUID, uuid4
+import httpx
 
 from mcp.server.auth.provider import TokenVerifier, AccessToken
 from sqlalchemy import text
@@ -77,16 +81,49 @@ class AccessBoundary:
         if duplicates & {"authorization", "x-workspace-id", "host", "origin", "x-content-sha256", "content-length"}:
             return await error(400, "invalid_input", "Duplicate security header")
         authorization = headers.get("authorization", "")
-        if not authorization.startswith("Bearer "): return await error(401, "unauthenticated", "Bearer token required", challenge=True)
+        web_identity = None
+        if not authorization.startswith("Bearer "):
+            if not path.startswith('/api/v1'):
+                return await error(401, "unauthenticated", "Bearer token required", challenge=True)
+            try:
+                keyfile = os.environ.get('HUB_WEB_SESSION_KEY_FILE')
+                if not keyfile:
+                    return await error(401, 'unauthenticated', 'Web session unavailable')
+                key = Path(keyfile).read_text().strip()
+                cookies = SimpleCookie()
+                cookies.load(headers.get('cookie',''))
+                cookie = cookies.get('hub_session')
+                if not cookie or len(key) < 43:
+                    return await error(401, 'unauthenticated', 'Login required')
+                if scope['method'] not in ('GET','HEAD','OPTIONS') and headers.get('origin') != self.settings.origin:
+                    return await error(403, 'forbidden', 'Same-origin request required')
+                async with httpx.AsyncClient(timeout=5, follow_redirects=False) as client:
+                    response = await client.post(os.environ.get('HUB_AUTH_INTERNAL_URL', 'http://auth:8001') + '/internal/web-session',
+                        headers={'Authorization': 'Bearer ' + key, 'Host': self.settings.authority},
+                        json={'cookie': cookie.value, 'csrf': headers.get('x-csrf-token',''), 'method': scope['method']})
+                if response.status_code != 200:
+                    return await error(403 if response.status_code == 403 else 401 if response.status_code == 401 else 503,
+                                       'unauthenticated', 'Session validation failed')
+                web_identity = response.json()['data']
+                user, workspace = web_identity['user'], str(web_identity['workspace_id'] or '')
+                role = next((w['role'] for w in web_identity['workspaces'] if str(w['id']) == workspace), 'viewer')
+                scopes = ['hub:read','projects:read']
+                if role in ('owner','admin','member'):
+                    scopes += ['hub:write','projects:write','tools:run']
+                token = AccessToken(token='web-session', client_id='web', scopes=scopes, subject=str(user['id']),
+                    claims={'workspace_id': workspace, 'issuer': self.settings.issuer, 'web': True, 'workspaces': web_identity['workspaces']})
+            except Exception:
+                return await error(503, 'runtime_unavailable', 'Authorization unavailable')
         # This is a NEW HTTP security boundary. ASGI tasks can inherit a context
         # holding a credential from an earlier request; it must not skip the DB
         # expiry/revocation check. Only the inner MCP check may reuse the token
         # that this boundary has just verified for the current request.
-        inherited = current_token.set(None)
-        try:
-            try: token = await self.verifier.verify_token(authorization[7:])
-            except Exception: return await error(503, "runtime_unavailable", "Authorization unavailable")
-        finally: current_token.reset(inherited)
+        if web_identity is None:
+            inherited = current_token.set(None)
+            try:
+                try: token = await self.verifier.verify_token(authorization[7:])
+                except Exception: return await error(503, "runtime_unavailable", "Authorization unavailable")
+            finally: current_token.reset(inherited)
         if token is None: return await error(401, "unauthenticated", "Invalid or expired token", challenge=True)
         if "hub:read" not in token.scopes: return await error(403, "forbidden", "Insufficient scope", challenge=True)
         selected = headers.get("x-workspace-id")

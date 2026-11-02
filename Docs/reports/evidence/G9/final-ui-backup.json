@@ -1,0 +1,5 @@
+{
+  "exit_code": 0,
+  "stdout": "{\"completed_at\": \"2026-11-02T00:52:51.631712+00:00\", \"snapshot_id\": \"70445466ea269762d83cdc57f446d9499800a2c78332ce736448dad9021eba92\", \"off_vps_automatic\": false}\napi running healthy\nauth running healthy\ncaddy running \ndispatcher running \npostgres running healthy\nworker running \nG9_FINAL_UI_AND_HANDOFF_BACKED_UP\n",
+  "stderr": "tar: Docs/reports/evidence/G9/deliverable-checks.json: time stamp 2026-11-02 07:51:47.1844337 is 1.182537194 s in the future\n"
+}

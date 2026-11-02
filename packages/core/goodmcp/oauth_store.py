@@ -32,7 +32,8 @@ class AuthStore:
 
     def session(self, conn, cookie, *, lock=False):
         if not cookie or not 30 <= len(cookie) <= 128: return None
-        query = "SELECT * FROM auth_browser_sessions WHERE token_hash=:hash AND expires_at>now()"
+        query = """SELECT * FROM auth_browser_sessions WHERE token_hash=:hash AND expires_at>now()
+            AND (user_id IS NULL OR EXISTS(SELECT 1 FROM users u WHERE u.id=auth_browser_sessions.user_id AND u.active))"""
         if lock: query += " FOR UPDATE"
         return conn.execute(text(query), {"hash": sha(cookie)}).mappings().one_or_none()
 
@@ -66,7 +67,7 @@ class AuthStore:
             account_bucket, ip_bucket = "login-account:" + email, "login-ip:" + peer
             if self.limit(conn, account_bucket, 5) or self.limit(conn, ip_bucket, 30):
                 return {"status": 429, "error": "rate_limited"}
-            user = conn.execute(text("SELECT id,password_hash FROM users WHERE lower(email)=:email AND active"), {"email": email}).mappings().one_or_none()
+            user = conn.execute(text("SELECT id,password_hash FROM users WHERE lower(email)=:email AND active AND password_hash<>'!'"), {"email": email}).mappings().one_or_none()
             if not self.hash_slots.acquire(blocking=False): return {"status": 429, "error": "login_busy"}
             try:
                 valid = verify_password(user["password_hash"] if user else self.dummy_hash, password)
@@ -84,7 +85,7 @@ class AuthStore:
 
     def memberships(self, conn, user_id):
         return conn.execute(text("""SELECT m.id,m.workspace_id,m.role,w.name FROM memberships m JOIN workspaces w ON w.id=m.workspace_id
-            JOIN users u ON u.id=m.user_id AND u.active WHERE m.user_id=:user AND m.active ORDER BY w.name"""), {"user": user_id}).mappings().all()
+            JOIN users u ON u.id=m.user_id AND u.active WHERE m.user_id=:user AND m.active AND w.archived_at IS NULL ORDER BY w.name"""), {"user": user_id}).mappings().all()
 
     def client(self, conn, client_id, *, allow_fetch=False):
         if not client_id or len(client_id) > 2048: return None

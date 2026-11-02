@@ -4,6 +4,6 @@ After=docker.service network-online.target
 Requires=docker.service
 [Service]
 Type=oneshot
-ExecStart=/bin/sh /opt/goodmcp/releases/g8/infra/backup.sh
+ExecStart=/bin/sh /opt/goodmcp/current/infra/backup.sh
 TimeoutStartSec=30min
 UMask=0077

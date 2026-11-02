@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "known_secret_value_count": 12,
+  "files_scanned": 299,
+  "known_secret_hits": [],
+  "authored_g9_local_links_valid": true,
+  "scope": "exact known secret values, not every possible credential"
+}

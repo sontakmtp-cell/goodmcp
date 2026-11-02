@@ -2,7 +2,7 @@ import { it, expect, vi, describe } from "vitest";
 import { File as NodeFile } from "node:buffer";
 import { Api, ApiError } from "../api";
 import { checksum, sendZip, type Upload } from "../upload";
-import { completeSignIn, revoke } from "../auth";
+import { loadSession, webRequest, revoke } from "../auth";
 const workspace = { workspace_id: "ws-a", name: "Fixture", role: "owner" };
 describe("HTTP boundary", () => {
   it.each([401, 403, 404, 409, 413, 422, 429, 500, 503])(
@@ -27,7 +27,8 @@ describe("HTTP boundary", () => {
       expect(fetch.mock.calls[0][0]).toBe("/api/v1/workspaces/ws-a/plugins");
       expect(
         new Headers(fetch.mock.calls[0][1].headers).get("Authorization"),
-      ).toBe("Bearer private-test-token");
+      ).toBeNull();
+      expect(fetch.mock.calls[0][1].credentials).toBe("same-origin");
     },
   );
   it("normalizes network errors", async () => {
@@ -166,103 +167,41 @@ describe("ZIP transfer protocol", () => {
     expect(request).not.toHaveBeenCalled();
   });
 });
-describe("OAuth callback", () => {
-  it("does not report revoke success if backend still accepts access", async () => {
-    vi.stubGlobal(
-      "fetch",
-      vi
-        .fn()
-        .mockResolvedValueOnce(new Response("{}"))
-        .mockResolvedValueOnce(new Response("{}")),
-    );
-    await expect(
-      revoke({ access_token: "fixture", client_id: "client", admin: true }),
-    ).rejects.toThrow("chưa xác nhận thu hồi");
-  });
-  it("reports revoke success only after protected API returns 401", async () => {
-    vi.stubGlobal(
-      "fetch",
-      vi
-        .fn()
-        .mockResolvedValueOnce(new Response("{}"))
-        .mockResolvedValueOnce(new Response("{}", { status: 401 })),
-    );
-    await expect(
-      revoke({ access_token: "fixture", client_id: "client", admin: true }),
-    ).resolves.toBeUndefined();
-  });
-  it.each(["state", "issuer", "timeout", "denied"])(
-    "rejects %s and clears pending verifier before token exchange",
-    async (kind) => {
-      const f = vi.fn();
-      vi.stubGlobal("fetch", f);
-      sessionStorage.setItem(
-        "goodmcp:oauth",
-        JSON.stringify({
-          state: "s",
-          verifier: "v",
-          client_id: "id",
-          created: kind === "timeout" ? 0 : Date.now(),
-        }),
-      );
-      history.replaceState(
-        null,
-        "",
-        "/oauth/callback?" +
-          new URLSearchParams({
-            state: kind === "state" ? "evil" : "s",
-            iss:
-              kind === "issuer"
-                ? "https://evil.invalid"
-                : "http://127.0.0.1:18080/auth",
-            code: "one-time",
-            ...(kind === "denied" ? { error: "access_denied" } : {}),
-          }),
-      );
-      await expect(completeSignIn()).rejects.toThrow();
-      expect(f).not.toHaveBeenCalled();
-      expect(sessionStorage.getItem("goodmcp:oauth")).toBeNull();
-      expect(location.search).toBe("");
-    },
-  );
-  it("uses PKCE form and never persists returned tokens", async () => {
-    vi.stubGlobal(
-      "fetch",
-      vi
-        .fn()
-        .mockResolvedValue(
-          new Response(
-            JSON.stringify({
-              access_token: "private-token",
-              refresh_token: "private-refresh",
-            }),
-          ),
-        ),
-    );
-    sessionStorage.setItem(
-      "goodmcp:oauth",
-      JSON.stringify({
-        state: "s",
-        verifier: "private-verifier",
-        client_id: "id",
-        redirect_uri: location.origin + "/oauth/callback",
-        created: Date.now(),
-        admin: true,
-      }),
-    );
-    history.replaceState(
-      null,
-      "",
-      "/oauth/callback?state=s&iss=http%3A%2F%2F127.0.0.1%3A18080%2Fauth&code=one-time",
-    );
-    const c = await completeSignIn();
-    expect(c.access_token).toBe("private-token");
-    expect(c.admin).toBe(true);
-    expect(sessionStorage.length).toBe(0);
+describe("server web sessions", () => {
+  it("restores the session from an HttpOnly cookie without browser token storage", async () => {
+    const data = {user:{id:"u",email:"test@example.com",platform_admin:false,email_verified:true},csrf:"csrf-value",workspace_id:"ws-a",workspaces:[{id:"ws-a",name:"A",role:"member"}],google_enabled:true};
+    const fetch = vi.fn().mockResolvedValue(new Response(JSON.stringify({data})));
+    vi.stubGlobal("fetch",fetch);
+    await expect(loadSession()).resolves.toEqual(data);
+    expect(fetch.mock.calls[0][0]).toBe("/auth/web/session");
+    expect(fetch.mock.calls[0][1].credentials).toBe("same-origin");
+    expect(new Headers(fetch.mock.calls[0][1].headers).has("Authorization")).toBe(false);
     expect(localStorage.length).toBe(0);
-    const call = vi.mocked(fetch).mock.calls[0];
-    expect((call[1]!.body as URLSearchParams).get("code_verifier")).toBe(
-      "private-verifier",
-    );
+    expect(sessionStorage.length).toBe(0);
+  });
+  it("sends CSRF on JSON and binary API writes without granting MCP access", async () => {
+    const fetch = vi.fn().mockImplementation(() => Promise.resolve(new Response(JSON.stringify({data:{}}))));
+    vi.stubGlobal("fetch",fetch);
+    const api = new Api("csrf-value", workspace);
+    await api.post("/projects", {name:"Project"});
+    await api.request("/uploads/a/parts/0", {method:"PUT",body:new Blob(["zip"])});
+    for (const [,init] of fetch.mock.calls) {
+      const headers = new Headers(init.headers);
+      expect(headers.get("X-CSRF-Token")).toBe("csrf-value");
+      expect(headers.has("Authorization")).toBe(false);
+    }
+  });
+  it("protects workspace mutations and global logout with the session CSRF", async () => {
+    const fetch = vi.fn().mockImplementation(() => Promise.resolve(new Response(JSON.stringify({data:{}}))));
+    vi.stubGlobal("fetch",fetch);
+    await webRequest("/select-workspace","csrf",{method:"POST",body:JSON.stringify({workspace_id:"ws-b"})});
+    await revoke({csrf:"csrf"}, true);
+    expect(fetch.mock.calls[1][0]).toBe("/auth/web/logout");
+    expect(JSON.parse(fetch.mock.calls[1][1].body)).toEqual({all_devices:true});
+    for (const [,init] of fetch.mock.calls) expect(new Headers(init.headers).get("X-CSRF-Token")).toBe("csrf");
+  });
+  it("does not report logout success when the server rejects the request", async () => {
+    vi.stubGlobal("fetch",vi.fn().mockResolvedValue(new Response("{}",{status:403})));
+    await expect(revoke({csrf:"invalid"})).rejects.toMatchObject({status:403});
   });
 });

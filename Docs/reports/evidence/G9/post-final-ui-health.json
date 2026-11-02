@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "after_final_ui_backup": true,
+  "readiness": 200,
+  "anonymous_mcp": 401,
+  "final_frontend_index_matches": true
+}

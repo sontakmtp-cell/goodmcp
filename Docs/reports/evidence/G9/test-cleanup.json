@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "scope": "only_task_created_G9_projects",
+  "records": [
+    {
+      "project": "goodmcp-g9-verify-20261101t013659z-80388b",
+      "test_volumes_removed": true
+    },
+    {
+      "project": "goodmcp-g9-verify-20261101t014148z-5ba43e",
+      "test_volumes_removed": true
+    },
+    {
+      "project": "goodmcp-g9-verify-20261101t014236z-c6a1ed",
+      "test_volumes_removed": true
+    }
+  ]
+}

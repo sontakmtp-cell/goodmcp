@@ -1,0 +1,42 @@
+{
+  "mode": "python-calculators-keyword-mvp",
+  "image_digest": "sha256:1f5a9fead877756bb149b10165d6d338dfb4e71922ef73ccc53ad16e843ddeff",
+  "release_digest": "9613a98c728057a19bdfbd9e2189afc61eb3a4683cbec2a01363879d18d8a9b9",
+  "source_tree_sha256": "2ecd5ff2b529aefbe81759402de0597504e292895ed78eae82b5e1c737dc92eb",
+  "source_zip_sha256": "ae6a7e124a5309c1aa6d9fe5d9c508cc3cf0be166257b01f3dd6365ef8667cf0",
+  "registry_files": {
+    "references/data/compliance_calendar.json": "b31f7a67b266833bec7d6e69d794373c045716a62814cb625e789a9930489e31",
+    "references/data/cost_reference.json": "c9bc0e7126b7f971b3902511e917236f338f1e5e6e44b45976415e89e847d630",
+    "references/data/odi_checklist.json": "9c29fdd83ebe981ac30756996432e470071466a6b5595e726cfcdd3dd951017e",
+    "references/data/tariff_reference.json": "babb51789061321b1b5e3d919079c7b0ec6e0c20ebe0e7dda09e699a75787318",
+    "references/data/tax_treaty_rates.json": "e47ee2cbfbdc3db422e9466282584549d67856d68893053fa0fa44f567c15862",
+    "references/tools/calculators.py": "613e45472a70e22bc9333a8b62c9fd06b4b0fa63b3b693790682648c9fff9109",
+    "references/tools/location_sim.py": "f9e1a890d1a0518f74bc5f8da9db930f102cff986328408a55b4b2c937923c6b",
+    "references/tools/refs.py": "3d170feecd0a022b4b3cb3d0152bf54c67a6812d792f5111f4de36070aa1ecc5",
+    "references/tools/tariff.py": "228a9693ff50ae7031c567a8da92ac9f6a5bbe81d53b72bd8edb70de4be3813f"
+  },
+  "manifest": {
+    "mode": "python-calculators-keyword-mvp",
+    "source_tree_sha256": "2ecd5ff2b529aefbe81759402de0597504e292895ed78eae82b5e1c737dc92eb",
+    "source_zip_sha256": "ae6a7e124a5309c1aa6d9fe5d9c508cc3cf0be166257b01f3dd6365ef8667cf0",
+    "registry_files": {
+      "references/data/compliance_calendar.json": "b31f7a67b266833bec7d6e69d794373c045716a62814cb625e789a9930489e31",
+      "references/data/cost_reference.json": "c9bc0e7126b7f971b3902511e917236f338f1e5e6e44b45976415e89e847d630",
+      "references/data/odi_checklist.json": "9c29fdd83ebe981ac30756996432e470071466a6b5595e726cfcdd3dd951017e",
+      "references/data/tariff_reference.json": "babb51789061321b1b5e3d919079c7b0ec6e0c20ebe0e7dda09e699a75787318",
+      "references/data/tax_treaty_rates.json": "e47ee2cbfbdc3db422e9466282584549d67856d68893053fa0fa44f567c15862",
+      "references/tools/calculators.py": "613e45472a70e22bc9333a8b62c9fd06b4b0fa63b3b693790682648c9fff9109",
+      "references/tools/location_sim.py": "f9e1a890d1a0518f74bc5f8da9db930f102cff986328408a55b4b2c937923c6b",
+      "references/tools/refs.py": "3d170feecd0a022b4b3cb3d0152bf54c67a6812d792f5111f4de36070aa1ecc5",
+      "references/tools/tariff.py": "228a9693ff50ae7031c567a8da92ac9f6a5bbe81d53b72bd8edb70de4be3813f"
+    },
+    "lock_sha256": "fc05028b6b080d4656d84b61d5cb8ca83187c18212efdb0998738e4c93bd2ff1",
+    "runtime_files": {
+      "adapter.py": "789fd1845716ba5a069cd17aecc7bca651c517c98d7164a47852c1a67fd637d1",
+      "common.py": "74bd4c5769584b30fc67a2afd3af4aab101dd77ba755ddfe259b83966fd98d96",
+      "finance_spec.py": "97c1705d3e5cbef6fdee73f504e649fa61ef437ba4164fd176c35eb2da432650",
+      "main.py": "eb1bf7ccf89589d3b5d5daf8569f35ed5bc6276c9aa9ea204f80f4dc63d0e800",
+      "reviewed-source.json": "355ad8bb0e9d0c53b81f0edb140007ca6996539d2d5ca010c210e6fa52d2d968"
+    }
+  }
+}

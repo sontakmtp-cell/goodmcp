@@ -1,0 +1,14 @@
+
+> goodmcp-web@0.6.0 test
+> vitest run
+
+
+ RUN  v5.0.5 H:/AI/goodmcp/apps/web
+
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+
+ Test Files  3 passed | 1 skipped (4)
+      Tests  50 passed | 1 skipped (51)
+   Start at  07:45:48
+   Duration  36.88s (environment 71%, setup 17%, import 9%, transform 2%, tests 1%)
+

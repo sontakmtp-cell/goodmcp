@@ -16,7 +16,7 @@ trap restart_writers EXIT HUP INT TERM
 docker volume inspect goodmcp-prod_artifacts --format '{{.Mountpoint}}' > backups/staging/artifact-volume-path
 artifacts=$(cat backups/staging/artifact-volume-path)
 case "$artifacts" in /var/lib/docker/volumes/goodmcp-prod_artifacts/_data) ;; *) echo 'Unexpected artifact source' >&2; exit 1;; esac
-restic backup --json --tag goodmcp-production "$artifacts" backups/staging releases/g8 finance secrets deploy.env compose approved-finance.oci.tar app-images.tar postgres-image.tar --exclude /opt/goodmcp/secrets/restic_password > backups/last-run.jsonl
+restic backup --json --tag goodmcp-production "$artifacts" backups/staging releases finance secrets deploy.env compose approved-finance.oci.tar app-images.tar postgres-image.tar --exclude /opt/goodmcp/secrets/restic_password > backups/last-run.jsonl
 restart_writers
 trap - EXIT HUP INT TERM
 restic check

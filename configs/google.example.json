@@ -1,0 +1,7 @@
+{
+  "client_id": "replace.apps.googleusercontent.com",
+  "client_secret": "replace-with-secret-file-value",
+  "state_key": "replace-with-at-least-43-random-characters-from-secrets-token-urlsafe",
+  "signup_enabled": false,
+  "testing_emails": ["tester@example.invalid"]
+}

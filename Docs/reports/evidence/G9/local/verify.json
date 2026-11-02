@@ -1,0 +1,1163 @@
+{
+  "stage": "G9",
+  "status": "failed",
+  "source_commit": "2438cdec9d74f7622bdb75347a331e9958a18d93",
+  "source_mode": "working_tree_dev",
+  "run_id": "20261101T013659Z-80388b",
+  "project": "goodmcp-g9-verify-20261101t013659z-80388b",
+  "checks": {
+    "single_owner_bootstrap_idempotent": true,
+    "pytest_passed": 240
+  },
+  "commands": [
+    {
+      "label": "compose-config",
+      "argv": [
+        "config",
+        "--quiet"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 0.652
+    },
+    {
+      "label": "build-clean-source",
+      "argv": [
+        "build",
+        "api",
+        "caddy"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 4.012
+    },
+    {
+      "label": "start-empty-postgres",
+      "argv": [
+        "up",
+        "-d",
+        "--wait",
+        "postgres"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 3.338
+    },
+    {
+      "label": "admin-roles",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "admin",
+        "python",
+        "-m",
+        "goodmcp.admin",
+        "roles"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 1.938
+    },
+    {
+      "label": "api-before-migration",
+      "argv": [
+        "up",
+        "-d",
+        "--no-deps",
+        "api"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 0.808
+    },
+    {
+      "label": "readiness-denies-missing-migration",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "tests",
+        "python",
+        "tests/readiness.py",
+        "503"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 2.876
+    },
+    {
+      "label": "migration-up",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "migrate"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 3.248
+    },
+    {
+      "label": "migration-idempotent",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "migrate"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 2.345
+    },
+    {
+      "label": "admin-owner",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "admin",
+        "python",
+        "-m",
+        "goodmcp.admin",
+        "owner"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 2.347
+    },
+    {
+      "label": "admin-owner",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "admin",
+        "python",
+        "-m",
+        "goodmcp.admin",
+        "owner"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 2.583
+    },
+    {
+      "label": "admin-inspect",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "admin",
+        "python",
+        "-m",
+        "goodmcp.admin",
+        "inspect"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 1.896
+    },
+    {
+      "label": "admin-fixtures",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "admin",
+        "python",
+        "-m",
+        "goodmcp.admin",
+        "fixtures"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 1.899
+    },
+    {
+      "label": "auth-workspace-fixture",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "auth_probe"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 2.1
+    },
+    {
+      "label": "start-local-stack",
+      "argv": [
+        "up",
+        "-d",
+        "--wait",
+        "api",
+        "auth",
+        "worker",
+        "caddy"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 6.332
+    },
+    {
+      "label": "postgres-and-filesystem-tests",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "tests"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 21.175
+    },
+    {
+      "label": "plugin-import-and-catalog-wire",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "wire",
+        "python",
+        "tests/wire_g3.py",
+        "full"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 97.581
+    },
+    {
+      "label": "import-memory-api",
+      "argv": [
+        "exec",
+        "-T",
+        "api",
+        "python",
+        "-c",
+        "import json; from pathlib import Path; p=Path('/sys/fs/cgroup'); print(json.dumps({'peak_bytes':int((p/'memory.peak').read_text(encoding='utf8')),'events':(p/'memory.events').read_text(encoding='utf8'),'process_rss':[x for x in Path('/proc/1/status').read_text(encoding='utf8').splitlines() if x.startswith(('VmHWM:','VmRSS:'))]}))"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 0.539
+    },
+    {
+      "label": "import-memory-worker",
+      "argv": [
+        "exec",
+        "-T",
+        "worker",
+        "python",
+        "-c",
+        "import json; from pathlib import Path; p=Path('/sys/fs/cgroup'); print(json.dumps({'peak_bytes':int((p/'memory.peak').read_text(encoding='utf8')),'events':(p/'memory.events').read_text(encoding='utf8'),'process_rss':[x for x in Path('/proc/1/status').read_text(encoding='utf8').splitlines() if x.startswith(('VmHWM:','VmRSS:'))]}))"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 0.813
+    },
+    {
+      "label": "oauth-mcp-wire-full",
+      "argv": [
+        "run",
+        "--rm",
+        "--no-deps",
+        "wire"
+      ],
+      "exit_code": 1,
+      "elapsed_s": 3.658
+    }
+  ],
+  "built_images": {
+    "HUB_IMAGE": "sha256:b3801001cc7be32e3d25363a25a673333db9fc139ba4ddb1245fdeaca34e0518",
+    "HUB_CADDY_IMAGE": "sha256:41e73361b13a4a52233e389157618a4f4c29450de439709f16cffd1ef8c7b471"
+  },
+  "g3_wire": {
+    "passed": true,
+    "checks": [
+      {
+        "name": "G0 source hashes rechecked",
+        "passed": true
+      },
+      {
+        "name": "read-only token cannot upload",
+        "passed": true
+      },
+      {
+        "name": "foreign workspace route blocked",
+        "passed": true
+      },
+      {
+        "name": "unknown input field rejected",
+        "passed": true
+      },
+      {
+        "name": "body over 8 MiB rejected before storage",
+        "passed": true
+      },
+      {
+        "name": "idempotent create",
+        "passed": true
+      },
+      {
+        "name": "complete rejects missing parts",
+        "passed": true
+      },
+      {
+        "name": "out-of-order chunk visible on resume",
+        "passed": true
+      },
+      {
+        "name": "chunk retry no duplicate",
+        "passed": true
+      },
+      {
+        "name": "validated sample: OPC Team",
+        "passed": true,
+        "error_code": null
+      },
+      {
+        "name": "portable tree hash: OPC Team",
+        "passed": true
+      },
+      {
+        "name": "ZIP export byte identity: OPC Team",
+        "passed": true
+      },
+      {
+        "name": "export file count: OPC Team",
+        "passed": true
+      },
+      {
+        "name": "all exported file hashes: OPC Team",
+        "passed": true,
+        "files": 56
+      },
+      {
+        "name": "paged active resource hashes: OPC Team",
+        "passed": true
+      },
+      {
+        "name": "idempotent create",
+        "passed": true
+      },
+      {
+        "name": "complete rejects missing parts",
+        "passed": true
+      },
+      {
+        "name": "out-of-order chunk visible on resume",
+        "passed": true
+      },
+      {
+        "name": "chunk retry no duplicate",
+        "passed": true
+      },
+      {
+        "name": "validated sample: godot-roblox-experts",
+        "passed": true,
+        "error_code": null
+      },
+      {
+        "name": "portable tree hash: godot-roblox-experts",
+        "passed": true
+      },
+      {
+        "name": "ZIP export byte identity: godot-roblox-experts",
+        "passed": true
+      },
+      {
+        "name": "export file count: godot-roblox-experts",
+        "passed": true
+      },
+      {
+        "name": "all exported file hashes: godot-roblox-experts",
+        "passed": true,
+        "files": 8
+      },
+      {
+        "name": "paged active resource hashes: godot-roblox-experts",
+        "passed": true
+      },
+      {
+        "name": "idempotent create",
+        "passed": true
+      },
+      {
+        "name": "complete rejects missing parts",
+        "passed": true
+      },
+      {
+        "name": "out-of-order chunk visible on resume",
+        "passed": true
+      },
+      {
+        "name": "chunk retry no duplicate",
+        "passed": true
+      },
+      {
+        "name": "validated sample: vietnam-finance-tax-expert",
+        "passed": true,
+        "error_code": null
+      },
+      {
+        "name": "portable tree hash: vietnam-finance-tax-expert",
+        "passed": true
+      },
+      {
+        "name": "ZIP export byte identity: vietnam-finance-tax-expert",
+        "passed": true
+      },
+      {
+        "name": "export file count: vietnam-finance-tax-expert",
+        "passed": true
+      },
+      {
+        "name": "all exported file hashes: vietnam-finance-tax-expert",
+        "passed": true,
+        "files": 768
+      },
+      {
+        "name": "paged active resource hashes: vietnam-finance-tax-expert",
+        "passed": true
+      },
+      {
+        "name": "three plugins and sixteen roles",
+        "passed": true
+      },
+      {
+        "name": "fourth data-only plugin accepted",
+        "passed": true
+      },
+      {
+        "name": "worker rejects traversal",
+        "passed": true
+      },
+      {
+        "name": "invalid version leaves active installation",
+        "passed": true
+      },
+      {
+        "name": "same manifest version gets content revision",
+        "passed": true
+      },
+      {
+        "name": "stale installation revision rejected",
+        "passed": true
+      },
+      {
+        "name": "G3 SDK protocol pin",
+        "passed": true
+      },
+      {
+        "name": "catalog tools available, no arbitrary execution",
+        "passed": true
+      },
+      {
+        "name": "MCP pagination has four plugins",
+        "passed": true
+      },
+      {
+        "name": "MCP opens version: OPC Team",
+        "passed": true
+      },
+      {
+        "name": "MCP role: opc-asset-ops",
+        "passed": true
+      },
+      {
+        "name": "MCP role: opc-business-model-design",
+        "passed": true
+      },
+      {
+        "name": "MCP role: opc-conversion-loop",
+        "passed": true
+      },
+      {
+        "name": "MCP role: opc-dashboard-review",
+        "passed": true
+      },
+      {
+        "name": "MCP role: opc-mvp-designer",
+        "passed": true
+      },
+      {
+        "name": "MCP role: opc-niche-positioning",
+        "passed": true
+      },
+      {
+        "name": "MCP role: opc-orchestrator",
+        "passed": true
+      },
+      {
+        "name": "MCP role: opc-resource-audit",
+        "passed": true
+      },
+      {
+        "name": "MCP role: opc-value-proposition",
+        "passed": true
+      },
+      {
+        "name": "MCP bounded resource: OPC Team",
+        "passed": true
+      },
+      {
+        "name": "unknown resource fails: OPC Team",
+        "passed": true
+      },
+      {
+        "name": "MCP opens version: godot-roblox-experts",
+        "passed": true
+      },
+      {
+        "name": "MCP role: godot-game-script-engineer",
+        "passed": true
+      },
+      {
+        "name": "MCP role: godot-multiplayer-engineer",
+        "passed": true
+      },
+      {
+        "name": "MCP role: godot-shader-developer",
+        "passed": true
+      },
+      {
+        "name": "MCP role: roblox-avatar-creator",
+        "passed": true
+      },
+      {
+        "name": "MCP role: roblox-experience-designer",
+        "passed": true
+      },
+      {
+        "name": "MCP role: roblox-system-script-engineer",
+        "passed": true
+      },
+      {
+        "name": "MCP bounded resource: godot-roblox-experts",
+        "passed": true
+      },
+      {
+        "name": "unknown resource fails: godot-roblox-experts",
+        "passed": true
+      },
+      {
+        "name": "MCP opens version: vietnam-finance-tax-expert",
+        "passed": true
+      },
+      {
+        "name": "MCP role: vietnam-finance-tax-expert",
+        "passed": true
+      },
+      {
+        "name": "MCP bounded resource: vietnam-finance-tax-expert",
+        "passed": true
+      },
+      {
+        "name": "unknown resource fails: vietnam-finance-tax-expert",
+        "passed": true
+      },
+      {
+        "name": "MCP opens version: fourth-skill",
+        "passed": true
+      },
+      {
+        "name": "MCP role: hello",
+        "passed": true
+      },
+      {
+        "name": "MCP bounded resource: fourth-skill",
+        "passed": true
+      },
+      {
+        "name": "unknown resource fails: fourth-skill",
+        "passed": true
+      },
+      {
+        "name": "disabled installation blocks MCP reads",
+        "passed": true
+      }
+    ],
+    "plugins": [
+      {
+        "directory": "OPC Team",
+        "version_id": "ebcf74d5-6170-46d3-9891-595aae491a19",
+        "preview": {
+          "name": "opc-team",
+          "bytes": 521408,
+          "files": 56,
+          "roles": 9,
+          "agents": [],
+          "skills": [
+            {
+              "name": "opc-asset-ops",
+              "path": "skills/opc-asset-ops/SKILL.md"
+            },
+            {
+              "name": "opc-business-model-design",
+              "path": "skills/opc-business-model-design/SKILL.md"
+            },
+            {
+              "name": "opc-conversion-loop",
+              "path": "skills/opc-conversion-loop/SKILL.md"
+            },
+            {
+              "name": "opc-dashboard-review",
+              "path": "skills/opc-dashboard-review/SKILL.md"
+            },
+            {
+              "name": "opc-mvp-designer",
+              "path": "skills/opc-mvp-designer/SKILL.md"
+            },
+            {
+              "name": "opc-niche-positioning",
+              "path": "skills/opc-niche-positioning/SKILL.md"
+            },
+            {
+              "name": "opc-orchestrator",
+              "path": "skills/opc-orchestrator/SKILL.md"
+            },
+            {
+              "name": "opc-resource-audit",
+              "path": "skills/opc-resource-audit/SKILL.md"
+            },
+            {
+              "name": "opc-value-proposition",
+              "path": "skills/opc-value-proposition/SKILL.md"
+            }
+          ],
+          "license": "CC-BY-NC-SA-4.0",
+          "runtime": "source_only_no_execution",
+          "warnings": [],
+          "pdf_files": 0,
+          "pdf_indexed": false,
+          "root_prefix": "",
+          "tree_sha256": "93dc45c9f729e4fda4a6aface0772c38c1bcf89eeb3e9f4a146a2afe4a00c705",
+          "python_files": 0,
+          "warning_count": 0,
+          "manifest_version": "1.1.3",
+          "tree_hash_format": "goodmcp-tree-v1",
+          "quarantined_files": 0
+        },
+        "elapsed_s": 1.766
+      },
+      {
+        "directory": "godot-roblox-experts",
+        "version_id": "8254d60f-07c6-40b4-878d-4bd6531f4eca",
+        "preview": {
+          "name": "godot-roblox-experts",
+          "bytes": 87235,
+          "files": 8,
+          "roles": 6,
+          "agents": [
+            {
+              "name": "godot-game-script-engineer",
+              "path": "agents/godot-game-script-engineer.md"
+            },
+            {
+              "name": "godot-multiplayer-engineer",
+              "path": "agents/godot-multiplayer-engineer.md"
+            },
+            {
+              "name": "godot-shader-developer",
+              "path": "agents/godot-shader-developer.md"
+            },
+            {
+              "name": "roblox-avatar-creator",
+              "path": "agents/roblox-avatar-creator.md"
+            },
+            {
+              "name": "roblox-experience-designer",
+              "path": "agents/roblox-experience-designer.md"
+            },
+            {
+              "name": "roblox-system-script-engineer",
+              "path": "agents/roblox-system-script-engineer.md"
+            }
+          ],
+          "skills": [],
+          "license": "unknown",
+          "runtime": "source_only_no_execution",
+          "warnings": [
+            {
+              "code": "license_unknown_private_only"
+            }
+          ],
+          "pdf_files": 0,
+          "pdf_indexed": false,
+          "root_prefix": "",
+          "tree_sha256": "f44bd2a2bac3a2587c8a04117c567a57e89f6c3cf45d2ab994396c7fbc118e16",
+          "python_files": 0,
+          "warning_count": 1,
+          "manifest_version": "1.0.0",
+          "tree_hash_format": "goodmcp-tree-v1",
+          "quarantined_files": 0
+        },
+        "elapsed_s": 1.5
+      },
+      {
+        "directory": "vietnam-finance-tax-expert",
+        "version_id": "612dc167-caa2-45dc-b9b2-f6d6e3547836",
+        "preview": {
+          "name": "vietnam-finance-tax-expert",
+          "bytes": 637055200,
+          "files": 768,
+          "roles": 1,
+          "agents": [
+            {
+              "name": "vietnam-finance-tax-expert",
+              "path": "agents/vietnam-finance-tax-expert.md"
+            }
+          ],
+          "skills": [],
+          "license": "unknown",
+          "runtime": "source_only_no_execution",
+          "warnings": [
+            {
+              "code": "embedded_credential_html_quarantined",
+              "source": "references/corpus/vietnam-finance-tax-corpus/global_law_experts_vn_investment_incentives.html"
+            },
+            {
+              "code": "embedded_credential_html_quarantined",
+              "source": "references/corpus/vietnam-finance-tax-corpus/vn_tax_compliance_guide_globalaw.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/apluslaw_fct_complete_guide.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/apluslaw_fct_complete_guide.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/chinatax_vn_cit_guidance_320_2025.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/chinatax_vn_cit_guidance_320_2025.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/chinatax_vn_cit_law_2025_amendment.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/chinatax_vn_cit_law_2025_amendment.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/chinatax_vn_tp_decree20_2025.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/chinatax_vn_tp_decree20_2025.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/ctils_vn_investment_law_changes.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/dg_vn_fdi_access_system.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/duane_morris_fct_guide_2025_2026.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/duane_morris_fct_guide_2025_2026.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/ecovis_vn_factory_setup_tax_faq.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/ecovis_vn_factory_setup_tax_faq.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/ecovis_vn_tax_changes_2026_cfo_guide.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/ecovis_vn_tax_changes_2026_cfo_guide.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/global_law_experts_vn_investment_incentives.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/global_law_experts_vn_investment_incentives.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/indochinalink_accounting_vas_ifrs.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/indochinalink_fct_guide_chinese.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/investvietnam_other_taxes.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/investvietnam_other_taxes.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/jetro_vn_tax_overview.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/jetro_vn_tax_overview.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/jpa_vn_tp_decree_255_2026.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/man_vn_tp_faq_chinese.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/sbv_forex_circular_20_2022.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_accounting_audit_changes_2026.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_accounting_audit_changes_2026.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_accounting_circular99_kmc_9points.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_accounting_circular99_kmc_9points.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_accounting_circular99_kmc_perspective.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_accounting_circular99_kmc_perspective.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_accounting_circular99_parker_russell.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_accounting_circular99_parker_russell.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_accounting_law_88_2015_economica_pdf.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_accounting_law_88_2015_luatvietnam.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_accounting_law_88_2015_luatvietnam.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_accounting_system_overview_ketoan.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_accounting_system_overview_ketoan.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_admin_violations_law_15_2012_dazpro.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_admin_violations_law_15_2012_dazpro.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_admin_violations_law_15_2012_wipo.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_admin_violations_law_15_2012_wipo.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_aml_circular27_2025_dacheng_chinese.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_aml_circular27_2025_dacheng_chinese.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_aml_circular27_2025_luatvietnam.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_aml_decree116_luatvietnam.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_aml_decree87_2019_luatvietnam.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_aml_sbv_directive05_2024.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_anticorruption_law_36_2018_luatvietnam.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_anticorruption_law_36_2018_luatvietnam.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_anticorruption_law_36_2018_luatvietnam_full.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_anticorruption_law_36_2018_luatvietnam_full.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_arbitration_law_54_2010_luatvietnam.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_arbitration_law_54_2010_luatvietnam.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_asset_auction_law_01_2016_luatvietnam.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_asset_auction_law_01_2016_luatvietnam.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_audit_decree17_2012_luatvietnam.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_audit_decree17_2012_luatvietnam.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_audit_decree90_2025_luatvietnam.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_audit_decree90_2025_luatvietnam.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_audit_law_67_2011_luatvietnam.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_audit_law_67_2011_luatvietnam.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_audit_requirements_siglaw.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_audit_requirements_siglaw.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_audit_requirements_tlklaw.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_audit_requirements_tlklaw.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_bank_guarantee_blawyers_april2025.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_bank_guarantee_blawyers_jan2025.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_bank_guarantee_circular49_luatvietnam.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_bank_guarantee_mondaq.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_bank_guarantee_mondaq.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_banking_circular09_2024_prudential.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_banking_circular34_2024_sbv.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_banking_circular34_2024_sbv.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_banking_law_32_2024_dazpro.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_banking_law_32_2024_dazpro.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_banking_law_32_2024_luatvietnam.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_bankruptcy_guide_2025_luatvietnam.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_bankruptcy_guide_2025_luatvietnam.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_bankruptcy_insolvency_letranlaw.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_bankruptcy_insolvency_letranlaw.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_bankruptcy_law_2014_luatvietnam.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_bankruptcy_law_2014_luatvietnam.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_bidding_law_2023_dazpro.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_bidding_law_2023_dazpro.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_bidding_law_2023_luatduongtri_cn.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_bidding_law_2023_luatduongtri_en.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_bidding_law_2023_luatvietnam.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_bidding_law_2023_luatvietnam.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_business_license_fee_n2n.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_business_license_fee_spassociates.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_business_license_fee_yingtian_chinese.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_circular111_2013_pit_foreign_tla.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_circular111_2013_pit_foreign_tla.txt"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_circular111_2013_pit_foreign_workers_man.html"
+            },
+            {
+              "code": "source_manifest_size_mismatch",
+              "target": "references/corpus/vietnam-finance-tax-corpus/vn_circular111_2013_pit_foreign_workers_man.txt"
+            }
+          ],
+          "pdf_files": 39,
+          "pdf_indexed": false,
+          "root_prefix": "",
+          "tree_sha256": "2ecd5ff2b529aefbe81759402de0597504e292895ed78eae82b5e1c737dc92eb",
+          "python_files": 12,
+          "warning_count": 542,
+          "manifest_version": "1.3.0",
+          "tree_hash_format": "goodmcp-tree-v1",
+          "quarantined_files": 2
+        },
+        "elapsed_s": 87.631
+      },
+      {
+        "directory": "fourth-skill",
+        "version_id": "e07603b6-3601-454c-ae3d-20e318c45c7f",
+        "preview": {
+          "name": "fourth-skill",
+          "bytes": 170,
+          "files": 3,
+          "roles": 1,
+          "agents": [],
+          "skills": [
+            {
+              "name": "hello",
+              "path": "skills/hello/SKILL.md"
+            }
+          ],
+          "license": "MIT",
+          "runtime": "source_only_no_execution",
+          "warnings": [],
+          "pdf_files": 0,
+          "pdf_indexed": false,
+          "root_prefix": "",
+          "tree_sha256": "b93e0112e5c21d2b3aa0992ec52c76e5c2ce1722d056104dc11fc10939eda2a7",
+          "python_files": 0,
+          "warning_count": 0,
+          "manifest_version": "1.0.0",
+          "tree_hash_format": "goodmcp-tree-v1",
+          "quarantined_files": 0
+        },
+        "elapsed_s": null
+      }
+    ],
+    "source_files_verified": 832,
+    "source_snapshot": "local_folder_snapshot_not_original_vendor_zip"
+  },
+  "g3_memory": {
+    "api": {
+      "peak_bytes": 540049408,
+      "events": "low 0\nhigh 0\nmax 9234\noom 0\noom_kill 0\noom_group_kill 0\n",
+      "process_rss": [
+        "VmHWM:\t  133948 kB",
+        "VmRSS:\t  128660 kB"
+      ]
+    },
+    "worker": {
+      "peak_bytes": 268439552,
+      "events": "low 0\nhigh 0\nmax 21421\noom 0\noom_kill 0\noom_group_kill 0\n",
+      "process_rss": [
+        "VmHWM:\t   74144 kB",
+        "VmRSS:\t   71788 kB"
+      ]
+    }
+  }
+}

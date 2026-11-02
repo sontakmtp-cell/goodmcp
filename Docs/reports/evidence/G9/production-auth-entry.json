@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "scope": "production_http_after_auth_entry_fix",
+  "fresh_mcp_login_redirect": "/auth/google/start",
+  "owner_recovery_provider": "Cloudflare",
+  "ready": {
+    "data": {
+      "status": "ready",
+      "stage": "G9"
+    },
+    "request_id": "d1efb9ef-0e31-4289-96da-adab2889c151"
+  },
+  "google_enabled": true
+}

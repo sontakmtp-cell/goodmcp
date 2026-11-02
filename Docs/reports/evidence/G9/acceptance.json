@@ -1,0 +1,40 @@
+{
+  "stage": "G9",
+  "status": "implemented_deployed_acceptance_incomplete",
+  "updated_date": "2026-11-02",
+  "public_signup": false,
+  "google_accounts_verified_live": 3,
+  "workspaces": 4,
+  "roles_verified": [
+    "owner",
+    "admin",
+    "member",
+    "viewer"
+  ],
+  "invitations_accepted_by_private_link": 3,
+  "smtp_delivery": "deferred_by_user_no_SMTP",
+  "browser_320": "passed_local_real_browser_with_synthetic_API_session; production_Windows_browser_blocked_by_tool",
+  "chatgpt_web": "partial_server_200_UI_final_response_unverified",
+  "production_revoke": "passed_API401_MCP401_refresh400_before_access_expiry",
+  "data_preserved": {
+    "plugin_versions": 13,
+    "projects": 10,
+    "artifacts": 990
+  },
+  "verification": {
+    "core_pytest_passed": 240,
+    "g9_targeted_passed": 23,
+    "python_parity_passed": 47,
+    "auth_fix_targeted_passed": 40,
+    "frontend_worker_reported_passed": 50,
+    "frontend_live_skipped": 1,
+    "counts_have_overlap": true
+  },
+  "image": "goodmcp-hub:g9r2-20261102",
+  "schema": "0007_g9",
+  "source_mode": "working_tree_not_clean_commit",
+  "report": "Docs/reports/G9.md",
+  "frontend_final_build_and_hashes": "passed_25_files_match_production",
+  "final_backup_snapshot": "70445466ea269762d83cdc57f446d9499800a2c78332ce736448dad9021eba92",
+  "post_backup_health": "passed"
+}

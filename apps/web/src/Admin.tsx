@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, type ReactNode } from "react";
 import {
   Graph,
   SquaresFour,
@@ -36,12 +36,16 @@ export function Admin({
   onLogin,
   onForget,
   onPortal,
+  management,
+  settings,
 }: {
   api: Api | null;
   credential: Credential | null;
   onLogin: () => void;
   onForget: () => void;
   onPortal: () => void;
+  management?: ReactNode;
+  settings?: ReactNode;
 }) {
   const [menu, setMenu] = useState(0);
   if (!api)
@@ -144,7 +148,7 @@ export function Admin({
             <PluginList api={api} />
           ) : menu === 2 ? (
             <Projects api={api} />
-          ) : menu === 3 ? (
+          ) : menu === 3 ? management || (
             <section className="panel">
               <h2>Phiên web của bạn</h2>
               <p>
@@ -155,15 +159,15 @@ export function Admin({
               </p>
               {credential && (
                 <ConfirmButton
-                  title="Thu hồi phiên web?"
-                  detail="Ngừng quyền API của phiên web này. Các kết nối AI khác và cookie đăng nhập không bị thu hồi."
+                  title="Đăng xuất phiên web?"
+                  detail="Đăng xuất phiên web hiện tại. Các kết nối AI được quản lý và thu hồi riêng."
                   danger
                   onConfirm={async () => {
                     await revoke(credential);
                     onForget();
                   }}
                 >
-                  Thu hồi phiên web
+                  Đăng xuất phiên web
                 </ConfirmButton>
               )}
               <p>
@@ -171,7 +175,7 @@ export function Admin({
               </p>
             </section>
           ) : (
-            <System api={api} />
+            settings || <System api={api} />
           )}
         </main>
       </div>
@@ -187,7 +191,7 @@ function Shield() {
     </p>
   );
 }
-function PluginList({ api }: { api: Api }) {
+export function PluginList({ api }: { api: Api }) {
   const [cursor, setCursor] = useState(""),
     [page, setPage] = useState(1),
     [selected, setSelected] = useState<Plugin | null>(null),
@@ -218,16 +222,16 @@ function PluginList({ api }: { api: Api }) {
         <p className="intro">
           Thêm kỹ năng, tài liệu và công cụ cho AI của bạn.
         </p>
-        <button
+        {["owner","admin"].includes(api.workspace.role) && <button
           className="primary"
           aria-expanded={upload}
           onClick={() => setUpload(!upload)}
         >
           <UploadSimple />
           Tải ZIP
-        </button>
+        </button>}
       </div>
-      {upload && <UploadPanel api={api} onInstalled={state.reload} />}
+      {upload && ["owner","admin"].includes(api.workspace.role) && <UploadPanel api={api} onInstalled={state.reload} />}
       <DataState state={state}>
         {state.data?.items.length ? (
           <div className="list">
@@ -338,7 +342,7 @@ function System({ api }: { api: Api }) {
     </>
   );
 }
-function Projects({ api }: { api: Api }) {
+export function Projects({ api }: { api: Api }) {
   const [cursor, setCursor] = useState(""),
     [page, setPage] = useState(1),
     [selected, setSelected] = useState(""),
@@ -376,15 +380,15 @@ function Projects({ api }: { api: Api }) {
         <p className="intro">
           Tiếp tục công việc từ đúng phiên bản và tài liệu đã lưu.
         </p>
-        <button
+        {api.workspace.role !== "viewer" && <button
           className="primary"
           onClick={() => setCreate(!create)}
           aria-expanded={create}
         >
           Tạo dự án
-        </button>
+        </button>}
       </div>
-      {create && (
+      {create && api.workspace.role !== "viewer" && (
         <section className="panel">
           <h2>Dự án mới</h2>
           <DataState state={plugins}>
@@ -639,7 +643,7 @@ function ProjectDetail({
                 </>
               )}
             </section>
-            <section className="panel">
+            {api.workspace.role !== "viewer" && <section className="panel">
               <h2>Lưu bản nháp</h2>
               <p>Chỉ lưu tài liệu, không xác nhận hoàn thành bước.</p>
               <form
@@ -688,7 +692,7 @@ function ProjectDetail({
                   Lưu bản nháp
                 </button>
               </form>
-            </section>
+            </section>}
           </>
         )}
       </DataState>

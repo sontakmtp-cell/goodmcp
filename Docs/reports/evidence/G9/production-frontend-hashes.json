@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "compiled_files_match": 25,
+  "app_serves_final_index": true,
+  "browser_provider_auth_tested": false
+}

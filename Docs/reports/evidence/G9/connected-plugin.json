@@ -1,0 +1,117 @@
+{
+  "host": "Codex desktop connected GoodMCP G8 Full plugin",
+  "endpoint_expected": "https://goodmcp.si/mcp",
+  "enabled_plugins": [
+    {
+      "name": "opc-team",
+      "installation_id": "4418caa8-7db7-45ef-ab77-61eb72872ab9",
+      "plugin_version_id": "61815173-5152-4c01-b2c4-993a58fdfdaa"
+    },
+    {
+      "name": "godot-roblox-experts",
+      "installation_id": "acc8f995-b18b-4901-9d72-1f2c8970e1e0",
+      "plugin_version_id": "dd043f6b-87c7-4f0e-bf7d-6748aaea1941"
+    },
+    {
+      "name": "vietnam-finance-tax-expert",
+      "installation_id": "bf79add8-02f3-490d-97b8-8e3513ace657",
+      "plugin_version_id": "65013366-4823-4294-88fa-21c6c4e3394f"
+    }
+  ],
+  "existing_project": {
+    "id": "9529f488-da6f-45b4-b1f1-20a974d6b9bc",
+    "revision": 1
+  },
+  "python": {
+    "job": {
+      "id": "727f7b28-a8bc-4cd9-abf4-b6c3a95ce563",
+      "state": "succeeded",
+      "operation": "cit_estimate",
+      "attempts": 1,
+      "created_at": "2026-11-01T02:01:26.570061Z",
+      "started_at": "2026-11-01T02:01:26.640415Z",
+      "finished_at": "2026-11-01T02:01:28.508604Z",
+      "result_artifact_id": "389d9a2c-3389-459b-9e9b-418f4c2ddc8e",
+      "error": null,
+      "cancel_requested": false,
+      "result": {
+        "data": {
+          "annual_revenue": 1000,
+          "annual_tax_saving_VND": 0,
+          "applied_cit_rate_pct": 20,
+          "cit_with_incentive_VND": 80,
+          "cit_without_incentive_VND": 80,
+          "currency": "VND",
+          "deductible_cost": 600,
+          "effective_rate_pct": 20,
+          "query_year": 1,
+          "tax_holiday_free_years": 0,
+          "tax_holiday_half_years": 0,
+          "taxable_income": 400
+        },
+        "metrics": {
+          "operation_s": 0.9004580399996485,
+          "peak_rss_MiB": 35.28515625
+        },
+        "ok": true,
+        "provenance": {
+          "adapter_id": "cit_estimate",
+          "image_digest": "sha256:1f5a9fead877756bb149b10165d6d338dfb4e71922ef73ccc53ad16e843ddeff",
+          "original_python": true,
+          "plugin_version_id": "65013366-4823-4294-88fa-21c6c4e3394f",
+          "release_digest": "9613a98c728057a19bdfbd9e2189afc61eb3a4683cbec2a01363879d18d8a9b9",
+          "source_date": "unknown",
+          "source_tree_sha256": "2ecd5ff2b529aefbe81759402de0597504e292895ed78eae82b5e1c737dc92eb"
+        },
+        "warnings": [
+          "Matches supplied Python; not a legal/tax audit. Source dates may be outdated."
+        ]
+      }
+    }
+  },
+  "new_project": {
+    "data": {
+      "id": "ccf6c222-5955-4d5c-9085-ec692ada0410",
+      "name": "G9 connector regression",
+      "revision": 0,
+      "plugin_version_id": "65013366-4823-4294-88fa-21c6c4e3394f",
+      "workflow": "documents-v1"
+    },
+    "error": null
+  },
+  "saved": {
+    "data": {
+      "project_id": "ccf6c222-5955-4d5c-9085-ec692ada0410",
+      "revision": 1,
+      "file": {
+        "id": "61bd293b-640b-4f93-9b39-365b14863263",
+        "artifact_id": "17408b5d-9fe4-4f02-8316-e79f75305b93",
+        "logical_path": "opc-doc/outputs/g9-session-check.md",
+        "file_revision": 1,
+        "project_revision": 1,
+        "status": "draft",
+        "plugin_version_id": "65013366-4823-4294-88fa-21c6c4e3394f",
+        "created_at": "2026-11-01 02:02:43.996247+00:00"
+      }
+    },
+    "error": null
+  },
+  "readback": {
+    "data": {
+      "id": "61bd293b-640b-4f93-9b39-365b14863263",
+      "artifact_id": "17408b5d-9fe4-4f02-8316-e79f75305b93",
+      "logical_path": "opc-doc/outputs/g9-session-check.md",
+      "file_revision": 1,
+      "status": "draft",
+      "plugin_version_id": "65013366-4823-4294-88fa-21c6c4e3394f",
+      "sha256": "7fb0d79edf2a760f8ec1678e7bf8591f37de9895bd39a0520f65cc84a7a92194",
+      "bytes": 185,
+      "media_type": "text/markdown",
+      "offset": 0,
+      "next_offset": null,
+      "content": "# G9 connector regression\nSynthetic validation: 1000 revenue, 600 cost, 20 percent rate -> 80 VND from approved original Python. Google web sessions remain separate from the MCP grant.\n"
+    },
+    "error": null
+  },
+  "google_authentication_claim": "not established by these connector calls; browser evidence is separate"
+}

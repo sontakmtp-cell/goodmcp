@@ -1,0 +1,35 @@
+# Add after compose.production.yml. Google stays restricted by google_config.
+services:
+  auth:
+    environment:
+      HUB_GOOGLE_CONFIG_FILE: /run/secrets/google_config
+      HUB_GOOGLE_ENABLED: ${HUB_GOOGLE_ENABLED:-1}
+    secrets: [google_config]
+  email:
+    image: ${HUB_IMAGE:-goodmcp-hub:local}
+    profiles: [email]
+    user: "10001:10001"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs: ["/tmp:rw,noexec,nosuid,size=32m"]
+    pids_limit: 64
+    mem_limit: 192m
+    cpus: 0.25
+    restart: unless-stopped
+    command: [python, -m, goodmcp.email_worker]
+    environment:
+      HUB_DB_HOST: postgres
+      HUB_DB_NAME: goodmcp
+      HUB_PUBLIC_BASE_URL: ${HUB_PUBLIC_BASE_URL}
+      HUB_SMTP_CONFIG_FILE: /run/secrets/smtp_config
+    secrets: [auth_password, smtp_config]
+    networks: [private, gateway]
+    depends_on:
+      postgres: {condition: service_healthy}
+    logging:
+      driver: json-file
+      options: {max-size: 5m, max-file: "2"}
+secrets:
+  google_config: {file: "${HUB_SECRETS_DIR}/google_config"}
+  smtp_config: {file: "${HUB_SECRETS_DIR}/smtp_config"}

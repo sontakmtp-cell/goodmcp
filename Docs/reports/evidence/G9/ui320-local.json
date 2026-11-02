@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-02",
+  "scope": "Local frontend build at 127.0.0.1 with synthetic session, workspace and API fixtures",
+  "viewport": "320 x 800",
+  "pages": [
+    "/app",
+    "/app/account",
+    "/admin members",
+    "/platform"
+  ],
+  "normal_names": "PASS: document scroll width 320 on all four pages",
+  "long_workspace_name": "PASS after fix: 120 unbroken characters, scroll width reduced from 3342 to 320",
+  "contrast": "PASS after fix: foreground rgb(23,35,56), background rgb(245,247,251)",
+  "spa_navigation": "PASS: admin to app retains light background",
+  "keyboard": "PASS: first Tab skip link, second workspace selector; admin System button visible at x=224..304 after Tab navigation",
+  "screenshots_before": "output/playwright/g9-*-320-before.png and g9-longname-320.png",
+  "screenshots_fixed": "output/playwright/g9-*-320-fixed.png",
+  "provider_auth_tested": false,
+  "limitations": "Synthetic local fixtures only; production Google and email delivery not tested by this run."
+}

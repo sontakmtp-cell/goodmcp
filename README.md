@@ -1,5 +1,12 @@
 # goodmcp-hub — Python, tài liệu và dự án theo workspace
 
+**Cập nhật G9, 02/11/2026:** đăng nhập Google và phân quyền nhiều người dùng đã
+triển khai cho nhóm kiểm chứng tại [goodmcp.si/app](https://goodmcp.si/app). Chưa
+đóng toàn bộ nghiệm thu: chưa có SMTP, ChatGPT web còn lỗi hiển thị kết quả;
+đăng ký công khai vẫn tắt. Xem [báo cáo G9](Docs/reports/G9.md),
+[thiết kế và quyền](Docs/design/G9-auth-workspaces.md) và
+[runbook G9](Docs/runbooks/G9-operations.md).
+
 **Cập nhật G6–G8, 31/10/2026:** đã có UI quản trị và Hub triển khai tại
 [goodmcp.si](https://goodmcp.si/admin), MCP **https://goodmcp.si/mcp**, đăng nhập
 Cloudflare SSO. Web/Python, reboot và restore đã có bằng chứng thực. **G7/G8 còn
@@ -64,8 +71,9 @@ gửi cùng log. Compose chỉ mount từng secret cho service cần nó:
 | postgres | admin_password | DB nội bộ, không publish port |
 | admin (CLI ngắn hạn) | admin/migrator/runtime/owner | Tạo role/seed, không nhận lưu lượng public |
 | migrate (CLI ngắn hạn) | migrator_password | DDL, tài khoản khác runtime |
-| API, worker, tests | runtime_password | Không owner/superuser/BYPASSRLS, không secret admin |
-| auth | auth_password | Issuer role riêng, không mount vào API/worker |
+| API | runtime_password, web_session_key | Xác minh phiên qua auth nội bộ; không có secret admin/issuer |
+| worker, tests | runtime_password | Không owner/superuser/BYPASSRLS, không secret admin |
+| auth | auth_password, web_session_key; cấu hình OIDC riêng khi bật | Issuer role riêng, không mount auth_password vào API/worker |
 | Caddy | Không | Proxy local |
 
 API/worker non-root, rootfs read-only, không mount Docker socket hoặc plugin mẫu.
@@ -87,6 +95,12 @@ CLI mở browser xin hub:read, gọi tool đọc rồi revoke grant tạm, khôn
 
 Tạo snapshot ZIP bất biến của ba mẫu (không sửa `plugin_example`), rồi nhập bằng
 browser OAuth có scope `hub:write` và quyền owner/admin:
+
+**Dữ liệu mẫu tách khỏi GitHub:** checkout công khai không bao gồm đầy đủ các gói
+Godot và Finance/corpus hiện có trên máy Khầy. Một tệp Finance vượt giới hạn kích
+thước GitHub và corpus có nội dung cần xử lý riêng; quyền phân phối Godot chưa được
+xác minh. Muốn tái tạo bộ ba mẫu, chuẩn bị nguồn riêng có quyền sử dụng/phân phối
+và đối chiếu hash theo báo cáo G0/G3. Không đưa credential hoặc bản chứa secret vào Git.
 
 ```powershell
 python scripts/pack-g3-samples.py

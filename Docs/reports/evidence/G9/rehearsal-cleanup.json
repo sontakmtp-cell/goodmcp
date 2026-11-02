@@ -1,0 +1,5 @@
+{
+  "exit_code": 0,
+  "stdout": "production_users|3\nproduction_projects|12\nschema|0007_g9\nONLY_G9_REHEARSAL_DATABASES_REMOVED\n",
+  "stderr": ""
+}

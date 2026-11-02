@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useMemo } from "react";
 import {
   Graph,
   Copy,
@@ -8,12 +8,12 @@ import {
   Plugs,
   ArrowUpRight,
 } from "@phosphor-icons/react";
-import { Api, ApiError, type Workspace, type Plugin, type Page } from "./api";
-import { signIn, completeSignIn, revoke, type Credential } from "./auth";
+import { Api, ApiError, type Plugin, type Page } from "./api";
+import { signIn, loadSession, type WebSession, type Credential } from "./auth";
+import { WorkspaceBar, Account, Members, Connections, Audit, Invitation, Platform, WorkspaceSettings } from "./Workspace";
 import { Sharks } from "./Sharks";
-import { Admin } from "./Admin";
+import { Admin, PluginList, Projects } from "./Admin";
 import {
-  ConfirmButton,
   Notice,
   useAction,
   useData,
@@ -116,9 +116,7 @@ export function Catalog({
 }
 export function Portal({
   api,
-  credential,
   onLogin,
-  onForget,
   onAdmin,
 }: {
   api: Api | null;
@@ -308,21 +306,8 @@ export function Portal({
             <section id="account" className="account-section">
               <h2>Tài khoản & kết nối</h2>
               <p>Đã xác thực phiên web · {api.workspace.name}</p>
-              <p>Trạng thái các kết nối AI khác chưa được máy chủ cung cấp.</p>
-              {credential && (
-                <ConfirmButton
-                  title="Thu hồi phiên web?"
-                  detail="Phiên web hiện tại sẽ mất quyền truy cập. Thao tác này không thu hồi các kết nối AI khác hoặc đăng xuất cookie tài khoản."
-                  danger
-                  onConfirm={async () => {
-                    await revoke(credential);
-                    onForget();
-                  }}
-                >
-                  Thu hồi phiên web
-                </ConfirmButton>
-              )}
-              <a href="/auth/account">Quản lý đăng nhập / đăng xuất</a>
+              <p>Quản lý tài khoản, workspace và các kết nối AI trong khu làm việc.</p>
+              <a href="/app/account">Mở tài khoản</a>
             </section>
           )}
         </main>
@@ -331,115 +316,54 @@ export function Portal({
   );
 }
 export function App() {
-  const [credential, setCredential] = useState<Credential | null>(null),
-    [api, setApi] = useState<Api | null>(null),
-    [admin, setAdmin] = useState(location.pathname.startsWith("/admin")),
-    [authBusy, setAuthBusy] = useState(false),
+  const [session, setSession] = useState<WebSession | null>(null),
+    [path, setPath] = useState(location.pathname),
+    [authBusy, setAuthBusy] = useState(true),
     [authError, setAuthError] = useState<unknown>(null);
-  const callbackStarted = useRef(false);
-  const forget = () => {
-    setApi(null);
-    setCredential(null);
-    setAdmin(false);
-    history.replaceState(null, "", "/");
+  const forget = () => { setSession(null); };
+  const navigate = (next: string) => { history.pushState(null, "", next); setPath(next); };
+  const reload = async () => {
+    try { setSession(await loadSession()); }
+    catch (error) { if (error instanceof ApiError && error.status === 401) { forget(); return; } throw error; }
   };
   useEffect(() => {
-    const pop = () => setAdmin(location.pathname.startsWith("/admin"));
+    const pop = () => setPath(location.pathname);
     window.addEventListener("popstate", pop);
     return () => window.removeEventListener("popstate", pop);
   }, []);
   useEffect(() => {
-    if (location.pathname !== "/oauth/callback" || callbackStarted.current)
-      return;
-    callbackStarted.current = true;
-    setAuthBusy(true);
-    (async () => {
-      try {
-        const c = await completeSignIn();
-        const probe = new Api(
-          c.access_token,
-          { workspace_id: "", name: "", role: "" },
-          forget,
-        );
-        const w = await probe.request<Workspace[]>(
-          "/api/v1/me/workspaces",
-          {},
-          false,
-        );
-        if (!w?.length) throw new Error("Tài khoản chưa có vùng dữ liệu.");
-        setCredential(c);
-        setApi(
-          new Api(c.access_token, w[0], () => {
-            forget();
-            setAuthError(new ApiError(401));
-          }),
-        );
-        setAdmin(c.admin && ["owner", "admin"].includes(w[0].role));
-        history.replaceState(
-          null,
-          "",
-          c.admin && ["owner", "admin"].includes(w[0].role) ? "/admin" : "/",
-        );
-      } catch (e) {
-        forget();
-        setAuthError(e);
-      } finally {
-        setAuthBusy(false);
-      }
-    })();
+    // Work areas use dark text; keep their canvas light after SPA navigation too.
+    document.documentElement.style.background = /^\/(app|admin|platform)(\/|$)/.test(path)
+      ? "#f5f7fb" : "#030910";
+  }, [path]);
+  useEffect(() => {
+    let active = true;
+    loadSession().then(value => { if (active) setSession(value); }).catch(error => {
+      if (active && !(error instanceof ApiError && error.status === 401)) setAuthError(error);
+    }).finally(() => { if (active) setAuthBusy(false); });
+    return () => { active = false; };
   }, []);
-  const login = async () => {
-    setAuthBusy(true);
-    setAuthError(null);
-    try {
-      await signIn(admin);
-    } catch (e) {
-      setAuthError(e);
-      setAuthBusy(false);
-    }
-  };
-  return (
-    <>
-      <a className="skip-link" href="#main">
-        Đến nội dung chính
-      </a>
-      {(authBusy || authError) && (
-        <div className="auth-status">
-          {authBusy && <p role="status">Đang xác thực…</p>}
-          <Notice error={authError} />
-        </div>
-      )}
-      {admin ? (
-        <Admin
-          api={api}
-          credential={credential}
-          onLogin={login}
-          onForget={forget}
-          onPortal={() => {
-            history.pushState(null, "", "/");
-            setAdmin(false);
-          }}
-        />
-      ) : (
-        <Portal
-          api={api}
-          credential={credential}
-          onLogin={login}
-          onForget={forget}
-          onAdmin={() => {
-            if (credential && !credential.admin) {
-              setAuthBusy(true);
-              signIn(true).catch((e) => {
-                setAuthError(e);
-                setAuthBusy(false);
-              });
-              return;
-            }
-            history.pushState(null, "", "/admin");
-            setAdmin(true);
-          }}
-        />
-      )}
-    </>
-  );
+  const workspace = session?.workspaces.find(w => w.id === session.workspace_id);
+  const api = useMemo(() => session && workspace ? new Api(session.csrf,
+    {workspace_id: workspace.id, name: workspace.name, role: workspace.role}, () => {
+      forget(); setAuthError(new ApiError(401));
+    }) : null, [session, workspace]);
+  const credential = session ? {csrf: session.csrf, admin: !!workspace && ["owner","admin"].includes(workspace.role)} : null;
+  const login = () => { setAuthError(null); signIn(path.startsWith("/admin")).catch(setAuthError); };
+  const admin = () => navigate("/admin");
+  const invitation = /invite|invitation/.test(path) ? new URLSearchParams(location.search).get("token") : null;
+  let content;
+  if (invitation) content = <Invitation session={session} token={invitation} reload={reload} onLogin={login} />;
+  else if (path.startsWith("/platform") && session) content = <Platform session={session} />;
+  else if (path.startsWith("/admin")) content = <Admin key={workspace?.id} api={api} credential={credential} onLogin={login} onForget={forget} onPortal={() => navigate("/app")}
+    management={api && session ? <><Members api={api} session={session} reload={reload} /><Connections api={api} session={session} /></> : undefined}
+    settings={api && session ? <><WorkspaceSettings session={session} reload={reload} /><Audit api={api} session={session} /></> : undefined} />;
+  else if (path.startsWith("/app") && session) content = <main id="main" className="admin-main workspace-main">
+    <p className="eyebrow">GOODMCP / KHU LÀM VIỆC</p><p>Chào mừng, {session.user.name || session.user.email}.</p><h1>{workspace?.name || "Chào mừng đến GoodMCP"}</h1>
+    <nav className="detail-tabs" aria-label="Khu làm việc">{[["/app","Plugin"],["/app/projects","Dự án"],["/app/connections","Kết nối AI"],["/app/account","Tài khoản"]].map(([href,label]) => <button key={href} aria-current={path === href ? "page" : undefined} onClick={() => navigate(href)}>{label}</button>)}{api && ["owner","admin"].includes(api.workspace.role) && <button onClick={admin}>Quản trị workspace</button>}</nav>
+    {path === "/app/account" || !api ? <Account key={workspace?.id} session={session} reload={reload} onForget={forget} /> : path === "/app/projects" ? <Projects key={workspace?.id} api={api} /> : path === "/app/connections" ? <Connections key={workspace?.id} api={api} session={session} /> : <PluginList key={workspace?.id} api={api} />}
+  </main>;
+  else if ((path.startsWith("/app") || path.startsWith("/platform")) && !authBusy) content = <main id="main" className="admin-login"><h1>Đăng nhập GoodMCP</h1><p>Đăng nhập Google để mở workspace và tiếp tục công việc.</p><button className="primary" onClick={login}>Đăng nhập Google</button><a href="/auth/login">Khôi phục tài khoản quản trị</a></main>;
+  else content = <Portal api={api} credential={credential} onLogin={login} onForget={forget} onAdmin={admin} />;
+  return <><a className="skip-link" href="#main">Đến nội dung chính</a>{(authBusy || authError) && <div className="auth-status">{authBusy && <p role="status">Đang xác thực…</p>}<Notice error={authError} /></div>}{session && <WorkspaceBar session={session} reload={reload} navigate={navigate} />}{content}</>;
 }

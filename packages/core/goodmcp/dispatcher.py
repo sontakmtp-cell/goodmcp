@@ -33,6 +33,7 @@ class Dispatcher:
             if row[0] is not None:return 'cancelled'
             # Revalidate membership and current installation on every heartbeat.
             jobs=Jobs(t,Path(os.environ.get('HUB_STORAGE_ROOT','/data')))
+            jobs.run_permission()
             binding=t.connection.execute(text('SELECT binding_id FROM jobs WHERE id=:id'),{'id':claim['id']}).scalar_one()
             jobs.binding(binding)
             return None
@@ -47,6 +48,7 @@ class Dispatcher:
             if row['cancel_requested_at'] is not None:result=None;error='cancelled';retry=False
             artifact=None
             if result is not None:
+                jobs.run_permission()
                 binding=jobs.binding(row['binding_id'])
                 result['provenance']={'plugin_version_id':str(row['plugin_version_id']),'source_tree_sha256':binding['source_tree_sha256'],
                     'adapter_id':row['operation'],'image_digest':binding['image_digest'],'release_digest':binding['release_digest'],
@@ -68,7 +70,11 @@ class Dispatcher:
         try:
             with self.tenant(claim) as t:
                 row=t.connection.execute(text('SELECT * FROM jobs WHERE id=:id'),{'id':claim['id']}).mappings().one()
-                binding=Jobs(t,Path('/data')).binding(row['binding_id'])
+                jobs=Jobs(t,Path('/data'))
+                jobs.run_permission()
+                if row['state'] != 'running' or row['cancel_requested_at'] is not None:
+                    raise ValueError('cancelled')
+                binding=jobs.binding(row['binding_id'])
                 if binding['image_digest']!=self.release['image_digest'] or binding['release_digest']!=self.release['release_digest']:
                     raise ValueError('Unapproved calculator release')
                 payload={'operation':row['operation'],'arguments':row['input']};timeout=binding['limits']['timeout_s']

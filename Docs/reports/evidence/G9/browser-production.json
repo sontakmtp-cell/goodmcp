@@ -1,0 +1,21 @@
+{
+  "environment": "production",
+  "date": "2026-11-02",
+  "owner_recovery": "passed",
+  "owner_google_link_reload_logout_signin": "passed",
+  "owner_existing_plugins_projects": "visible",
+  "test1_google": "passed",
+  "test1_isolation": "personal workspace has no plugins or projects before invite",
+  "test2_google": "passed",
+  "member_invitation": "accepted",
+  "viewer_invitation": "accepted",
+  "admin_invitation": "accepted",
+  "viewer_ui": "shared plugins visible; admin and ZIP upload controls absent",
+  "member_ui": "shared plugins visible; admin control absent",
+  "admin_ui": "workspace admin navigation visible",
+  "smtp_delivery": "not tested: no SMTP",
+  "mobile_320": "BLOCKED: Computer Use stopped because browser URL policy enforcement is not yet supported for the current Windows browser",
+  "chatgpt_web": "NOT PASS: response failed to load; read-only retry remained uncertain; activity text suggested a possible extra project, requiring audit",
+  "role_downgrade_restore": "PASS: test administrator changed to viewer and restored to administrator in G9 nhóm kiểm chứng",
+  "disposable_grant": "PASS: hub:read consent and UI revoke for G9 kiểm tra thu hồi in Khầy workspace; main connector preserved"
+}

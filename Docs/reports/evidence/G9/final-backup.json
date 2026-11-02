@@ -1,0 +1,5 @@
+{
+  "exit_code": 0,
+  "stdout": "{\"completed_at\": \"2026-11-02T00:41:28.077047+00:00\", \"snapshot_id\": \"19cc46fc404fe866e1d6f606f6b27f59a3c276b0a4b1d1cc1138ef754018ea3f\", \"off_vps_automatic\": false}\nactive\nactive\napi running healthy\nauth running healthy\ncaddy running \ndispatcher running \npostgres running healthy\nworker running \nG9_HANDOFF_BACKUP_COMPLETE\n",
+  "stderr": ""
+}

@@ -61,6 +61,10 @@ class Database:
                                   {"user": principal.user_id, "ws": workspace_id}).mappings().one_or_none()
             if member is None:
                 raise NotFound("Workspace not found")
+            # Row JSON also supports the historical G4 migration fixture, before
+            # archived_at existed; normal serving still requires the head schema.
+            if not conn.execute(text("SELECT 1 FROM workspaces w WHERE id=:ws AND to_jsonb(w)->>'archived_at' IS NULL"), {'ws': workspace_id}).first():
+                raise NotFound('Workspace not found')
             conn.execute(text("SELECT set_config('app.workspace_id', :value, true)"), {"value": str(workspace_id)})
             ctx = TenantContext(principal.user_id, workspace_id, member["id"], member["role"], principal.scopes, uuid4())
             yield TenantTransaction(conn, ctx)

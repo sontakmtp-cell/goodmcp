@@ -37,7 +37,7 @@ def json_tail(value):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--stage", choices=["G1", "G2", "G3", "G4", "G5"], required=True)
+    parser.add_argument("--stage", choices=["G1", "G2", "G3", "G4", "G5", "G9"], required=True)
     parser.add_argument('--g4-release',type=Path,help='Development only: reuse offline release with --working-tree')
     parser.add_argument("--working-tree", action="store_true", help="Development only; does not satisfy clean-checkout acceptance")
     parser.add_argument('--evidence-dir',type=Path,help='Separate evidence directory to preserve an earlier acceptance run')
@@ -67,7 +67,7 @@ def main():
     secret_dir = setup_module.setup(scratch / "secrets")
     sample_dir = scratch / "samples"
     sample_dir.mkdir()
-    if args.stage in ("G3", "G4", "G5"):
+    if args.stage in ("G3", "G4", "G5", "G9"):
         spec = importlib.util.spec_from_file_location("pack_g3", source / "scripts/pack-g3-samples.py")
         pack_module = importlib.util.module_from_spec(spec); spec.loader.exec_module(pack_module)
         # Input fixtures live outside git; verified archived code still builds cleanly.
@@ -75,7 +75,7 @@ def main():
         pack_module.pack(sample_dir)
     measurements=scratch/'measurements';measurements.mkdir()
     g4_release=None
-    if args.stage in ('G4','G5'):
+    if args.stage in ('G4','G5','G9'):
         if args.g4_release:
             if not args.working_tree:raise ValueError('Clean verification rebuilds from archived source')
             g4_release=args.g4_release.resolve()
@@ -90,7 +90,7 @@ def main():
     env = {**os.environ, "HUB_SECRETS_DIR": str(secret_dir), "HUB_PORT": str(port), "HUB_ALLOW_TEST_FIXTURES": "1", "HUB_G3_SAMPLES_DIR": str(sample_dir),
            "HUB_IMAGE": project + "-hub:verified", "HUB_CADDY_IMAGE": project + "-caddy:verified",
            "HUB_OWNER_EMAIL": "owner@local.invalid", "HUB_PUBLIC_BASE_URL": "http://localhost:8080"}
-    if args.stage in ('G4','G5'):env.update(HUB_G4_RELEASE_DIR=str(g4_release.parent),HUB_G4_BASELINE_DIR=str(measurements),HUB_RUNNER_PROJECT=project)
+    if args.stage in ('G4','G5','G9'):env.update(HUB_G4_RELEASE_DIR=str(g4_release.parent),HUB_G4_BASELINE_DIR=str(measurements),HUB_RUNNER_PROJECT=project)
     base = ["docker", "compose", "-p", project, "-f", str(source / "infra/compose.yml")]
     EVIDENCE.mkdir(parents=True, exist_ok=True)
     commands = []
@@ -98,7 +98,7 @@ def main():
     evidence = {"stage": args.stage, "status": "in_progress", "source_commit": commit,
                 "source_mode": "working_tree_dev" if args.working_tree else "clean_git_archive",
                 "run_id": stamp, "project": project, "checks": {}, "commands": commands}
-    if args.stage=='G5':
+    if args.stage in ('G5','G9'):
         files={}
         for directory in ('apps/api','packages/core','infra','scripts','tests'):
             for path in (source/directory).rglob('*'):
@@ -144,14 +144,14 @@ def main():
             try:
                 with urllib.request.urlopen(f"http://127.0.0.1:{port}/health/ready", timeout=3) as response:
                     payload = json.load(response)
-                    assert response.status == 200 and payload["data"]["stage"] in ("G1", "G2", "G3", "G4", "G5")
+                    assert response.status == 200 and payload["data"]["stage"] in ("G1", "G2", "G3", "G4", "G5", "G9")
                     return payload
             except Exception:
                 if attempt == 49: raise
                 time.sleep(0.2)
 
     try:
-        if args.stage in ('G4','G5'):
+        if args.stage in ('G4','G5','G9'):
             evidence['parity']=evaluate_g4('parity');assert evidence['parity']['passed']
             release=json.loads(g4_release.read_text(encoding='utf8'));evidence['release']={k:release[k] for k in ('mode','image_digest','release_digest','source_tree_sha256','source_zip_sha256')}
             assert release['mode']=='python-calculators-keyword-mvp'
@@ -163,7 +163,7 @@ def main():
         evidence["built_images"] = built_images
         run("start-empty-postgres", "up", "-d", "--wait", "postgres")
         admin("roles")
-        if args.stage=='G5':
+        if args.stage in ('G5','G9'):
             # Independent DB in this test project's PostgreSQL, with actual pre-G5 data.
             # This does not replace fresh-install, readiness or tenant regressions below.
             run('upgrade-fixture-create-database','run','--rm','--no-deps','admin','python','tests/migration_g5.py','create')
@@ -187,7 +187,7 @@ def main():
         assert initial["users"] == initial["workspaces"] == 1
         evidence["checks"]["single_owner_bootstrap_idempotent"] = True
         admin("fixtures")
-        if args.stage in ("G2", "G3", "G4", "G5"):
+        if args.stage in ("G2", "G3", "G4", "G5", "G9"):
             run("auth-workspace-fixture", "run", "--rm", "--no-deps", "auth_probe")
         run("start-local-stack", "up", "-d", "--wait", "api", "auth", "worker", "caddy")
         health()
@@ -195,7 +195,7 @@ def main():
         match = re.search(r"(\d+) passed", output)
         assert match, "No successful pytest summary"
         evidence["checks"]["pytest_passed"] = int(match.group(1))
-        if args.stage in ("G3", "G4", "G5"):
+        if args.stage in ("G3", "G4", "G5", "G9"):
             result = json_tail(run("plugin-import-and-catalog-wire", "run", "--rm", "--no-deps", "wire", "python", "tests/wire_g3.py", "full"))
             assert result["passed"]
             evidence["g3_wire"] = result
@@ -205,7 +205,7 @@ def main():
                     "import json; from pathlib import Path; p=Path('/sys/fs/cgroup'); print(json.dumps({'peak_bytes':int((p/'memory.peak').read_text(encoding='utf8')),'events':(p/'memory.events').read_text(encoding='utf8'),'process_rss':[x for x in Path('/proc/1/status').read_text(encoding='utf8').splitlines() if x.startswith(('VmHWM:','VmRSS:'))]}))"))
                 assert "oom_kill 0" in observation["events"]
                 evidence["g3_memory"][service] = observation
-        if args.stage in ('G4','G5'):
+        if args.stage in ('G4','G5','G9'):
             finance=next(r for r in evidence['g3_wire']['plugins'] if r['directory']=='vietnam-finance-tax-expert')
             evidence['approval']=json_tail(run('approve-runtime-release','run','--rm','--no-deps','runtime_admin','python','-m','goodmcp.runtime_admin',
                 '--workspace',first['workspace_id'],'--version',finance['version_id'],'--test-probes'))
@@ -240,10 +240,10 @@ def main():
             finally:
                 sampling_stop.set();sampling_thread.join(10)
                 (EVIDENCE/'compose-memory-samples.json').write_text(json.dumps(samples,indent=2)+'\n',encoding='utf8')
-        if args.stage=='G5':
+        if args.stage in ('G5','G9'):
             evidence['g5_wire']=json_tail(run('workflow-resume-conflict-wire','run','--rm','--no-deps','wire','python','tests/wire_g5.py','full'))
             assert evidence['g5_wire']['passed']
-        if args.stage in ("G2", "G3", "G4", "G5"):
+        if args.stage in ("G2", "G3", "G4", "G5", "G9"):
             result = json_tail(run("oauth-mcp-wire-full", "run", "--rm", "--no-deps", "wire"))
             assert result["passed"]
             evidence["wire_full"] = result
@@ -251,25 +251,30 @@ def main():
             result = json_tail(run("oauth-wire-negative-tokens", "run", "--rm", "--no-deps", "wire", "python", "tests/wire_g2.py", "negatives"))
             assert result["passed"]
             evidence["wire_negatives"] = result
+        if args.stage == 'G9':
+            evidence['g9_session_http'] = json_tail(run('g9-browser-session-api-http','run','--rm','--no-deps','wire','python','tests/wire_g9.py'))
+            output = run('g9-identity-workspace-database', 'run', '--rm', '--no-deps', 'auth_tests')
+            assert re.search(r'(\d+) passed', output)
+            evidence['g9_local_tests'] = int(re.search(r'(\d+) passed', output).group(1))
         before = json_tail(run("seed-persistence", "run", "--rm", "--no-deps", "tests", "python", "tests/persistence.py", "seed"))
         # Stronger than process restart: recreate every service, retaining volumes.
         run("recreate-stack-down-keep-volumes", "--profile", "g4", "down")
-        run("recreate-stack-up", "up", "-d", "--wait", "postgres", "api", "auth", "worker", "caddy", *(['dispatcher'] if args.stage in ('G4','G5') else []))
+        run("recreate-stack-up", "up", "-d", "--wait", "postgres", "api", "auth", "worker", "caddy", *(['dispatcher'] if args.stage in ('G4','G5','G9') else []))
         after = json_tail(run("verify-persistence", "run", "--rm", "--no-deps", "tests", "python", "tests/persistence.py", "check"))
         assert before["artifact_id"] == after["artifact_id"] and after["persisted_after_recreate"]
         evidence["checks"]["db_and_blob_persist_after_recreate"] = True
-        if args.stage in ("G2", "G3", "G4", "G5"):
+        if args.stage in ("G2", "G3", "G4", "G5", "G9"):
             result = json_tail(run("oauth-survives-recreate", "run", "--rm", "--no-deps", "wire", "python", "tests/wire_g2.py", "resume"))
             assert result["passed"]
             evidence["wire_resume"] = result
             evidence["credential_storage"] = json_tail(run("inspect-credential-storage", "run", "--rm", "--no-deps", "auth_probe", "python", "-m", "goodmcp.auth_admin", "inspect"))
-        if args.stage in ("G3", "G4", "G5"):
+        if args.stage in ("G3", "G4", "G5", "G9"):
             result = json_tail(run("plugin-versions-survive-recreate", "run", "--rm", "--no-deps", "wire", "python", "tests/wire_g3.py", "resume"))
             assert result["passed"]
             evidence["g3_resume"] = result
-        if args.stage in ('G4','G5'):
+        if args.stage in ('G4','G5','G9'):
             evidence['g4_resume']=json_tail(run('g4-result-persists','run','--rm','--no-deps','wire','python','tests/wire_g4.py','resume'));assert evidence['g4_resume']['passed']
-        if args.stage=='G5':
+        if args.stage in ('G5','G9'):
             evidence['g5_resume']=json_tail(run('g5-project-resumes-after-recreate','run','--rm','--no-deps','wire','python','tests/wire_g5.py','resume'))
             assert evidence['g5_resume']['passed']
         health()
@@ -302,7 +307,7 @@ def main():
                 assert container["Config"]["User"] == "10001:10001" and container["HostConfig"]["ReadonlyRootfs"]
                 assert all(m["Destination"].split("/")[-1] not in ("admin_password", "migrator_password", "owner_password") for m in mounts)
             if service == "auth":
-                assert [m["Destination"] for m in mounts if m["Destination"].startswith("/run/secrets/")] == ["/run/secrets/auth_password"]
+                assert {m["Destination"] for m in mounts if m["Destination"].startswith("/run/secrets/")} == {"/run/secrets/auth_password", "/run/secrets/web_session_key"}
             services.append({"service": service, "image_id": container["Image"], "user": container["Config"]["User"],
                 "ports": ports, "readonly_rootfs": container["HostConfig"]["ReadonlyRootfs"],
                 "secret_names": [m["Destination"].split("/")[-1] for m in mounts if m["Destination"].startswith("/run/secrets/")]})
@@ -316,8 +321,10 @@ def main():
         leftovers = subprocess.check_output(["docker", "volume", "ls", "--filter", "label=com.docker.compose.project=" + project, "--format", "{{.Name}}"], text=True).strip()
         assert not leftovers, "Verification project volumes were not fully removed"
         evidence["checks"]["all_test_volumes_removed"] = True
-        evidence["status"] = "passed"
-        if args.stage in ('G4','G5'):evidence.update(runtime_status='passed',document_lookup='literal_keywords',advanced_search='deferred_by_user')
+        evidence["status"] = "local_passed_acceptance_pending" if args.stage == 'G9' else "passed"
+        if args.stage == 'G9':
+            evidence['acceptance_pending'] = ['real_google_three_accounts', 'smtp_delivery', 'production_browser_and_chatgpt']
+        if args.stage in ('G4','G5','G9'):evidence.update(runtime_status='passed',document_lookup='literal_keywords',advanced_search='deferred_by_user')
     except Exception:
         evidence["status"] = "failed"
         raise

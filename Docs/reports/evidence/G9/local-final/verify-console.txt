@@ -1,0 +1,191 @@
+
+[compose-config]
+
+[build-clean-source]
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.50kB done
+#1 DONE 0.0s
+
+#2 [caddy internal] load build definition from Dockerfile.caddy
+#2 transferring dockerfile: 350B done
+#2 DONE 0.0s
+
+#3 [api internal] load build definition from Dockerfile
+#3 transferring dockerfile: 859B done
+#3 DONE 0.0s
+
+#4 [api internal] load metadata for ghcr.io/astral-sh/uv:0.9.7@sha256:ba4857bf2a068e9bc0e64eed8563b065908a4cd6bfb66b531a9c424c8e25e142
+#4 DONE 0.0s
+
+#5 [api internal] load metadata for docker.io/library/python:3.12.12-slim-bookworm@sha256:593bd06efe90efa80dc4eee3948be7c0fde4134606dd40d8dd8dbcade98e669c
+#5 DONE 0.1s
+
+#6 [caddy internal] load metadata for docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+#6 DONE 0.1s
+
+#7 [api internal] load .dockerignore
+#7 transferring context: 245B done
+#7 DONE 0.0s
+
+#8 [caddy internal] load .dockerignore
+#8 transferring context: 2B done
+#8 DONE 0.0s
+
+#9 [api internal] load build context
+#9 transferring context: 7.33kB 0.0s done
+#9 DONE 0.0s
+
+#10 [api stage-0  1/10] FROM docker.io/library/python:3.12.12-slim-bookworm@sha256:593bd06efe90efa80dc4eee3948be7c0fde4134606dd40d8dd8dbcade98e669c
+#10 resolve docker.io/library/python:3.12.12-slim-bookworm@sha256:593bd06efe90efa80dc4eee3948be7c0fde4134606dd40d8dd8dbcade98e669c 0.0s done
+#10 DONE 0.0s
+
+#11 [api] FROM ghcr.io/astral-sh/uv:0.9.7@sha256:ba4857bf2a068e9bc0e64eed8563b065908a4cd6bfb66b531a9c424c8e25e142
+#11 resolve ghcr.io/astral-sh/uv:0.9.7@sha256:ba4857bf2a068e9bc0e64eed8563b065908a4cd6bfb66b531a9c424c8e25e142 0.0s done
+#11 DONE 0.0s
+
+#12 [caddy 1/2] FROM docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+#12 resolve docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d 0.0s done
+#12 DONE 0.0s
+
+#13 [caddy 2/2] RUN setcap -r /usr/bin/caddy
+#13 CACHED
+
+#14 [api stage-0  2/10] COPY --from=ghcr.io/astral-sh/uv:0.9.7@sha256:ba4857bf2a068e9bc0e64eed8563b065908a4cd6bfb66b531a9c424c8e25e142 /uv /usr/local/bin/uv
+#14 CACHED
+
+#15 [api stage-0  4/10] COPY pyproject.toml uv.lock ./
+#15 CACHED
+
+#16 [api stage-0  5/10] RUN uv sync --frozen --no-dev --no-install-project && mkdir /data /wirestate && chown 10001:10001 /data /wirestate
+#16 CACHED
+
+#17 [api stage-0  3/10] WORKDIR /app
+#17 CACHED
+
+#18 [api stage-0  8/10] COPY infra/alembic.ini /app/infra/alembic.ini
+#18 CACHED
+
+#19 [api stage-0  7/10] COPY packages/core /app/packages/core
+#19 CACHED
+
+#20 [api stage-0  6/10] COPY apps/api /app/apps/api
+#20 CACHED
+
+#21 [api stage-0  9/10] COPY infra/migrations /app/infra/migrations
+#21 CACHED
+
+#22 [caddy] exporting to image
+#22 exporting layers done
+#22 exporting manifest sha256:8185221f1420869d98caaf858fd750d47caad42d80398a153fc8fee32949f929 0.0s done
+#22 exporting config sha256:e73d393a9d7114b7fd09ee6f9f8daaa12127119f66ffa2532c21164697d7c115
+#22 ...
+
+#23 [api stage-0 10/10] COPY tests /app/tests
+#23 DONE 0.1s
+
+#22 [caddy] exporting to image
+#22 exporting config sha256:e73d393a9d7114b7fd09ee6f9f8daaa12127119f66ffa2532c21164697d7c115 0.0s done
+#22 exporting attestation manifest sha256:540a5af9ffb52273aec1d07492eaa2d01f71290a64c4e520c111a92356ed9fff 0.0s done
+#22 exporting manifest list sha256:63a6fc66f5d46e524519cb254b4f654638084f8f9a45768677c5073d8af26391 0.0s done
+#22 naming to docker.io/library/goodmcp-g9-verify-20261101t014148z-5ba43e-caddy:verified 0.0s done
+#22 unpacking to docker.io/library/goodmcp-g9-verify-20261101t014148z-5ba43e-caddy:verified
+#22 unpacking to docker.io/library/goodmcp-g9-verify-20261101t014148z-5ba43e-caddy:verified 0.0s done
+#22 DONE 0.2s
+
+#24 [api] exporting to image
+#24 exporting layers 0.2s done
+#24 exporting manifest sha256:f263b2a7f0a59c9bde0f9f888fa4ab3251fb27159626603156c3968a4c769c1d 0.0s done
+#24 exporting config sha256:1b87386bb3b901a47363cad26767b3944af61ef6a963da69e01e8a0ac9ba8469 0.0s done
+#24 exporting attestation manifest sha256:889312b7a2c435a10af6a6670512c994bffabae9570e778352ece282ab64e2d3 0.1s done
+#24 exporting manifest list sha256:d6cba42f97e3707dfa48b2900ededcd81eaf7692576e2fb2df86fcade2adcc20
+#24 exporting manifest list sha256:d6cba42f97e3707dfa48b2900ededcd81eaf7692576e2fb2df86fcade2adcc20 0.0s done
+#24 naming to docker.io/library/goodmcp-g9-verify-20261101t014148z-5ba43e-hub:verified done
+#24 unpacking to docker.io/library/goodmcp-g9-verify-20261101t014148z-5ba43e-hub:verified 0.1s done
+#24 DONE 0.5s
+
+#25 [caddy] resolving provenance for metadata file
+#25 DONE 0.0s
+
+#26 [api] resolving provenance for metadata file
+#26 DONE 0.0s
+ goodmcp-g9-verify-20261101t014148z-5ba43e-hub:verified  Built
+ goodmcp-g9-verify-20261101t014148z-5ba43e-caddy:verified  Built
+
+[start-empty-postgres]
+ Network goodmcp-g9-verify-20261101t014148z-5ba43e_private  Creating
+ Network goodmcp-g9-verify-20261101t014148z-5ba43e_private  Created
+ Volume "goodmcp-g9-verify-20261101t014148z-5ba43e_postgres_data"  Creating
+ Volume "goodmcp-g9-verify-20261101t014148z-5ba43e_postgres_data"  Created
+ Container goodmcp-g9-verify-20261101t014148z-5ba43e-postgres-1  Creating
+ Container goodmcp-g9-verify-20261101t014148z-5ba43e-postgres-1  Created
+ Container goodmcp-g9-verify-20261101t014148z-5ba43e-postgres-1  Starting
+ Container goodmcp-g9-verify-20261101t014148z-5ba43e-postgres-1  Started
+ Container goodmcp-g9-verify-20261101t014148z-5ba43e-postgres-1  Waiting
+ Container goodmcp-g9-verify-20261101t014148z-5ba43e-postgres-1  Healthy
+
+[admin-roles]
+{"status": "ok"}
+
+[upgrade-fixture-create-database]
+{"isolated_upgrade_database_created": true}
+
+[upgrade-fixture-migrate-g4]
+
+[upgrade-fixture-seed-old-projects]
+ Volume "goodmcp-g9-verify-20261101t014148z-5ba43e_artifacts"  Creating
+ Volume "goodmcp-g9-verify-20261101t014148z-5ba43e_artifacts"  Created
+Traceback (most recent call last):
+  File "/app/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1958, in _exec_single_context
+    self.dialect.do_execute(
+  File "/app/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 1192, in do_execute
+    cursor.execute(statement, parameters)
+  File "/app/.venv/lib/python3.12/site-packages/psycopg/cursor.py", line 117, in execute
+    raise ex.with_traceback(None)
+psycopg.errors.UndefinedColumn: column "archived_at" does not exist
+LINE 1: SELECT 1 FROM workspaces WHERE id=$1 AND archived_at IS NULL
+                                                 ^
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/app/tests/migration_g5.py", line 156, in <module>
+    result=database_operation(operation=='create') if operation in ('create','drop') else seed() if operation=='seed' else verify()
+                                                                                          ^^^^^^
+  File "/app/tests/migration_g5.py", line 76, in seed
+    with db.tenant(Principal(OWNER,SCOPES),WS) as t:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/app/packages/core/goodmcp/database.py", line 64, in tenant
+    if not conn.execute(text('SELECT 1 FROM workspaces WHERE id=:ws AND archived_at IS NULL'), {'ws': workspace_id}).first():
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1463, in execute
+    return meth(
+           ^^^^^
+  File "/app/.venv/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 533, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1683, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1837, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1977, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/app/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2347, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/app/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1958, in _exec_single_context
+    self.dialect.do_execute(
+  File "/app/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 1192, in do_execute
+    cursor.execute(statement, parameters)
+  File "/app/.venv/lib/python3.12/site-packages/psycopg/cursor.py", line 117, in execute
+    raise ex.with_traceback(None)
+sqlalchemy.exc.ProgrammingError: (psycopg.errors.UndefinedColumn) column "archived_at" does not exist
+LINE 1: SELECT 1 FROM workspaces WHERE id=$1 AND archived_at IS NULL
+                                                 ^
+[SQL: SELECT 1 FROM workspaces WHERE id=%(ws)s AND archived_at IS NULL]
+[SQL parameters hidden due to hide_parameters=True]
+(Background on this error at: https://sqlalche.me/e/21/f405)
+

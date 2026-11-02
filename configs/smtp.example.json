@@ -1,0 +1,9 @@
+{
+  "host": "smtp.example.invalid",
+  "port": 587,
+  "sender": "no-reply@example.invalid",
+  "username": "replace",
+  "password": "replace",
+  "security": "starttls",
+  "timeout": 10
+}

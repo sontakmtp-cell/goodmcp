@@ -1,6 +1,6 @@
 # goodmcp-hub — Kế hoạch MVP và lộ trình mở rộng
 
-> Cập nhật 30/10/2026, múi giờ Asia/Saigon. Đây là đặc tả để giao việc cho AI agent; trạng thái thực hiện và chứng cứ nghiệm thu được cập nhật riêng trong `Docs/reports/Gx.md`.
+> Cập nhật 02/11/2026, múi giờ Asia/Saigon. Đây là đặc tả để giao việc cho AI agent; trạng thái thực hiện và chứng cứ nghiệm thu được cập nhật riêng trong `Docs/reports/Gx.md`.
 >
 > **Chọn VPS chạy ứng dụng và công cụ Python, Cloudflare giữ DNS/HTTPS, R2 dùng cho backup ngoài VPS.** MVP chỉ phục vụ Khầy với ba plugin mẫu; kiến trúc dữ liệu và quyền truy cập phải sẵn sàng cho nhiều người dùng và nhiều plugin.
 >
@@ -255,11 +255,23 @@ Không backup rác cũ không có nghĩa bỏ backup dữ liệu mới của Hub
 
 ### 6.3. Giai đoạn mở rộng sau MVP
 
-**G9 — Nhiều người được mời:** invitation, role thật, quota và audit theo user; kiểm tra isolation lại. Chỉ admin duyệt runtime; kiểm tra quyền phân phối plugin trước chia sẻ, chưa cho người lạ chạy code.
+Chi tiết G9–G11 được thay thế bởi [PLAN-phase-2.md](PLAN-phase-2.md). Phạm vi một
+người dùng của MVP ở trên là mốc G0–G8, không phải giới hạn bản G9 hiện tại.
 
-**G10 — Nhiều plugin/tải lớn:** chuyển blob chính sang R2 qua ArtifactStore, giữ cache nóng runner; migration theo hash và kiểm tra trước đổi pointer. Tách runner sang máy khác nếu peak RAM vượt 75% hoặc queue chờ trên 30 giây kéo dài. Scale API/database theo số đo, không tự chuyển sang microservice.
+**G9 — Google, nhiều người dùng và workspace:** đã triển khai nhóm ba Google/
+bốn workspace, đủ bốn vai trò, invitation và thu hồi thật; giữ dữ liệu G8. Chưa
+đóng toàn bộ nghiệm thu: SMTP chưa có theo xác nhận Khầy; ChatGPT web còn lỗi
+hiển thị/kết quả chưa xác minh. Responsive 320 px đã đạt trên browser local fixture. Xem [G9.md](reports/G9.md),
+[API/quyền](design/G9-auth-workspaces.md), [vận hành](runbooks/G9-operations.md).
+Giữ allowlist, chưa mở signup công khai.
 
-**G11 — Plugin công khai:** review/chữ ký/nguồn phát hành, sandbox mạnh hơn container dùng chung, egress policy, quét dependency, quota/billing và quy trình gỡ plugin. Không bật chỉ bằng mở nút đăng ký.
+**G10 — Lưu trữ, hạn mức và vận hành beta:** R2, backup ngoài VPS/restore, quota
+giao dịch, công việc công bằng, màn hình vận hành và tải 20 phiên. Chưa triển khai;
+chỉ mở beta sau cổng này, dịch vụ phát sinh chi phí cần Khầy chốt.
+
+**G11 — Marketplace, thuê plugin và thanh toán:** tác giả/xét duyệt, runner cô lập,
+thuê theo workspace, SePay, hoàn tiền và đối soát. Chưa triển khai; không bật chỉ
+bằng mở đăng ký hoặc công khai plugin mẫu.
 
 ## 7. Giai đoạn giao việc cho AI agent
 

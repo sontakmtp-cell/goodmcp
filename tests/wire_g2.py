@@ -197,7 +197,8 @@ def full():
     r = browser.post("/mcp", headers={"Authorization": "Bearer " + tokens["access_token"]}, json={"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {}})
     check("legacy disabled explicitly", r.status_code == 400)
     for path in ("/mcp", "/mcp/", "/mcp//", "/api/v1/me/workspaces", "/api/v1/unknown"):
-        r = browser.post(path, json={})
+        # This probe must be anonymous. G9's browser has a valid web cookie now.
+        r = httpx.post(BASE + path, json={}, timeout=15)
         check("no anonymous alias " + path, r.status_code == 401)
     check("wrong workspace selection", rpc(tokens["access_token"], headers={"X-Workspace-ID": REVOKED_WORKSPACE}).status_code == 403)
     check("host allowlist", rpc(tokens["access_token"], headers={"Host": "evil.invalid"}).status_code == 421)

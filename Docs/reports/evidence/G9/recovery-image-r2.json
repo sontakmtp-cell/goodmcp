@@ -1,0 +1,5 @@
+{
+  "exit_code": 0,
+  "stdout": "{\"passed\": true, \"scope\": \"recovery_image_on_migrated_production_copy\", \"new_google_identity_workspace_session_readable\": true, \"business_rows_unchanged\": true, \"api_readiness\": 200, \"auth_web_session\": 200, \"real_google\": false}\ngoogle_identities|2\nlegacy_platform_owner|1\nRECOVERY_IMAGE_PREPARED\n",
+  "stderr": "/app/packages/core/goodmcp/google_oidc.py:11: AuthlibDeprecationWarning: authlib.jose module is deprecated, please use joserfc instead.\nIt will be compatible before version 2.0.0.\n  from authlib.jose import JsonWebToken\n"
+}

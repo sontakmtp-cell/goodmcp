@@ -21,7 +21,11 @@ from goodmcp.auth_config import AuthSettings, SCOPES
 from goodmcp.oauth_store import AuthStore, sha, now
 from goodmcp.oauth_server import GrantServer, BufferedRequest
 from goodmcp.version import REVISION
-from goodmcp import cloudflare_sso
+from goodmcp import cloudflare_sso, google_oidc
+from apps.api import web_sessions
+from goodmcp.database import Forbidden, NotFound
+from goodmcp.storage import Conflict
+from apps.api.workspaces_api import routes as workspace_routes
 from goodmcp.oauth_clients import redirect_csp_origin
 
 COOKIE = "hub_session"
@@ -45,6 +49,17 @@ async def lifespan(app):
 
 
 app = FastAPI(lifespan=lifespan, docs_url=None, redoc_url=None, openapi_url=None)
+app.include_router(web_sessions.routes())
+app.include_router(workspace_routes(None, web_sessions.authenticate))
+
+
+async def management_error(request, exc):
+    code = 401 if isinstance(exc, NotFound) and str(exc) == 'authentication_required' else 404 if isinstance(exc, NotFound) else 403 if isinstance(exc, Forbidden) else 409 if isinstance(exc, Conflict) else 422
+    return JSONResponse({'error': {'code': 'unauthenticated' if code == 401 else 'request_rejected', 'message': str(exc)}}, status_code=code)
+
+
+for error_type in (NotFound, Forbidden, Conflict, ValueError):
+    app.add_exception_handler(error_type, management_error)
 
 
 def fail(code, status=400): return JSONResponse({"error": code}, status_code=status, headers={"Cache-Control": "no-store", "Pragma": "no-cache"})
@@ -57,7 +72,8 @@ def page(title, body):
 
 
 def set_cookie(response, cookie, settings):
-    response.set_cookie(COOKIE, cookie, httponly=True, secure=settings.secure_cookie, samesite="lax", path="/auth", max_age=settings.session_ttl)
+    response.delete_cookie(COOKIE, path='/auth', secure=settings.secure_cookie, httponly=True, samesite='lax')
+    response.set_cookie(COOKIE, cookie, httponly=True, secure=settings.secure_cookie, samesite="lax", path="/", max_age=settings.session_ttl)
 
 
 @app.middleware("http")
@@ -121,7 +137,46 @@ async def register(request: Request):
 def return_target(value):
     if value and value.startswith("/auth/authorize?") and len(value) < 8192 and not re.search(r"[\x00-\x1f\x7f]", value):
         return value
+    if value and len(value) < 2048 and not re.search(r"[\x00-\x20\x7f\\]", value) and (value == '/app' or value.startswith('/app/') or value in ('/admin','/platform')):
+        return value
     return None
+
+
+@app.get('/auth/google/start')
+async def google_start(request: Request):
+    config = google_oidc.configuration()
+    if not config:
+        return page('Google chưa sẵn sàng', '<p>Đăng nhập Google đang được cấu hình. <a href="/auth/login">Đường khôi phục quản trị</a></p>')
+    store = request.app.state.store
+    def start():
+        with store.engine.begin() as conn:
+            if store.limit(conn, 'google-start:' + request.client.host, 30, increment=True, seconds=60):
+                return fail('rate_limited', 429)
+            cookie, _ = store.new_session(conn, pending=return_target(request.query_params.get('return_to')))
+        response = RedirectResponse(google_oidc.authorization_url(store, config, cookie), status_code=302)
+        set_cookie(response, cookie, store.settings)
+        return response
+    return await run_in_threadpool(start)
+
+
+@app.get('/auth/google/callback')
+async def google_callback(request: Request):
+    config = google_oidc.configuration()
+    if not config:
+        return fail('google_unavailable', 404)
+    if any(len(request.query_params.getlist(k)) != 1 for k in request.query_params):
+        return fail('invalid_google_callback')
+    if request.query_params.get('error'):
+        return page('Đã hủy đăng nhập Google', '<p><a href="/app">Quay lại GoodMCP</a></p>')
+    try:
+        result = await run_in_threadpool(google_oidc.finish, request.app.state.store, config,
+            request.cookies.get(COOKIE), request.query_params.get('state'), request.query_params.get('code'))
+    except Exception as exc:
+        logging.getLogger(__name__).warning('Google callback failed: %s', type(exc).__name__)
+        return page('Chưa đăng nhập được', '<p>Phiên đã hết hạn, tài khoản chưa thuộc nhóm thử nghiệm hoặc liên kết chưa hợp lệ. <a href="/auth/google/start">Thử lại</a></p>')
+    response = RedirectResponse(result['next'], status_code=303)
+    set_cookie(response, result['cookie'], request.app.state.store.settings)
+    return response
 
 
 @app.get("/auth/login")
@@ -213,7 +268,10 @@ async def authorize_form(request: Request):
         with store.engine.begin() as conn:
             session = store.session(conn, request.cookies.get(COOKIE), lock=True)
             if not session or not session["user_id"]:
-                return RedirectResponse("/auth/login?" + urlencode({"return_to": "/auth/authorize?" + str(request.query_params)}), status_code=303)
+                # MCP clients start here without a web cookie. All Google users
+                # must be able to sign in; /auth/login remains owner recovery.
+                login_path = '/auth/google/start' if google_oidc.configuration() else '/auth/login'
+                return RedirectResponse(login_path + "?" + urlencode({"return_to": "/auth/authorize?" + str(request.query_params)}), status_code=303)
             server = GrantServer(store, conn, allow_client_fetch=True)
             req = buffered(request)
             try: grant = validate_authorization(server, req)
@@ -273,7 +331,7 @@ async def account(request: Request):
             if not session or not session["user_id"]: return RedirectResponse("/auth/login", status_code=303)
             csrf = secrets.token_urlsafe(32)
             conn.execute(text("UPDATE auth_browser_sessions SET csrf_hash=:hash,pending_authorize=NULL WHERE id=:id"), {"hash": sha(csrf), "id": session["id"]})
-            return page("Đã đăng nhập", '<p>Mở kết nối MCP từ client để chọn vùng dữ liệu và cấp quyền.</p>'
+            return page("Đã đăng nhập", '<p><a href="/app">Mở khu làm việc và liên kết Google</a></p><p>Mở kết nối MCP từ client để chọn vùng dữ liệu và cấp quyền.</p>'
                 f'<form method="post" action="/auth/logout"><input name="csrf" type="hidden" value="{csrf}"><button>Đăng xuất</button></form>')
     return await run_in_threadpool(render)
 
@@ -288,7 +346,7 @@ async def logout(request: Request):
             if not store.check_csrf(session, form.get("csrf")): return fail("csrf", 403)
             conn.execute(text("DELETE FROM auth_browser_sessions WHERE id=:id"), {"id": session["id"]})
             response = RedirectResponse("/auth/login", status_code=303)
-            response.delete_cookie(COOKIE, path="/auth", secure=store.settings.secure_cookie, httponly=True, samesite="lax")
+            response.delete_cookie(COOKIE, path="/", secure=store.settings.secure_cookie, httponly=True, samesite="lax")
             return response
     return await run_in_threadpool(clear)
 

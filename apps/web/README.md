@@ -1,13 +1,25 @@
-# GoodMCP Web — G6
+# GoodMCP Web — G9
 
-React + TypeScript + Vite. Hai bề mặt riêng: User Portal `/` và Admin Dashboard
-`/admin`, dùng chung backend/OAuth G2 hiện có. Không có mock data trong ứng dụng.
+React + TypeScript + Vite. `/` là trang giới thiệu; `/app` là khu làm việc mọi
+vai trò; `/admin` quản trị workspace; `/platform` quản trị toàn GoodMCP.
+Dữ liệu ứng dụng đến từ API thật. Fixture chỉ dùng trong kiểm thử riêng.
+
+## Đăng nhập và quyền
+
+Web dùng phiên server/cookie HttpOnly, Secure trên production và CSRF cho thao tác
+ghi. Reload vẫn giữ phiên còn hạn; không cấp hoặc lưu bearer MCP trong browser.
+Google đăng nhập trực tiếp, chủ cũ giữ đường Cloudflare khôi phục và liên kết
+Google từ tài khoản đã xác thực. Chọn workspace web không thay workspace grant AI.
+
+Quản lý thành viên, lời mời, kết nối và audit dùng `/auth/web/...`; nghiệp vụ giữ
+`/api/v1/workspaces/{workspace_id}`. Backend/RLS quyết định quyền. localStorage
+chỉ giữ metadata tiếp tục upload, không giữ token đăng nhập.
 
 ## Chạy local
 
-Backend G1–G5 phải đang chạy và `/health/ready` trả ready tại
-`http://127.0.0.1:18080`. Từ repo có thể kiểm tra bằng `python scripts/local.py status`.
-Frontend không tự dựng lại backend, cấp runtime mới hoặc thay dữ liệu đang có.
+Cần backend schema G9 (`0007_g9`) và auth service G9 đang chạy. Không trỏ frontend
+G9 vào backend G8 cũ rồi coi lỗi thiếu endpoint là lỗi mạng. Chạy setup-local để
+bổ sung `web_session_key` nếu thư mục secret có từ trước; script không ghi đè khóa.
 
 ```powershell
 cd H:\AI\goodmcp\apps\web
@@ -15,24 +27,13 @@ npm ci
 npm run dev
 ```
 
-Mở `http://127.0.0.1:4173/` hoặc `/admin`. Đăng nhập qua form G2 với tài khoản
-local đã cấp; không tạo tài khoản công khai. Không chép password/token vào frontend.
-Trang đăng nhập/consent/logout do G2 phục vụ; callback web dùng PKCE S256 + state + issuer.
+Dev server ở `http://127.0.0.1:4173`, proxy mặc định backend
+`http://127.0.0.1:18080`; backend public base/Host/Origin phải khớp. Không phơi dev
+server ra Internet hoặc thêm CORS/bypass auth. G9 Google thật dùng callback production;
+local không có Google config có thể dùng form chủ qua `/auth/login` để kiểm API.
 
-User Portal chỉ xin quyền đọc. Owner/admin mở Quản trị sẽ xin lại các quyền ghi
-cần thiết qua consent G2. Token chỉ ở RAM; tải lại trang cần đăng nhập/consent lại.
-Client ID công khai được cache trong localStorage để tránh đăng ký client mỗi lần.
-Upload resume chỉ lưu ID/key/tên/hash/kích thước theo workspace; phải chọn lại ZIP.
-
-URL hiển thị mặc định `https://mcp.example.invalid/mcp`, có nhãn URL mẫu chưa triển khai.
-Không dùng localhost làm URL connector cloud. `VITE_MCP_URL` chỉ được đặt thành URL
-thật sau deployment/kiểm chứng của giai đoạn sau.
-
-Vite proxy cố định đến backend loopback, chuẩn hóa Host/Origin phía server proxy
-cho hợp đồng G2. Khi đổi backend local, đặt biến môi trường PowerShell
-`$env:GOODMCP_API_ORIGIN` và `VITE_OAUTH_ISSUER` nhất quán. Không tự thêm CORS/bypass auth.
-Không phơi dev server ra LAN/Internet. `dist/` là build tĩnh; production routing/TLS
-không được triển khai trong G6.
+Production dùng `VITE_MCP_URL=https://goodmcp.si/mcp`. Không đưa VPS/DB/OIDC secret
+vào biến VITE. Google client secret chỉ nằm trong auth service.
 
 ## Kiểm tra
 
@@ -41,29 +42,23 @@ npm test
 npm run build
 ```
 
-UI tests mặc định dùng fixture chỉ trong `src/test`, không ship trong bundle.
-`src/test/live.test.tsx` mặc định skip; bật GOODMCP_LIVE=1 để kiểm React DOM với
-OAuth/API/Python thật (đọc owner credential local trong RAM, không in/lưu token). Axe chạy trên
-DOM, không đo layout/contrast trong jsdom. Browser evidence/responsive/keyboard
-và kiểm tra API thật được tách trong `Docs/reports/G6.md`.
+50 test passed / 1 opt-in live test skipped trong bàn giao. Live React/jsdom →
+API/Python cần `GOODMCP_LIVE=1`, stack local phù hợp và credential fixture local;
+không chạy tùy tiện trên production. Jsdom không chứng minh layout hay contrast.
 
-Từ repo: `.venv\Scripts\python.exe tests/wire_g6.py` chạy HTTP thật qua proxy local,
-tạo plugin/project thử có nhãn, giữ nguồn private và tắt installation thử khi xong.
-Không xóa dữ liệu cũ. Script trả exit 1 khi bất kỳ kiểm tra end-to-end chưa qua;
-đừng đổi failure thành success để đóng gate. Runtime/revoke đã qua kiểm tra local; xem báo cáo cho bằng chứng và giới hạn API.
+G9 có kiểm browser thật local ở 320×800 với API/session giả: bốn màn, bàn phím,
+navigation và workspace name dài. Đã sửa nền tối/chữ tối và heading tràn ngang.
+Bằng chứng này tách khỏi Google/invitation/revoke production và lỗi ChatGPT host.
 
-## Giới hạn có chủ ý
+## Giới hạn
 
-- Logs, tài nguyên, backup, quản lý người dùng/toàn bộ kết nối chưa có API quản trị.
-- Job theo ID; chưa có API list toàn bộ job/upload. Resume dùng ID lưu trên thiết bị.
-- Project: list/create/read, pin/revision, đọc/tải từng trang và lưu draft. Không UI
-  commit/skip/rollback stage, host-profile editor hay export toàn bộ project.
-- Form hỗ trợ scalar, enum và array enum đang dùng trong schema Python G4; schema
-  phức tạp chưa hỗ trợ sẽ chặn chạy, không yêu cầu nhập JSON tùy ý.
-- Phiên bản runtime mới vẫn phải do operator duyệt ngoài UI. Không tự thực thi mã ZIP.
-- Revoke chỉ grant web hiện tại và phải kiểm chứng protected API trả 401.
+Chính sách gói/quota cấu hình, dashboard tài nguyên/backup/job/upload đầy đủ thuộc
+G10; marketplace/thanh toán thuộc G11. SMTP chưa có thì lời mời chỉ queued. Chỉ
+operator/platform được duyệt runtime, không tự chạy mã ZIP tải lên.
 
-Thiết kế: `Docs/design/G6-UI.md`. Bàn giao: `Docs/reports/G6.md`.
+[Thiết kế G9](../../Docs/design/G9-auth-workspaces.md),
+[báo cáo](../../Docs/reports/G9.md), [vận hành](../../Docs/runbooks/G9-operations.md).
+Lịch sử G6 và giấy phép giữ trong báo cáo/notice riêng.
 
 ## Nguồn và giấy phép
 

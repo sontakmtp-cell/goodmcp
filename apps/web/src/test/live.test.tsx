@@ -10,13 +10,13 @@ import {
   render,
   screen,
   waitFor,
-  within,
 } from "@testing-library/react";
-import { createHash, randomBytes } from "node:crypto";
+import { randomBytes } from "node:crypto";
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { resolve } from "node:path";
 import { Api, type Plugin, type Workspace } from "../api";
-import { Admin } from "../Admin";
+import { Account } from "../Workspace";
+import { type WebSession } from "../auth";
 import { Portal } from "../App";
 import { PluginDetail } from "../Plugins";
 
@@ -25,8 +25,6 @@ vi.mock("../Sharks", () => ({ Sharks: () => <canvas aria-hidden="true" /> }));
 
 const root = resolve(process.cwd(), "../..");
 const ORIGIN = "http://127.0.0.1:4173";
-const ISSUER = "http://127.0.0.1:18080/auth";
-const scopes = "hub:read hub:write tools:run projects:read projects:write";
 const live = process.env.GOODMCP_LIVE === "1" ? it : it.skip;
 
 live(
@@ -64,18 +62,6 @@ live(
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(values),
     });
-    const registration = await auth("/auth/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        client_name: "G6 live React acceptance",
-        redirect_uris: [ORIGIN + "/oauth/callback"],
-        scope: scopes,
-      }),
-    });
-    if (registration.status !== 201)
-      throw new Error(`Local G2 registration failed (${registration.status}).`);
-    const clientId = (await registration.json()).client_id;
     const login = await auth("/auth/login");
     const password = (
       await readFile(root + "/.local/secrets/owner_password", "utf8")
@@ -90,70 +76,16 @@ live(
     );
     if (signed.status !== 303)
       throw new Error(`Local G2 login failed (${signed.status}).`);
-    const verifier = randomBytes(32).toString("base64url"),
-      state = randomBytes(24).toString("base64url");
-    const authorize = await auth(
-      "/auth/authorize?" +
-        new URLSearchParams({
-          client_id: clientId,
-          redirect_uri: ORIGIN + "/oauth/callback",
-          response_type: "code",
-          scope: scopes,
-          state,
-          resource: ISSUER.replace(/\/auth$/, "") + "/mcp",
-          code_challenge_method: "S256",
-          code_challenge: createHash("sha256")
-            .update(verifier)
-            .digest("base64url"),
-        }),
-    );
-    const consentText = await authorize.text();
-    const options = [
-      ...consentText.matchAll(/<option value="([^"]+)">([^<]+)<\/option>/g),
-    ];
-    const workspace = options.find(
-      (m) => !m[2].includes("G2 revoked fixture"),
-    )?.[1];
-    if (!workspace)
-      throw new Error("Local account has no acceptance workspace.");
-    const consent = await auth(
-      "/auth/authorize",
-      form({
-        csrf: csrf(consentText),
-        workspace_id: workspace,
-        consent: "allow",
-      }),
-    );
-    if (consent.status !== 302)
-      throw new Error(`Local G2 consent failed (${consent.status}).`);
-    const callback = new URL(consent.headers.get("location")!);
-    if (
-      callback.searchParams.get("state") !== state ||
-      callback.searchParams.get("iss") !== ISSUER
-    )
-      throw new Error("Local OAuth state/issuer mismatch.");
-    const exchanged = await auth(
-      "/auth/token",
-      form({
-        grant_type: "authorization_code",
-        client_id: clientId,
-        redirect_uri: ORIGIN + "/oauth/callback",
-        resource: ISSUER.replace(/\/auth$/, "") + "/mcp",
-        code: callback.searchParams.get("code")!,
-        code_verifier: verifier,
-      }),
-    );
-    if (exchanged.status !== 200)
-      throw new Error(`Local G2 exchange failed (${exchanged.status}).`);
-    const token = (await exchanged.json()).access_token;
+    const sessionResponse = await auth("/auth/web/session");
+    if (sessionResponse.status !== 200) throw new Error(`Web session failed (${sessionResponse.status})`);
+    const web: WebSession = (await sessionResponse.json()).data;
+    const workspace = web.workspace_id;
+    if (!workspace) throw new Error("Local owner has no workspace.");
     try {
       vi.stubGlobal("fetch", (input: RequestInfo | URL, init?: RequestInit) =>
-        nativeFetch(
-          typeof input === "string" ? new URL(input, ORIGIN) : input,
-          init,
-        ),
+        auth(typeof input === "string" ? input : String(input), init),
       );
-      const probe = new Api(token, { workspace_id: "", name: "", role: "" });
+      const probe = new Api(web.csrf, { workspace_id: "", name: "", role: "" });
       const workspaces = await probe.request<Workspace[]>(
         "/api/v1/me/workspaces",
         {},
@@ -164,7 +96,7 @@ live(
         throw new Error(
           "G2 did not verify the expected local owner workspace.",
         );
-      const api = new Api(token, verified);
+      const api = new Api(web.csrf, verified);
       const plugins = await api.request<{ items: Plugin[] }>(
         "/plugins?limit=100",
       );
@@ -212,21 +144,10 @@ live(
       expect(result.provenance.release_digest).toBe(release.release_digest);
       expect(result.data.cit_with_incentive_VND).toBe(80);
       cleanup();
-      const credential = {
-        access_token: token,
-        client_id: clientId,
-        admin: true,
-      };
       function Session() {
         const [active, setActive] = useState(true);
         return active ? (
-          <Admin
-            api={api}
-            credential={credential}
-            onLogin={() => {}}
-            onForget={() => setActive(false)}
-            onPortal={() => {}}
-          />
+          <Account session={web} reload={async () => {}} onForget={() => setActive(false)} />
         ) : (
           <Portal
             api={null}
@@ -238,17 +159,7 @@ live(
         );
       }
       render(<Session />);
-      fireEvent.click(
-        screen.getByRole("button", { name: "Người dùng & Kết nối" }),
-      );
-      fireEvent.click(
-        screen.getByRole("button", { name: "Thu hồi phiên web" }),
-      );
-      fireEvent.click(
-        within(screen.getByRole("dialog")).getByRole("button", {
-          name: "Xác nhận",
-        }),
-      );
+      fireEvent.click(screen.getByRole("button", {name: "Đăng xuất thiết bị này"}));
       await waitFor(
         () =>
           expect(
@@ -256,14 +167,9 @@ live(
           ).toBeVisible(),
         { timeout: 10000 },
       );
-      const after = await nativeFetch(
-        ORIGIN +
-          "/api/v1/me/workspaces?live_revoke=" +
-          randomBytes(8).toString("hex"),
-        { headers: { Authorization: "Bearer " + token }, cache: "no-store" },
-      );
+      const after = await auth("/api/v1/me/workspaces?live_logout=" + randomBytes(8).toString("hex"));
       expect(after.status).toBe(401);
-      const evidence = root + "/Docs/reports/assets/g6-completion";
+      const evidence = root + "/Docs/reports/evidence/G9";
       await mkdir(evidence, { recursive: true });
       await writeFile(
         evidence + "/live-ui-flow.json",
@@ -271,7 +177,7 @@ live(
           {
             passed: true,
             layer:
-              "real React DOM in jsdom with actual local OAuth/API/Python; not a real-browser capture",
+              "real React DOM in jsdom with actual local cookie session/API/Python; not a real-browser capture",
             calculation: {
               input: { revenue: 1000, cost: 600, rate: 20 },
               result: result.data,
@@ -289,7 +195,7 @@ live(
       );
     } finally {
       cleanup();
-      await auth("/auth/revoke", form({ client_id: clientId, token }));
+      await auth("/auth/web/logout", {method:"POST",headers:{"Content-Type":"application/json","X-CSRF-Token":web.csrf},body:JSON.stringify({all_devices:false})});
     }
   },
   45000,

@@ -106,7 +106,7 @@ def finish(store, config, cookie, state, code):
                 raise ValueError('Oversized OIDC keys')
             jwks = response.json()
         validate_identity(config, token['id_token'], jwks, bound['nonce'])
-        user = conn.execute(text('SELECT id FROM users WHERE email=:email AND active'),
+        user = conn.execute(text("SELECT id FROM users WHERE email=:email AND active AND password_hash<>'!'"),
                             {'email': config['hub_owner_email']}).mappings().one_or_none()
         if user is None or not store.memberships(conn, user['id']):
             raise ValueError('SSO owner has no active workspace')

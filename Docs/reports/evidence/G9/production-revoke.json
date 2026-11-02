@@ -1,0 +1,16 @@
+{
+  "before_status": 200,
+  "workspace_ids": [
+    "cfa8baa7-f581-406b-9ceb-a67e71088b46"
+  ],
+  "scope": "hub:read",
+  "client_id": "hub-client-N-WiZHJ9sHXWEvPye8ZZhKckgOwk68pl",
+  "token_or_code_in_evidence": false,
+  "callback_code_consumed": true,
+  "after_status": 401,
+  "mcp_after_status": 401,
+  "refresh_after_status": 400,
+  "access_lifetime_remaining_s": 248.1,
+  "revocation_not_expiry": true,
+  "passed": true
+}

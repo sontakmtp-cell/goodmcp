@@ -1,0 +1,5 @@
+{
+  "exit_code": 0,
+  "stdout": "{\"completed_at\": \"2026-11-01T01:53:41.564802+00:00\", \"snapshot_id\": \"9ccdbc5cfd60a8d5f15d5f02d54eb31e333ef98997a8e30a841cb30a9c8946af\", \"off_vps_automatic\": false}\nPREPARED_AND_BACKED_UP\n",
+  "stderr": ""
+}

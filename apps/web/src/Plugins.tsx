@@ -298,7 +298,7 @@ export function PluginDetail({
               </span>
             </p>
           </div>
-          <ConfirmButton
+          {["owner","admin"].includes(api.workspace.role) && <ConfirmButton
             title={current.enabled ? "Tắt plugin?" : "Bật plugin?"}
             detail="Thay đổi khả năng truy cập plugin qua kết nối AI. Phiên bản ghim của dự án không đổi."
             danger={current.enabled}
@@ -307,7 +307,7 @@ export function PluginDetail({
             }
           >
             {current.enabled ? "Tắt plugin" : "Bật plugin"}
-          </ConfirmButton>
+          </ConfirmButton>}
         </div>
         <p className="hint">
           Chỉ công cụ Python đã được duyệt mới chạy được. Bật plugin không đồng
@@ -353,7 +353,7 @@ export function PluginDetail({
                   </details>
                 </div>
                 <div className="actions">
-                  <button
+                  {["owner","admin"].includes(api.workspace.role) && <button
                     disabled={action.busy}
                     onClick={() =>
                       action.run(
@@ -367,8 +367,8 @@ export function PluginDetail({
                     }
                   >
                     Tải ZIP gốc
-                  </button>
-                  {v.id !== current.plugin_version_id && (
+                  </button>}
+                  {v.id !== current.plugin_version_id && ["owner","admin"].includes(api.workspace.role) && (
                     <ConfirmButton
                       title="Chuyển phiên bản?"
                       detail="Kết nối MCP sẽ dùng bản đã chọn. Dự án đang có giữ bản ghim cũ. Runtime Python có thể chưa được duyệt cho bản này."
@@ -403,7 +403,7 @@ export function PluginDetail({
       ) : tab === "documents" ? (
         <Documents api={api} installation={current.installation_id} />
       ) : (
-        <Tools api={api} installation={current.installation_id} />
+        api.workspace.role === "viewer" ? <section className="panel"><p>Vai trò chỉ xem không được chạy công cụ Python.</p></section> : <Tools api={api} installation={current.installation_id} />
       )}
     </>
   );

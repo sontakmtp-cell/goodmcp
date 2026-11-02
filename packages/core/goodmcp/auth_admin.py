@@ -10,6 +10,7 @@ from uuid import UUID
 from .admin import connect
 from .oauth_store import sha
 from .config import secret
+from .fixtures import USER_B
 
 REVOKED_WORKSPACE = UUID("20000000-0000-4000-8000-000000000099")
 
@@ -55,7 +56,10 @@ def main():
                     "scope": "UPDATE tokens SET scopes='[\"projects:read\"]'::jsonb WHERE token_hash=%s",
                 }[name]
                 assert conn.execute(statement, (token_hash,)).rowcount == 1
-            conn.execute("UPDATE memberships SET active=false WHERE workspace_id=%s", (REVOKED_WORKSPACE,))
+            # G9 requires a successor before removing the fixture user's ownership.
+            conn.execute("UPDATE memberships SET role='member' WHERE workspace_id=%s AND role='owner'", (REVOKED_WORKSPACE,))
+            conn.execute("INSERT INTO memberships(workspace_id,user_id,role) VALUES(%s,%s,'owner') ON CONFLICT(workspace_id,user_id) DO UPDATE SET role='owner',active=true", (REVOKED_WORKSPACE, USER_B))
+            conn.execute("UPDATE memberships SET active=false WHERE workspace_id=%s AND user_id<>%s", (REVOKED_WORKSPACE, USER_B))
             result = {"negative_fixtures_applied": True}
         else:
             role = conn.execute("SELECT rolsuper,rolbypassrls FROM pg_roles WHERE rolname='hub_auth'").fetchone()

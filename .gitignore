@@ -37,5 +37,6 @@ build/
 # Local G1 credentials and verification scratch
 .local/
 .pytest_cache/
+.playwright-cli/
 work/
 !.env.example

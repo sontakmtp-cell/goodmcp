@@ -45,7 +45,9 @@ export class Api {
     scoped = true,
   ): Promise<T> {
     const headers = new Headers(init.headers);
-    headers.set("Authorization", `Bearer ${this.token}`);
+    // The cookie is verified by the auth service. Never turn it into an MCP grant.
+    if (!/^(GET|HEAD)$/i.test(init.method || "GET"))
+      headers.set("X-CSRF-Token", this.token);
     if (typeof init.body === "string")
       headers.set("Content-Type", "application/json");
     let res: Response;
@@ -57,6 +59,7 @@ export class Api {
         {
           ...init,
           headers,
+          credentials: "same-origin",
           cache: "no-store",
           signal: init.signal || AbortSignal.timeout(30000),
         },
@@ -86,7 +89,7 @@ export class Api {
       res = await fetch(
         `/api/v1/workspaces/${encodeURIComponent(this.workspace.workspace_id)}${path}`,
         {
-          headers: { Authorization: `Bearer ${this.token}` },
+          credentials: "same-origin",
           cache: "no-store",
           signal: AbortSignal.timeout(60000),
         },

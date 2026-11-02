@@ -1,0 +1,33 @@
+{
+  "scope": "production_read_only_after_G9",
+  "source_files": {},
+  "preservation": {
+    "plugin_versions": {
+      "original_rows_unchanged": 13,
+      "current_rows": 13
+    },
+    "projects": {
+      "original_rows_unchanged": 10,
+      "current_rows": 12
+    },
+    "artifacts": {
+      "original_rows_unchanged": 990,
+      "current_rows": 995
+    }
+  },
+  "users": 3,
+  "workspaces": 4,
+  "identities": 3,
+  "roles": {
+    "viewer": 1,
+    "admin": 1,
+    "member": 1,
+    "owner": 4
+  },
+  "accepted_invitations": 3,
+  "unsent_mail": 3,
+  "invalid_owner_count": 0,
+  "revision": "0007_g9",
+  "serving_python_files_match_workspace": 41,
+  "source_mode": "working_tree"
+}

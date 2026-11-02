@@ -118,7 +118,7 @@ def tools(mcp,database):
 
     @mcp.tool(annotations=write)
     def hub_commit_stage(project_id:UUID,payload:CommitStage)->Result:
-        """Authenticated project lead atomically merges history, confirms outputs and writes checkpoint last. Revision conflict changes nothing. User authorization required for transitions."""
+        """A workspace writer atomically merges history, confirms outputs and writes checkpoint last. Revision conflict changes nothing. User authorization required for transitions."""
         return call('commit_stage',project_id,payload)
 
     @mcp.tool(annotations=read)

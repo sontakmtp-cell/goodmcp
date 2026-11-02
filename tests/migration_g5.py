@@ -92,11 +92,8 @@ def verify():
         check('operator can list projects needing explicit ownership confirmation',len(unassigned(conn,WS)['items'])==2)
     with db.tenant(principal,WS) as t:
         w=Workflows(t,Path('/data'))
-        check('read reports unresolved lead',w.read_project(PROJECT)['lead_assignment_required'])
-        try: w.project(PROJECT,write=True)
-        except Conflict: blocked=True
-        else: blocked=False
-        check('no self-claim through project write',blocked)
+        check('read preserves unresolved coordination lead',w.read_project(PROJECT)['coordination_lead_missing'])
+        check('G9 workspace writer does not self-claim historical lead',w.project(PROJECT,write=True)['lead_user_id'] is None)
     with connect() as conn:
         def rejected(name, lead=MEMBER, confirmed=OWNER, evidence='Verified owner confirmation fixture'):
             try:
